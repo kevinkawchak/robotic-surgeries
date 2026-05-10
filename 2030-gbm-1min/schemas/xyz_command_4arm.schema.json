@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kevinkawchak.github.io/physical-ai-oncology-trials/v3.9.1/xyz_command_4arm.schema.json",
+  "title": "GBM 1min XYZ Command per Arm",
+  "type": "object",
+  "required": [
+    "tick_us", "arm_id", "x_mm", "y_mm", "z_mm",
+    "qw", "qx", "qy", "qz",
+    "linear_vel_mmps", "force_clamp_N", "tool",
+    "command_state", "phase_id",
+    "meta_seed", "meta_iteration_id"
+  ],
+  "properties": {
+    "tick_us": {"type": "integer", "minimum": 0, "maximum": 60000000},
+    "arm_id": {"type": "string", "enum": ["ARM_1", "ARM_2", "ARM_3", "ARM_4"]},
+    "x_mm": {"type": "number", "minimum": -500, "maximum": 500},
+    "y_mm": {"type": "number", "minimum": -500, "maximum": 500},
+    "z_mm": {"type": "number", "minimum": -500, "maximum": 500},
+    "qw": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+    "qx": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+    "qy": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+    "qz": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+    "linear_vel_mmps": {"type": "number", "minimum": 0, "maximum": 1000.0},
+    "force_clamp_N": {"type": "number", "minimum": 0, "maximum": 5.0},
+    "tool": {"type": "string", "enum": ["HYBRID_USP", "BIPOLAR_IRR", "SUCTION_COL", "IMG_5ALA_MRI", "NONE"]},
+    "command_state": {"type": "string", "enum": ["EMIT", "CLAMP_TO_BOUNDARY", "FORCE_HOLD", "FORCE_SHARE_CLAMP", "SAFETY_PAUSE", "EMERGENCY_PARK", "ABORT"]},
+    "phase_id": {"type": "integer", "minimum": 1, "maximum": 4},
+    "meta_seed": {"type": "integer"},
+    "meta_iteration_id": {"type": "string", "pattern": "^run_[0-9]{5}$"}
+  },
+  "additionalProperties": false
+}

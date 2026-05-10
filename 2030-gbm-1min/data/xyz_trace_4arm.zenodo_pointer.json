@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "release_version": "v3.9.1",
+  "iteration_id": "run_00001",
+  "zenodo_doi": "10.5281/zenodo.PLACEHOLDER",
+  "zenodo_record_id": "PLACEHOLDER",
+  "zenodo_filename": "run_00001_xyz_trace_4arm.parquet",
+  "sha256": "PLACEHOLDER",
+  "byte_size": 12000000,
+  "compression": "zstd-3",
+  "channel_count": 56,
+  "row_count": 240000,
+  "populated_at_commit": "Commit 5 of v3.9.1 PR"
+}

@@ -12,6 +12,12 @@
 \usepackage[T1]{fontenc}
 \usepackage{url}
 \usepackage[hidelinks, colorlinks=false, pdfborder={0 0 0}]{hyperref}
+% Load underscore AFTER hyperref so the underscore character renders as
+% a normal printable character in text mode (the bracketed prompts in
+% sections/*.tex name dozens of paths that contain underscores). The
+% subscript role of _ is preserved in math mode and inside citation
+% keys (bibtex processes those independently).
+\usepackage{underscore}
 \usepackage{booktabs}
 \usepackage{amsfonts}
 \usepackage{amsmath}

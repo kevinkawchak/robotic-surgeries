@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>v3.9.1 1-minute dashboard</title>
+  <style>body { font-family: -apple-system, sans-serif; color: #000; max-width: 1200px; margin: 2em auto; padding: 0 1em; }
+  table { border-collapse: collapse; margin: 1em 0; } th, td { padding: 0.4em 0.8em; border: 1px solid #999; }
+  pre { background: #f6f6f6; padding: 0.6em; }</style>
+</head>
+<body>
+  <h1>v3.9.1 1-minute 4-arm Medtronic NeuroSpeed 1.0</h1>
+  <p>Self-contained Plotly dashboard placeholder. Real build is rendered by
+     src/llm/compare_agent_1min.py via plotly.express; this file is the static fallback.</p>
+  <h2>Leaderboard</h2>
+  <table>
+    <tr><th>Rank</th><th>Entity</th><th>Composite</th><th>Skill mu</th><th>Skill sigma</th></tr>
+    <tr><td>1</td><td>this_project_v3_9_1_1min_run_00002</td><td>88.46</td><td>671.36</td><td>96.5</td></tr>
+    <tr><td>2</td><td>this_project_v3_9_1_1min_run_00001</td><td>87.73</td><td>672.85</td><td>94.75</td></tr>
+    <tr><td>3</td><td>this_project_v3_9_1_1min_run_00004</td><td>87.4</td><td>668.75</td><td>96.75</td></tr>
+    <tr><td>4</td><td>this_project_v3_9_1_1min_run_00003</td><td>86.17</td><td>679.19</td><td>98.17</td></tr>
+  </table>
+  <h2>Per-arm summary</h2>
+  <pre>arm_1_hyb_resection_mm3_mean = 32400
+arm_2_bipolar_coagulation_seconds_mean = 47.2
+arm_3_suction_ml_mean = 28.4
+arm_4_imaging_frames_mean = 4280</pre>
+  <h2>Structural caveat</h2>
+  <p>The 1-minute scenario trivially beats the 1-hour scenario on the time dimension; this
+     advantage is structural and not a fair pairwise comparison.</p>
+</body>
+</html>

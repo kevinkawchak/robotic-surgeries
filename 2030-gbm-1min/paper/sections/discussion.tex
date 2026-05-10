@@ -1,0 +1,156 @@
+% ======================================================================
+% SECTION 4: DISCUSSION
+% Five thematic subsections: significance of the 60-second target,
+% FDA framing, on-prem LLM safety advantages, head-start framing for
+% the industry, and practical insights on how close the application
+% is to real life today.
+% Bracketed prompts for future Claude Code Opus 4.7 1M Max processing.
+% Do not process the bracketed prompts here.
+% ======================================================================
+
+\subsection{Significance of the 60-Second Computational Target}
+\label{sec:discussion-significance}
+
+[DISCUSSION SUBSECTION 1 PROMPT - PROCESS DURING THE PAPER POPULATION PASS]
+
+[Discuss the significance of the 60-second resection target as a
+computational checkpoint, not as a clinical claim. The realized
+quality benefit is a 240x to 480x compression of operative duration
+(current operative duration 4 to 8 hours for an IDH-wildtype
+glioblastoma resection; cite Stupp2005Glioblastoma, Sanai2011GBMResection),
+which translates into measurable patient-experience and safety gains
+under the frozen composite score formula (quality 0.40, time 0.25,
+cost 0.20, safety 0.10, patient experience 0.05). Read
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/comparison/comparison.json
+and outputs/comparison_robot_vs_human/comparison.json. Render the
+realized quality and safety benefits as a LaTeX table using
+{>{\raggedright\arraybackslash}p{Xcm}} for each column. The columns
+are: dimension, current 4 to 8 hour baseline, 60 second target,
+relative improvement, source file. Highlight the per-arm
+contribution analysis at outputs/viz/per_arm_contribution.png that
+shows arm 1 dominates resection volume (32,400 mm cubed mean) while
+arms 2 to 4 stay within the 30 percent target balance band on
+coagulation seconds, suction volume, and imaging frames respectively;
+this balance is the mechanical signature of the on-premises LLM
+single-robot-error-minimization thesis. Cite rosa-one-brain,
+Lefranc2014ROSAStereotaxy, kawchak_2026_19994945, and
+repo-robotic-surgeries.]
+
+\subsection{Respectful Yet Opportunistic FDA Framing}
+\label{sec:discussion-fda}
+
+[DISCUSSION SUBSECTION 2 PROMPT - PROCESS DURING THE PAPER POPULATION PASS]
+
+[Discuss the FDA framing respectfully and opportunistically. The
+60-second glioblastoma resection extends the FDA's 28 April 2026
+Real-Time Clinical Trials proof-of-concept program (cite
+fda2026realtime) from pharmacology into the surgical theater. State
+explicitly that the United States needs to remain Number 1 in the
+world regarding patient safety, efficacy, and speed benefits in
+oncological robotic surgeries in clinical trials, and that the
+on-premises LLM thesis is one route to that goal. Frame the work as
+an opportunistic extension, not a critique. Reference the FDA
+Software as a Medical Device (SaMD) framework (cite fda-samd) as
+the appropriate regulatory pathway for an on-premises LLM that emits
+control commands. Reference IEC 80601-2-77 (cite iec-80601-2-77) and
+IEC 62304 (cite iec-62304) as the standards floor. Note that the
+six 4-entity LLM tournament rounds at outputs/comparison/ and the
+six mixed tournament rounds at outputs/comparison_robot_vs_human/
+preserve the structural-time-dimension caveat in every rationale.
+This caveat is the operational signature of a respectful framing: the
+1-minute robot trivially beats the 1-hour human-baseline scenario on
+the time dimension, but the comparison is flagged as structural and
+not a fair pairwise comparison.]
+
+\subsection{On-Premises LLM Single-Robot Error Minimization}
+\label{sec:discussion-llm}
+
+[DISCUSSION SUBSECTION 3 PROMPT - PROCESS DURING THE PAPER POPULATION PASS]
+
+[Discuss how the on-premises LLM thesis minimizes single robot error
+potential. Read
+kevinkawchak/physical-ai-oncology-trials/competitions/instructions/one_minute_variant/multi_arm_coordination.md
+and
+kevinkawchak/robotic-surgeries/2030-gbm-1min/src/coordination/arm_heartbeat.cpp
+in full. The mechanism is cross-arm safety on the deterministic 1 kHz
+heartbeat broadcast bus (32-byte frames, 1 ms deadline, 3 ms
+watchdog, cumulative tip force <= 12 N on the patient frame,
+per-arm tip force <= 5.0 N, per-arm lateral force <= 1.0 N, 5 ms
+E-stop budget, 100 microsecond emergency arm-park trigger). Render
+the four-arm cross-check matrix as a LaTeX table using
+{>{\raggedright\arraybackslash}p{Xcm}} for each column showing each
+arm's tool, its primary sensor channels, the cross-check it performs
+on its three peer arms, and the corresponding fault response. Cite
+iec-80601-2-77 and iec-62304 for the regulatory floor. Reference the
+on-premises LLM control loop ASCII diagram at
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/diagrams/ that
+instantiates the thesis. State explicitly that on-premises inference
+keeps patient health information on site (no cloud transit) and that
+the 1M token context window of Claude Code Opus 4.7 (cite
+claude-opus-47, claude-code) lets a single inference pass hold all
+12 instruction files, all kinematics and schema YAML / JSON files,
+and all 16 iteration aggregates in context.]
+
+\subsection{Head Start: Checking Steps the Industry No Longer Has to Take}
+\label{sec:discussion-headstart}
+
+[DISCUSSION SUBSECTION 4 PROMPT - PROCESS DURING THE PAPER POPULATION PASS]
+
+[Discuss the head-start framing of this work. The 16-iteration
+deterministic sweep, the 4-entity LLM tournament, the cross-platform
+build recipes (Linux, MacOS, Windows, NVIDIA A100), and the
+60-second simulation pipeline are checking steps that the industry no
+longer has to take to evaluate the feasibility of an on-premises LLM
+controlled 4-arm parallel stereotactic neurosurgical robot. Read
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/reports/run_summary.md,
+outputs/reports/process_log.md, and outputs/reports/final_report.md
+in full. Render a LaTeX table using
+{>{\raggedright\arraybackslash}p{Xcm}} for each column with columns:
+checking step, current industry status, project status, source
+artifact, downstream effect. Include at least the following checking
+steps: 7-DOF DH parameter table per arm (industry: not published for
+1-minute target; project: complete at config/kinematics_4arm.yaml),
+1 kHz heartbeat broadcast bus protocol (industry: not standardized;
+project: complete at src/coordination/arm_heartbeat.cpp), per-arm
+force envelope and cross-check matrix (industry: per-arm only;
+project: cumulative cap plus cross-check), 16-iteration deterministic
+sweep with bit-determinism (industry: no published sweep at this
+scale; project: complete at outputs/iterations/), structured LLM
+tournament with on-premises inference (industry: cloud-only; project:
+complete at outputs/comparison/ and outputs/comparison_robot_vs_human/).
+Cite kawchak_2026_19994945, one-minute-variant-instructions,
+repo-robotic-surgeries, kawchak_2025_17774560, kawchak_2025_15549831,
+and kawchak_2025_17614396.]
+
+\subsection{Practical Insights: How Close to Real Life Today}
+\label{sec:discussion-practical}
+
+[DISCUSSION SUBSECTION 5 PROMPT - PROCESS DURING THE PAPER POPULATION PASS]
+
+[Discuss practical insights about how close the 60-second
+glioblastoma robotic resection is to real life today. State the
+distance plainly: not feasible with current commercial robotics, but
+the simulation pipeline is reproducible bit for bit from seed
+20260510 and runs on commodity hardware (M3 Ultra wall-clock 26 to
+32 s per iteration, A100 12 s per iteration; read
+2030-gbm-1min/README.md). The gaps to real life are (a) the
+hypothetical NeuroSpeed 1.0 hardware does not exist (need 5x to 200x
+improvements over Medtronic ROSA ONE Brain v3.0 across velocity,
+acceleration, E-stop latency, positioning accuracy, and force
+resolution; cite rosa-one-brain), (b) the synthetic patient PAT-GBM-0001
+is not real (no IRB, no informed consent, no real EHR), and (c) the
+deterministic 16-iteration sweep is not yet validated against any
+real-patient cohort or TRIPOD+AI / CREMLS reporting standard (cite
+Collins2024TRIPODAI, ElEmam2024CREMLS). The gaps that are close to
+closing today are (i) the on-premises LLM inference backends are
+production-grade for the 1M token context window (cite ollama, vllm,
+claude-opus-47), (ii) the Parquet + DuckDB analytics stack is
+production-grade (cite apache-arrow, duckdb), (iii) the Zenodo L0
+deposition protocol is production-grade at DOI 10.5281/zenodo.18445179
+(cite zenodo, repo-robotic-surgeries), and (iv) the CI gates (ruff
+format, ruff check, yamllint, file size cap) are already in place
+for Python 3.10, 3.11, and 3.12. Highlight that the
+robotic-surgeries simulation pipeline is therefore a "ready-to-port"
+software substrate: the moment a real NeuroSpeed-class robot is
+available, the on-premises LLM control loop can be re-pointed at it
+with minimal additional engineering.]

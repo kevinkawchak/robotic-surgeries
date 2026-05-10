@@ -1,0 +1,47 @@
+% ======================================================================
+% ABSTRACT (title-page block, target 900 characters single paragraph)
+% Bracketed prompts for future Claude Code Opus 4.7 1M Max processing.
+% Do not process the bracketed prompts here.
+% ======================================================================
+
+[ABSTRACT PROMPT - PROCESS DURING THE PAPER POPULATION PASS]
+
+[Write a single paragraph approximately 900 characters that opens with
+the on-premises repository based LLM thesis: an on-prem LLM provides
+commands to standard oncology surgical robots based on real-time sensor
+data and controlled via x, y, z coordinates, and this workflow
+minimizes single robot error potential. Anchor the thesis to the FDA's
+28 April 2026 Real-Time Clinical Trials announcement cited in
+references.bib as fda2026realtime, and contrast the proposed 60-second
+glioblastoma resection against the 1-hour Medtronic ROSA ONE Brain v3.0
+baseline (cite rosa-one-brain, Lefranc2014ROSAStereotaxy). Quantify the
+gap explicitly using the 5x to 200x deltas in tip velocity (50 mm/s vs
+1,000 mm/s), tip acceleration (200 mm/s^2 vs 10,000 mm/s^2), E-stop
+latency (50 ms vs 5 ms), and force resolution (0.01 N vs 0.001 N) read
+from
+kevinkawchak/physical-ai-oncology-trials/competitions/instructions/one_minute_variant/robot_specification_neurospeed.md
+and the 2030-gbm-1min/README.md narrative. Highlight the exceptional
+processing feat that no human team could produce in due time: the 54
+column by 1001 row sensor sample table at
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/sensors/sensor_sample_4arm.csv
+(50 channels per arm x 4 arms plus metadata columns x 1001 time rows at
+mixed 1 kHz commands plus 10 kHz force). Reference the 16-iteration
+deterministic sweep at 2030-gbm-1min/outputs/iterations/ (16 L1 50 ms
+Parquet plus 16 L2 1 s Parquet plus 16 L3 phase Parquet plus 16 events
+Parquet plus 16 L0 Zenodo pointer JSON), the LLM tournament
+leaderboards at 2030-gbm-1min/outputs/comparison/ and
+2030-gbm-1min/outputs/comparison_robot_vs_human/, and the cumulative
+4-arm tip force cap of 12 N on the patient frame. Close the abstract
+with the head-start framing: the 60-second resection is a checking
+step the industry no longer has to take, but a practical insight on how
+close to real-life the application is requires bridging the synthetic
+patient gap and adopting TRIPOD+AI plus CREMLS reporting standards.]
+
+[Constraints: single paragraph; approximately 900 characters; no em
+dashes, no double dashes, no triple dashes; black text only; no
+explicit numerical AUC or C-index claims (the abstract is a
+computational and contextual narrative, not a head-to-head benchmark);
+keep the FDA framing respectful and opportunistic; cite at least
+fda2026realtime, rosa-one-brain, claude-opus-47, claude-code,
+repo-robotic-surgeries, and kawchak_2026_20113157 inline through
+\cite{...} so the bibliography lists each as a clickable DOI link.]

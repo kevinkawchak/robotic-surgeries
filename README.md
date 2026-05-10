@@ -3,11 +3,12 @@
 Physical AI Oncology Trial Robotic Surgeries simulation repository.
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18445179-blue)](https://doi.org/10.5281/zenodo.18445179)
-[![Release](https://img.shields.io/badge/Release-v0.2.0-brightgreen.svg)](releases.md)
+[![Release](https://img.shields.io/badge/Release-v0.3.0-brightgreen.svg)](releases.md)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Python%203.10%2F3.11%2F3.12-3776ab.svg)](.github/workflows/ci.yml)
 [![Variant](https://img.shields.io/badge/Variant-1%20Minute-orange.svg)](2030-gbm-1min)
 [![Outputs](https://img.shields.io/badge/Outputs-v0.2.0-blueviolet.svg)](2030-gbm-1min/outputs)
+[![Paper](https://img.shields.io/badge/Paper%20Template-v0.3.0-9cf.svg)](2030-gbm-1min/paper)
 
 ## Thesis
 
@@ -15,9 +16,11 @@ On-premises repository based LLMs provide commands to standard oncology surgical
 
 ## Overview
 
-This repository hosts the v0.2.0 release of the multi-arm robotic glioblastoma resection simulation suite. The first project under this umbrella is the 4-arm 1-minute variant in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. Each arm carries 7 degrees of freedom and is sampled at mixed 1 kHz commands plus 10 kHz force per arm; the four arms cooperate over a deterministic 1 kHz heartbeat broadcast bus with a 5 ms E-stop budget and a 12 N cumulative force cap on the patient frame.
+This repository hosts the v0.3.0 release of the multi-arm robotic glioblastoma resection simulation suite. The first project under this umbrella is the 4-arm 1-minute variant in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. Each arm carries 7 degrees of freedom and is sampled at mixed 1 kHz commands plus 10 kHz force per arm; the four arms cooperate over a deterministic 1 kHz heartbeat broadcast bus with a 5 ms E-stop budget and a 12 N cumulative force cap on the patient frame.
 
-The v0.2.0 release publishes the runnable end-to-end outputs of the v3.9.1 pipeline under `2030-gbm-1min/outputs/`: sensor samples, per-arm xyz traces, the 16-iteration deterministic sweep, the per-iteration metric rows, the on-prem LLM tournament leaderboards, ASCII diagrams, ASCII bar charts, and 4 narrative reports. The outputs tree is reproducible from the deterministic seed 20260510.
+The v0.2.0 release published the runnable end-to-end outputs of the v3.9.1 pipeline under `2030-gbm-1min/outputs/`: sensor samples, per-arm xyz traces, the 16-iteration deterministic sweep, the per-iteration metric rows, the on-prem LLM tournament leaderboards, ASCII diagrams, ASCII bar charts, and 4 narrative reports. The outputs tree is reproducible from the deterministic seed 20260510.
+
+The v0.3.0 release adds the LaTeX paper template under `2030-gbm-1min/paper/` titled **2030: 60 Second Glioblastoma AI Robotic Surgery**. The template is a head start for a future Claude Code Opus 4.7 1M Max processing pass; every `sections/*.tex` file carries bracketed instructions that name the exact upstream and current repository paths to read so the downstream 70+ page paper grounds itself in this repository's content. The paper Zenodo DOI is 10.5281/zenodo.20113157.
 
 Subsequent variants under this same repository will explore longer durations, alternative robot platforms, and additional cancer sites. The shared instruction layer continues to live in `kevinkawchak/physical-ai-oncology-trials` and is read in the future to generate sibling output trees here.
 
@@ -62,6 +65,42 @@ robotic-surgeries/
       viz/                 #   HTML dashboard, PNG charts, ASCII charts
       reports/             #   run_summary, process_log, final_report
       logs/                #   per-script log files + ci_verification
+    paper/                 # v0.3.0 LaTeX paper template (head start for downstream Claude Code)
+      README.md            #   navigation index plus compile recipe
+      main.tex             #   title page, TOC, document structure
+      new_paper.sty        #   11 pt body, 1 in margins, raggedright tables
+      references.bib       #   DOI + URL bearing bibliography (clickable)
+      sections/            #   abstract / introduction / methods / results /
+                           #   discussion / limitations_future / conclusions /
+                           #   back_matter (bracketed prompts inside)
+```
+
+## v0.3.0 Paper Template (ASCII)
+
+```
++==========================================================================+
+|       2030-GBM-1MIN PAPER TEMPLATE (v0.3.0, LaTeX head start)            |
++==========================================================================+
+
+   paper/                Bracketed prompts name the exact files to read.
+     main.tex            Title page, TOC, \input{sections/*}.
+     new_paper.sty       11 pt, 1 in margins, raggedright tables, widows off.
+     references.bib      DOI + URL bearing; GitHub + Zenodo clickable.
+     sections/
+       abstract.tex      900-character title-page abstract (bracketed).
+       introduction.tex  FDA RTCT, GBM, baseline, thesis (bracketed).
+       methods.tex       Robot, sensors, xyz, iterations, comp (bracketed).
+       results.tex       Sensor 54x1001, xyz, iterations, comp (bracketed).
+       discussion.tex    Significance, FDA framing, on-prem LLM (bracketed).
+       limitations_future.tex  60min vs 1min deltas, Track A/B (bracketed).
+       conclusions.tex   Artifact headline, themes, forward path (bracketed).
+       back_matter.tex   Acknowledgments / Ethics / Rights / Cite / Data.
+
+   The downstream Claude Code 4.7 Max pass fills each [bracketed prompt]
+   with prose, tables, and ASCII diagrams sourced from the exact named
+   paths in 2030-gbm-1min/, 2030-gbm-1min/outputs/, and the upstream
+   physical-ai-oncology-trials competitions/instructions/one_minute_variant.
++==========================================================================+
 ```
 
 ## v0.2.0 Outputs Pipeline (ASCII)
@@ -93,7 +132,7 @@ robotic-surgeries/
 
 ```
 +-----------------------------------------------------------------------------+
-|                ROBOTIC-SURGERIES SUITE (v0.1.0 / first variant)             |
+|                ROBOTIC-SURGERIES SUITE (v0.3.0 / first variant)             |
 +-----------------------------------------------------------------------------+
 |                                                                             |
 |   physical-ai-oncology-trials       robotic-surgeries (this repo)           |
@@ -102,7 +141,9 @@ robotic-surgeries/
 |   |   one_minute_variant/      |    |   docs / config / schemas / src /   | |
 |   |     - README.md            |    |   data / prompts / results / viz /  | |
 |   |     - 12 instruction docs  |    |   notebooks / logs / releases/v3.9.1| |
-|   +----------------------------+    +------------------+------------------+ |
+|   +----------------------------+    |   outputs/  (end-to-end pipeline)   | |
+|                                     |   paper/    (LaTeX head start v0.3.0)| |
+|                                     +------------------+------------------+ |
 |                                                        |                    |
 |                                                        v                    |
 |                                            +-----------+-----------+        |
@@ -157,19 +198,49 @@ python -m src.simulation.iterate_1min --seed 20260510 --iterations 1
 
 The same scripts can be run inside Claude Code (CLI, web, or IDE plugin) or on a conventional high-end server, and they target identical Parquet outputs for a fixed seed.
 
+To compile the LaTeX paper template under `2030-gbm-1min/paper/`, upload that directory to Overleaf or run:
+
+```
+cd 2030-gbm-1min/paper
+pdflatex main.tex
+bibtex   main
+pdflatex main.tex
+pdflatex main.tex
+```
+
+An Overleaf-ready zip can be bundled locally from the same directory with:
+
+```
+cd 2030-gbm-1min/paper
+zip -r "LaTeX Source Files.zip" main.tex new_paper.sty references.bib sections/ orcid_icon.png
+```
+
 ## Citation
 
 If you use this repository in academic work, please cite:
 
 ```
-@software{kawchak_robotic_surgeries_v0_2_0_2026,
+@software{kawchak_robotic_surgeries_v0_3_0_2026,
   author    = {Kawchak, Kevin},
-  title     = {robotic-surgeries: 4-arm 1-minute glioblastoma trial v0.2.0
-               (end-to-end outputs)},
+  title     = {robotic-surgeries: 4-arm 1-minute glioblastoma trial v0.3.0
+               (paper template head start)},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18445179},
   url       = {https://github.com/kevinkawchak/robotic-surgeries}
+}
+```
+
+For the paper template specifically, cite:
+
+```
+@misc{kawchak_2026_20113157,
+  author    = {Kawchak, Kevin},
+  title     = {2030: 60 Second Glioblastoma AI Robotic Surgery},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.20113157},
+  url       = {https://doi.org/10.5281/zenodo.20113157}
 }
 ```
 
@@ -179,8 +250,9 @@ MIT License. See [LICENSE](LICENSE).
 
 ## See also
 
-- [releases.md](releases.md) for versioned release notes (v0.1.0, v0.2.0 and later).
+- [releases.md](releases.md) for versioned release notes (v0.1.0, v0.2.0, v0.3.0 and later).
 - [CHANGELOG.md](CHANGELOG.md) for the human-readable change log.
 - [references.md](references.md) for citations of standards, prior art, and inputs.
 - [2030-gbm-1min/README.md](2030-gbm-1min/README.md) for the project narrative, file generation outcomes, and per-commit roadmap of the 4-arm 1-minute variant.
 - [2030-gbm-1min/outputs/README.md](2030-gbm-1min/outputs/README.md) for the v0.2.0 end-to-end run outputs.
+- [2030-gbm-1min/paper/README.md](2030-gbm-1min/paper/README.md) for the v0.3.0 LaTeX paper template navigation index and compile recipe.

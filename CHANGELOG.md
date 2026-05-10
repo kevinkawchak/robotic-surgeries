@@ -3,6 +3,34 @@
 All notable changes to this repository are documented in this file.
 Format: Keep a Changelog. Versioning: Semantic Versioning.
 
+## v0.3.0 - 2026-05-11
+
+### Added
+
+- `2030-gbm-1min/paper/` LaTeX paper template (head start for a future Claude Code Opus 4.7 1M Max processing pass). New files: `main.tex` (title page, TOC, document structure), `new_paper.sty` (11 pt body, 1 in margins, ptm/phv font pair, widow/orphan suppression, raggedright tables, small-caps Abstract heading), `references.bib` (DOI + URL bearing bibliography with clickable GitHub and Zenodo URLs preserved in the note field), `README.md` (navigation index, compile recipe, formatting invariants, senior-author final-pass checklist), and the eight `sections/*.tex` files (`abstract.tex`, `introduction.tex`, `methods.tex`, `results.tex`, `discussion.tex`, `limitations_future.tex`, `conclusions.tex`, `back_matter.tex`).
+- Bracketed instruction prompts inside `sections/*.tex` that name the exact upstream and current repository paths to read for the downstream pass: the 12 hand-authored instruction files at `kevinkawchak/physical-ai-oncology-trials/competitions/instructions/one_minute_variant/`, the generated `kevinkawchak/robotic-surgeries/2030-gbm-1min/` tree, and the executed `2030-gbm-1min/outputs/` artifact set including the 54 columns by 1001 rows sensor sample table at `outputs/sensors/sensor_sample_4arm.csv`.
+- DOI- and URL-bearing bibliography in `2030-gbm-1min/paper/references.bib`: 27 entries including this paper's DOI 10.5281/zenodo.20113157, the parent repository DOI 10.5281/zenodo.18445179, the author's prior glioblastoma and clinical trial work (Zenodo 17774560, 15549831, 17614396, and 19994945), the FDA real-time clinical trials announcement, glioblastoma clinical context (Stupp 2005, Sanai 2011, Stummer 2006), Medtronic ROSA ONE Brain v3.0 baseline, IEC 80601-2-77 and IEC 62304 standards, TRIPOD+AI and CREMLS reporting standards, Claude Code / Claude Opus 4.7 / Claude Sonnet 4.6 tooling, ChatGPT Deep Research, Google Gemini AI Overview, Ollama, vLLM, Apache Arrow, DuckDB, and Zenodo. Every entry has a clickable DOI URL plus (for repository-style entries) both a GitHub URL and a Zenodo URL inside the note field.
+- Top-level README.md refreshed to include the v0.3.0 paper-template badge, the new paper subtree in the Repository Structure block, the v0.3.0 Paper Template ASCII snapshot, and the compile and zip recipes.
+- This v0.3.0 entry in `CHANGELOG.md` plus the matching `releases.md` block.
+
+### Changed
+
+- Top-level `README.md` updated with v0.3.0 paper template badge, paper subtree in the Repository Structure block, v0.3.0 Paper Template ASCII snapshot, paper-template citation block, Overleaf compile recipe, and `paper/README.md` cross-reference under See also.
+- `2030-gbm-1min/README.md` Repository Tree block annotated with the `paper/` subdirectory contents (main.tex, new_paper.sty, references.bib, sections/*.tex).
+- `2030-gbm-1min/paper/README.md` zip-creation recipe made explicit so that the Overleaf-ready bundle can be reproduced from the LaTeX sources committed under `2030-gbm-1min/paper/`.
+
+### Fixed
+
+- LaTeX template compiles cleanly under Overleaf and a local `pdflatex` plus `bibtex` installation. The 2nd-to-last commit (error fixes) loads the `underscore` package after `hyperref` so that paths with underscores render as printable characters in text mode, and rewrites raw `mm/s^2` and `mm^3` in the bracketed instruction prompts as `mm per second squared` and `mm cubed` plain text so no caret character escapes math mode.
+- The CI lint-and-format matrix on Python 3.10, 3.11, and 3.12 continues to pass; the new files under `2030-gbm-1min/paper/` are LaTeX and Markdown only and are not subject to `ruff format --check`, `ruff check`, or `yamllint -d relaxed`. Resolves the upstream `Cl / lint-and-format (3.10)`, `(3.11)`, and `(3.12)` failing checks risk for this PR.
+- File size cap check passes; no committed file exceeds 10 MB and no committed Parquet exceeds 5 MB. The largest new file is `2030-gbm-1min/paper/references.bib` at approximately 19 KB.
+
+### Notes
+
+- The LaTeX template explicitly defers prose generation. Each section's bracketed instructions enumerate the exact upstream and current files for a downstream Claude Code Opus 4.7 1M Max processing pass to read; that pass replaces each `[bracketed instruction]` block with prose, tables, and ASCII diagrams. The pass must preserve the formatting invariants listed in `2030-gbm-1min/paper/README.md` (single dashes only, black text, raggedright table columns, no widows or orphans, no margin overflow, clickable DOI and URL in every bibliography entry).
+- The Overleaf-ready `LaTeX Source Files.zip` can be bundled locally with `cd 2030-gbm-1min/paper && zip -r "LaTeX Source Files.zip" main.tex new_paper.sty references.bib sections/ orcid_icon.png`; the orcid_icon.png file falls back to a green "iD" tag rendered by `new_paper.sty` if absent.
+- The paper's Zenodo DOI is 10.5281/zenodo.20113157 (clickable from the title page and from the Cite This Article back-matter block). The parent repository deposition DOI is 10.5281/zenodo.18445179.
+
 ## v0.2.0 - 2026-05-10
 
 ### Added

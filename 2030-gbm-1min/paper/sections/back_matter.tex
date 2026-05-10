@@ -1,0 +1,92 @@
+% ======================================================================
+% BACK MATTER
+% Acknowledgments, Ethical Disclosures, Rights and Permissions, Cite
+% This Article, Data Availability. Final prose; no bracketed prompts.
+% ======================================================================
+
+\phantomsection
+\addcontentsline{toc}{section}{Acknowledgments}
+\section*{Acknowledgments}
+\label{sec:acknowledgments}
+
+The author would like to acknowledge Anthropic for providing access to
+Claude Code for code, data, and instruction generations, along with the
+paper creation process \cite{claude-code, claude-opus-47,
+claude-sonnet-46}; OpenAI for providing access to ChatGPT for deep
+research summaries \cite{chatgpt-thinking}, and Google Gemini AI
+Overview for additional search assistance \cite{google-gemini-overview}.
+The author also thanks the U.S. Food and Drug Administration for the
+28 April 2026 Real-Time Clinical Trials announcement
+\cite{fda2026realtime}, which sets the regulatory stage on which the
+60-second glioblastoma robotic surgery target in this paper is
+positioned as an opportunistic extension.
+
+\phantomsection
+\addcontentsline{toc}{section}{Ethical Disclosures}
+\section*{Ethical Disclosures}
+\label{sec:ethics}
+
+The author of the article declares no competing interests. None of
+the artifacts described in this paper involved real patients, real
+protected health information, or real institutional review board
+oversight. All patient identifiers, vital signs, robot logs, sensor
+records, agent decisions, and outcomes are synthetic or illustrative.
+The work is independent and is not endorsed or sponsored by any trial
+sponsor, FDA, CRO, site, IRB, regulator, or medical society; and was
+generated using Artificial Intelligence.
+
+\phantomsection
+\addcontentsline{toc}{section}{Rights and Permissions}
+\section*{Rights and Permissions}
+\label{sec:rights}
+
+This article is distributed under the terms of the Creative Commons
+Attribution 4.0 International License (CC BY 4.0), which permits
+unrestricted use, distribution, and reproduction in any medium,
+provided the original author(s) and source are properly credited, a
+link to the Creative Commons license is provided, and any
+modifications made are indicated. To view a copy of this license,
+visit \url{https://creativecommons.org/licenses/by/4.0/}.
+
+\phantomsection
+\addcontentsline{toc}{section}{Cite This Article}
+\section*{Cite This Article}
+\label{sec:cite}
+
+Kawchak K. 2030: 60 Second Glioblastoma AI Robotic Surgery. Zenodo.
+2026; \href{https://doi.org/10.5281/zenodo.20113157}{10.5281/zenodo.20113157}.
+
+\phantomsection
+\addcontentsline{toc}{section}{Data Availability}
+\section*{Data Availability}
+\label{sec:data}
+
+The upstream hand-authored instruction directory is publicly available
+in the \path{kevinkawchak/physical-ai-oncology-trials} GitHub
+repository under
+\path{competitions/instructions/one_minute_variant/}
+\cite{one-minute-variant-instructions}. The generated read-only
+project tree lives in the \path{kevinkawchak/robotic-surgeries} GitHub
+repository under \path{2030-gbm-1min/}
+\cite{repo-robotic-surgeries}. The end-to-end execution outputs live
+in the same repository under \path{2030-gbm-1min/outputs/}, including
+the 54 columns by 1001 rows sensor sample table at
+\path{2030-gbm-1min/outputs/sensors/sensor_sample_4arm.csv}, the
+240-row per-arm xyz command traces at
+\path{2030-gbm-1min/outputs/xyz_mapping/}, the 16-iteration
+deterministic sweep at \path{2030-gbm-1min/outputs/iterations/}, the
+LLM tournament leaderboards at
+\path{2030-gbm-1min/outputs/comparison/} and
+\path{2030-gbm-1min/outputs/comparison_robot_vs_human/}, the 6 curated
+ASCII diagrams at \path{2030-gbm-1min/outputs/diagrams/}, the ASCII
+charts at \path{2030-gbm-1min/outputs/viz/}, and the 4 narrative
+reports at \path{2030-gbm-1min/outputs/reports/}. The full-paper
+LaTeX sources for this paper are at
+\path{2030-gbm-1min/paper/}, with an Overleaf-ready ZIP at
+\path{2030-gbm-1min/paper/LaTeX Source Files.zip}. The Zenodo DOI
+for this paper is
+\href{https://doi.org/10.5281/zenodo.20113157}{10.5281/zenodo.20113157}
+\cite{kawchak_2026_20113157}, and the Zenodo DOI for the parent
+repository deposition is
+\href{https://doi.org/10.5281/zenodo.18445179}{10.5281/zenodo.18445179}
+\cite{repo-robotic-surgeries}.

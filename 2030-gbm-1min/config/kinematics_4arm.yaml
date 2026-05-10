@@ -45,13 +45,41 @@ dh_parameters_per_arm:
     angle_offset_rad: 0.0
 
 joint_limits_per_arm:
-  joint_1: {min_rad: -3.05, max_rad: 3.05, max_vel_radps: 6.28, max_acc_radpss: 31.42}
-  joint_2: {min_rad: -2.09, max_rad: 2.09, max_vel_radps: 6.28, max_acc_radpss: 31.42}
-  joint_3: {min_rad: -2.97, max_rad: 2.97, max_vel_radps: 6.28, max_acc_radpss: 31.42}
-  joint_4: {min_rad: -3.14, max_rad: 3.14, max_vel_radps: 6.28, max_acc_radpss: 31.42}
-  joint_5: {min_rad: -2.09, max_rad: 2.09, max_vel_radps: 6.28, max_acc_radpss: 31.42}
-  joint_6: {min_rad: -6.28, max_rad: 6.28, max_vel_radps: 6.28, max_acc_radpss: 31.42}
-  joint_7: {min_rad: -6.28, max_rad: 6.28, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+  joint_1:
+    min_rad: -3.05
+    max_rad: 3.05
+    max_vel_radps: 6.28
+    max_acc_radpss: 31.42
+  joint_2:
+    min_rad: -2.09
+    max_rad: 2.09
+    max_vel_radps: 6.28
+    max_acc_radpss: 31.42
+  joint_3:
+    min_rad: -2.97
+    max_rad: 2.97
+    max_vel_radps: 6.28
+    max_acc_radpss: 31.42
+  joint_4:
+    min_rad: -3.14
+    max_rad: 3.14
+    max_vel_radps: 6.28
+    max_acc_radpss: 31.42
+  joint_5:
+    min_rad: -2.09
+    max_rad: 2.09
+    max_vel_radps: 6.28
+    max_acc_radpss: 31.42
+  joint_6:
+    min_rad: -6.28
+    max_rad: 6.28
+    max_vel_radps: 6.28
+    max_acc_radpss: 31.42
+  joint_7:
+    min_rad: -6.28
+    max_rad: 6.28
+    max_vel_radps: 6.28
+    max_acc_radpss: 31.42
 
 end_effector:
   max_linear_vel_mmps: 1000.0

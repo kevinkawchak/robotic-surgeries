@@ -122,15 +122,11 @@ def write_results(comparison: dict, results_dir: Path) -> None:
 def write_dashboards(comparison: dict, viz_dir: Path) -> None:
     viz_dir.mkdir(parents=True, exist_ok=True)
     (viz_dir / "metrics_dashboard.html").write_text(
-        "<!DOCTYPE html><html><body><pre>"
-        + json.dumps(comparison, indent=2)
-        + "</pre></body></html>\n",
+        "<!DOCTYPE html><html><body><pre>" + json.dumps(comparison, indent=2) + "</pre></body></html>\n",
         encoding="utf-8",
     )
     (viz_dir / "metrics_summary.png").write_bytes(b"\x89PNG\r\n\x1a\n metrics_summary placeholder.")
-    (viz_dir / "per_arm_contribution.png").write_bytes(
-        b"\x89PNG\r\n\x1a\n per_arm_contribution placeholder."
-    )
+    (viz_dir / "per_arm_contribution.png").write_bytes(b"\x89PNG\r\n\x1a\n per_arm_contribution placeholder.")
 
 
 @click.command()

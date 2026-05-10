@@ -1,0 +1,28 @@
+{
+  "iterations": 16,
+  "all_status_ok": true,
+  "wall_clock_seconds_min": 25.67,
+  "wall_clock_seconds_max": 32.2,
+  "wall_clock_seconds_mean": 27.83,
+  "ae_count_total": 22,
+  "estop_count_total": 8,
+  "force_violation_count_total": 46,
+  "cumulative_force_violation_count_total": 22,
+  "heartbeat_miss_count_total": 37,
+  "noise_sigma_mm_range": [
+    0.01,
+    0.05
+  ],
+  "force_feedback_gain_range": [
+    0.8,
+    1.2
+  ],
+  "ik_solver_tolerance_range": [
+    1e-06,
+    0.001
+  ],
+  "heartbeat_jitter_sigma_us_range": [
+    0.0,
+    50.0
+  ]
+}

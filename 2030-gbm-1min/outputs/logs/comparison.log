@@ -1,0 +1,23 @@
+date_utc=2026-05-10T20:19:00Z
+host=claude-code-runner
+
+cmd=python -m llm.compare_agent_1min --outcomes outputs/metrics/robot_outcomes_1min.json --prompt prompts/comparison_prompt_1min.md --backend anthropic --model claude-opus-4-7 --tournament-size 4 --results-dir outputs/comparison
+exit_code=0
+result=status=ok rounds=6
+artifact=outputs/comparison/comparison.json
+artifact=outputs/comparison/comparison_report.md
+artifact=outputs/comparison/comparison_report.pdf
+
+cmd=python -m llm.compare_agent_1min --outcomes outputs/metrics/robot_outcomes_mixed_4.json --prompt prompts/comparison_prompt_1min.md --tournament-size 4 --results-dir outputs/comparison_robot_vs_human
+exit_code=0
+result=status=ok rounds=6
+artifact=outputs/comparison_robot_vs_human/comparison.json
+artifact=outputs/comparison_robot_vs_human/comparison_report.md
+artifact=outputs/comparison_robot_vs_human/comparison_report.pdf
+
+artifact=outputs/viz/metrics_dashboard.html (mirror of viz/metrics_dashboard.html)
+artifact=outputs/viz/metrics_summary.png
+artifact=outputs/viz/per_arm_contribution.png
+artifact=outputs/viz/xyz_path_4arm.txt
+
+verdict=robot wins all robot-vs-human rounds with confidence 0.955 to 1.000.

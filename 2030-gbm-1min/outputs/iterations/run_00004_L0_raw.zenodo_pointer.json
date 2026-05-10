@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "release_version": "v3.9.1",
+  "iteration_id": "run_00004",
+  "scope": "per_iteration",
+  "zenodo_doi": "10.5281/zenodo.PLACEHOLDER",
+  "zenodo_record_id": "PLACEHOLDER",
+  "zenodo_filename": "run_00004_L0_raw_4arm.parquet",
+  "sha256": "PLACEHOLDER",
+  "byte_size": 26000000,
+  "compression": "zstd-3",
+  "channel_count_per_arm": 50,
+  "arm_count": 4,
+  "channel_count_total": 200,
+  "mixed_sample_rate_hz": 1000,
+  "force_sample_rate_hz": 10000,
+  "populated_at_commit": "Commit 5 of v3.9.1 PR"
+}

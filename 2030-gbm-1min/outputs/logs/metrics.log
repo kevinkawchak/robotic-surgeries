@@ -1,0 +1,10 @@
+date_utc=2026-05-10T20:17:00Z
+host=claude-code-runner
+cmd=python -m metrics.compute_1min --iterations-dir outputs/iterations --baseline data/human_surgeon_baseline.csv --out outputs/metrics/robot_outcomes_1min.parquet --aggregate-iterations
+exit_code=0
+result=n=16 weights={quality:0.40,time:0.25,cost:0.20,safety:0.10,patient_experience:0.05}
+artifact=outputs/metrics/robot_outcomes_1min.parquet rows=46 (16 robot + 30 human baseline)
+artifact=outputs/metrics/robot_outcomes_1min.json rows=46
+artifact=outputs/metrics/iteration_metric_table.md
+artifact=outputs/metrics/summary.json
+verdict=clean: robot composite mean 88.53, human composite mean 70.35.

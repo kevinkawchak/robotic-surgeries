@@ -1,0 +1,36 @@
++==========================================================================+
+|                COMPOSITE SCORE FORMULA (frozen for v3.9.1)               |
++==========================================================================+
+
+   composite =  0.40 * quality
+              + 0.25 * (100 - 100 * total_seconds / 14400.0)
+              + 0.20 * (100 - 100 * cost_usd / 50000.0)
+              + 0.10 * safety
+              + 0.05 * patient_experience
+
+   Weights:    quality 0.40 | time 0.25 | cost 0.20 | safety 0.10 | PE 0.05
+   Normalizers: time_normalizer 14400.0 s | cost_normalizer 50000.0 USD
+   Range:       composite in [0, 100]
+
+   Robot leaderboard (16 iterations):
+                  +----------+----------+----------+
+                  | min      | mean     | max      |
+   quality        | 90.07    | 92.22    | 93.89    |
+   safety         | 30.00    | 56.56    | 90.00    |
+   cost_usd       | 8061.37  | 8297.42  | 8738.26  |
+   total_seconds  | 60.00    | 60.00    | 60.00    |
+   composite      | 86.02    | 88.53    | 92.37    |
+                  +----------+----------+----------+
+
+   Human-baseline leaderboard (30 cases, 6 international centers):
+                  +----------+----------+----------+
+                  | min      | mean     | max      |
+   quality        | 82.00    | 87.73    | 92.00    |
+   safety         | 69.00    | 72.73    | 77.00    |
+   cost_usd       | 17700.0  | 18656.7  | 19500.0  |
+   total_seconds  | 11250    | 12320    | 13500    |
+   composite      | 66.70    | 70.35    | 73.50    |
+                  +----------+----------+----------+
+
+   Robot-vs-human delta of composite mean: +18.18 (structural caveat noted).
++==========================================================================+

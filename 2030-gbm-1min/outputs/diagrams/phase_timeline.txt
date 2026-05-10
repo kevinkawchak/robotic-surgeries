@@ -1,0 +1,27 @@
++==========================================================================+
+|                  60-SECOND PROCEDURE PHASE TIMELINE                      |
++==========================================================================+
+
+  t=0 s                                                          t=60 s
+  |---------|---------------------------------------|--------|--------|
+  |  P1     |                P2                     |   P3   |   P4   |
+  |  5 s    |             40 s                      |  10 s  |   5 s  |
+  +---------+---------------------------------------+--------+--------+
+  | dural   |    bulk resection                     | margin | hemo-  |
+  | opening |    arm 1 hybrid u-w-p                 | fine   | stasis |
+  | final   |    arm 2 bipolar + irrigation         | resect | with-  |
+  | (READY) |    arm 3 suction + collection         |        | drawal |
+  |         |    arm 4 iMRI + 5-ALA + ultrasound    |        |        |
+  +---------+---------------------------------------+--------+--------+
+              ^                                       ^         ^
+              |                                       |         |
+              arm 1 peaks at 800 mm^3/s,              arm 1 fine, arms 2-4 idle
+              cumulative force concentrates here      arm 1 fine
+                                                      arms 2,3 cleanup
+                                                                arms 1-4 retract
+
+  Safety zones used by sensors: OUTER (P1, P4), TUMOR_CORE (P2 arms 1,3),
+  TUMOR_MARGIN (P2 arms 2,4 / P3 arm 1), ELOQUENT (P3 arms 2,3,4).
+
+  E-stop budget: 5 ms global / 100 microsecond emergency arm park.
++==========================================================================+

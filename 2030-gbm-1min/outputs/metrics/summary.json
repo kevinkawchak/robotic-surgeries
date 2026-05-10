@@ -1,0 +1,79 @@
+{
+  "weights": {
+    "quality": 0.4,
+    "time": 0.25,
+    "cost": 0.2,
+    "safety": 0.1,
+    "patient_experience": 0.05
+  },
+  "time_normalizer_seconds": 14400.0,
+  "cost_normalizer_usd": 50000.0,
+  "rows_total": 46,
+  "rows_robot": 16,
+  "rows_human_baseline": 30,
+  "robot_quality": {
+    "min": 90.07,
+    "max": 93.89,
+    "mean": 92.217
+  },
+  "robot_safety": {
+    "min": 30.0,
+    "max": 90.0,
+    "mean": 56.562
+  },
+  "robot_cost_usd": {
+    "min": 8061.37,
+    "max": 8738.26,
+    "mean": 8297.418
+  },
+  "robot_total_seconds": {
+    "min": 60.0,
+    "max": 60.0,
+    "mean": 60.0
+  },
+  "robot_composite": {
+    "min": 86.02,
+    "max": 92.37,
+    "mean": 88.534
+  },
+  "robot_resection_completeness_pct": {
+    "min": 93.68,
+    "max": 97.64,
+    "mean": 95.905
+  },
+  "robot_eloquent_preservation_score": {
+    "min": 85.07,
+    "max": 88.89,
+    "mean": 87.217
+  },
+  "robot_predicted_kps_day_30": {
+    "min": 80.06,
+    "max": 83.11,
+    "mean": 81.774
+  },
+  "human_quality": {
+    "min": 82.0,
+    "max": 92.0,
+    "mean": 87.733
+  },
+  "human_safety": {
+    "min": 69.0,
+    "max": 77.0,
+    "mean": 72.733
+  },
+  "human_cost_usd": {
+    "min": 17700.0,
+    "max": 19500.0,
+    "mean": 18656.667
+  },
+  "human_total_seconds": {
+    "min": 11250.0,
+    "max": 13500.0,
+    "mean": 12320.0
+  },
+  "human_composite": {
+    "min": 66.7,
+    "max": 73.5,
+    "mean": 70.35
+  }
+}

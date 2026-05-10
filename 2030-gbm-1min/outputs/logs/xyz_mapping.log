@@ -1,0 +1,10 @@
+date_utc=2026-05-10T20:15:00Z
+host=claude-code-runner
+cmd=python -m mapping.sensor_to_xyz_4arm --seed 20260510 --csv-sample-out-dir outputs/xyz_mapping --ascii-viz-out outputs/xyz_mapping/xyz_path_4arm.txt
+exit_code=0
+artifact=outputs/xyz_mapping/xyz_trace_sample_arm1.csv rows=60 bytes=6519
+artifact=outputs/xyz_mapping/xyz_trace_sample_arm2.csv rows=60 bytes=6632
+artifact=outputs/xyz_mapping/xyz_trace_sample_arm3.csv rows=60 bytes=6737
+artifact=outputs/xyz_mapping/xyz_trace_sample_arm4.csv rows=60 bytes=6823
+artifact=outputs/xyz_mapping/xyz_path_4arm.txt        bytes=4740
+verdict=clean: all 240 commands resolved to command_state=EMIT.

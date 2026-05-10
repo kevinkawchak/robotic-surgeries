@@ -1,0 +1,13 @@
+{
+  "iteration_id": "run_00008",
+  "seed": 20260517,
+  "noise": 0.028667,
+  "gain": 0.986667,
+  "tol": 2.5119e-05,
+  "jitter": 23.3333,
+  "ae_count": 1,
+  "estop_count": 0,
+  "force_violation_count": 3,
+  "cumulative_force_violation_count": 0,
+  "heartbeat_miss_count": 3
+}

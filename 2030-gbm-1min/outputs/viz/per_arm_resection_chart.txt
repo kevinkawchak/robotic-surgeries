@@ -1,0 +1,11 @@
++==============================================================================+
+|          PER-ARM RESECTION VOLUME mm^3 (mean across 16 iterations)           |
++==============================================================================+
+| ARM_1 hyb     32372.29 | ##################################################      |
+| ARM_2 bipl     1832.97 | ###                                                     |
+| ARM_3 suct     1902.00 | ###                                                     |
+| ARM_4 imag       95.87 |                                                         |
++==============================================================================+
+
+ARM_1 dominates resection volume by design (hybrid u-w-p, 800 mm^3/s peak)
+ARM_2,3,4 stay within 30 percent of mean on coagulation, suction, imaging

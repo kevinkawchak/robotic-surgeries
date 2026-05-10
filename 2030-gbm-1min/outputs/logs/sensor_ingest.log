@@ -1,0 +1,11 @@
+date_utc=2026-05-10T20:14:00Z
+host=claude-code-runner
+cmd=python -m sensors.ingest_4arm --seed 20260510 --out outputs/sensors --emit-sample --emit-csv-sample
+exit_code=0
+artifact=outputs/sensors/sensor_sample_4arm.jsonl rows=1000 bytes=891992
+artifact=outputs/sensors/sensor_sample_4arm.csv  rows=1000 bytes=328639
+
+cmd=python -m sensors.ingest_4arm --validate outputs/sensors/sensor_sample_4arm.jsonl
+result=per_arm_violations=0 cumulative_violations=0
+exit_code=0
+verdict=clean: zero per-arm tip force violations, zero cumulative-force violations.

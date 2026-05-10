@@ -1,0 +1,79 @@
+{
+  "per_arm": {
+    "ARM_1": {
+      "rows": 60,
+      "x_min": 85.526,
+      "x_max": 96.89,
+      "y_min": 24.79,
+      "y_max": 51.866,
+      "z_min": 86.349,
+      "z_max": 93.443,
+      "vel_min": 800.0,
+      "vel_max": 800.0,
+      "vel_mean": 800.0,
+      "command_state_count": {
+        "EMIT": 60
+      },
+      "phase_id_count": {
+        "2": 60
+      }
+    },
+    "ARM_2": {
+      "rows": 60,
+      "x_min": 100.054,
+      "x_max": 117.777,
+      "y_min": 72.936,
+      "y_max": 96.449,
+      "z_min": 92.417,
+      "z_max": 99.385,
+      "vel_min": 600.0,
+      "vel_max": 600.0,
+      "vel_mean": 600.0,
+      "command_state_count": {
+        "EMIT": 60
+      },
+      "phase_id_count": {
+        "2": 60
+      }
+    },
+    "ARM_3": {
+      "rows": 60,
+      "x_min": 110.229,
+      "x_max": 133.179,
+      "y_min": 118.13,
+      "y_max": 136.474,
+      "z_min": 98.366,
+      "z_max": 104.963,
+      "vel_min": 600.0,
+      "vel_max": 600.0,
+      "vel_mean": 600.0,
+      "command_state_count": {
+        "EMIT": 60
+      },
+      "phase_id_count": {
+        "2": 60
+      }
+    },
+    "ARM_4": {
+      "rows": 60,
+      "x_min": 117.246,
+      "x_max": 143.995,
+      "y_min": 159.149,
+      "y_max": 171.216,
+      "z_min": 104.027,
+      "z_max": 110.167,
+      "vel_min": 600.0,
+      "vel_max": 600.0,
+      "vel_mean": 600.0,
+      "command_state_count": {
+        "EMIT": 60
+      },
+      "phase_id_count": {
+        "2": 60
+      }
+    }
+  },
+  "force_clamp_per_arm_N": 5.0,
+  "cumulative_force_soft_clamp_N": 11.0,
+  "cumulative_force_hard_park_N": 12.0
+}

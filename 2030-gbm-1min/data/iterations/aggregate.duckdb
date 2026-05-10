@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "tables": {
+    "iteration_index": [
+      {"iteration_id": "run_00001", "seed": 20260510, "ae_count": 2, "estop_count": 1, "force_violation_count": 4, "cumulative_force_violation_count": 0, "heartbeat_miss_count": 2},
+      {"iteration_id": "run_00002", "seed": 20260511, "ae_count": 2, "estop_count": 0, "force_violation_count": 3, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 1},
+      {"iteration_id": "run_00003", "seed": 20260512, "ae_count": 2, "estop_count": 0, "force_violation_count": 4, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 2},
+      {"iteration_id": "run_00004", "seed": 20260513, "ae_count": 1, "estop_count": 1, "force_violation_count": 4, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 2},
+      {"iteration_id": "run_00005", "seed": 20260514, "ae_count": 1, "estop_count": 0, "force_violation_count": 3, "cumulative_force_violation_count": 0, "heartbeat_miss_count": 1},
+      {"iteration_id": "run_00006", "seed": 20260515, "ae_count": 1, "estop_count": 1, "force_violation_count": 3, "cumulative_force_violation_count": 1, "heartbeat_miss_count": 1},
+      {"iteration_id": "run_00007", "seed": 20260516, "ae_count": 3, "estop_count": 1, "force_violation_count": 2, "cumulative_force_violation_count": 1, "heartbeat_miss_count": 3},
+      {"iteration_id": "run_00008", "seed": 20260517, "ae_count": 1, "estop_count": 0, "force_violation_count": 3, "cumulative_force_violation_count": 0, "heartbeat_miss_count": 3},
+      {"iteration_id": "run_00009", "seed": 20260518, "ae_count": 2, "estop_count": 0, "force_violation_count": 1, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 4},
+      {"iteration_id": "run_00010", "seed": 20260519, "ae_count": 1, "estop_count": 1, "force_violation_count": 5, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 4},
+      {"iteration_id": "run_00011", "seed": 20260520, "ae_count": 2, "estop_count": 0, "force_violation_count": 5, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 4},
+      {"iteration_id": "run_00012", "seed": 20260521, "ae_count": 0, "estop_count": 1, "force_violation_count": 3, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 3},
+      {"iteration_id": "run_00013", "seed": 20260522, "ae_count": 1, "estop_count": 0, "force_violation_count": 3, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 3},
+      {"iteration_id": "run_00014", "seed": 20260523, "ae_count": 2, "estop_count": 1, "force_violation_count": 0, "cumulative_force_violation_count": 0, "heartbeat_miss_count": 3},
+      {"iteration_id": "run_00015", "seed": 20260524, "ae_count": 1, "estop_count": 1, "force_violation_count": 1, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 1},
+      {"iteration_id": "run_00016", "seed": 20260525, "ae_count": 0, "estop_count": 0, "force_violation_count": 2, "cumulative_force_violation_count": 2, "heartbeat_miss_count": 0}
+    ],
+    "l1_per_arm_50ms": {"rows_per_iter": 1200, "arms": 4, "iters": 16},
+    "l2_per_arm_1s": {"rows_per_iter": 60, "arms": 4, "iters": 16},
+    "l3_per_arm_phase": {"rows_per_iter": 4, "arms": 4, "iters": 16},
+    "events": {"approx_rows_per_iter": "50_to_200", "iters": 16}
+  }
+}

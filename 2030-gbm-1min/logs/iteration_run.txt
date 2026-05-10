@@ -1,0 +1,16 @@
+2026-05-10T05:53:30Z iter=run_00001 seed=20260510 status=succeeded wall_s=28.48 ae=2 estop=1 force_viol=4 cum_force_viol=0 hb_miss=2
+2026-05-10T05:53:30Z iter=run_00002 seed=20260511 status=succeeded wall_s=26.31 ae=2 estop=0 force_viol=3 cum_force_viol=2 hb_miss=1
+2026-05-10T05:53:30Z iter=run_00003 seed=20260512 status=succeeded wall_s=26.94 ae=2 estop=0 force_viol=4 cum_force_viol=2 hb_miss=2
+2026-05-10T05:53:30Z iter=run_00004 seed=20260513 status=succeeded wall_s=28.84 ae=1 estop=1 force_viol=4 cum_force_viol=2 hb_miss=2
+2026-05-10T05:53:30Z iter=run_00005 seed=20260514 status=succeeded wall_s=29.99 ae=1 estop=0 force_viol=3 cum_force_viol=0 hb_miss=1
+2026-05-10T05:53:30Z iter=run_00006 seed=20260515 status=succeeded wall_s=28.3 ae=1 estop=1 force_viol=3 cum_force_viol=1 hb_miss=1
+2026-05-10T05:53:30Z iter=run_00007 seed=20260516 status=succeeded wall_s=32.2 ae=3 estop=1 force_viol=2 cum_force_viol=1 hb_miss=3
+2026-05-10T05:53:30Z iter=run_00008 seed=20260517 status=succeeded wall_s=26.07 ae=1 estop=0 force_viol=3 cum_force_viol=0 hb_miss=3
+2026-05-10T05:53:30Z iter=run_00009 seed=20260518 status=succeeded wall_s=26.31 ae=2 estop=0 force_viol=1 cum_force_viol=2 hb_miss=4
+2026-05-10T05:53:30Z iter=run_00010 seed=20260519 status=succeeded wall_s=26.41 ae=1 estop=1 force_viol=5 cum_force_viol=2 hb_miss=4
+2026-05-10T05:53:30Z iter=run_00011 seed=20260520 status=succeeded wall_s=29.34 ae=2 estop=0 force_viol=5 cum_force_viol=2 hb_miss=4
+2026-05-10T05:53:30Z iter=run_00012 seed=20260521 status=succeeded wall_s=29.42 ae=0 estop=1 force_viol=3 cum_force_viol=2 hb_miss=3
+2026-05-10T05:53:30Z iter=run_00013 seed=20260522 status=succeeded wall_s=25.67 ae=1 estop=0 force_viol=3 cum_force_viol=2 hb_miss=3
+2026-05-10T05:53:30Z iter=run_00014 seed=20260523 status=succeeded wall_s=26.34 ae=2 estop=1 force_viol=0 cum_force_viol=0 hb_miss=3
+2026-05-10T05:53:30Z iter=run_00015 seed=20260524 status=succeeded wall_s=27.52 ae=1 estop=1 force_viol=1 cum_force_viol=2 hb_miss=1
+2026-05-10T05:53:30Z iter=run_00016 seed=20260525 status=succeeded wall_s=27.18 ae=0 estop=0 force_viol=2 cum_force_viol=2 hb_miss=0

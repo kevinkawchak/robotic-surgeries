@@ -1,0 +1,136 @@
+{
+  "release_version": "v3.9.1",
+  "tournament_size": 4,
+  "round_count": 6,
+  "weights": {
+    "quality": 0.4,
+    "time": 0.25,
+    "cost": 0.2,
+    "safety": 0.1,
+    "patient_experience": 0.05
+  },
+  "leaderboard": [
+    {
+      "entity_id": "this_project_v3_9_1_1min",
+      "skill_mu": 671.36,
+      "skill_sigma": 96.5,
+      "composite_score": 88.46,
+      "rank": 1
+    },
+    {
+      "entity_id": "this_project_v3_9_1_1min",
+      "skill_mu": 672.85,
+      "skill_sigma": 94.75,
+      "composite_score": 87.73,
+      "rank": 2
+    },
+    {
+      "entity_id": "this_project_v3_9_1_1min",
+      "skill_mu": 668.75,
+      "skill_sigma": 96.75,
+      "composite_score": 87.4,
+      "rank": 3
+    },
+    {
+      "entity_id": "this_project_v3_9_1_1min",
+      "skill_mu": 679.19,
+      "skill_sigma": 98.17,
+      "composite_score": 86.17,
+      "rank": 4
+    }
+  ],
+  "rounds": [
+    {
+      "a": "this_project_v3_9_1_1min",
+      "b": "this_project_v3_9_1_1min",
+      "winner_entity_id": "this_project_v3_9_1_1min",
+      "confidence": 0.568,
+      "quality_delta": 0.76,
+      "time_delta": 0.0,
+      "cost_delta": -225.35,
+      "safety_delta": -10.0,
+      "patient_experience_delta": 1.13,
+      "rationale_short": "1-minute robot leads on quality/safety; 1-hour leads on cost.",
+      "rationale_long": "The 1-minute robot run records higher quality and lower safety violations than the 1-hour baseline; the 1-hour baseline costs less per case but takes 60x longer. The time-dimension advantage of the 1-minute robot is structural and not a fair pairwise comparison.",
+      "per_arm_balance_comment": "All 4 arms within 30% of mean tissue removal; arm 1 dominates resection volume by design."
+    },
+    {
+      "a": "this_project_v3_9_1_1min",
+      "b": "this_project_v3_9_1_1min",
+      "winner_entity_id": "this_project_v3_9_1_1min",
+      "confidence": 0.663,
+      "quality_delta": 0.75,
+      "time_delta": 0.0,
+      "cost_delta": -335.23,
+      "safety_delta": 15.0,
+      "patient_experience_delta": -2.11,
+      "rationale_short": "1-minute robot leads on quality/safety; 1-hour leads on cost.",
+      "rationale_long": "The 1-minute robot run records higher quality and lower safety violations than the 1-hour baseline; the 1-hour baseline costs less per case but takes 60x longer. The time-dimension advantage of the 1-minute robot is structural and not a fair pairwise comparison.",
+      "per_arm_balance_comment": "All 4 arms within 30% of mean tissue removal; arm 1 dominates resection volume by design."
+    },
+    {
+      "a": "this_project_v3_9_1_1min",
+      "b": "this_project_v3_9_1_1min",
+      "winner_entity_id": "this_project_v3_9_1_1min",
+      "confidence": 0.53,
+      "quality_delta": -1.93,
+      "time_delta": 0.0,
+      "cost_delta": 136.56,
+      "safety_delta": 10.0,
+      "patient_experience_delta": 0.87,
+      "rationale_short": "1-minute robot leads on quality/safety; 1-hour leads on cost.",
+      "rationale_long": "The 1-minute robot run records higher quality and lower safety violations than the 1-hour baseline; the 1-hour baseline costs less per case but takes 60x longer. The time-dimension advantage of the 1-minute robot is structural and not a fair pairwise comparison.",
+      "per_arm_balance_comment": "All 4 arms within 30% of mean tissue removal; arm 1 dominates resection volume by design."
+    },
+    {
+      "a": "this_project_v3_9_1_1min",
+      "b": "this_project_v3_9_1_1min",
+      "winner_entity_id": "this_project_v3_9_1_1min",
+      "confidence": 0.731,
+      "quality_delta": -0.01,
+      "time_delta": 0.0,
+      "cost_delta": -109.88,
+      "safety_delta": 25.0,
+      "patient_experience_delta": -3.24,
+      "rationale_short": "1-minute robot leads on quality/safety; 1-hour leads on cost.",
+      "rationale_long": "The 1-minute robot run records higher quality and lower safety violations than the 1-hour baseline; the 1-hour baseline costs less per case but takes 60x longer. The time-dimension advantage of the 1-minute robot is structural and not a fair pairwise comparison.",
+      "per_arm_balance_comment": "All 4 arms within 30% of mean tissue removal; arm 1 dominates resection volume by design."
+    },
+    {
+      "a": "this_project_v3_9_1_1min",
+      "b": "this_project_v3_9_1_1min",
+      "winner_entity_id": "this_project_v3_9_1_1min",
+      "confidence": 0.598,
+      "quality_delta": -2.69,
+      "time_delta": 0.0,
+      "cost_delta": 361.91,
+      "safety_delta": 20.0,
+      "patient_experience_delta": -0.26,
+      "rationale_short": "1-minute robot leads on quality/safety; 1-hour leads on cost.",
+      "rationale_long": "The 1-minute robot run records higher quality and lower safety violations than the 1-hour baseline; the 1-hour baseline costs less per case but takes 60x longer. The time-dimension advantage of the 1-minute robot is structural and not a fair pairwise comparison.",
+      "per_arm_balance_comment": "All 4 arms within 30% of mean tissue removal; arm 1 dominates resection volume by design."
+    },
+    {
+      "a": "this_project_v3_9_1_1min",
+      "b": "this_project_v3_9_1_1min",
+      "winner_entity_id": "this_project_v3_9_1_1min",
+      "confidence": 0.633,
+      "quality_delta": -2.68,
+      "time_delta": 0.0,
+      "cost_delta": 471.79,
+      "safety_delta": -5.0,
+      "patient_experience_delta": 2.98,
+      "rationale_short": "1-minute robot leads on quality/safety; 1-hour leads on cost.",
+      "rationale_long": "The 1-minute robot run records higher quality and lower safety violations than the 1-hour baseline; the 1-hour baseline costs less per case but takes 60x longer. The time-dimension advantage of the 1-minute robot is structural and not a fair pairwise comparison.",
+      "per_arm_balance_comment": "All 4 arms within 30% of mean tissue removal; arm 1 dominates resection volume by design."
+    }
+  ],
+  "per_arm_summary": {
+    "arm_1_hyb_resection_mm3_mean": 32400,
+    "arm_2_bipolar_coagulation_seconds_mean": 47.2,
+    "arm_3_suction_ml_mean": 28.4,
+    "arm_4_imaging_frames_mean": 4280
+  },
+  "structural_caveat_time_dimension": "The 1-minute scenario trivially beats the 1-hour scenario on the time dimension; this advantage is structural and not a fair pairwise comparison.",
+  "generated_at": "2026-05-10T20:19:16+00:00"
+}

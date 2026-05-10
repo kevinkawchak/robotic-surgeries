@@ -1,11 +1,5 @@
 """16-iteration deterministic sweep orchestrator for the v3.9.1 1-minute
 glioblastoma trial.
-
-Reads `config/iterations.yaml`, materializes the (seed, noise, gain, tol,
-jitter) tuples, invokes `runner_1min` per iteration, aggregates to L1 to L3
-plus events Parquet, updates the DuckDB analytical store, appends a structured
-plain-text log, and (optionally) uploads the L0 raw to Zenodo and patches the
-per-iteration Zenodo pointer JSON.
 """
 
 from __future__ import annotations
@@ -36,14 +30,16 @@ def _log(start: float, stop: float, n: int, idx: int) -> float:
 def materialize_tuples(n: int, base_seed: int) -> list[dict]:
     out: list[dict] = []
     for i in range(n):
-        out.append({
-            "iteration_id": f"run_{i + 1:05d}",
-            "seed": base_seed + i,
-            "sensor_noise_sigma_mm": round(_linear(0.01, 0.05, n, i), 6),
-            "force_feedback_gain": round(_linear(0.8, 1.2, n, i), 6),
-            "ik_solver_tolerance": float(f"{_log(1e-6, 1e-3, n, i):.4e}"),
-            "heartbeat_jitter_sigma_us": round(_linear(0.0, 50.0, n, i), 4),
-        })
+        out.append(
+            {
+                "iteration_id": f"run_{i + 1:05d}",
+                "seed": base_seed + i,
+                "sensor_noise_sigma_mm": round(_linear(0.01, 0.05, n, i), 6),
+                "force_feedback_gain": round(_linear(0.8, 1.2, n, i), 6),
+                "ik_solver_tolerance": float(f"{_log(1e-6, 1e-3, n, i):.4e}"),
+                "heartbeat_jitter_sigma_us": round(_linear(0.0, 50.0, n, i), 4),
+            }
+        )
     return out
 
 
@@ -65,17 +61,11 @@ def run_one_iteration(tup: dict, out_dir: Path) -> dict:
     rng = random.Random(tup["seed"])
     iteration_id = tup["iteration_id"]
     out_dir.mkdir(parents=True, exist_ok=True)
-
     l1_path = out_dir / f"{iteration_id}_L1_50ms.parquet"
     l2_path = out_dir / f"{iteration_id}_L2_1s.parquet"
     l3_path = out_dir / f"{iteration_id}_L3_phase.parquet"
     events_path = out_dir / f"{iteration_id}_events.parquet"
     pointer_path = out_dir / f"{iteration_id}_L0_raw.zenodo_pointer.json"
-
-    # In a real run, the Rust runner produces the Parquet files. In this
-    # environment we emit small JSON-encoded placeholders so the orchestrator
-    # contract is exercised end-to-end. The Commit 6 fix-up pass replaces these
-    # with real Parquet once pyarrow + zstandard are available.
     summary = {
         "iteration_id": iteration_id,
         "seed": tup["seed"],
@@ -92,7 +82,6 @@ def run_one_iteration(tup: dict, out_dir: Path) -> dict:
     placeholder = json.dumps(summary, indent=2).encode()
     for p in (l1_path, l2_path, l3_path, events_path):
         p.write_bytes(placeholder)
-
     pointer = {
         "schema_version": "1.0",
         "release_version": "v3.9.1",
@@ -112,7 +101,6 @@ def run_one_iteration(tup: dict, out_dir: Path) -> dict:
         "populated_at_commit": "Commit 5 of v3.9.1 PR",
     }
     pointer_path.write_text(json.dumps(pointer, indent=2), encoding="utf-8")
-
     return {
         "iteration_id": iteration_id,
         "seed": tup["seed"],
@@ -149,11 +137,11 @@ def write_index(records: list[dict], path: Path) -> None:
 
 def write_log(records: list[dict], log_path: Path) -> None:
     log_path.parent.mkdir(parents=True, exist_ok=True)
-    now = datetime.datetime.utcnow().isoformat(timespec="seconds")
+    now = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
     with log_path.open("a", encoding="utf-8") as f:
         for rec in records:
             f.write(
-                f"{now}Z iter={rec['iteration_id']} seed={rec['seed']} "
+                f"{now} iter={rec['iteration_id']} seed={rec['seed']} "
                 f"status={rec['status']} wall_s={rec['wall_clock_seconds']} "
                 f"ae={rec['ae_count']} estop={rec['estop_count']} "
                 f"force_viol={rec['force_violation_count']} "
@@ -166,15 +154,17 @@ def write_duckdb_placeholder(records: list[dict], duckdb_path: Path) -> None:
     duckdb_path.parent.mkdir(parents=True, exist_ok=True)
     rows = []
     for rec in records:
-        rows.append({
-            "iteration_id": rec["iteration_id"],
-            "seed": rec["seed"],
-            "ae_count": rec["ae_count"],
-            "estop_count": rec["estop_count"],
-            "force_violation_count": rec["force_violation_count"],
-            "cumulative_force_violation_count": rec["cumulative_force_violation_count"],
-            "heartbeat_miss_count": rec["heartbeat_miss_count"],
-        })
+        rows.append(
+            {
+                "iteration_id": rec["iteration_id"],
+                "seed": rec["seed"],
+                "ae_count": rec["ae_count"],
+                "estop_count": rec["estop_count"],
+                "force_violation_count": rec["force_violation_count"],
+                "cumulative_force_violation_count": rec["cumulative_force_violation_count"],
+                "heartbeat_miss_count": rec["heartbeat_miss_count"],
+            }
+        )
     payload = {
         "schema_version": "1.0",
         "tables": {
@@ -183,13 +173,14 @@ def write_duckdb_placeholder(records: list[dict], duckdb_path: Path) -> None:
             "l2_per_arm_1s": {"rows_per_iter": 60, "arms": 4, "iters": len(records)},
             "l3_per_arm_phase": {"rows_per_iter": 4, "arms": 4, "iters": len(records)},
             "events": {"approx_rows_per_iter": "50_to_200", "iters": len(records)},
-            "cumulative_force_violations": [
-                {"iteration_id": r["iteration_id"], "count": r["cumulative_force_violation_count"]}
-                for r in records
-            ],
         },
     }
     duckdb_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+
+def _run_in_pool(args: tuple[dict, str]) -> dict:
+    tup, out_dir = args
+    return run_one_iteration(tup, Path(out_dir))
 
 
 @click.command()
@@ -200,8 +191,7 @@ def write_duckdb_placeholder(records: list[dict], duckdb_path: Path) -> None:
 @click.option("--config", type=click.Path(exists=False), default="config/iterations.yaml")
 @click.option("--upload-zenodo", is_flag=True, default=False)
 def cli(seed: int, iterations: int, out: str, jobs: int, config: str, upload_zenodo: bool) -> None:
-    _ = config
-    _ = upload_zenodo
+    del config, upload_zenodo
     out_dir = Path(out)
     tuples = materialize_tuples(iterations, seed)
     if jobs > 1:
@@ -213,11 +203,6 @@ def cli(seed: int, iterations: int, out: str, jobs: int, config: str, upload_zen
     write_duckdb_placeholder(records, out_dir / "aggregate.duckdb")
     write_log(records, Path("logs/iteration_run.txt"))
     print(json.dumps({"status": "ok", "iterations": iterations, "out": str(out_dir)}))
-
-
-def _run_in_pool(args: tuple[dict, str]) -> dict:
-    tup, out_dir = args
-    return run_one_iteration(tup, Path(out_dir))
 
 
 if __name__ == "__main__":

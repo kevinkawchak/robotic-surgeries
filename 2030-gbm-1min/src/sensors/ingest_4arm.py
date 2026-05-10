@@ -7,15 +7,6 @@ Honors:
 - Cumulative 12 N four-arm tip force limit from multi_arm_coordination.md.
 - 21 CFR 50.30 task-order lifecycle states (IDLE, SETUP, DOCKED, READY,
   ACTIVE, PAUSE, COMPLETE, ABORT) used in the robot_state enum.
-
-Modes:
-
-- --emit-sample        : produce data/sensor_sample_4arm.jsonl (1000 records)
-- --emit-csv-sample    : produce data/sensor_sample_4arm.csv (1000 rows + header)
-- --emit-canonical     : produce per-iteration L0 raw Parquet (26 MB, gitignored)
-- --validate <path>    : validate a JSONL stream against the JSON Schema
-
-The script is deterministic for a fixed seed.
 """
 
 from __future__ import annotations
@@ -163,42 +154,35 @@ def write_csv_sample(seed: int, out_dir: Path) -> Path:
 
 
 def write_canonical_l0(seed: int, out_dir: Path) -> Path:
-    """Emit the per-iteration L0 raw Parquet (26 MB) to a local cache.
-
-    The L0 raw is excluded from Git via data/.gitignore and uploaded to Zenodo
-    by the Commit 5 publishing step. Requires pyarrow; falls back to a
-    placeholder file when pyarrow is missing.
-    """
     out_dir.mkdir(parents=True, exist_ok=True)
     target = out_dir / "iterations" / "run_00001_L0_raw_4arm.parquet"
     target.parent.mkdir(parents=True, exist_ok=True)
     try:
         import pyarrow as pa
         import pyarrow.parquet as pq
-
-        rng = random.Random(seed)
-        rows: list[dict] = []
-        for arm in ARMS:
-            for tick in range(0, 60_000_000, 1_000_000):
-                rows.append(make_mixed_record(arm, tick, rng, seed, "run_00001"))
-        table = pa.Table.from_pylist(rows)
-        pq.write_table(table, target, compression="zstd", compression_level=3)
     except ImportError:
         target.write_text(
             "# canonical L0 raw placeholder; install pyarrow + zstandard to emit.\n",
             encoding="utf-8",
         )
+        return target
+    rng = random.Random(seed)
+    rows: list[dict] = []
+    for arm in ARMS:
+        for tick in range(0, 60_000_000, 1_000_000):
+            rows.append(make_mixed_record(arm, tick, rng, seed, "run_00001"))
+    table = pa.Table.from_pylist(rows)
+    pq.write_table(table, target, compression="zstd", compression_level=3)
     return target
 
 
 def validate_stream(path: Path) -> int:
-    """Validate a JSONL sensor stream, return the violation count (0 = ok)."""
     cumulative_per_tick: dict[int, float] = defaultdict(float)
     per_arm_violations = 0
     cumulative_violations = 0
     with path.open("r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
+        for raw in f:
+            line = raw.strip()
             if not line:
                 continue
             rec = json.loads(line)
@@ -215,10 +199,7 @@ def validate_stream(path: Path) -> int:
     for cum in cumulative_per_tick.values():
         if cum > CUMULATIVE_TIP_FORCE_LIMIT_N:
             cumulative_violations += 1
-    print(
-        f"per_arm_violations={per_arm_violations} "
-        f"cumulative_violations={cumulative_violations}"
-    )
+    print(f"per_arm_violations={per_arm_violations} cumulative_violations={cumulative_violations}")
     return per_arm_violations + cumulative_violations
 
 

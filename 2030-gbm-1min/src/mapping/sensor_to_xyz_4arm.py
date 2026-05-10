@@ -1,5 +1,5 @@
 """Per-arm sensor-to-xyz command mapper for the Medtronic NeuroSpeed 1.0
-1-minute variant.
+1-minute variant (v3.9.1).
 
 Honors:
 
@@ -8,15 +8,6 @@ Honors:
 - IEC 80601-2-77 force limits per arm: 5.0 N tip, 1.0 N lateral.
 - Cumulative 12 N four-arm tip force limit from multi_arm_coordination.md
   enforced via FORCE_SHARE_CLAMP commands when sum exceeds 11.0 N.
-
-Modes:
-
-- Read sensor stream from L0 raw Zenodo pointer or local Parquet cache.
-- Apply per-arm phase-conditioned mapping rule.
-- Apply per-arm safety zone gating (FORBIDDEN clamp, ELOQUENT slowdown).
-- Apply per-arm force feedback fusion.
-- Apply cumulative force enforcement via heartbeat broadcast read.
-- Emit per-arm xyz command records, CSV samples, and ASCII path viz.
 """
 
 from __future__ import annotations
@@ -171,13 +162,9 @@ def emit_ascii_path(seed: int, viz_path: Path) -> None:
 
 @click.command()
 @click.option("--seed", type=int, default=20260510)
-@click.option("--sensor-in", type=click.Path(), default="data/iterations/run_00001_L0_raw.zenodo_pointer.json")
-@click.option("--xyz-out-dir", type=click.Path(), default="data/iterations")
 @click.option("--csv-sample-out-dir", type=click.Path(), default="data")
 @click.option("--ascii-viz-out", type=click.Path(), default="viz/xyz_path_4arm.txt")
-def cli(seed: int, sensor_in: str, xyz_out_dir: str, csv_sample_out_dir: str, ascii_viz_out: str) -> None:
-    _ = sensor_in
-    _ = xyz_out_dir
+def cli(seed: int, csv_sample_out_dir: str, ascii_viz_out: str) -> None:
     emit_per_arm_csv_samples(seed, Path(csv_sample_out_dir))
     emit_ascii_path(seed, Path(ascii_viz_out))
     print(json.dumps({"status": "ok", "seed": seed}))

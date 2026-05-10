@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "claude/**"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dev dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff yamllint click
+
+      - name: Ruff format check
+        working-directory: 2030-gbm-1min
+        run: ruff format --check .
+
+      - name: Ruff lint check
+        working-directory: 2030-gbm-1min
+        run: ruff check .
+
+      - name: yamllint config
+        working-directory: 2030-gbm-1min
+        run: yamllint -d relaxed config/
+
+      - name: File size cap check
+        run: |
+          set -e
+          if find 2030-gbm-1min -type f -size +10M | grep -q .; then
+            echo "ERROR: file over 10 MB found"; exit 1
+          fi
+          if find 2030-gbm-1min -name '*.parquet' -size +5M | grep -q .; then
+            echo "ERROR: parquet over 5 MB found"; exit 1
+          fi

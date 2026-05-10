@@ -1,0 +1,45 @@
+{
+  "n_jsonl": 1000,
+  "n_csv": 1000,
+  "tick_us_min": 0,
+  "tick_us_max": 59880000,
+  "per_arm_count": {
+    "ARM_1": 250,
+    "ARM_2": 250,
+    "ARM_3": 250,
+    "ARM_4": 250
+  },
+  "record_kind_count": {
+    "MIXED": 1000
+  },
+  "robot_state_count": {
+    "READY": 256,
+    "ACTIVE": 496,
+    "COMPLETE": 248
+  },
+  "safety_zone_count": {
+    "OUTER": 504,
+    "TUMOR_CORE": 124,
+    "TUMOR_MARGIN": 186,
+    "ELOQUENT": 186
+  },
+  "force_magnitude_mean_N": 1.71573,
+  "force_magnitude_max_N": 2.483,
+  "per_arm_force_mean_N": {
+    "ARM_1": 1.8199,
+    "ARM_2": 1.4171,
+    "ARM_3": 2.1316,
+    "ARM_4": 1.49431
+  },
+  "per_arm_force_max_N": {
+    "ARM_1": 2.483,
+    "ARM_2": 1.745,
+    "ARM_3": 2.482,
+    "ARM_4": 1.738
+  },
+  "per_arm_tip_force_limit_N": 5.0,
+  "cumulative_tip_force_limit_N": 12.0,
+  "per_arm_tip_violations": 0,
+  "cumulative_tip_violations": 0,
+  "schema_compliance": "OK"
+}

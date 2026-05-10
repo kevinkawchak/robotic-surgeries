@@ -67,14 +67,14 @@ in full. Reproduce the side by side specification comparison between
 the current state of the art Medtronic ROSA ONE Brain v3.0 and the
 hypothetical 2030 Medtronic NeuroSpeed 1.0 across at least the
 following parameters: tissue removal rate (mm cubed per second per
-arm), end effector velocity (50 mm/s vs 1,000 mm/s; 20x), end
-effector acceleration (200 mm/s^2 vs 10,000 mm/s^2; 50x), joint
-angular velocity, E-stop latency (50 ms vs 5 ms; 10x), positioning
-accuracy at speed (0.5 mm RMS vs 0.1 mm RMS; 5x), force resolution
-(0.01 N vs 0.001 N; 10x), and duty cycle. Render the comparison as
-a table using the column type
-{>{\raggedright\arraybackslash}p{Xcm}} for each column to avoid large
-gaps between words. Cite rosa-one-brain, Lefranc2014ROSAStereotaxy,
+arm), end effector velocity (50 mm per second vs 1,000 mm per second;
+20x), end effector acceleration (200 mm per second squared vs 10,000
+mm per second squared; 50x), joint angular velocity, E-stop latency
+(50 ms vs 5 ms; 10x), positioning accuracy at speed (0.5 mm RMS vs
+0.1 mm RMS; 5x), force resolution (0.01 N vs 0.001 N; 10x), and duty
+cycle. Render the comparison as a table using the column type
+{>{\raggedright\arraybackslash}p{Xcm}} for each column to avoid
+large gaps between words. Cite rosa-one-brain, Lefranc2014ROSAStereotaxy,
 and Kalakoti2019RoboticsReview for the baseline. State explicitly
 that the current state of the art is short of the 1-minute requirement
 on every key parameter by 5 to 200 times. Note the liquid nitrogen
@@ -96,19 +96,20 @@ patient treatment, and this workflow minimizes single robot error
 potential. Read kevinkawchak/robotic-surgeries/2030-gbm-1min/README.md
 in full and reproduce the 4-arm coordination heartbeat ASCII snapshot
 (1 kHz broadcast, 32-byte frame, 1 ms deadline, cumulative ee_force
-across 4 arms <= 12 N, per-arm tip force <= 5.0 N, E-stop 5 ms,
-heartbeat watchdog 3 ms). Map each arm to its tool assignment: arm 1
-hybrid ultrasonic plus waterjet plus pulsed plasma; arm 2 bipolar
-coagulation plus irrigation; arm 3 suction plus tissue collection;
-arm 4 0.5 T iMRI plus 5-ALA fluorescence plus ultrasound. Cite
-claude-opus-47 and claude-code for the 1M token context window that
-makes on-premises orchestration tractable. Cite ollama and vllm for
-the on-premises inference backends compatible with the comparison
-agent. Close the subsection with the practical insight: the on-prem
-LLM is a Software as a Medical Device candidate under the FDA SaMD
-framework (cite fda-samd). Highlight the safety advantage of single
-robot error minimization through 4-arm cross-checking on the
-deterministic 1 kHz heartbeat bus.]
+across 4 arms less than or equal to 12 N, per-arm tip force less than
+or equal to 5.0 N, E-stop 5 ms, heartbeat watchdog 3 ms). Map each
+arm to its tool assignment: arm 1 hybrid ultrasonic plus waterjet
+plus pulsed plasma; arm 2 bipolar coagulation plus irrigation; arm 3
+suction plus tissue collection; arm 4 0.5 T iMRI plus 5-ALA
+fluorescence plus ultrasound. Cite claude-opus-47 and claude-code for
+the 1M token context window that makes on-premises orchestration
+tractable. Cite ollama and vllm for the on-premises inference
+backends compatible with the comparison agent. Close the subsection
+with the practical insight: the on-prem LLM is a Software as a
+Medical Device candidate under the FDA SaMD framework (cite fda-samd).
+Highlight the safety advantage of single robot error minimization
+through 4-arm cross-checking on the deterministic 1 kHz heartbeat
+bus.]
 
 \subsection{Transition to the 60-Second Resection}
 \label{sec:intro-transition}
@@ -133,5 +134,5 @@ wins all 4 robot-vs-human pairings with confidence 0.955 to 1.000;
 the structural-time-dimension caveat (1-minute robot vs 1-hour human)
 is preserved in every rationale. Cite kawchak_2026_20113157 and
 repo-robotic-surgeries for the artifact set. Close the subsection
-with the on-screen Table of Contents pointer ("the Table of Contents
-follows on a fresh page").]
+with the on-screen Table of Contents pointer (the Table of Contents
+follows on a fresh page).]

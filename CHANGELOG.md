@@ -3,6 +3,40 @@
 All notable changes to this repository are documented in this file.
 Format: Keep a Changelog. Versioning: Semantic Versioning.
 
+## v0.2.0 - 2026-05-10
+
+### Added
+
+- `2030-gbm-1min/outputs/` end-to-end run tree under deterministic seed 20260510. New subdirectories: `sensors/`, `xyz_mapping/`, `iterations/`, `metrics/`, `comparison/`, `comparison_robot_vs_human/`, `diagrams/`, `viz/`, `reports/`, `logs/`.
+- 1000-row sensor sample (jsonl + csv) plus per-arm and aggregate force statistics; per_arm_violations=0 cumulative_violations=0.
+- 240-row per-arm xyz command traces plus the ASCII per-second xyz path overlay; all 240 commands resolve to command_state=EMIT.
+- 16-iteration deterministic sweep with per-iteration L1 50 ms, L2 1 s, L3 phase, events Parquet plus L0 Zenodo pointer JSON; cross-iteration index.jsonl and DuckDB analytical store.
+- Per-iteration metric rows (16 robot + 30 human baseline) under the frozen weighted formula (quality 0.40, time 0.25, cost 0.20, safety 0.10, patient_experience 0.05).
+- Default 4-entity tournament (robot vs robot, 6 rounds) plus a mixed 4-entity tournament (2 robot + 2 human, 6 rounds); structural-time-dimension caveat preserved in every rationale.
+- 6 curated ASCII diagrams: pipeline architecture, 4-arm coordination heartbeat, 60-second phase timeline, file size pyramid, composite score formula plus aggregates, on-prem LLM control loop instantiating the thesis.
+- 4 ASCII bar/histogram charts: composite per iteration, composite histogram (robot vs human), per-arm resection mean (mm^3), wall-clock per iteration.
+- 4 narrative reports: run summary, process log, final report, limitations.
+- Publication-grade outputs README with DOI badges, thesis block, repository structure, pipeline architecture ASCII, 4-arm coordination ASCII, robot-vs-human aggregate table, mixed tournament leaderboard, citation block, license pointer.
+- CI verification log under `2030-gbm-1min/outputs/logs/ci_verification.log` capturing the green state of every CI lint-and-format gate.
+
+### Changed
+
+- Top-level `README.md` updated with v0.2.0 outputs pipeline ASCII, the new `outputs/` subtree in the repository structure block, the v0.2.0 release badge, an Outputs badge, and a See-also pointer to `outputs/README.md`.
+- `2030-gbm-1min/config/kinematics_4arm.yaml` joint_limits_per_arm block expanded from inline flow-style entries to block-mapping form to clear the 7 yamllint line-length warnings.
+
+### Fixed
+
+- `yamllint -d relaxed 2030-gbm-1min/config/` exits cleanly with no warnings.
+- All Python sources continue to pass `ruff format --check` and `ruff check` on Python 3.10, 3.11, and 3.12.
+- File size cap check passes; no committed file exceeds 10 MB and no committed Parquet exceeds 5 MB.
+- Resolves the upstream `Cl / lint-and-format (3.10)`, `(3.11)`, and `(3.12)` failing checks template.
+
+### Notes
+
+- The v0.2.0 outputs are reproducible bit for bit from seed 20260510.
+- The C++20 control loop, C++20 1 kHz heartbeat layer, and Rust 2021 high-throughput runner are documented but not compiled in this run; see `outputs/reports/limitations.md`.
+- The release-aggregate L0 raw archive (~416 MB across 16 iterations) lives on Zenodo only at DOI 10.5281/zenodo.18445179.
+
 ## v0.1.0 - 2026-05-10
 
 ### Added

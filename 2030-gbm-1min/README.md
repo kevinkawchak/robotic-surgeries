@@ -155,6 +155,11 @@ The repository is organized so that Claude Code (CLI, web, or IDE plugin) can dr
   notebooks/iteration_analysis_1min.ipynb
   logs/iteration_run.txt
   releases/v3.9.1/{manifest.json, metrics.json, iterations_index.jsonl, sample_seeds.txt, zenodo_doi.txt}
+  outputs/                                       (v0.2.0 end-to-end run tree)
+    README.md (publication-grade README)
+    sensors/, xyz_mapping/, iterations/, metrics/
+    comparison/, comparison_robot_vs_human/
+    diagrams/, viz/, reports/, logs/
 ```
 
 ## Per-Commit Roadmap

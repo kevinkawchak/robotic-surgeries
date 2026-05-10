@@ -1,0 +1,44 @@
++==========================================================================+
+|                 2030-GBM-1MIN PIPELINE (v3.9.1, 1-Minute Variant)        |
++==========================================================================+
+
+  +--------------+    +--------------+    +-----------------+
+  | sensors      |--->| mapping      |--->| simulation      |
+  | ingest_4arm  |    | sensor_to_xyz|    | iterate_1min    |
+  | (1 kHz cmd + |    | _4arm        |    |  16 iterations  |
+  |  10 kHz force|    |  CSV + ASCII |    |  L1 50 ms       |
+  |  per arm)    |    |  per-arm     |    |  L2 1 s         |
+  +------+-------+    +------+-------+    |  L3 phase       |
+         |                   |            |  events         |
+         |                   |            |  L0 -> Zenodo   |
+         v                   v            +--------+--------+
+  outputs/sensors/   outputs/xyz_mapping/          |
+                                                   v
+                                          outputs/iterations/
+                                                   |
+                                                   v
+                                       +-----------+----------+
+                                       | metrics              |
+                                       | compute_1min         |
+                                       |  composite formula   |
+                                       |  weights 0.40/0.25/  |
+                                       |          0.20/0.10/  |
+                                       |          0.05        |
+                                       +-----------+----------+
+                                                   |
+                                                   v
+                                       +-----------+----------+
+                                       | llm                  |
+                                       | compare_agent_1min   |
+                                       |  on-prem judge       |
+                                       |  4-entity tournament |
+                                       |  claude-opus-4-7     |
+                                       +-----------+----------+
+                                                   |
+                                                   v
+                            outputs/comparison/   outputs/viz/
+                            outputs/comparison_robot_vs_human/
+
+  Cumulative 4-arm tip force <= 12 N. Per-arm tip force <= 5.0 N.
+  E-stop budget 5 ms. Heartbeat watchdog 3 ms. 100 microsecond park.
++==========================================================================+

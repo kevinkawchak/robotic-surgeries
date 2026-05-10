@@ -1,0 +1,31 @@
++==========================================================================+
+|             ON-PREM LLM CONTROL LOOP (thesis instantiation)              |
++==========================================================================+
+
+  +-------------------+        real-time          +---------------------+
+  | sensors           |---  1 kHz cmd channel --->| on-prem LLM agent   |
+  | 50 channels x     |--- 10 kHz force channel-->| repository-bound    |
+  | 4 arms = 200 ch.  |                           | claude-opus-4-7     |
+  +-------------------+                           |   prompts/          |
+                                                  |   comparison_       |
+                                                  |   prompt_1min.md    |
+                                                  +----------+----------+
+                                                             |
+                                                             | x, y, z
+                                                             | per-arm
+                                                             | xyz_command
+                                                             v
+  +-------------------+                           +---------------------+
+  | 4-arm robot       |<-- 1 ms cmd loop --------| robot_loop_4arm.cpp |
+  | NeuroSpeed 1.0    |    + heartbeat broadcast | arm_heartbeat.cpp   |
+  | per-arm 7-DOF     |                          +---------------------+
+  +-------------------+
+            |
+            v
+  patient: PAT-GBM-0001 (4.2 cm right frontal IDH-wildtype glioblastoma)
+
+  THESIS: On-premises repository based LLMs provide commands to standard
+  oncology surgical robots based on real-time sensor data and controlled
+  via x, y, z coordinates to administer patient treatment. This workflow
+  minimizes single robot error potential.
++==========================================================================+

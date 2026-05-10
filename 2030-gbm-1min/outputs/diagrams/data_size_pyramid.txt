@@ -1,0 +1,20 @@
++==========================================================================+
+|              FILE SIZE PYRAMID (per iteration, run_NNNNN)                |
++==========================================================================+
+
+                              .'.
+                            .' L0'.                  L0 raw, 26 MB / iter
+                          .'  raw  '.                Zenodo only (not Git)
+                        .'-----------'.              416 MB across 16 iter
+                      .'    L1 50 ms   '.            L1 50 ms,  ~150 KB / iter
+                    .'-------------------'.          L2 1 s,    ~50 KB / iter
+                  .'      L2 1 s          '.         L3 phase,  ~10 KB / iter
+                .'-------------------------'.        events,    ~10 KB / iter
+              .'   L3 phase     events       '.      pointer,   ~1 KB / iter
+            .'-----------------------------------'.
+
+       Committed footprint: 16 iter * (~221 KB) ~= 3.5 MB
+       Plus aggregate.duckdb + index.jsonl + summaries ~= 4 MB total.
+       Well inside the 10 MB committed cap and 5 MB per-Parquet cap.
+
++==========================================================================+

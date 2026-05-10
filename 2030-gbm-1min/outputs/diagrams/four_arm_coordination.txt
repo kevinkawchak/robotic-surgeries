@@ -1,0 +1,22 @@
++==========================================================================+
+|     4-ARM COORDINATION HEARTBEAT (1 kHz, 32-byte frame, 1 ms deadline)   |
++==========================================================================+
+|                                                                          |
+|        +-------+  1 kHz broadcast  +-------+                             |
+|        | ARM 1 |<----------------->| ARM 2 |                             |
+|        | hyb.  |                   | bipol |                             |
+|        | u-w-p |                   | + irr |                             |
+|        +---+---+                   +---+---+                             |
+|            |                           |                                 |
+|            v                           v                                 |
+|        +-------+                   +-------+                             |
+|        | ARM 3 |<----------------->| ARM 4 |                             |
+|        | suct. |  1 kHz broadcast  | iMRI  |                             |
+|        | + col |                   | + ALA |                             |
+|        +-------+                   +-------+                             |
+|                                                                          |
+|    Cumulative ee_force across 4 arms <= 12 N                             |
+|    Per-arm tip force <= 5.0 N / lateral <= 1.0 N                         |
+|    E-stop 5 ms / heartbeat watchdog 3 ms / arm-park 100 microsecond      |
+|    Inter-arm clearance >= 8 mm (geometric)                               |
++==========================================================================+

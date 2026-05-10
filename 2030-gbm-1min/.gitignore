@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+data/iterations/run_*_L0_raw_4arm.parquet
+data/iterations/run_*_xyz_trace_4arm.parquet
+*.egg-info/
+*.so
+.DS_Store

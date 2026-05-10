@@ -1,0 +1,50 @@
++============================================================================+
+|       NEUROSPEED 1.0 OPERATING SUITE SNAPSHOT (v3.9.1, 4-ARM 1-MIN)        |
++============================================================================+
+|                                                                            |
+|   PATIENT: PAT-GBM-0001 (62 yo F, IDH-wt, R frontal, 4.2 cm)               |
+|   ROBOT  : Medtronic NeuroSpeed 1.0 (hypothetical 2030, 4 arm, 7-DOF)      |
+|   PHASES : 1 dural / 2 bulk / 3 margin / 4 hemostasis (60 s total)         |
+|                                                                            |
+|     +-----------+        +----------+        +-----------+                 |
+|     |  ARM 4    |        |  iMRI    |        |  ARM 1    |                 |
+|     | iMRI+ALA  |---+----| 0.5 T    |----+---| hyb u-w-p |                 |
+|     +-----------+   |    | 30-100fps|    |   +-----------+                 |
+|           |         |    +----------+    |         |                       |
+|           |         |        |           |         |                       |
+|           v         v        v           v         v                       |
+|     +======================================================+               |
+|     |                  PATIENT FIELD                       |               |
+|     |   Mayfield clamp pin midpoint = world origin         |               |
+|     |   x = patient left, y = anterior, z = superior       |               |
+|     +======================================================+               |
+|           ^         ^                    ^         ^                       |
+|           |         |                    |         |                       |
+|     +-----------+   |                    |    +-----------+                |
+|     |  ARM 3    |---+----+--------+------+----|  ARM 2    |                |
+|     | suct+col  |        | NAV    |           | bipol+irr |                |
+|     +-----------+        | S8     |           +-----------+                |
+|                          +--------+                                        |
+|                                                                            |
+|   HEARTBEAT: 1 kHz / 32 byte / 1 ms deadline / crc32 + heartbeat_seq       |
+|                                                                            |
+|        +-------+  1 kHz broadcast  +-------+                               |
+|        | ARM 1 |<----------------->| ARM 2 |                               |
+|        +---+---+                   +---+---+                               |
+|            |                           |                                   |
+|            v                           v                                   |
+|        +-------+                   +-------+                               |
+|        | ARM 3 |<----------------->| ARM 4 |                               |
+|        +-------+  1 kHz broadcast  +-------+                               |
+|                                                                            |
+|   SAFETY  : per-arm 5.0 N tip / cumulative 12 N / 5 ms E-stop / 8 mm gap   |
+|   SENSORS : 50 ch/arm mixed (1 kHz) + 6 force ch (10 kHz) = 200 total      |
+|   DATA L0 : 26 MB/iter Zenodo only / L1-L3+events: 510 KB/iter committed   |
+|                                                                            |
+|   DATA SINKS                                                               |
+|       ARM 1..4 -> ingest_4arm.py -> mapper -> control_loop_4arm            |
+|       control_loop_4arm -> aggregate (L1/L2/L3/events) -> DuckDB           |
+|       aggregate -> on-prem LLM (claude-opus-4-7) -> intent overrides       |
+|       L0 raw   -> Zenodo (DOI 10.5281/zenodo.18445179)                     |
+|                                                                            |
++============================================================================+

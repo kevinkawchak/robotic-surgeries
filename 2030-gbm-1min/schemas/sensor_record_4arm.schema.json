@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kevinkawchak.github.io/physical-ai-oncology-trials/v3.9.1/sensor_record_4arm.schema.json",
+  "title": "GBM 1min Sensor Record per Arm",
+  "type": "object",
+  "required": [
+    "tick_us",
+    "arm_id",
+    "record_kind",
+    "meta_seed",
+    "meta_iteration_id"
+  ],
+  "properties": {
+    "tick_us": {"type": "integer", "minimum": 0, "maximum": 60000000},
+    "arm_id": {"type": "string", "enum": ["ARM_1", "ARM_2", "ARM_3", "ARM_4"]},
+    "record_kind": {"type": "string", "enum": ["MIXED", "FORCE_ONLY"]},
+    "meta_seed": {"type": "integer"},
+    "meta_iteration_id": {"type": "string", "pattern": "^run_[0-9]{5}$"},
+
+    "j1_pos": {"type": "number", "minimum": -3.05, "maximum": 3.05},
+    "j2_pos": {"type": "number", "minimum": -2.09, "maximum": 2.09},
+    "j3_pos": {"type": "number", "minimum": -2.97, "maximum": 2.97},
+    "j4_pos": {"type": "number", "minimum": -3.14, "maximum": 3.14},
+    "j5_pos": {"type": "number", "minimum": -2.09, "maximum": 2.09},
+    "j6_pos": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+    "j7_pos": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+
+    "j1_vel": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+    "j2_vel": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+    "j3_vel": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+    "j4_vel": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+    "j5_vel": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+    "j6_vel": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+    "j7_vel": {"type": "number", "minimum": -6.28, "maximum": 6.28},
+
+    "j1_trq": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "j2_trq": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "j3_trq": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "j4_trq": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "j5_trq": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "j6_trq": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "j7_trq": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+
+    "ee_x": {"type": "number", "minimum": -500.0, "maximum": 500.0},
+    "ee_y": {"type": "number", "minimum": -500.0, "maximum": 500.0},
+    "ee_z": {"type": "number", "minimum": -500.0, "maximum": 500.0},
+    "ee_qw": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+    "ee_qx": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+    "ee_qy": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+    "ee_qz": {"type": "number", "minimum": -1.0, "maximum": 1.0},
+
+    "ee_fx": {"type": "number", "minimum": -50.0, "maximum": 50.0},
+    "ee_fy": {"type": "number", "minimum": -50.0, "maximum": 50.0},
+    "ee_fz": {"type": "number", "minimum": -50.0, "maximum": 50.0},
+    "ee_tx": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "ee_ty": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+    "ee_tz": {"type": "number", "minimum": -5.0, "maximum": 5.0},
+
+    "nav_dx": {"type": "number", "minimum": -50.0, "maximum": 50.0},
+    "nav_dy": {"type": "number", "minimum": -50.0, "maximum": 50.0},
+    "nav_dz": {"type": "number", "minimum": -50.0, "maximum": 50.0},
+
+    "ttip_temp": {"type": "number", "minimum": 15.0, "maximum": 90.0},
+    "irr_flow": {"type": "number", "minimum": 0.0, "maximum": 200.0},
+    "suc_flow": {"type": "number", "minimum": 0.0, "maximum": 200.0},
+    "co2_insuf": {"type": "number", "minimum": 0.0, "maximum": 0.0},
+    "us_present": {"type": "integer", "minimum": 0, "maximum": 1},
+    "ala_uv": {"type": "integer", "minimum": 0, "maximum": 1},
+    "imri_active": {"type": "integer", "minimum": 0, "maximum": 1},
+
+    "estop_state": {"type": "integer", "minimum": 0, "maximum": 1},
+    "safety_zone": {"type": "string", "enum": ["NONE", "OUTER", "INNER", "ELOQUENT", "FORBIDDEN", "TUMOR_CORE", "TUMOR_MARGIN", "VESSEL"]},
+    "robot_state": {"type": "string", "enum": ["IDLE", "SETUP", "DOCKED", "READY", "ACTIVE", "PAUSE", "COMPLETE", "ABORT"]},
+    "heartbeat_ok": {"type": "integer", "minimum": 0, "maximum": 1},
+    "tick_align_flag": {"type": "integer", "minimum": 0, "maximum": 1}
+  },
+  "oneOf": [
+    {
+      "properties": {"record_kind": {"const": "MIXED"}},
+      "required": [
+        "j1_pos", "j2_pos", "j3_pos", "j4_pos", "j5_pos", "j6_pos", "j7_pos",
+        "j1_vel", "j2_vel", "j3_vel", "j4_vel", "j5_vel", "j6_vel", "j7_vel",
+        "j1_trq", "j2_trq", "j3_trq", "j4_trq", "j5_trq", "j6_trq", "j7_trq",
+        "ee_x", "ee_y", "ee_z",
+        "ee_qw", "ee_qx", "ee_qy", "ee_qz",
+        "ee_fx", "ee_fy", "ee_fz",
+        "ee_tx", "ee_ty", "ee_tz",
+        "nav_dx", "nav_dy", "nav_dz",
+        "ttip_temp", "irr_flow", "suc_flow", "co2_insuf",
+        "us_present", "ala_uv", "imri_active",
+        "estop_state", "safety_zone", "robot_state",
+        "heartbeat_ok", "tick_align_flag"
+      ]
+    },
+    {
+      "properties": {"record_kind": {"const": "FORCE_ONLY"}},
+      "required": ["ee_fx", "ee_fy", "ee_fz", "ee_tx", "ee_ty", "ee_tz"]
+    }
+  ],
+  "additionalProperties": false
+}

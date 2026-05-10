@@ -1,0 +1,70 @@
+{
+  "type": "record",
+  "name": "SensorRecord4Arm",
+  "namespace": "com.kevinkawchak.gbm_trial_1min.v3_9_1",
+  "doc": "Per-arm sensor record for the Medtronic NeuroSpeed 1.0 1-minute variant. Mixed 1 kHz commands plus 10 kHz force per arm. 50 channels per MIXED record; 6 force channels per FORCE_ONLY record. Total 200 channels across 4 arms.",
+  "fields": [
+    {"name": "tick_us", "type": "long"},
+    {"name": "arm_id", "type": {"type": "enum", "name": "ArmId", "symbols": ["ARM_1", "ARM_2", "ARM_3", "ARM_4"]}},
+    {"name": "record_kind", "type": {"type": "enum", "name": "RecordKind", "symbols": ["MIXED", "FORCE_ONLY"]}},
+    {"name": "meta_seed", "type": "long"},
+    {"name": "meta_iteration_id", "type": "string"},
+
+    {"name": "j1_pos", "type": ["null", "double"], "default": null},
+    {"name": "j2_pos", "type": ["null", "double"], "default": null},
+    {"name": "j3_pos", "type": ["null", "double"], "default": null},
+    {"name": "j4_pos", "type": ["null", "double"], "default": null},
+    {"name": "j5_pos", "type": ["null", "double"], "default": null},
+    {"name": "j6_pos", "type": ["null", "double"], "default": null},
+    {"name": "j7_pos", "type": ["null", "double"], "default": null},
+
+    {"name": "j1_vel", "type": ["null", "double"], "default": null},
+    {"name": "j2_vel", "type": ["null", "double"], "default": null},
+    {"name": "j3_vel", "type": ["null", "double"], "default": null},
+    {"name": "j4_vel", "type": ["null", "double"], "default": null},
+    {"name": "j5_vel", "type": ["null", "double"], "default": null},
+    {"name": "j6_vel", "type": ["null", "double"], "default": null},
+    {"name": "j7_vel", "type": ["null", "double"], "default": null},
+
+    {"name": "j1_trq", "type": ["null", "double"], "default": null},
+    {"name": "j2_trq", "type": ["null", "double"], "default": null},
+    {"name": "j3_trq", "type": ["null", "double"], "default": null},
+    {"name": "j4_trq", "type": ["null", "double"], "default": null},
+    {"name": "j5_trq", "type": ["null", "double"], "default": null},
+    {"name": "j6_trq", "type": ["null", "double"], "default": null},
+    {"name": "j7_trq", "type": ["null", "double"], "default": null},
+
+    {"name": "ee_x", "type": ["null", "double"], "default": null},
+    {"name": "ee_y", "type": ["null", "double"], "default": null},
+    {"name": "ee_z", "type": ["null", "double"], "default": null},
+    {"name": "ee_qw", "type": ["null", "double"], "default": null},
+    {"name": "ee_qx", "type": ["null", "double"], "default": null},
+    {"name": "ee_qy", "type": ["null", "double"], "default": null},
+    {"name": "ee_qz", "type": ["null", "double"], "default": null},
+
+    {"name": "ee_fx", "type": "double"},
+    {"name": "ee_fy", "type": "double"},
+    {"name": "ee_fz", "type": "double"},
+    {"name": "ee_tx", "type": "double"},
+    {"name": "ee_ty", "type": "double"},
+    {"name": "ee_tz", "type": "double"},
+
+    {"name": "nav_dx", "type": ["null", "double"], "default": null},
+    {"name": "nav_dy", "type": ["null", "double"], "default": null},
+    {"name": "nav_dz", "type": ["null", "double"], "default": null},
+
+    {"name": "ttip_temp", "type": ["null", "double"], "default": null},
+    {"name": "irr_flow", "type": ["null", "double"], "default": null},
+    {"name": "suc_flow", "type": ["null", "double"], "default": null},
+    {"name": "co2_insuf", "type": ["null", "double"], "default": null},
+    {"name": "us_present", "type": ["null", "int"], "default": null},
+    {"name": "ala_uv", "type": ["null", "int"], "default": null},
+    {"name": "imri_active", "type": ["null", "int"], "default": null},
+
+    {"name": "estop_state", "type": ["null", "int"], "default": null},
+    {"name": "safety_zone", "type": ["null", {"type": "enum", "name": "SafetyZone", "symbols": ["NONE", "OUTER", "INNER", "ELOQUENT", "FORBIDDEN", "TUMOR_CORE", "TUMOR_MARGIN", "VESSEL"]}], "default": null},
+    {"name": "robot_state", "type": ["null", {"type": "enum", "name": "RobotState", "symbols": ["IDLE", "SETUP", "DOCKED", "READY", "ACTIVE", "PAUSE", "COMPLETE", "ABORT"]}], "default": null},
+    {"name": "heartbeat_ok", "type": ["null", "int"], "default": null},
+    {"name": "tick_align_flag", "type": ["null", "int"], "default": null}
+  ]
+}

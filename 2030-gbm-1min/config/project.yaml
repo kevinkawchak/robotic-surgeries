@@ -1,0 +1,65 @@
+---
+project:
+  name: glioblastoma-1min-trial
+  version: "3.9.1"
+  release_date: "2026-05-10"
+  variant: one_minute
+
+units:
+  time: microsecond
+  position: millimeter
+  rotation: radian
+  force: newton
+  torque: newton_meter
+
+coordinate_frame:
+  origin: mayfield_clamp_pin_midpoint
+  x_positive: patient_left
+  y_positive: patient_anterior
+  z_positive: patient_superior
+  quaternion_convention: scalar_first
+
+trial:
+  patient_id: PAT-GBM-0001
+  duration_seconds: 60.000
+  mixed_tick_us: 1000
+  force_tick_us: 100
+  total_mixed_ticks: 60000
+  total_force_ticks: 600000
+
+paths:
+  data: data
+  config: config
+  logs: logs
+  results: results
+  releases: releases
+
+robot:
+  make: Medtronic
+  model: NeuroSpeed 1.0
+  hardware_revision: v1.0
+  firmware: "1.0.0"
+  arms: 4
+  dof_per_arm: 7
+  mixed_sample_rate_hz: 1000
+  force_sample_rate_hz: 10000
+
+phases:
+  phase_1_dural_opening_final:
+    start_s: 0.000
+    end_s: 5.000
+  phase_2_bulk_resection:
+    start_s: 5.000
+    end_s: 45.000
+  phase_3_margin_fine_resection:
+    start_s: 45.000
+    end_s: 55.000
+  phase_4_hemostasis_withdrawal:
+    start_s: 55.000
+    end_s: 60.000
+
+zenodo:
+  enabled: true
+  community: physical-ai-oncology-trials
+  l0_raw_size_per_iteration_mb: 26
+  l0_raw_total_mb: 416

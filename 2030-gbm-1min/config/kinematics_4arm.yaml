@@ -1,0 +1,78 @@
+---
+robot:
+  make: Medtronic
+  model: NeuroSpeed 1.0
+  hardware_revision: v1.0
+  firmware: "1.0.0"
+  arms: 4
+  dof_per_arm: 7
+
+dh_parameters_per_arm:
+  joint_1:
+    twist_rad: 0.0
+    length_mm: 0.0
+    offset_mm: 200.0
+    angle_offset_rad: 0.0
+  joint_2:
+    twist_rad: -1.5707963
+    length_mm: 0.0
+    offset_mm: 0.0
+    angle_offset_rad: -1.5707963
+  joint_3:
+    twist_rad: 0.0
+    length_mm: 180.0
+    offset_mm: 0.0
+    angle_offset_rad: 0.0
+  joint_4:
+    twist_rad: -1.5707963
+    length_mm: 60.0
+    offset_mm: 200.0
+    angle_offset_rad: 0.0
+  joint_5:
+    twist_rad: 1.5707963
+    length_mm: 0.0
+    offset_mm: 0.0
+    angle_offset_rad: 0.0
+  joint_6:
+    twist_rad: -1.5707963
+    length_mm: 0.0
+    offset_mm: 50.0
+    angle_offset_rad: 0.0
+  joint_7:
+    twist_rad: 0.0
+    length_mm: 0.0
+    offset_mm: 50.0
+    angle_offset_rad: 0.0
+
+joint_limits_per_arm:
+  joint_1: {min_rad: -3.05, max_rad: 3.05, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+  joint_2: {min_rad: -2.09, max_rad: 2.09, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+  joint_3: {min_rad: -2.97, max_rad: 2.97, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+  joint_4: {min_rad: -3.14, max_rad: 3.14, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+  joint_5: {min_rad: -2.09, max_rad: 2.09, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+  joint_6: {min_rad: -6.28, max_rad: 6.28, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+  joint_7: {min_rad: -6.28, max_rad: 6.28, max_vel_radps: 6.28, max_acc_radpss: 31.42}
+
+end_effector:
+  max_linear_vel_mmps: 1000.0
+  max_linear_acc_mmpss: 10000.0
+  max_tip_force_N_per_arm: 5.0
+  max_lateral_force_N_per_arm: 1.0
+  max_cumulative_force_N: 12.0
+
+control_loop:
+  rate_hz: 1000
+  force_sample_rate_hz: 10000
+  estop_latency_limit_ms: 5
+  command_to_actuator_budget_ms: 1
+  heartbeat_rate_hz: 1000
+  heartbeat_miss_threshold_frames: 3
+
+per_arm_workspace_sectors:
+  arm_1: {azimuth_min_deg: 0, azimuth_max_deg: 90, hemisphere: full}
+  arm_2: {azimuth_min_deg: 270, azimuth_max_deg: 360, hemisphere: full}
+  arm_3: {azimuth_min_deg: 90, azimuth_max_deg: 270, hemisphere: lower}
+  arm_4: {azimuth_min_deg: 0, azimuth_max_deg: 360, hemisphere: upper}
+
+inter_arm_collision:
+  min_distance_mm: 8.0

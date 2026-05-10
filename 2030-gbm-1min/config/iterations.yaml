@@ -1,0 +1,63 @@
+---
+iteration_set:
+  name: gbm_v3_9_1_default
+  count: 16
+  description: "Default 16-iteration sweep for v3.9.1 1-minute variant."
+
+base_seed: 20260510
+
+sweeps:
+  seed:
+    type: linear_int
+    start: 20260510
+    stop: 20260525
+    inclusive: true
+  sensor_noise_sigma_mm:
+    type: linear
+    start: 0.01
+    stop: 0.05
+    n: 16
+  force_feedback_gain:
+    type: linear
+    start: 0.8
+    stop: 1.2
+    n: 16
+  ik_solver_tolerance:
+    type: log
+    start: 1.0e-06
+    stop: 1.0e-03
+    n: 16
+  heartbeat_jitter_sigma_us:
+    type: linear
+    start: 0.0
+    stop: 50.0
+    n: 16
+
+fixed:
+  patient_id: PAT-GBM-0001
+  robot_make: Medtronic
+  robot_model: NeuroSpeed 1.0
+  arms: 4
+  procedure_duration_seconds: 60.000
+  mixed_tick_us: 1000
+  force_tick_us: 100
+  ae_probability: 0.05
+  cumulative_force_limit_N: 12.0
+  per_arm_tip_force_limit_N: 5.0
+  estop_latency_limit_ms: 5
+
+paths:
+  output_dir: data/iterations
+  index_file: data/iterations/index.jsonl
+  duckdb_file: data/iterations/aggregate.duckdb
+  log_file: logs/iteration_run.txt
+
+execution:
+  jobs: 4
+  per_iteration_timeout_seconds: 600
+  l0_raw_local_cache: false
+  l0_raw_upload_to_zenodo: true
+
+zenodo:
+  community: physical-ai-oncology-trials
+  release_doi_pattern: "10.5281/zenodo.{record_id}"

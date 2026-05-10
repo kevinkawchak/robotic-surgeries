@@ -1,0 +1,82 @@
+---
+version: "3.9"
+
+services:
+  llm:
+    image: ollama/ollama:latest
+    container_name: gbm-1min-llm
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    volumes:
+      - llm-models:/root/.ollama
+    restart: unless-stopped
+
+  ingest:
+    image: python:3.10-slim
+    container_name: gbm-1min-ingest
+    working_dir: /workspace
+    command: >-
+      python -m src.sensors.ingest_4arm
+      --emit-canonical
+      --seed 20260510
+    environment:
+      - PYTHONPATH=/workspace
+    volumes:
+      - .:/workspace
+      - data-cache:/workspace/data
+      - logs-cache:/workspace/logs
+    depends_on:
+      - llm
+
+  simulator:
+    image: rust:1.75-slim
+    container_name: gbm-1min-simulator
+    working_dir: /workspace/src/simulation
+    command: >-
+      cargo run --release --
+      --seed 20260510
+      --noise-sigma 0.01
+      --gain 1.0
+      --tolerance 1.0e-06
+      --jitter-sigma 0.0
+      --out /workspace/data/iterations
+    environment:
+      - CARGO_TARGET_DIR=/tmp/cargo-target
+    volumes:
+      - .:/workspace
+      - data-cache:/workspace/data
+      - logs-cache:/workspace/logs
+
+  db:
+    image: marcboeker/duckdb:latest
+    container_name: gbm-1min-db
+    working_dir: /workspace
+    command: >-
+      duckdb /workspace/data/iterations/aggregate.duckdb
+      "SELECT version();"
+    volumes:
+      - .:/workspace
+      - data-cache:/workspace/data
+
+  zenodo:
+    image: python:3.10-slim
+    container_name: gbm-1min-zenodo
+    working_dir: /workspace
+    command: >-
+      python -m src.zenodo.patch_pointers
+      --record-id PLACEHOLDER
+      --doi 10.5281/zenodo.PLACEHOLDER
+    environment:
+      - PYTHONPATH=/workspace
+      - ZENODO_API_TOKEN=${ZENODO_API_TOKEN:-}
+    volumes:
+      - .:/workspace
+      - releases-cache:/workspace/releases/v3.9.1
+
+volumes:
+  llm-models:
+  data-cache:
+  logs-cache:
+  releases-cache:

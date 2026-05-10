@@ -1,0 +1,55 @@
+syntax = "proto3";
+package gbm_trial_1min.v3_9_1;
+
+// Per-arm xyz command for the Medtronic NeuroSpeed 1.0 1-minute variant.
+// linear_vel_mmps capped at 1,000 mm/s (20x ROSA's 50 mm/s cap).
+
+message XYZCommand4Arm {
+  uint64 tick_us = 1;
+  ArmId arm_id = 2;
+  double x_mm = 3;
+  double y_mm = 4;
+  double z_mm = 5;
+  double qw = 6;
+  double qx = 7;
+  double qy = 8;
+  double qz = 9;
+  double linear_vel_mmps = 10;
+  double force_clamp_N = 11;
+  Tool tool = 12;
+  CommandState command_state = 13;
+  uint32 phase_id = 14;
+  uint64 meta_seed = 100;
+  string meta_iteration_id = 101;
+
+  // Field numbers 15 through 99 reserved for future expansion.
+  reserved 15 to 99;
+
+  enum ArmId {
+    ARM_UNSPECIFIED = 0;
+    ARM_1 = 1;
+    ARM_2 = 2;
+    ARM_3 = 3;
+    ARM_4 = 4;
+  }
+
+  enum Tool {
+    TOOL_UNSPECIFIED = 0;
+    HYBRID_USP = 1;
+    BIPOLAR_IRR = 2;
+    SUCTION_COL = 3;
+    IMG_5ALA_MRI = 4;
+    NONE = 5;
+  }
+
+  enum CommandState {
+    COMMAND_STATE_UNSPECIFIED = 0;
+    EMIT = 1;
+    CLAMP_TO_BOUNDARY = 2;
+    FORCE_HOLD = 3;
+    FORCE_SHARE_CLAMP = 4;
+    SAFETY_PAUSE = 5;
+    EMERGENCY_PARK = 6;
+    ABORT = 7;
+  }
+}

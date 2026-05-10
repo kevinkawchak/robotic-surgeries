@@ -1,0 +1,132 @@
+syntax = "proto3";
+package gbm_trial_1min.v3_9_1;
+
+// Sensor record per arm for the Medtronic NeuroSpeed 1.0 1-minute variant.
+// Mixed 1 kHz commands plus 10 kHz force per arm. 50 channels per MIXED record;
+// 6 channels per FORCE_ONLY record. Total 200 channels across 4 arms.
+
+message SensorRecord4Arm {
+  uint64 tick_us = 1;
+  ArmId arm_id = 2;
+  RecordKind record_kind = 3;
+  uint64 meta_seed = 4;
+  string meta_iteration_id = 5;
+
+  oneof payload {
+    MixedRecord mixed = 10;
+    ForceOnlyRecord force_only = 11;
+  }
+
+  // Field numbers 12 through 99 reserved for future expansion.
+  reserved 12 to 99;
+
+  enum ArmId {
+    ARM_UNSPECIFIED = 0;
+    ARM_1 = 1;
+    ARM_2 = 2;
+    ARM_3 = 3;
+    ARM_4 = 4;
+  }
+
+  enum RecordKind {
+    RECORD_UNSPECIFIED = 0;
+    MIXED = 1;
+    FORCE_ONLY = 2;
+  }
+}
+
+message MixedRecord {
+  // Group 1: joint kinematics at 1 kHz (21 channels).
+  double j1_pos = 1;
+  double j2_pos = 2;
+  double j3_pos = 3;
+  double j4_pos = 4;
+  double j5_pos = 5;
+  double j6_pos = 6;
+  double j7_pos = 7;
+  double j1_vel = 8;
+  double j2_vel = 9;
+  double j3_vel = 10;
+  double j4_vel = 11;
+  double j5_vel = 12;
+  double j6_vel = 13;
+  double j7_vel = 14;
+  double j1_trq = 15;
+  double j2_trq = 16;
+  double j3_trq = 17;
+  double j4_trq = 18;
+  double j5_trq = 19;
+  double j6_trq = 20;
+  double j7_trq = 21;
+
+  // Group 2: end-effector pose at 1 kHz (7 channels).
+  double ee_x = 22;
+  double ee_y = 23;
+  double ee_z = 24;
+  double ee_qw = 25;
+  double ee_qx = 26;
+  double ee_qy = 27;
+  double ee_qz = 28;
+
+  // Group 3: end-effector force/torque at 10 kHz (6 channels), latest sample.
+  double ee_fx = 29;
+  double ee_fy = 30;
+  double ee_fz = 31;
+  double ee_tx = 32;
+  double ee_ty = 33;
+  double ee_tz = 34;
+
+  // Group 4: navigation deviation at 1 kHz (3 channels).
+  double nav_dx = 35;
+  double nav_dy = 36;
+  double nav_dz = 37;
+
+  // Group 5: tool flags and adjuncts at 1 kHz (7 channels).
+  double ttip_temp = 38;
+  double irr_flow = 39;
+  double suc_flow = 40;
+  double co2_insuf = 41;
+  uint32 us_present = 42;
+  uint32 ala_uv = 43;
+  uint32 imri_active = 44;
+
+  // Group 6: safety enums and metadata at 1 kHz (6 channels).
+  uint32 estop_state = 45;
+  SafetyZone safety_zone = 46;
+  RobotState robot_state = 47;
+  uint32 heartbeat_ok = 48;
+  uint32 tick_align_flag = 49;
+
+  enum SafetyZone {
+    SAFETY_ZONE_UNSPECIFIED = 0;
+    NONE = 1;
+    OUTER = 2;
+    INNER = 3;
+    ELOQUENT = 4;
+    FORBIDDEN = 5;
+    TUMOR_CORE = 6;
+    TUMOR_MARGIN = 7;
+    VESSEL = 8;
+  }
+
+  enum RobotState {
+    ROBOT_STATE_UNSPECIFIED = 0;
+    IDLE = 1;
+    SETUP = 2;
+    DOCKED = 3;
+    READY = 4;
+    ACTIVE = 5;
+    PAUSE = 6;
+    COMPLETE = 7;
+    ABORT = 8;
+  }
+}
+
+message ForceOnlyRecord {
+  double ee_fx = 1;
+  double ee_fy = 2;
+  double ee_fz = 3;
+  double ee_tx = 4;
+  double ee_ty = 5;
+  double ee_tz = 6;
+}

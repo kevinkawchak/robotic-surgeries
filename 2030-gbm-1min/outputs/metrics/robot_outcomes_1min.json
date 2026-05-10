@@ -1,0 +1,2118 @@
+[
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00001",
+    "release_version": "v3.9.1",
+    "quality_score": 91.96,
+    "total_seconds": 60.0,
+    "cost_usd": 8396.6,
+    "safety_score": 50.0,
+    "patient_experience_score": 88.17,
+    "composite_score": 87.73,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      2,
+      1,
+      1
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 1,
+    "ae_count": 2,
+    "heartbeat_miss_count": 2,
+    "resection_completeness_pct": 95.64,
+    "eloquent_preservation_score": 86.96,
+    "predicted_kps_day_30": 81.57,
+    "skill_mu": 672.85,
+    "skill_sigma": 94.75,
+    "per_arm_tissue_removed_mm3": [
+      31977.91,
+      1884.8,
+      1938.01,
+      92.16
+    ],
+    "per_arm_force_peak_N": [
+      4.821,
+      3.955,
+      4.682,
+      4.588
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00002",
+    "release_version": "v3.9.1",
+    "quality_score": 91.2,
+    "total_seconds": 60.0,
+    "cost_usd": 8171.25,
+    "safety_score": 60.0,
+    "patient_experience_score": 87.04,
+    "composite_score": 88.46,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      0,
+      1,
+      1
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 0,
+    "ae_count": 2,
+    "heartbeat_miss_count": 1,
+    "resection_completeness_pct": 94.85,
+    "eloquent_preservation_score": 86.2,
+    "predicted_kps_day_30": 80.96,
+    "skill_mu": 671.36,
+    "skill_sigma": 96.5,
+    "per_arm_tissue_removed_mm3": [
+      32688.6,
+      1846.72,
+      1899.08,
+      113.37
+    ],
+    "per_arm_force_peak_N": [
+      4.985,
+      4.561,
+      4.367,
+      4.589
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00003",
+    "release_version": "v3.9.1",
+    "quality_score": 91.21,
+    "total_seconds": 60.0,
+    "cost_usd": 8061.37,
+    "safety_score": 35.0,
+    "patient_experience_score": 90.28,
+    "composite_score": 86.17,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      2,
+      2,
+      2,
+      1
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 0,
+    "ae_count": 2,
+    "heartbeat_miss_count": 2,
+    "resection_completeness_pct": 94.86,
+    "eloquent_preservation_score": 86.21,
+    "predicted_kps_day_30": 80.97,
+    "skill_mu": 679.19,
+    "skill_sigma": 98.17,
+    "per_arm_tissue_removed_mm3": [
+      32167.05,
+      1674.44,
+      1854.11,
+      100.51
+    ],
+    "per_arm_force_peak_N": [
+      4.313,
+      4.286,
+      4.163,
+      4.837
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00004",
+    "release_version": "v3.9.1",
+    "quality_score": 93.89,
+    "total_seconds": 60.0,
+    "cost_usd": 8533.16,
+    "safety_score": 40.0,
+    "patient_experience_score": 87.3,
+    "composite_score": 87.4,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      2,
+      2,
+      1,
+      1
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 1,
+    "ae_count": 1,
+    "heartbeat_miss_count": 2,
+    "resection_completeness_pct": 97.64,
+    "eloquent_preservation_score": 88.89,
+    "predicted_kps_day_30": 83.11,
+    "skill_mu": 668.75,
+    "skill_sigma": 96.75,
+    "per_arm_tissue_removed_mm3": [
+      32738.32,
+      1952.55,
+      1922.62,
+      92.56
+    ],
+    "per_arm_force_peak_N": [
+      4.58,
+      4.56,
+      4.272,
+      4.608
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00005",
+    "release_version": "v3.9.1",
+    "quality_score": 92.54,
+    "total_seconds": 60.0,
+    "cost_usd": 8303.44,
+    "safety_score": 80.0,
+    "patient_experience_score": 86.7,
+    "composite_score": 90.93,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 1,
+    "heartbeat_miss_count": 1,
+    "resection_completeness_pct": 96.24,
+    "eloquent_preservation_score": 87.54,
+    "predicted_kps_day_30": 82.03,
+    "skill_mu": 668.91,
+    "skill_sigma": 95.95,
+    "per_arm_tissue_removed_mm3": [
+      30431.81,
+      1741.87,
+      1875.47,
+      89.82
+    ],
+    "per_arm_force_peak_N": [
+      4.858,
+      4.631,
+      5.041,
+      4.62
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00006",
+    "release_version": "v3.9.1",
+    "quality_score": 90.31,
+    "total_seconds": 60.0,
+    "cost_usd": 8186.81,
+    "safety_score": 70.0,
+    "patient_experience_score": 90.82,
+    "composite_score": 89.28,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      1,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 1,
+    "estop_count": 1,
+    "ae_count": 1,
+    "heartbeat_miss_count": 1,
+    "resection_completeness_pct": 93.92,
+    "eloquent_preservation_score": 85.31,
+    "predicted_kps_day_30": 80.25,
+    "skill_mu": 666.8,
+    "skill_sigma": 92.21,
+    "per_arm_tissue_removed_mm3": [
+      33189.27,
+      2060.32,
+      2114.83,
+      98.01
+    ],
+    "per_arm_force_peak_N": [
+      4.946,
+      4.356,
+      4.114,
+      4.124
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00007",
+    "release_version": "v3.9.1",
+    "quality_score": 90.07,
+    "total_seconds": 60.0,
+    "cost_usd": 8388.34,
+    "safety_score": 40.0,
+    "patient_experience_score": 88.96,
+    "composite_score": 86.02,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "cumulative_force_violation_count": 1,
+    "estop_count": 1,
+    "ae_count": 3,
+    "heartbeat_miss_count": 3,
+    "resection_completeness_pct": 93.68,
+    "eloquent_preservation_score": 85.07,
+    "predicted_kps_day_30": 80.06,
+    "skill_mu": 676.08,
+    "skill_sigma": 93.82,
+    "per_arm_tissue_removed_mm3": [
+      32630.2,
+      1847.04,
+      1797.01,
+      70.79
+    ],
+    "per_arm_force_peak_N": [
+      4.405,
+      4.572,
+      4.554,
+      5.112
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00008",
+    "release_version": "v3.9.1",
+    "quality_score": 92.57,
+    "total_seconds": 60.0,
+    "cost_usd": 8405.27,
+    "safety_score": 70.0,
+    "patient_experience_score": 88.33,
+    "composite_score": 89.98,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      0,
+      1,
+      1,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 1,
+    "heartbeat_miss_count": 3,
+    "resection_completeness_pct": 96.27,
+    "eloquent_preservation_score": 87.57,
+    "predicted_kps_day_30": 82.06,
+    "skill_mu": 674.48,
+    "skill_sigma": 95.3,
+    "per_arm_tissue_removed_mm3": [
+      31532.83,
+      1829.33,
+      1673.22,
+      74.32
+    ],
+    "per_arm_force_peak_N": [
+      4.061,
+      4.602,
+      4.049,
+      4.734
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00009",
+    "release_version": "v3.9.1",
+    "quality_score": 93.18,
+    "total_seconds": 60.0,
+    "cost_usd": 8179.33,
+    "safety_score": 55.0,
+    "patient_experience_score": 89.45,
+    "composite_score": 88.87,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 0,
+    "ae_count": 2,
+    "heartbeat_miss_count": 4,
+    "resection_completeness_pct": 96.91,
+    "eloquent_preservation_score": 88.18,
+    "predicted_kps_day_30": 82.54,
+    "skill_mu": 676.76,
+    "skill_sigma": 91.87,
+    "per_arm_tissue_removed_mm3": [
+      33226.92,
+      1800.13,
+      1918.25,
+      91.63
+    ],
+    "per_arm_force_peak_N": [
+      4.12,
+      4.923,
+      4.434,
+      4.899
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00010",
+    "release_version": "v3.9.1",
+    "quality_score": 93.27,
+    "total_seconds": 60.0,
+    "cost_usd": 8133.14,
+    "safety_score": 30.0,
+    "patient_experience_score": 87.28,
+    "composite_score": 86.32,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      2,
+      2,
+      1,
+      1
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 1,
+    "ae_count": 1,
+    "heartbeat_miss_count": 4,
+    "resection_completeness_pct": 97.0,
+    "eloquent_preservation_score": 88.27,
+    "predicted_kps_day_30": 82.62,
+    "skill_mu": 668.04,
+    "skill_sigma": 98.25,
+    "per_arm_tissue_removed_mm3": [
+      32280.49,
+      1682.97,
+      1859.28,
+      68.47
+    ],
+    "per_arm_force_peak_N": [
+      4.293,
+      4.546,
+      4.578,
+      4.128
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00011",
+    "release_version": "v3.9.1",
+    "quality_score": 91.74,
+    "total_seconds": 60.0,
+    "cost_usd": 8235.75,
+    "safety_score": 35.0,
+    "patient_experience_score": 90.05,
+    "composite_score": 86.3,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      1,
+      2,
+      1
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 0,
+    "ae_count": 2,
+    "heartbeat_miss_count": 4,
+    "resection_completeness_pct": 95.41,
+    "eloquent_preservation_score": 86.74,
+    "predicted_kps_day_30": 81.4,
+    "skill_mu": 672.39,
+    "skill_sigma": 95.92,
+    "per_arm_tissue_removed_mm3": [
+      32999.99,
+      1895.85,
+      1857.85,
+      101.24
+    ],
+    "per_arm_force_peak_N": [
+      4.172,
+      4.563,
+      4.195,
+      5.261
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00012",
+    "release_version": "v3.9.1",
+    "quality_score": 93.52,
+    "total_seconds": 60.0,
+    "cost_usd": 8286.0,
+    "safety_score": 60.0,
+    "patient_experience_score": 86.27,
+    "composite_score": 89.3,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      1,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 1,
+    "ae_count": 0,
+    "heartbeat_miss_count": 3,
+    "resection_completeness_pct": 97.26,
+    "eloquent_preservation_score": 88.52,
+    "predicted_kps_day_30": 82.81,
+    "skill_mu": 675.04,
+    "skill_sigma": 91.41,
+    "per_arm_tissue_removed_mm3": [
+      31206.45,
+      1892.42,
+      2022.95,
+      103.84
+    ],
+    "per_arm_force_peak_N": [
+      4.512,
+      3.69,
+      3.874,
+      4.471
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00013",
+    "release_version": "v3.9.1",
+    "quality_score": 93.46,
+    "total_seconds": 60.0,
+    "cost_usd": 8738.26,
+    "safety_score": 60.0,
+    "patient_experience_score": 87.65,
+    "composite_score": 89.17,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      1,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 0,
+    "ae_count": 1,
+    "heartbeat_miss_count": 3,
+    "resection_completeness_pct": 97.19,
+    "eloquent_preservation_score": 88.46,
+    "predicted_kps_day_30": 82.77,
+    "skill_mu": 668.19,
+    "skill_sigma": 94.71,
+    "per_arm_tissue_removed_mm3": [
+      32965.77,
+      1758.41,
+      1876.64,
+      122.36
+    ],
+    "per_arm_force_peak_N": [
+      4.328,
+      4.817,
+      3.914,
+      4.3
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00014",
+    "release_version": "v3.9.1",
+    "quality_score": 90.88,
+    "total_seconds": 60.0,
+    "cost_usd": 8138.15,
+    "safety_score": 60.0,
+    "patient_experience_score": 86.34,
+    "composite_score": 88.31,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 1,
+    "ae_count": 2,
+    "heartbeat_miss_count": 3,
+    "resection_completeness_pct": 94.51,
+    "eloquent_preservation_score": 85.88,
+    "predicted_kps_day_30": 80.7,
+    "skill_mu": 671.45,
+    "skill_sigma": 91.48,
+    "per_arm_tissue_removed_mm3": [
+      31938.34,
+      1880.21,
+      1856.19,
+      115.32
+    ],
+    "per_arm_force_peak_N": [
+      4.239,
+      4.254,
+      4.824,
+      4.867
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00015",
+    "release_version": "v3.9.1",
+    "quality_score": 92.3,
+    "total_seconds": 60.0,
+    "cost_usd": 8348.87,
+    "safety_score": 70.0,
+    "patient_experience_score": 89.21,
+    "composite_score": 89.94,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 1,
+    "ae_count": 1,
+    "heartbeat_miss_count": 1,
+    "resection_completeness_pct": 95.99,
+    "eloquent_preservation_score": 87.3,
+    "predicted_kps_day_30": 81.84,
+    "skill_mu": 677.4,
+    "skill_sigma": 94.71,
+    "per_arm_tissue_removed_mm3": [
+      32842.17,
+      1907.31,
+      2005.2,
+      103.27
+    ],
+    "per_arm_force_peak_N": [
+      4.557,
+      5.109,
+      4.408,
+      4.407
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "this_project_v3_9_1_1min",
+    "entity_kind": "this_project_1min",
+    "iteration_id": "run_00016",
+    "release_version": "v3.9.1",
+    "quality_score": 93.37,
+    "total_seconds": 60.0,
+    "cost_usd": 8252.95,
+    "safety_score": 90.0,
+    "patient_experience_score": 88.57,
+    "composite_score": 92.37,
+    "human_intervention_seconds": 0,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 2,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 97.11,
+    "eloquent_preservation_score": 88.37,
+    "predicted_kps_day_30": 82.7,
+    "skill_mu": 675.47,
+    "skill_sigma": 94.42,
+    "per_arm_tissue_removed_mm3": [
+      33140.45,
+      1673.21,
+      1961.24,
+      96.33
+    ],
+    "per_arm_force_peak_N": [
+      4.405,
+      4.34,
+      4.389,
+      4.056
+    ],
+    "per_arm_active_seconds": [
+      55.0,
+      50.0,
+      45.0,
+      60.0
+    ]
+  },
+  {
+    "entity_id": "HUM-001",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 89.0,
+    "total_seconds": 12600.0,
+    "cost_usd": 18500.0,
+    "safety_score": 72.0,
+    "patient_experience_score": 80.0,
+    "composite_score": 71.4,
+    "human_intervention_seconds": 12600,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 92.0,
+    "eloquent_preservation_score": 90.0,
+    "predicted_kps_day_30": 80.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-002",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 85.0,
+    "total_seconds": 11400.0,
+    "cost_usd": 17800.0,
+    "safety_score": 70.0,
+    "patient_experience_score": 75.0,
+    "composite_score": 68.6,
+    "human_intervention_seconds": 11400,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 88.0,
+    "eloquent_preservation_score": 85.0,
+    "predicted_kps_day_30": 75.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-003",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 90.0,
+    "total_seconds": 13200.0,
+    "cost_usd": 19200.0,
+    "safety_score": 74.0,
+    "patient_experience_score": 82.0,
+    "composite_score": 72.3,
+    "human_intervention_seconds": 13200,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 94.0,
+    "eloquent_preservation_score": 88.0,
+    "predicted_kps_day_30": 82.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-004",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 86.0,
+    "total_seconds": 12000.0,
+    "cost_usd": 18000.0,
+    "safety_score": 72.0,
+    "patient_experience_score": 78.0,
+    "composite_score": 69.4,
+    "human_intervention_seconds": 12000,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 89.0,
+    "eloquent_preservation_score": 87.0,
+    "predicted_kps_day_30": 78.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-005",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 88.0,
+    "total_seconds": 12300.0,
+    "cost_usd": 18600.0,
+    "safety_score": 73.0,
+    "patient_experience_score": 80.0,
+    "composite_score": 70.7,
+    "human_intervention_seconds": 12300,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 91.0,
+    "eloquent_preservation_score": 89.0,
+    "predicted_kps_day_30": 80.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-006",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 90.0,
+    "total_seconds": 11700.0,
+    "cost_usd": 18900.0,
+    "safety_score": 75.0,
+    "patient_experience_score": 82.0,
+    "composite_score": 72.0,
+    "human_intervention_seconds": 11700,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 93.0,
+    "eloquent_preservation_score": 90.0,
+    "predicted_kps_day_30": 82.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-007",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 87.0,
+    "total_seconds": 12900.0,
+    "cost_usd": 19100.0,
+    "safety_score": 71.0,
+    "patient_experience_score": 79.0,
+    "composite_score": 69.6,
+    "human_intervention_seconds": 12900,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 90.0,
+    "eloquent_preservation_score": 86.0,
+    "predicted_kps_day_30": 79.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-008",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 84.0,
+    "total_seconds": 12450.0,
+    "cost_usd": 18400.0,
+    "safety_score": 70.0,
+    "patient_experience_score": 76.0,
+    "composite_score": 67.9,
+    "human_intervention_seconds": 12450,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 87.0,
+    "eloquent_preservation_score": 84.0,
+    "predicted_kps_day_30": 76.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-009",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 89.0,
+    "total_seconds": 12150.0,
+    "cost_usd": 19000.0,
+    "safety_score": 73.0,
+    "patient_experience_score": 81.0,
+    "composite_score": 71.0,
+    "human_intervention_seconds": 12150,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 92.0,
+    "eloquent_preservation_score": 88.0,
+    "predicted_kps_day_30": 81.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-010",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 89.0,
+    "total_seconds": 11550.0,
+    "cost_usd": 18800.0,
+    "safety_score": 75.0,
+    "patient_experience_score": 82.0,
+    "composite_score": 71.6,
+    "human_intervention_seconds": 11550,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 91.0,
+    "eloquent_preservation_score": 90.0,
+    "predicted_kps_day_30": 82.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-011",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 90.0,
+    "total_seconds": 12000.0,
+    "cost_usd": 19200.0,
+    "safety_score": 76.0,
+    "patient_experience_score": 83.0,
+    "composite_score": 72.3,
+    "human_intervention_seconds": 12000,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 93.0,
+    "eloquent_preservation_score": 91.0,
+    "predicted_kps_day_30": 83.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-012",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 87.0,
+    "total_seconds": 11850.0,
+    "cost_usd": 18700.0,
+    "safety_score": 73.0,
+    "patient_experience_score": 80.0,
+    "composite_score": 69.9,
+    "human_intervention_seconds": 11850,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 90.0,
+    "eloquent_preservation_score": 88.0,
+    "predicted_kps_day_30": 80.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-013",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 85.0,
+    "total_seconds": 13500.0,
+    "cost_usd": 18200.0,
+    "safety_score": 70.0,
+    "patient_experience_score": 77.0,
+    "composite_score": 68.3,
+    "human_intervention_seconds": 13500,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 88.0,
+    "eloquent_preservation_score": 85.0,
+    "predicted_kps_day_30": 77.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-014",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 89.0,
+    "total_seconds": 12750.0,
+    "cost_usd": 18900.0,
+    "safety_score": 73.0,
+    "patient_experience_score": 81.0,
+    "composite_score": 71.0,
+    "human_intervention_seconds": 12750,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 92.0,
+    "eloquent_preservation_score": 89.0,
+    "predicted_kps_day_30": 81.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-015",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 91.0,
+    "total_seconds": 12300.0,
+    "cost_usd": 19300.0,
+    "safety_score": 76.0,
+    "patient_experience_score": 83.0,
+    "composite_score": 72.7,
+    "human_intervention_seconds": 12300,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 94.0,
+    "eloquent_preservation_score": 91.0,
+    "predicted_kps_day_30": 83.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-016",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 83.0,
+    "total_seconds": 13050.0,
+    "cost_usd": 17900.0,
+    "safety_score": 70.0,
+    "patient_experience_score": 76.0,
+    "composite_score": 67.5,
+    "human_intervention_seconds": 13050,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 87.0,
+    "eloquent_preservation_score": 84.0,
+    "predicted_kps_day_30": 76.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-017",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 87.0,
+    "total_seconds": 12600.0,
+    "cost_usd": 18500.0,
+    "safety_score": 72.0,
+    "patient_experience_score": 79.0,
+    "composite_score": 69.7,
+    "human_intervention_seconds": 12600,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 90.0,
+    "eloquent_preservation_score": 88.0,
+    "predicted_kps_day_30": 79.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-018",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 89.0,
+    "total_seconds": 12000.0,
+    "cost_usd": 18800.0,
+    "safety_score": 74.0,
+    "patient_experience_score": 81.0,
+    "composite_score": 71.1,
+    "human_intervention_seconds": 12000,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 92.0,
+    "eloquent_preservation_score": 89.0,
+    "predicted_kps_day_30": 81.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-019",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 82.0,
+    "total_seconds": 13200.0,
+    "cost_usd": 17700.0,
+    "safety_score": 69.0,
+    "patient_experience_score": 75.0,
+    "composite_score": 66.7,
+    "human_intervention_seconds": 13200,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 86.0,
+    "eloquent_preservation_score": 83.0,
+    "predicted_kps_day_30": 75.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-020",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 88.0,
+    "total_seconds": 12450.0,
+    "cost_usd": 18400.0,
+    "safety_score": 72.0,
+    "patient_experience_score": 79.0,
+    "composite_score": 69.9,
+    "human_intervention_seconds": 12450,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 91.0,
+    "eloquent_preservation_score": 87.0,
+    "predicted_kps_day_30": 79.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-021",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 90.0,
+    "total_seconds": 11850.0,
+    "cost_usd": 19000.0,
+    "safety_score": 75.0,
+    "patient_experience_score": 82.0,
+    "composite_score": 71.9,
+    "human_intervention_seconds": 11850,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 93.0,
+    "eloquent_preservation_score": 90.0,
+    "predicted_kps_day_30": 82.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-022",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 92.0,
+    "total_seconds": 11250.0,
+    "cost_usd": 19500.0,
+    "safety_score": 77.0,
+    "patient_experience_score": 84.0,
+    "composite_score": 73.5,
+    "human_intervention_seconds": 11250,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 95.0,
+    "eloquent_preservation_score": 92.0,
+    "predicted_kps_day_30": 84.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-023",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 91.0,
+    "total_seconds": 11700.0,
+    "cost_usd": 19200.0,
+    "safety_score": 76.0,
+    "patient_experience_score": 83.0,
+    "composite_score": 72.7,
+    "human_intervention_seconds": 11700,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 94.0,
+    "eloquent_preservation_score": 91.0,
+    "predicted_kps_day_30": 83.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-024",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 85.0,
+    "total_seconds": 12900.0,
+    "cost_usd": 18300.0,
+    "safety_score": 71.0,
+    "patient_experience_score": 77.0,
+    "composite_score": 68.5,
+    "human_intervention_seconds": 12900,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 88.0,
+    "eloquent_preservation_score": 85.0,
+    "predicted_kps_day_30": 77.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-025",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 89.0,
+    "total_seconds": 12450.0,
+    "cost_usd": 18900.0,
+    "safety_score": 73.0,
+    "patient_experience_score": 81.0,
+    "composite_score": 71.0,
+    "human_intervention_seconds": 12450,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 92.0,
+    "eloquent_preservation_score": 89.0,
+    "predicted_kps_day_30": 81.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-026",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 86.0,
+    "total_seconds": 12750.0,
+    "cost_usd": 18400.0,
+    "safety_score": 71.0,
+    "patient_experience_score": 78.0,
+    "composite_score": 68.9,
+    "human_intervention_seconds": 12750,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 89.0,
+    "eloquent_preservation_score": 86.0,
+    "predicted_kps_day_30": 78.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-027",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 90.0,
+    "total_seconds": 11550.0,
+    "cost_usd": 19000.0,
+    "safety_score": 74.0,
+    "patient_experience_score": 82.0,
+    "composite_score": 71.6,
+    "human_intervention_seconds": 11550,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 93.0,
+    "eloquent_preservation_score": 90.0,
+    "predicted_kps_day_30": 82.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-028",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 87.0,
+    "total_seconds": 12600.0,
+    "cost_usd": 18500.0,
+    "safety_score": 72.0,
+    "patient_experience_score": 79.0,
+    "composite_score": 69.7,
+    "human_intervention_seconds": 12600,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 90.0,
+    "eloquent_preservation_score": 87.0,
+    "predicted_kps_day_30": 79.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-029",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 86.0,
+    "total_seconds": 12450.0,
+    "cost_usd": 18300.0,
+    "safety_score": 71.0,
+    "patient_experience_score": 78.0,
+    "composite_score": 68.7,
+    "human_intervention_seconds": 12450,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 89.0,
+    "eloquent_preservation_score": 86.0,
+    "predicted_kps_day_30": 78.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "entity_id": "HUM-030",
+    "entity_kind": "manual_human",
+    "iteration_id": "run_00000",
+    "release_version": "v3.9.1",
+    "quality_score": 88.0,
+    "total_seconds": 12150.0,
+    "cost_usd": 18700.0,
+    "safety_score": 72.0,
+    "patient_experience_score": 80.0,
+    "composite_score": 70.4,
+    "human_intervention_seconds": 12150,
+    "force_violation_count_per_arm": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "cumulative_force_violation_count": 0,
+    "estop_count": 0,
+    "ae_count": 0,
+    "heartbeat_miss_count": 0,
+    "resection_completeness_pct": 91.0,
+    "eloquent_preservation_score": 88.0,
+    "predicted_kps_day_30": 80.0,
+    "skill_mu": 600.0,
+    "skill_sigma": 200.0,
+    "per_arm_tissue_removed_mm3": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_force_peak_N": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_arm_active_seconds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+]

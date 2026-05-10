@@ -46,7 +46,6 @@ listed below.
   orcid_icon.png            (green ORCID logo, optional;
                             new_paper.sty falls back to a green "iD"
                             tag if absent)
-  LaTeX Source Files.zip    (added in commit 14; Overleaf-ready bundle)
   sections/
     abstract.tex            (one paragraph, 900 chars target;
                             instructions in [brackets])
@@ -66,6 +65,11 @@ listed below.
                             Rights and Permissions, Cite This Article,
                             Data Availability; final prose)
 ```
+
+The Overleaf-ready `LaTeX Source Files.zip` is **not** committed as a
+binary file under `2030-gbm-1min/paper/`. Instead, the LaTeX sources
+themselves are committed and the zip can be bundled on demand from
+the LaTeX sources using the recipe below.
 
 ## Section order and bracketed-instruction status
 
@@ -118,9 +122,28 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-Do not compile the PDF as part of the template-population pass. Only
-the LaTeX zip is provided at `2030-gbm-1min/paper/LaTeX Source Files.zip`
-in the final commit of this PR.
+Do not compile the PDF as part of the template-population pass.
+
+## LaTeX Source Files.zip recipe
+
+The Overleaf-ready bundle is created on demand from the LaTeX sources
+in this directory. The minimal recipe (Linux, MacOS) is:
+
+```
+cd 2030-gbm-1min/paper
+zip -r "LaTeX Source Files.zip" main.tex new_paper.sty references.bib sections/ orcid_icon.png
+```
+
+On Windows PowerShell:
+
+```
+cd 2030-gbm-1min\paper
+Compress-Archive -Path main.tex,new_paper.sty,references.bib,sections,orcid_icon.png -DestinationPath "LaTeX Source Files.zip"
+```
+
+The resulting zip uploads directly to Overleaf via **New Project ->
+Upload Project**. The orcid_icon.png file is optional; new_paper.sty
+falls back to a green "iD" tag if the PNG is missing.
 
 ## Formatting invariants (must be preserved downstream)
 
@@ -188,11 +211,10 @@ checklist is:
 
 The repository CI matrix runs `ruff format --check`, `ruff check`, and
 `yamllint -d relaxed` on Python 3.10, 3.11, and 3.12 against the
-entire `2030-gbm-1min/` tree. The error-fix commit in this PR ensures
-the LaTeX sources, the bibliography, and the supporting Markdown all
-honor the same line-length and trailing-whitespace conventions so the
-upstream CI `Cl / lint-and-format` failures do not recur. See
-`../../.github/workflows/ci.yml`.
+`2030-gbm-1min/` tree. The new files under `2030-gbm-1min/paper/`
+are LaTeX and Markdown only and are not subject to those gates, so
+this PR does not regress the upstream CI `Cl / lint-and-format`
+status. See `../../.github/workflows/ci.yml`.
 
 ## License
 

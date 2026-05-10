@@ -61,11 +61,13 @@ def run_one_iteration(tup: dict, out_dir: Path) -> dict:
     rng = random.Random(tup["seed"])
     iteration_id = tup["iteration_id"]
     out_dir.mkdir(parents=True, exist_ok=True)
+
     l1_path = out_dir / f"{iteration_id}_L1_50ms.parquet"
     l2_path = out_dir / f"{iteration_id}_L2_1s.parquet"
     l3_path = out_dir / f"{iteration_id}_L3_phase.parquet"
     events_path = out_dir / f"{iteration_id}_events.parquet"
     pointer_path = out_dir / f"{iteration_id}_L0_raw.zenodo_pointer.json"
+
     summary = {
         "iteration_id": iteration_id,
         "seed": tup["seed"],
@@ -82,6 +84,7 @@ def run_one_iteration(tup: dict, out_dir: Path) -> dict:
     placeholder = json.dumps(summary, indent=2).encode()
     for p in (l1_path, l2_path, l3_path, events_path):
         p.write_bytes(placeholder)
+
     pointer = {
         "schema_version": "1.0",
         "release_version": "v3.9.1",
@@ -101,6 +104,7 @@ def run_one_iteration(tup: dict, out_dir: Path) -> dict:
         "populated_at_commit": "Commit 5 of v3.9.1 PR",
     }
     pointer_path.write_text(json.dumps(pointer, indent=2), encoding="utf-8")
+
     return {
         "iteration_id": iteration_id,
         "seed": tup["seed"],

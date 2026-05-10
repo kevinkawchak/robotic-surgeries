@@ -119,11 +119,22 @@ def emit_per_arm_csv_samples(seed: int, csv_dir: Path) -> None:
     rng = random.Random(seed)
     csv_dir.mkdir(parents=True, exist_ok=True)
     fieldnames = [
-        "tick_us", "arm_id", "x_mm", "y_mm", "z_mm",
-        "qw", "qx", "qy", "qz",
-        "linear_vel_mmps", "force_clamp_N", "tool",
-        "command_state", "phase_id",
-        "meta_seed", "meta_iteration_id",
+        "tick_us",
+        "arm_id",
+        "x_mm",
+        "y_mm",
+        "z_mm",
+        "qw",
+        "qx",
+        "qy",
+        "qz",
+        "linear_vel_mmps",
+        "force_clamp_N",
+        "tool",
+        "command_state",
+        "phase_id",
+        "meta_seed",
+        "meta_iteration_id",
     ]
     for arm_idx, arm in enumerate(ARMS, start=1):
         out = csv_dir / f"xyz_trace_sample_arm{arm_idx}.csv"

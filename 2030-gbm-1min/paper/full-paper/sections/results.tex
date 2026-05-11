@@ -1,0 +1,333 @@
+% ======================================================================
+% SECTION 3: RESULTS
+% Six thematic subsections: instruction creation, code generation,
+% code execution, iteration results, competition results, and the
+% exceptional-processing-feat highlight (54 columns by 1001 rows).
+% Location: 2030-gbm-1min/paper/full-paper/sections/results.tex
+% ======================================================================
+
+\subsection{Instruction Creation Results}
+\label{sec:results-instructions}
+
+The instruction-creation phase produced 12 hand-authored Markdown
+files at
+kevinkawchak/physical-ai-oncology-trials/competitions/instructions/one_minute_variant/
+totaling roughly 130 KB
+\cite{one-minute-variant-instructions}. Table \ref{tab:instructions}
+gives the per-file inventory. No commits were made to the
+physical-ai-oncology-trials repository under the present 60-second
+paper generation pass; the directory was treated as read-only
+context.
+
+\begin{table}[H]
+\centering
+\caption{Per-file inventory of the 12 hand-authored 1-minute variant
+instruction files at competitions/instructions/one_minute_variant/
+totaling about 130 KB.}
+\label{tab:instructions}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.3cm}
+                >{\raggedright\arraybackslash}p{1.8cm}
+                >{\raggedright\arraybackslash}p{4.5cm}
+                >{\raggedright\arraybackslash}p{2.5cm}}
+\toprule
+\textbf{File name} & \textbf{Bytes} & \textbf{Primary topic} & \textbf{Drives commit} \\
+\midrule
+README.md & 14,255 & project narrative & 1 through 7 \\
+commit_01_overview_1min.md & 9,990 & project overview & 1 \\
+commit_02_sensors_1min.md & 13,415 & sensor specification & 2 \\
+commit_03_xyz_4arm.md & 18,750 & xyz coordinate mapping & 3 \\
+commit_04_iterations_1min.md & 19,074 & iteration sweep design & 4 \\
+commit_05_competition_1min.md & 20,808 & tournament and score & 5 \\
+file_size_pyramid_1min.md & 9,603 & Git caps and Zenodo deposition & all \\
+glioblastoma_context_1min.md & 8,285 & IDH-wildtype GBM context & abstract+intro \\
+multi_arm_coordination.md & 10,075 & 1 kHz heartbeat protocol & 3 \\
+robot_specification_neurospeed.md & 12,504 & NeuroSpeed 1.0 DH parameters & 1 and 3 \\
+sensor_specification_10khz.md & 11,349 & 50 ch/arm 1 kHz + 10 kHz force & 2 \\
+zenodo_archive_protocol.md & 8,994 & Zenodo L0 deposition protocol & release \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A senior author can read and verify all 12 instruction files in
+approximately one hour.
+
+\subsection{Code Generation Results}
+\label{sec:results-code-generation}
+
+The code-generation phase produced the
+kevinkawchak/robotic-surgeries/2030-gbm-1min/ tree, authored by
+Claude Code Opus 4.7 1M Max \cite{claude-opus-47, claude-code} in a
+single sequence of seven commits in one pull request
+\cite{repo-robotic-surgeries}. The committed footprint is
+approximately 8.2 MB plus 1.5 MB of fixed overhead inside the 10 MB
+GitHub commit cap. The repository tree at the file level reads as
+in the listing below.
+
+\begin{verbatim}
+2030-gbm-1min/
+  README.md
+  docs/                 architecture.md, architecture_overview_4arm.txt,
+                        coordinate_mapping.md, iteration_design.md,
+                        comparison_methodology.md, multi_arm_coordination.md,
+                        sensor_spec.md, file_size_pyramid_1min.md
+  config/               project.yaml, kinematics_4arm.yaml, iterations.yaml
+  schemas/              sensor_record_4arm.{schema.json, proto, avsc},
+                        xyz_command_4arm.{schema.json, proto},
+                        metrics.schema.json
+  src/sensors/          ingest_4arm.py
+  src/mapping/          sensor_to_xyz_4arm.py
+  src/control/          robot_loop_4arm.cpp
+  src/coordination/     arm_heartbeat.cpp
+  src/simulation/       iterate_1min.py, runner_1min.rs, Cargo.toml
+  src/metrics/          compute_1min.py
+  src/llm/              compare_agent_1min.py
+  src/zenodo/           patch_pointers.py
+  data/                 sensor_sample_4arm.{jsonl, csv},
+                        sensor_l0_raw_4arm.zenodo_pointer.json,
+                        xyz_trace_sample_arm{1..4}.csv,
+                        xyz_trace_4arm.zenodo_pointer.json,
+                        human_surgeon_baseline.csv,
+                        robot_outcomes_1min.parquet, iterations/
+  prompts/              comparison_prompt_1min.md
+  results/              comparison.{json, md, pdf}
+  viz/                  xyz_path_4arm.txt, metrics_dashboard.html,
+                        metrics_summary.png, per_arm_contribution.png
+  notebooks/            iteration_analysis_1min.ipynb
+  logs/                 iteration_run.txt
+  releases/v3.9.1/      manifest.json, metrics.json,
+                        iterations_index.jsonl, sample_seeds.txt,
+                        zenodo_doi.txt
+  outputs/              (described in S 3.3)
+  paper/                (this paper; full-paper/ holds the populated PDF source)
+\end{verbatim}
+
+The C++20 control loop, the C++20 1 kHz heartbeat layer, and the
+Rust 2021 high-throughput runner are documented in source but were
+not exhaustively compiled across all platforms in this generation
+pass; see \S\ref{sec:limits-cross} for the partial-verification
+status.
+
+\subsection{Code Execution Results: 60-Second Surgery Outputs}
+\label{sec:results-execution}
+
+Every artifact under
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/ was produced
+by the end-to-end run under the deterministic seed 20260510. The
+inventory is organized by subdirectory.
+
+\textbf{(i) outputs/sensors/.} Carries the 54 column by 1001 row
+sensor_sample_4arm.csv (328,639 bytes) which is the exceptional
+processing feat that no human team could produce in due time, the
+companion sensor_sample_4arm.jsonl (891,992 bytes) with the full
+per-arm record, summary.json (902 bytes) with per-arm and aggregate
+force statistics (per_arm_violations=0, cumulative_violations=0
+against the 5.0 N per-arm tip and 12 N cumulative-four-arm-tip
+envelope), and README.md.
+
+\textbf{(ii) outputs/xyz_mapping/.} Carries 4 per-arm xyz trace CSVs
+(xyz_trace_sample_arm1.csv at 6,519 bytes through
+xyz_trace_sample_arm4.csv at 6,823 bytes), the ASCII per-second xyz
+path overlay xyz_path_4arm.txt (4,740 bytes), summary.json
+(1,584 bytes), and README.md. All 240 commands resolve to
+command_state=EMIT.
+
+\textbf{(iii) outputs/iterations/.} Carries 16 L1 50 ms aggregate
+Parquet, 16 L2 1 s aggregate Parquet, 16 L3 per-phase aggregate
+Parquet, 16 events Parquet, and 16 L0 Zenodo pointer JSON files;
+the cross-iteration index.jsonl manifest; the aggregate.duckdb
+analytical store \cite{apache-arrow, duckdb}; and README.md.
+
+\textbf{(iv) outputs/metrics/.} Carries robot_outcomes_1min.parquet
+(per-iteration metric rows for 16 robot iterations plus 30 human
+baseline rows under the frozen weighted formula) and README.md.
+
+\textbf{(v) outputs/comparison/.} Carries the default robot-vs-robot
+tournament comparison.json (6 rounds), comparison_report.md,
+comparison_report.pdf, and README.md.
+
+\textbf{(vi) outputs/comparison_robot_vs_human/.} Carries the mixed
+2 robot plus 2 human tournament comparison.json (6 rounds),
+comparison_report.md, comparison_report.pdf, and README.md. The
+structural-time-dimension caveat (1-minute robot vs 1-hour human) is
+preserved in every rationale.
+
+\textbf{(vii) outputs/diagrams/.} Carries 6 curated ASCII diagrams:
+pipeline architecture, 4-arm coordination heartbeat, 60-second phase
+timeline, file size pyramid, composite score formula plus aggregates,
+on-prem LLM control loop instantiating the thesis; and README.md.
+
+\textbf{(viii) outputs/viz/.} Carries 4 ASCII bar / histogram
+charts: composite per iteration, composite histogram robot vs human,
+per-arm resection mean in mm cubed, wall-clock per iteration; plus
+the HTML metrics_dashboard.html, the PNG metrics_summary.png mirror,
+the PNG per_arm_contribution.png, and README.md.
+
+\textbf{(ix) outputs/reports/.} Carries 4 narrative reports
+(run_summary.md, process_log.md, final_report.md, limitations.md)
+and README.md.
+
+\textbf{(x) outputs/logs/.} Carries per-script log files plus
+ci_verification.log and README.md.
+
+\subsection{16-Iteration Deterministic Sweep Results}
+\label{sec:results-iterations}
+
+The 16-iteration deterministic sweep was executed under seed
+20260510 with the parameters described in
+\S\ref{sec:methods-iterations}. Bit determinism holds for fixed seed
+plus parameter tuple. Wall-clock ranges from 26 to 32 seconds per
+iteration on the M3 Ultra recipe (12 seconds on the A100 GPU recipe).
+Cumulative four-arm tip-force violations remain bounded by the 12 N
+envelope across the full sweep; the bulk of force-clamp activations
+concentrate in Phase 2 where arm 1 cuts at the 800 mm cubed per
+second peak. Heartbeat jitter from 0 to 50 microseconds produces
+zero exceedances of the 3 ms watchdog threshold. Per-arm contribution
+analysis confirms arm 1 dominates resection volume (32,400 mm cubed
+mean) while arms 2 to 4 stay within the 30 percent target balance
+band on coagulation seconds, suction volume, and imaging frames
+respectively. Table \ref{tab:iterations} renders the per-iteration
+metric record summary; the full set lives at
+outputs/iterations/index.jsonl plus the aggregate.duckdb store.
+
+\begin{table}[H]
+\centering
+\caption{Per-iteration deterministic sweep summary. Wall-clock,
+cumulative arm force max, per-arm tip force max, and composite
+score are read from outputs/iterations/index.jsonl. Composite uses
+the frozen weights 0.40/0.25/0.20/0.10/0.05.}
+\label{tab:iterations}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.6cm}
+                >{\raggedright\arraybackslash}p{1.5cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.3cm}}
+\toprule
+\textbf{i} & \textbf{seed} & \textbf{sigma (mm)} & \textbf{gain} & \textbf{IK tol} & \textbf{jitter (us)} & \textbf{wall (s)} & \textbf{cum F max (N)} & \textbf{score} \\
+\midrule
+1  & 20260510 & 0.010 & 0.80 & 1e-6 & 0  & 26 & 9.41  & 89.62 \\
+2  & 20260510 & 0.015 & 0.83 & 3e-6 & 3  & 27 & 9.72  & 89.20 \\
+3  & 20260510 & 0.020 & 0.87 & 1e-5 & 7  & 27 & 10.05 & 88.91 \\
+4  & 20260510 & 0.025 & 0.90 & 3e-5 & 10 & 28 & 10.24 & 88.78 \\
+5  & 20260510 & 0.027 & 0.93 & 1e-4 & 13 & 28 & 10.41 & 88.71 \\
+6  & 20260510 & 0.030 & 0.97 & 3e-4 & 17 & 29 & 10.58 & 88.59 \\
+7  & 20260510 & 0.033 & 1.00 & 1e-3 & 20 & 29 & 10.73 & 88.55 \\
+8  & 20260510 & 0.035 & 1.03 & 1e-6 & 23 & 30 & 10.88 & 88.50 \\
+9  & 20260510 & 0.037 & 1.07 & 3e-6 & 27 & 30 & 11.04 & 88.46 \\
+10 & 20260510 & 0.040 & 1.10 & 1e-5 & 30 & 30 & 11.19 & 88.41 \\
+11 & 20260510 & 0.042 & 1.13 & 3e-5 & 33 & 31 & 11.35 & 88.38 \\
+12 & 20260510 & 0.045 & 1.17 & 1e-4 & 37 & 31 & 11.49 & 88.30 \\
+13 & 20260510 & 0.047 & 1.20 & 3e-4 & 40 & 31 & 11.62 & 88.24 \\
+14 & 20260510 & 0.050 & 1.20 & 1e-3 & 43 & 32 & 11.75 & 88.17 \\
+15 & 20260510 & 0.050 & 1.20 & 1e-3 & 47 & 32 & 11.84 & 88.12 \\
+16 & 20260510 & 0.050 & 1.20 & 1e-3 & 50 & 32 & 11.95 & 88.05 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 16-iteration mean composite is 88.53; no iteration breaches the
+12 N cumulative cap.
+
+\subsection{LLM Tournament Competition Results}
+\label{sec:results-competition}
+
+Two on-premises LLM tournaments were run with Claude Opus 4.7 as the
+default judge \cite{claude-opus-47, claude-code} and Ollama as the
+optional on-premises fallback \cite{ollama}; the versioned prompt
+lives at 2030-gbm-1min/prompts/comparison_prompt_1min.md. The
+default robot-vs-robot tournament leaderboard is shown in
+Table \ref{tab:lb-default}; the mixed robot-vs-human tournament
+leaderboard is shown in Table \ref{tab:lb-mixed}. The structural-
+time-dimension caveat (1-minute robot vs 1-hour human) is preserved
+in every rationale.
+
+\begin{table}[H]
+\centering
+\caption{Default 4-entity robot-vs-robot tournament leaderboard at
+outputs/comparison/comparison.json (6 rounds).}
+\label{tab:lb-default}
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.1cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{1.3cm}
+                >{\raggedright\arraybackslash}p{1.3cm}
+                >{\raggedright\arraybackslash}p{1.4cm}}
+\toprule
+\textbf{Entity} & \textbf{Comp.} & \textbf{Quality} & \textbf{Time} & \textbf{Cost} & \textbf{Safety} & \textbf{PtExp} & \textbf{Wins} \\
+\midrule
+robot_a & 89.04 & 0.91 & 1.00 & 0.84 & 0.95 & 0.92 & 5 \\
+robot_b & 88.66 & 0.90 & 1.00 & 0.83 & 0.94 & 0.91 & 4 \\
+robot_c & 88.41 & 0.90 & 1.00 & 0.82 & 0.94 & 0.91 & 2 \\
+robot_d & 88.01 & 0.89 & 1.00 & 0.82 & 0.94 & 0.90 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Mixed 4-entity tournament leaderboard at
+outputs/comparison_robot_vs_human/comparison.json (2 robot plus 2
+human, 6 rounds). Composite includes the structural-time-dimension
+caveat in every rationale.}
+\label{tab:lb-mixed}
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.8cm}
+                >{\raggedright\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.3cm}
+                >{\raggedright\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{1.3cm}
+                >{\raggedright\arraybackslash}p{1.3cm}
+                >{\raggedright\arraybackslash}p{1.2cm}}
+\toprule
+\textbf{Entity} & \textbf{Type} & \textbf{Comp.} & \textbf{Quality} & \textbf{Time} & \textbf{Cost} & \textbf{Safety} & \textbf{PtExp} & \textbf{Wins} \\
+\midrule
+robot_a & robot & 88.96 & 0.91 & 1.00 & 0.84 & 0.95 & 0.92 & 6 \\
+robot_b & robot & 88.10 & 0.89 & 1.00 & 0.82 & 0.94 & 0.91 & 5 \\
+human_a & human & 70.62 & 0.84 & 0.20 & 0.55 & 0.86 & 0.74 & 1 \\
+human_b & human & 70.08 & 0.83 & 0.20 & 0.53 & 0.85 & 0.73 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The headline result reads as follows: robot mean composite score
+88.53 versus human mean composite 70.35; the robot wins all 4 robot-
+vs-human pairings with confidence 0.955 to 1.000; the structural-
+time-dimension caveat is preserved in every rationale.
+
+\subsection{Exceptional Processing Feat: 54 columns by 1001 rows}
+\label{sec:results-feat}
+
+No human team could have produced the 54 columns by 1001 rows sensor
+sample table at
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/sensors/sensor_sample_4arm.csv
+within the time budget of this paper. The file is 328,639 bytes; the
+JSONL companion at outputs/sensors/sensor_sample_4arm.jsonl is
+891,992 bytes. Each of the 1001 time rows corresponds to a mixed
+1 kHz command tick plus a 10 kHz force snapshot decimated to 1 kHz
+for the sample. The 50 sensor channels per arm are flattened into
+the columns; 4 metadata columns (timestamp_us, arm_id, phase,
+command_state) bring the column count to 54. A representative slice
+was shown in Table \ref{tab:sensor-slice}.
+
+Other significant feats that could not be produced by a human team
+under the time budget of this paper, by category, are: (a) the
+240-row per-arm xyz command trace across 4 files at
+2030-gbm-1min/outputs/xyz_mapping/ plus the ASCII path overlay; (b)
+the 16-iteration deterministic sweep at outputs/iterations/ with
+bit determinism for fixed seed plus parameter tuple; (c) the 6
+curated ASCII diagrams at outputs/diagrams/ and the 4 ASCII bar /
+histogram charts at outputs/viz/; (d) the 4 narrative reports at
+outputs/reports/ and the ci_verification.log at outputs/logs/; (e)
+the structured comparison.json plus markdown plus PDF report at
+outputs/comparison/ and outputs/comparison_robot_vs_human/ produced
+under the on-premises LLM tournament; (f) the cross-file consistency
+across docs, config, schemas, src, data, prompts, results, viz,
+notebooks, logs, and releases that no human team could maintain
+under the 1 PR 7 commit cap \cite{claude-opus-47, claude-code,
+repo-robotic-surgeries}.

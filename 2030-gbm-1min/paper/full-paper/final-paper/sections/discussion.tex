@@ -1,0 +1,230 @@
+% ======================================================================
+% SECTION 4: DISCUSSION
+% Five thematic subsections: significance of the 60-second target,
+% FDA framing, on-prem LLM safety advantages, head-start framing for
+% the industry, and practical insights on how close the application
+% is to real life today.
+% Location: 2030-gbm-1min/paper/full-paper/sections/discussion.tex
+% ======================================================================
+
+\subsection{Significance of the 60-Second Computational Target}
+\label{sec:discussion-significance}
+
+The 60-second resection target is a computational checkpoint, not a
+clinical claim. The realized quality benefit is a 240x to 480x
+compression of operative duration relative to the published 4 to 8
+hour single-arm baseline for an IDH-wildtype glioblastoma resection
+\cite{Stupp2005Glioblastoma, Sanai2011GBMResection}. Under the frozen
+composite score formula (quality 0.40, time 0.25, cost 0.20,
+safety 0.10, patient experience 0.05) the compression translates
+into measurable patient-experience and safety gains as summarized in
+Table \ref{tab:significance}.
+
+\begin{table}[H]
+\centering
+\caption{Realized quality and safety benefits relative to the 4 to 8
+hour baseline. Source files are at
+2030-gbm-1min/outputs/comparison/ and
+outputs/comparison_robot_vs_human/.}
+\label{tab:significance}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.6cm}
+                >{\raggedright\arraybackslash}p{3.2cm}
+                >{\raggedright\arraybackslash}p{2.6cm}
+                >{\raggedright\arraybackslash}p{2.7cm}
+                >{\raggedright\arraybackslash}p{2.2cm}}
+\toprule
+\textbf{Dimension} & \textbf{Baseline 4-8 h} & \textbf{60 s target} & \textbf{Rel. improved} & \textbf{Source} \\
+\midrule
+Procedure duration & 14,400 to 28,800 s & 60 s & 240x to 480x & comparison_report.md \\
+Time score (0 to 1) & 0.20 & 1.00 & 5x & metrics/ \\
+Per-arm tip force max & 15.0 N (single arm) & 5.0 N (per arm) & 3x tighter & summary.json \\
+Cumulative cross-arm force & not specified & 12.0 N envelope & new floor & arm_heartbeat.cpp \\
+E-stop latency & 50 ms & 5 ms & 10x & robot_loop_4arm.cpp \\
+Composite (mean) & 70.35 (human) & 88.53 (robot) & +25.8 percent & comparison.json \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The per-arm contribution analysis at
+outputs/viz/per_arm_contribution.png shows arm 1 dominates resection
+volume (32,400 mm cubed mean) while arms 2 to 4 stay within the 30
+percent target balance band on coagulation seconds, suction volume,
+and imaging frames respectively. This balance is the mechanical
+signature of the on-premises LLM single-robot-error-minimization
+thesis and is the property that a 1-arm baseline cannot produce
+\cite{rosa-one-brain, Lefranc2014ROSAStereotaxy, kawchak_2026_19994945,
+repo-robotic-surgeries}.
+
+\subsection{Respectful Yet Opportunistic FDA Framing}
+\label{sec:discussion-fda}
+
+The 60-second glioblastoma resection is positioned as an
+opportunistic extension of the FDA April 2026 Real-Time Clinical
+Trials (RTCT) proof-of-concept program \cite{fda2026realtime} from
+pharmacology into the surgical theater. The two named RTCT pilots
+(AstraZeneca's TRAVERSE in mantle cell lymphoma and Amgen's
+STREAM-SCLC in small cell lung carcinoma) cover pharmacology only;
+the surgical theater is the next opportunistic surface to extend.
+The United States needs to remain Number 1 in the world regarding
+patient safety, efficacy, and speed benefits in oncological robotic
+surgeries in clinical trials, and the on-premises LLM thesis is one
+route to that goal. The work is framed as an extension, not a
+critique.
+
+The appropriate regulatory pathway for an on-premises LLM that emits
+control commands is the FDA Software as a Medical Device (SaMD)
+framework \cite{fda-samd}. The standards floor is set by IEC 80601-
+2-77 (per-arm 5.0 N tip and 1.0 N lateral force limits, 5 ms E-stop
+budget) \cite{iec-80601-2-77} and IEC 62304 (safety-critical
+software lifecycle) \cite{iec-62304}. The six 4-entity LLM
+tournament rounds at outputs/comparison/ and the six mixed
+tournament rounds at outputs/comparison_robot_vs_human/ preserve the
+structural-time-dimension caveat in every rationale. The caveat is
+the operational signature of a respectful framing: the 1-minute
+robot trivially beats the 1-hour human-baseline scenario on the
+time dimension, but the comparison is flagged as structural and
+not a fair pairwise comparison.
+
+\subsection{On-Premises LLM Single-Robot Error Minimization}
+\label{sec:discussion-llm}
+
+The mechanism that minimizes single-robot error potential is
+cross-arm safety on the deterministic 1 kHz heartbeat broadcast bus
+implemented at
+kevinkawchak/robotic-surgeries/2030-gbm-1min/src/coordination/arm_heartbeat.cpp.
+The 32-byte heartbeat frames carry per-arm state at the 1 ms
+deadline; the 3 ms watchdog parks any arm that misses three
+consecutive frames; the cumulative tip force is capped at 12 N on
+the patient frame; per-arm tip force is capped at 5.0 N and per-arm
+lateral force at 1.0 N \cite{iec-80601-2-77, iec-62304}. The 5 ms
+E-stop budget plus 100 microsecond emergency arm-park trigger
+enforces the safety envelope at the actuator interface.
+Table \ref{tab:cross-check} renders the 4-arm cross-check matrix.
+
+\begin{table}[H]
+\centering
+\caption{4-arm cross-check matrix. Each arm cross-checks its three
+peers on the deterministic 1 kHz heartbeat bus; a violation triggers
+the 5 ms E-stop with the 100 microsecond emergency arm-park.}
+\label{tab:cross-check}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.9cm}
+                >{\raggedright\arraybackslash}p{2.8cm}
+                >{\raggedright\arraybackslash}p{3.4cm}
+                >{\raggedright\arraybackslash}p{4cm}
+                >{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\textbf{Arm} & \textbf{Tool} & \textbf{Primary sensors} & \textbf{Cross-check on peers} & \textbf{Fault response} \\
+\midrule
+1 & hybrid u-w-p & tip force, removal rate & cumulative cap, arm 4 imaging & throttle, then park \\
+2 & bipolar coag plus irrigation & bipolar current, irrigation flow & arm 1 hemostasis demand & coag halt, then park \\
+3 & suction plus collection & flow rate, occlusion & arm 1 debris yield & flush, then park \\
+4 & 0.5 T iMRI plus 5-ALA plus US & imaging frames, fluorescence & arm 1 cut margin, arm 2 coag site & re-image, then park \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The on-premises LLM control loop ASCII diagram at
+2030-gbm-1min/outputs/diagrams/ instantiates the thesis: an LLM that
+holds the entire repository (12 instruction files, every kinematics
+and schema specification, all 16 iteration aggregates) in a single
+1M token context window \cite{claude-opus-47, claude-code} emits per-
+arm xyz commands at the 1 kHz tick. Commands that would violate the
+cumulative tip-force envelope are rejected at the heartbeat boundary
+before they reach the actuator. On-premises inference keeps patient
+health information on site (no cloud transit) when the deployment
+uses Ollama \cite{ollama} or vLLM \cite{vllm} as the backend; the
+Anthropic API remains a viable default for non-PHI development.
+
+\subsection{Head Start: Checking Steps the Industry No Longer Has to Take}
+\label{sec:discussion-headstart}
+
+The 16-iteration deterministic sweep, the 4-entity LLM tournament,
+the cross-platform build recipes, and the 60-second simulation
+pipeline are checking steps the industry no longer has to take to
+evaluate the feasibility of an on-premises LLM controlled 4-arm
+parallel stereotactic neurosurgical robot. Table \ref{tab:headstart}
+enumerates the checking steps and the corresponding project status,
+sourced from the narrative reports at
+2030-gbm-1min/outputs/reports/run_summary.md,
+outputs/reports/process_log.md, and outputs/reports/final_report.md.
+
+\clearpage
+
+\begin{table}[H]
+\centering
+\caption{Checking steps already taken under this project. Industry
+status reflects the published state of the art at time of writing.}
+\label{tab:headstart}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.1cm}
+                >{\raggedright\arraybackslash}p{2.7cm}
+                >{\raggedright\arraybackslash}p{2.8cm}
+                >{\raggedright\arraybackslash}p{3.3cm}
+                >{\raggedright\arraybackslash}p{2.5cm}}
+\toprule
+\textbf{Checking step} & \textbf{Industry status} & \textbf{Project status} & \textbf{Source artifact} & \textbf{Downstream effect} \\
+\midrule
+7-DOF DH parameters per arm & not published for 1-min target & complete & config/kinematics_4arm.yaml & xyz mapping ready \\
+1 kHz heartbeat broadcast bus & not standardized & complete & src/coordination/arm_heartbeat.cpp & cross-arm safety \\
+Per-arm force envelope and cross-check matrix & per-arm only & cumulative cap plus cross-check & arm_heartbeat.cpp plus iterations/ & 12 N safety \\
+16-iteration deterministic sweep with bit determinism & no published sweep at this scale & complete & outputs/iterations/ & reproducible \\
+Structured LLM tournament with on-prem inference & cloud-only & complete & outputs/comparison/ outputs/comparison_robot_vs_human/ & on-prem ready \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The progression from author work on patient matching
+\cite{kawchak_2025_17774560}, ten-year meta-analysis at scale
+\cite{kawchak_2025_15549831}, drug synergy machine learning
+\cite{kawchak_2025_17614396}, and 1-hour 4-sponsor simulations
+\cite{kawchak_2026_19994945} into the 60-second 4-arm robotic target
+\cite{repo-robotic-surgeries, one-minute-variant-instructions}
+materializes the head-start framing as a chain of checking steps
+already executed.
+
+\subsection{Practical Insights: How Close to Real Life Today}
+\label{sec:discussion-practical}
+
+The 60-second glioblastoma robotic resection is not feasible with
+current commercial robotics. The simulation pipeline is nevertheless
+reproducible bit for bit from seed 20260510 and runs on commodity
+hardware (M3 Ultra wall-clock 26 to 32 s per iteration, A100 12 s
+per iteration; read 2030-gbm-1min/README.md). The gaps to real life
+are:
+
+(a) The hypothetical NeuroSpeed 1.0 hardware does not exist. The
+robot needs 5x to 200x improvements over Medtronic ROSA ONE Brain
+v3.0 across velocity, acceleration, E-stop latency, positioning
+accuracy, and force resolution \cite{rosa-one-brain}.
+
+(b) The synthetic patient PAT-GBM-0001 is not real. There is no
+institutional review board oversight, no informed consent, and no
+real electronic health record signal behind any artifact in the
+2030-gbm-1min/ tree.
+
+(c) The deterministic 16-iteration sweep has not been validated
+against any real-patient cohort or the TRIPOD+AI / CREMLS reporting
+floor \cite{Collins2024TRIPODAI, ElEmam2024CREMLS}.
+
+The gaps that are close to closing today are:
+
+(i) The on-premises LLM inference backends are production-grade for
+the 1M token context window \cite{ollama, vllm, claude-opus-47}.
+
+(ii) The Apache Parquet plus DuckDB analytics stack is production-
+grade for per-iteration aggregates and cross-iteration analytics
+\cite{apache-arrow, duckdb}.
+
+(iii) The Zenodo L0 deposition protocol is production-grade at DOI
+10.5281/zenodo.18445179 \cite{zenodo, repo-robotic-surgeries}.
+
+\clearpage
+
+(iv) The repository CI gates (ruff format, ruff check, yamllint) on
+Python 3.10, 3.11, and 3.12 already cover the Python plus YAML plus
+Markdown surface of the simulation pipeline.
+
+The robotic-surgeries simulation pipeline is therefore a "ready-to-
+port" software substrate: the moment a real NeuroSpeed-class robot
+is available, the on-premises LLM control loop can be re-pointed at
+it with minimal additional engineering. The forward path is detailed
+in \S\ref{sec:limits-future}.

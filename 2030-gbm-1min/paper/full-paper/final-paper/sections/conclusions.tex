@@ -1,0 +1,84 @@
+% ======================================================================
+% SECTION 6: CONCLUSIONS
+% Four thematic blocks: headline artifact counts, persistent themes,
+% implications for patient safety and effectiveness, forward path.
+% Location: 2030-gbm-1min/paper/full-paper/sections/conclusions.tex
+% ======================================================================
+
+The 2030 GBM 1-minute trial package documents one continuous
+workflow across three artifact tiers: the 12 instruction files at physical-ai-oncology-trials/competitions/instructions/one_minute_variant/
+(approximately 130 KB total)
+\cite{one-minute-variant-instructions}, the generated robotic-surgeries/2030-gbm-1min/ tree (approximately
+8.2 MB committed plus 1.5 MB of fixed overhead inside the 10 MB
+GitHub cap) \cite{repo-robotic-surgeries}, and the end-to-end
+execution outputs at robotic-surgeries/2030-gbm-1min/outputs/, including the
+54 column by 1001 row sensor sample table at
+outputs/sensors/sensor_sample_4arm.csv that no human team could
+produce within the time budget of this paper.\ The headline artifact
+counts are:\ 12 instruction Markdown files, 1 2030-gbm-1min tree, 16
+deterministic iterations producing 80 per-iteration Parquet files
+(16 L1 50 ms plus 16 L2 1 s plus 16 L3 per-phase plus 16 events)
+plus 16 L0 Zenodo pointer JSON files, 1 sensor sample table at 54
+columns by 1001 rows, 240 per-arm xyz commands across 4 files, 6
+curated ASCII diagrams at outputs/diagrams/, 4 ASCII bar / histogram
+charts at outputs/viz/, 4 narrative reports at outputs/reports/, and
+2 LLM tournaments at outputs/comparison/ and
+outputs/comparison_robot_vs_human/.
+
+Three persistent themes recur across the artifact set.
+\textbf{Theme 1.} The on-premises LLM with a 1M token context window
+holds every instruction file, every kinematics and schema
+specification, every iteration aggregate, and every comparison
+rationale in a single inference pass \cite{claude-opus-47,
+claude-code}. The 1M context window is the property that makes the
+end-to-end pipeline tractable from a single agent rather than
+requiring brittle chained calls. \textbf{Theme 2.} The deterministic
+seed 20260510 plus the frozen weighted composite score formula
+(quality 0.40, time 0.25, cost 0.20, safety 0.10, patient experience
+0.05) make the entire pipeline bit reproducible for fixed seed plus
+parameter tuple; the run-summary report at
+outputs/reports/run_summary.md preserves the exact seed and weight
+record. \textbf{Theme 3.} The hourly commit cadence and the
+structured artifact bundle (Parquet plus JSON plus ASCII plus PDF)
+align with the FDA Real-Time Clinical Trials (RTCT) vision
+\cite{fda2026realtime} that the robotic-surgeries pipeline extends
+from pharmacology into the surgical theater.
+
+The implications for patient safety and effectiveness are direct.
+The on-premises LLM single-robot-error-minimization thesis is
+operational through the 1 kHz heartbeat broadcast bus
+\cite{iec-80601-2-77, iec-62304} and the cumulative tip force cap
+of 12 N on the patient frame across the 4 cooperating arms. The
+4-arm cross-check matrix means no single arm can drive the patient
+force envelope outside the allowed band; an LLM-emitted xyz command
+that violates the cumulative cap is rejected at the heartbeat
+boundary and triggers the 5 ms E-stop with the 100 microsecond
+emergency arm-park. The patient experience gain is the 240x to 480x
+compression of operative duration (4 to 8 hours compressed to 60
+seconds), and the safety gain is the deterministic cross-arm cap
+that no single-arm system provides. The work is framed respectfully
+with the FDA: it extends the RTCT proof-of-concept program from
+pharmacology to the surgical theater under the Software as a Medical
+Device framework \cite{fda-samd}, and it positions the United States
+to remain Number 1 in the world regarding patient safety, efficacy,
+and speed benefits in oncological robotic surgeries in clinical
+trials.
+
+The forward path is to bridge the synthetic to real gap. TRIPOD+AI
+and CREMLS \cite{Collins2024TRIPODAI, ElEmam2024CREMLS} set the
+reporting floor; \S\ref{sec:limitations} carries the formal
+accounting of approximations vs generated vs executed, the 60-minute
+vs 1-minute deltas, the cross-simulation limitations, and the
+Track A vs Track B future directions. The Overleaf-ready bundle at
+\path{2030-gbm-1min/paper/full-paper/LaTeX Source Files.zip}
+uploads in one step; the GitHub commit log of this pull request
+provides the audit trail for the template-population pass. The
+upstream artifact chain runs through
+\cite{kawchak_2026_20113157, repo-robotic-surgeries,
+kawchak_2026_19994945, kawchak_2025_17774560,
+kawchak_2025_15549831, kawchak_2025_17614396}. The 60-second target
+is a checking step the industry no longer has to take, but the
+practical insight on how close the application is to real life
+today is that a real NeuroSpeed-class robot, a real patient cohort,
+and a TRIPOD+AI plus CREMLS aligned reporting layer are required
+before any clinical use.

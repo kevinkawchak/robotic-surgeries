@@ -19,6 +19,7 @@ Format: Keep a Changelog. Versioning: Semantic Versioning.
 - Top-level `README.md` updated with v0.4.0 release badge, Paper Full badge, v0.4.0 Full Paper ASCII snapshot, full-paper subtree in the Repository Structure block, Overleaf compile recipe pointing at `2030-gbm-1min/paper/full-paper/`, `build_zip.sh` helper recipe, citation block referencing v0.4.0, and `2030-gbm-1min/paper/full-paper/README.md` cross-reference under See also.
 - `2030-gbm-1min/README.md` Repository Tree block annotated with the new `paper/full-paper/` subdirectory contents (main.tex, new_paper.sty, references.bib, build_zip.sh, sections/*.tex, README.md).
 - `2030-gbm-1min/paper/README.md` updated with a pointer to the populated `full-paper/` subdirectory plus a one-line description of the build_zip.sh helper.
+- @kevinkawchak added LaTeX source files and LaTeX zip file to main/2030-gbm-1min/paper/full-paper/final-paper on 2026-05-11
 
 ### Fixed
 

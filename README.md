@@ -3,12 +3,13 @@
 Physical AI Oncology Trial Robotic Surgeries simulation repository.
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18445179-blue)](https://doi.org/10.5281/zenodo.18445179)
-[![Release](https://img.shields.io/badge/Release-v0.3.0-brightgreen.svg)](releases.md)
+[![Release](https://img.shields.io/badge/Release-v0.4.0-brightgreen.svg)](releases.md)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Python%203.10%2F3.11%2F3.12-3776ab.svg)](.github/workflows/ci.yml)
 [![Variant](https://img.shields.io/badge/Variant-1%20Minute-orange.svg)](2030-gbm-1min)
 [![Outputs](https://img.shields.io/badge/Outputs-v0.2.0-blueviolet.svg)](2030-gbm-1min/outputs)
-[![Paper](https://img.shields.io/badge/Paper%20Template-v0.3.0-9cf.svg)](2030-gbm-1min/paper)
+[![Paper Template](https://img.shields.io/badge/Paper%20Template-v0.3.0-9cf.svg)](2030-gbm-1min/paper)
+[![Paper Full](https://img.shields.io/badge/Paper%20Full-v0.4.0-success.svg)](2030-gbm-1min/paper/full-paper)
 
 ## Thesis
 
@@ -16,11 +17,13 @@ On-premises repository based LLMs provide commands to standard oncology surgical
 
 ## Overview
 
-This repository hosts the v0.3.0 release of the multi-arm robotic glioblastoma resection simulation suite. The first project under this umbrella is the 4-arm 1-minute variant in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. Each arm carries 7 degrees of freedom and is sampled at mixed 1 kHz commands plus 10 kHz force per arm; the four arms cooperate over a deterministic 1 kHz heartbeat broadcast bus with a 5 ms E-stop budget and a 12 N cumulative force cap on the patient frame.
+This repository hosts the v0.4.0 release of the multi-arm robotic glioblastoma resection simulation suite. The first project under this umbrella is the 4-arm 1-minute variant in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. Each arm carries 7 degrees of freedom and is sampled at mixed 1 kHz commands plus 10 kHz force per arm; the four arms cooperate over a deterministic 1 kHz heartbeat broadcast bus with a 5 ms E-stop budget and a 12 N cumulative force cap on the patient frame.
 
 The v0.2.0 release published the runnable end-to-end outputs of the v3.9.1 pipeline under `2030-gbm-1min/outputs/`: sensor samples, per-arm xyz traces, the 16-iteration deterministic sweep, the per-iteration metric rows, the on-prem LLM tournament leaderboards, ASCII diagrams, ASCII bar charts, and 4 narrative reports. The outputs tree is reproducible from the deterministic seed 20260510.
 
-The v0.3.0 release adds the LaTeX paper template under `2030-gbm-1min/paper/` titled **2030: 60 Second Glioblastoma AI Robotic Surgery**. The template is a head start for a future Claude Code Opus 4.7 1M Max processing pass; every `sections/*.tex` file carries bracketed instructions that name the exact upstream and current repository paths to read so the downstream 70+ page paper grounds itself in this repository's content. The paper Zenodo DOI is 10.5281/zenodo.20113157.
+The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/` titled **2030: 60 Second Glioblastoma AI Robotic Surgery**. The template carries bracketed instructions in every `sections/*.tex` file that name the exact upstream and current repository paths to read so a downstream Claude Code Opus 4.7 1M Max processing pass can populate the prose, tables, and ASCII diagrams. The paper Zenodo DOI is 10.5281/zenodo.20113157.
+
+The v0.4.0 release lands the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. Every bracketed instruction in the template has been replaced with prose, tables, and ASCII diagrams grounded in the upstream `physical-ai-oncology-trials/competitions/instructions/one_minute_variant/` directory, the generated `2030-gbm-1min/` tree, and the end-to-end execution outputs under `2030-gbm-1min/outputs/`. The full paper compiles cleanly on Overleaf with `pdflatex` plus `bibtex`; a `build_zip.sh` helper produces the Overleaf-ready bundle from the LaTeX sources in one command.
 
 Subsequent variants under this same repository will explore longer durations, alternative robot platforms, and additional cancer sites. The shared instruction layer continues to live in `kevinkawchak/physical-ai-oncology-trials` and is read in the future to generate sibling output trees here.
 
@@ -73,6 +76,43 @@ robotic-surgeries/
       sections/            #   abstract / introduction / methods / results /
                            #   discussion / limitations_future / conclusions /
                            #   back_matter (bracketed prompts inside)
+      full-paper/          # v0.4.0 populated full LaTeX paper (Overleaf ready)
+        README.md          #   DOI badges, pipeline ASCII, file inventory tables
+        main.tex           #   populated preamble + section inputs
+        new_paper.sty      #   carried forward from template (identical)
+        references.bib     #   carried forward from template (identical)
+        build_zip.sh       #   helper that produces LaTeX Source Files.zip
+        sections/          #   populated abstract / introduction / methods /
+                           #   results / discussion / limitations_future /
+                           #   conclusions / back_matter
+```
+
+## v0.4.0 Full Paper (ASCII)
+
+```
++==========================================================================+
+|       2030-GBM-1MIN FULL PAPER (v0.4.0, populated end-to-end)            |
++==========================================================================+
+
+   paper/full-paper/        Overleaf-ready populated full LaTeX paper.
+     main.tex               Title page, TOC, \input{sections/*}.
+     new_paper.sty          11 pt, 1 in margins, raggedright tables.
+     references.bib         DOI + URL bearing; GitHub + Zenodo clickable.
+     build_zip.sh           One command to make LaTeX Source Files.zip.
+     sections/
+       abstract.tex         Single 900-character on-prem LLM thesis.
+       introduction.tex     FDA RTCT + GBM + baseline + thesis + transition.
+       methods.tex          12 instructions + NeuroSpeed 1.0 + xyz + sweep.
+       results.tex          54 x 1001 sensor sample feat + tournaments.
+       discussion.tex       Significance + FDA + LLM safety + head start.
+       limitations_future.tex  60min vs 1min deltas + Track A / B futures.
+       conclusions.tex      Headline counts + 3 themes + safety + forward.
+       back_matter.tex      Acknowledgments / Ethics / Rights / Cite / Data.
+
+   Compile on Overleaf with pdflatex + bibtex + pdflatex + pdflatex.
+   Run build_zip.sh in the same directory to produce the Overleaf-ready
+   LaTeX Source Files.zip bundle of all sources in this subdirectory.
++==========================================================================+
 ```
 
 ## v0.3.0 Paper Template (ASCII)
@@ -132,7 +172,7 @@ robotic-surgeries/
 
 ```
 +-----------------------------------------------------------------------------+
-|                ROBOTIC-SURGERIES SUITE (v0.3.0 / first variant)             |
+|                ROBOTIC-SURGERIES SUITE (v0.4.0 / first variant)             |
 +-----------------------------------------------------------------------------+
 |                                                                             |
 |   physical-ai-oncology-trials       robotic-surgeries (this repo)           |
@@ -142,7 +182,8 @@ robotic-surgeries/
 |   |     - README.md            |    |   data / prompts / results / viz /  | |
 |   |     - 12 instruction docs  |    |   notebooks / logs / releases/v3.9.1| |
 |   +----------------------------+    |   outputs/  (end-to-end pipeline)   | |
-|                                     |   paper/    (LaTeX head start v0.3.0)| |
+|                                     |   paper/    (LaTeX template v0.3.0) | |
+|                                     |     full-paper/ (populated v0.4.0)  | |
 |                                     +------------------+------------------+ |
 |                                                        |                    |
 |                                                        v                    |
@@ -198,32 +239,35 @@ python -m src.simulation.iterate_1min --seed 20260510 --iterations 1
 
 The same scripts can be run inside Claude Code (CLI, web, or IDE plugin) or on a conventional high-end server, and they target identical Parquet outputs for a fixed seed.
 
-To compile the LaTeX paper template under `2030-gbm-1min/paper/`, upload that directory to Overleaf or run:
+To compile the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`, upload that directory to Overleaf or run:
 
 ```
-cd 2030-gbm-1min/paper
+cd 2030-gbm-1min/paper/full-paper
 pdflatex main.tex
 bibtex   main
 pdflatex main.tex
 pdflatex main.tex
 ```
 
-An Overleaf-ready zip can be bundled locally from the same directory with:
+An Overleaf-ready zip can be bundled locally with the helper script in the same directory:
 
 ```
-cd 2030-gbm-1min/paper
-zip -r "LaTeX Source Files.zip" main.tex new_paper.sty references.bib sections/ orcid_icon.png
+cd 2030-gbm-1min/paper/full-paper
+chmod +x build_zip.sh
+./build_zip.sh
 ```
+
+The resulting `LaTeX Source Files.zip` uploads to Overleaf via **New Project -> Upload Project**.
 
 ## Citation
 
 If you use this repository in academic work, please cite:
 
 ```
-@software{kawchak_robotic_surgeries_v0_3_0_2026,
+@software{kawchak_robotic_surgeries_v0_4_0_2026,
   author    = {Kawchak, Kevin},
-  title     = {robotic-surgeries: 4-arm 1-minute glioblastoma trial v0.3.0
-               (paper template head start)},
+  title     = {robotic-surgeries: 4-arm 1-minute glioblastoma trial v0.4.0
+               (populated full paper)},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18445179},
@@ -231,7 +275,7 @@ If you use this repository in academic work, please cite:
 }
 ```
 
-For the paper template specifically, cite:
+For the paper specifically, cite:
 
 ```
 @misc{kawchak_2026_20113157,
@@ -250,9 +294,10 @@ MIT License. See [LICENSE](LICENSE).
 
 ## See also
 
-- [releases.md](releases.md) for versioned release notes (v0.1.0, v0.2.0, v0.3.0 and later).
+- [releases.md](releases.md) for versioned release notes (v0.1.0, v0.2.0, v0.3.0, v0.4.0 and later).
 - [CHANGELOG.md](CHANGELOG.md) for the human-readable change log.
 - [references.md](references.md) for citations of standards, prior art, and inputs.
 - [2030-gbm-1min/README.md](2030-gbm-1min/README.md) for the project narrative, file generation outcomes, and per-commit roadmap of the 4-arm 1-minute variant.
 - [2030-gbm-1min/outputs/README.md](2030-gbm-1min/outputs/README.md) for the v0.2.0 end-to-end run outputs.
 - [2030-gbm-1min/paper/README.md](2030-gbm-1min/paper/README.md) for the v0.3.0 LaTeX paper template navigation index and compile recipe.
+- [2030-gbm-1min/paper/full-paper/README.md](2030-gbm-1min/paper/full-paper/README.md) for the v0.4.0 populated full paper navigation index, compile recipe, and Overleaf-ready zip helper.

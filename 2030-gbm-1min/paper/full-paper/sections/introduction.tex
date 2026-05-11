@@ -1,0 +1,195 @@
+% ======================================================================
+% SECTION 1: INTRODUCTION
+% Five thematic subsections: FDA RTCT, GBM clinical context, current
+% robotic neurosurgery baseline, on-premises LLM thesis, and the
+% transition to the 60-second resection.
+% Location: 2030-gbm-1min/paper/full-paper/sections/introduction.tex
+% ======================================================================
+
+\subsection{FDA Real-Time Clinical Trials Announcement}
+\label{sec:intro-fda}
+
+On 28 April 2026 the United States Food and Drug Administration (FDA)
+announced that real-time clinical trials (RTCT) are entering the
+proof-of-concept phase \cite{fda2026realtime}. The announcement names
+two oncology pharmacology pilots: AstraZeneca's TRAVERSE in mantle cell
+lymphoma and Amgen's STREAM-SCLC in small cell lung carcinoma. FDA
+Commissioner Marty Makary framed the RTCT program as a structural
+upgrade to the clinical-trial data pipeline; FDA Chief AI Officer
+Jeremy Walsh tied the program to the agency's broader software and AI
+modernization roadmap.
+
+The 60-second glioblastoma robotic surgery target studied in this
+paper is positioned as a natural extension of the RTCT vision into
+the surgical theater, not a critique of the RTCT program. The two
+proof-of-concept trials cover pharmacology only; the 60-second
+glioblastoma resection extends real-time signal sharing into the
+surgical theater through the on-premises repository based LLM thesis
+described in \S\ref{sec:intro-thesis}. The United States needs to
+remain Number 1 in the world regarding patient safety, efficacy, and
+speed benefits in oncological robotic surgeries in clinical trials;
+the on-premises LLM thesis is one route to that goal, and the
+present work provides a reproducible computational checking step that
+a downstream NeuroSpeed-class hardware vendor or trial sponsor can
+adopt without having to re-author the simulation pipeline. Prior
+author work positioned a parallel 1-hour single-arm pharmacology-plus-
+robotics framing under the same FDA roadmap
+\cite{kawchak_2026_19994945}; the present work compresses the
+procedure dimension by 60x to surface 4-arm signal-sharing dynamics
+that the 1-hour scope did not require.
+
+\subsection{Glioblastoma Clinical Context}
+\label{sec:intro-gbm}
+
+IDH-wildtype glioblastoma multiforme (WHO grade 4) remains a uniformly
+lethal primary brain malignancy. Median survival under standard-of-care
+radiotherapy plus concomitant and adjuvant temozolomide is 12 to 15
+months \cite{Stupp2005Glioblastoma}. The extent-of-resection threshold
+for newly diagnosed glioblastoma is 78 percent of contrast-enhancing
+volume on T1 magnetic resonance imaging \cite{Sanai2011GBMResection};
+5-aminolevulinic acid fluorescence-guided resection (5-ALA) increases
+the rate of complete resection of contrast-enhancing tumor compared
+to white-light microsurgery \cite{Stummer20055ALA}. The synthetic
+patient PAT-GBM-0001 used throughout this paper is a 62-year-old
+female with a 4.2 cm right frontal IDH-wildtype glioblastoma, MGMT
+methylated, 1.8 cm to the motor strip on the non-dominant side; the
+maximal-safe gross-total resection target follows the
+Stupp-Sanai-Stummer framework. The patient identity, disease
+parameters, and pre-operative imaging are inherited verbatim from the
+upstream physical-ai-oncology-trials instruction directory
+\cite{one-minute-variant-instructions}.
+
+Current operative duration for a single-arm stereotactic-guided right
+frontal craniotomy with maximal safe resection ranges between 4 and
+8 hours of in-room time. A 60-second target is a 240x to 480x
+compression that is not feasible with any current commercial robot.
+This contrast frames the rest of the paper as a checking step the
+industry has not yet taken. The author's prior glioblastoma work
+spans an autonomous 10-year meta-analysis effort
+\cite{kawchak_2025_15549831}, drug-synergy machine learning
+\cite{kawchak_2025_17614396}, peer-review acceleration of patient
+matching \cite{kawchak_2025_17774560}, and the parallel 1-hour
+robotic framing \cite{kawchak_2026_19994945}; the present 60-second
+target is the next computational checkpoint along that progression.
+
+\subsection{Current Robotic Neurosurgery State of the Art}
+\label{sec:intro-baseline}
+
+The state of the art for stereotactic neurosurgical robotics in 2026
+is the Medtronic ROSA ONE Brain v3.0 \cite{rosa-one-brain}, used
+clinically for stereotactic biopsy, deep-brain-stimulation lead
+placement, and stereoelectroencephalography
+\cite{Lefranc2014ROSAStereotaxy, Kalakoti2019RoboticsReview}. ROSA is
+single arm and is not designed for high-throughput soft-tissue
+resection. Table \ref{tab:robot-comparison} summarizes the side-by-
+side specification against the hypothetical 2030 Medtronic NeuroSpeed
+1.0 across the parameters that gate a 60-second resection. NeuroSpeed
+1.0 is paper-only at the time of writing; the hardware does not exist.
+
+\begin{table}[H]
+\centering
+\caption{Specification comparison: Medtronic ROSA ONE Brain v3.0
+(current state of the art, single arm) vs hypothetical 2030 Medtronic
+NeuroSpeed 1.0 (4 cooperating arms). All gaps are 5x to 200x.}
+\label{tab:robot-comparison}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.5cm}
+                >{\raggedright\arraybackslash}p{3.3cm}
+                >{\raggedright\arraybackslash}p{3.3cm}
+                >{\raggedright\arraybackslash}p{2.0cm}}
+\toprule
+\textbf{Parameter} & \textbf{ROSA ONE Brain v3.0} & \textbf{NeuroSpeed 1.0 (2030)} & \textbf{Gap} \\
+\midrule
+Tip linear velocity & 50 mm/s & 1,000 mm/s & 20x \\
+Tip linear acceleration & 200 mm/s squared & 10,000 mm/s squared & 50x \\
+Joint angular velocity & 180 deg/s & 360 deg/s & 2x \\
+Positioning accuracy at speed & 0.5 mm RMS & 0.1 mm RMS & 5x \\
+Force resolution & 0.01 N & 0.001 N & 10x \\
+E-stop latency & 50 ms & 5 ms & 10x \\
+Tissue removal peak rate & 4 mm cubed/s per arm & 800 mm cubed/s per arm & 200x \\
+Per-arm tip force limit & 15.0 N & 5.0 N & tighter \\
+Cumulative 4-arm tip force & not specified & 12.0 N envelope & new \\
+Cooperating arms & 1 & 4 (7 DOF each) & 4x \\
+Peak duty cycle & 4 to 8 hours & 5 minute peak (LN2 cooled) & by design \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+NeuroSpeed 1.0 closes the gaps through liquid-nitrogen cooling, a
+hybrid ultrasonic plus waterjet plus pulsed plasma cutting head on
+arm 1, and a deterministic 1 kHz heartbeat broadcast bus that
+coordinates the 4 arms. The regulatory floor is set by IEC 80601-2-77
+(per-arm 5.0 N tip and 1.0 N lateral force limits, 5 ms E-stop
+budget) \cite{iec-80601-2-77} and by IEC 62304 (safety-critical
+software lifecycle for the 1 kHz heartbeat layer) \cite{iec-62304}.
+The current state of the art is short of the 1-minute requirement on
+every key parameter by 5 to 200 times.
+
+\subsection{On-Premises LLM Thesis}
+\label{sec:intro-thesis}
+
+The thesis of this paper is stated verbatim: on-premises repository
+based LLMs provide commands to standard oncology surgical robots
+based on real-time sensor data and controlled via x, y, z coordinates
+to administer patient treatment, and this workflow minimizes single
+robot error potential. The 1 kHz heartbeat broadcast bus and the
+cumulative 4-arm tip force cap are the operational mechanisms that
+turn the thesis into a measurable safety property. The 1M token
+context window of Claude Code Opus 4.7 \cite{claude-opus-47,
+claude-code} lets a single inference pass hold all 12 instruction
+files, every kinematics and schema YAML / JSON specification, and
+every per-iteration aggregate in context; on-premises inference
+backends Ollama \cite{ollama} and vLLM \cite{vllm} make the same
+context tractable for a deployment that keeps patient health
+information on site. The 4-arm coordination heartbeat snapshot reads
+as follows.
+
+\begin{verbatim}
++-----------------------------------------------------------------+
+|  1 kHz heartbeat broadcast bus  (32 byte frame, 1 ms deadline)  |
++-----------------------------------------------------------------+
+|  Arm 1 hybrid u-w-p  |  Arm 2 bipolar coag  |  Arm 3 suction   |
+|  cuts at 800 mm3/s   |  + irrigation        |  + collection    |
+|  peak; tip <= 5.0 N  |  tip <= 5.0 N        |  tip <= 5.0 N    |
++-----------------------------------------------------------------+
+|  Arm 4  0.5 T iMRI + 5-ALA fluorescence + ultrasound imaging    |
+|  imaging only (no cutting force); tip <= 5.0 N (contact only)   |
++-----------------------------------------------------------------+
+|  Cumulative 4-arm tip force on patient frame <= 12.0 N          |
+|  E-stop 5 ms, heartbeat watchdog 3 ms, 100 us emergency park    |
++-----------------------------------------------------------------+
+\end{verbatim}
+
+An on-premises LLM that emits per-arm xyz commands at the 1 kHz tick
+falls inside the FDA Software as a Medical Device (SaMD) framework
+\cite{fda-samd}. The safety advantage is single-robot error
+minimization through 4-arm cross-checking on the deterministic
+heartbeat bus: an xyz command that would push the cumulative tip
+force above the 12 N envelope is rejected at the heartbeat boundary
+before it reaches the actuator, and the rejection triggers the 5 ms
+E-stop with the 100 microsecond emergency arm-park. Four arms acting
+as cross-checks on one another are strictly safer than a single arm
+acting alone.
+
+\subsection{Transition to the 60-Second Resection}
+\label{sec:intro-transition}
+
+The 60-second resection scenario is exercised through a 16-iteration
+deterministic sweep over noise (0.01 to 0.05 mm sensor noise sigma),
+force feedback gain (0.8 to 1.2), inverse-kinematics tolerance
+(1e-6 to 1e-3), and heartbeat jitter (0 to 50 microseconds), all
+under the fixed seed 20260510. Each iteration emits an L1 50 ms
+aggregate Parquet, an L2 1 s aggregate Parquet, an L3 per-phase
+aggregate Parquet, an events Parquet, and an L0 Zenodo pointer JSON
+to kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/iterations/.
+Two on-premises LLM tournaments run against the iteration output:
+the default 4-entity robot-vs-robot tournament at
+2030-gbm-1min/outputs/comparison/ (6 rounds) and the mixed 2 robot
+plus 2 human tournament at
+2030-gbm-1min/outputs/comparison_robot_vs_human/ (6 rounds). The
+headline result that the paper builds toward is that the robot mean
+composite score is 88.53 versus human mean composite 70.35, with the
+robot winning all 4 robot-vs-human pairings at confidence 0.955 to
+1.000; the structural-time-dimension caveat (1-minute robot vs
+1-hour human baseline) is preserved in every LLM judge rationale
+\cite{kawchak_2026_20113157, repo-robotic-surgeries}. The on-screen
+Table of Contents that opens page 2 lists the remaining sections.

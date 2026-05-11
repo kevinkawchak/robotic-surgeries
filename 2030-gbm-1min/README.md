@@ -10,6 +10,7 @@ CEO Kevin Kawchak, ChemicalQDevice
 [![Python](https://img.shields.io/badge/Python-3.10%2F3.11%2F3.12-3776ab.svg)](pyproject.toml)
 [![CI](https://img.shields.io/badge/CI-lint--and--format-green.svg)](../.github/workflows/ci.yml)
 [![Variant](https://img.shields.io/badge/Variant-1%20Minute-orange.svg)](../README.md)
+[![Paper Full](https://img.shields.io/badge/Paper%20Full-v0.4.0-success.svg)](paper/full-paper)
 
 ## Project Narrative and Outcomes
 
@@ -18,6 +19,8 @@ On-premises repository based LLMs provide commands to standard oncology surgical
 This release of `2030-gbm-1min/` is the v3.9.1 deliverable. It establishes the first complete end-to-end simulation of a hypothetical 2030 Medtronic NeuroSpeed 1.0 four-arm parallel stereotactic neurosurgical platform performing maximal safe gross-total resection of an IDH-wildtype glioblastoma (4.2 cm right frontal, patient PAT-GBM-0001) in 60 seconds, with cumulative four-arm tip force capped at 12 N on the patient frame, a 5 ms E-stop budget, a 100 microsecond emergency arm-park trigger, and per-arm 5.0 N tip / 1.0 N lateral force limits. The four arms are dedicated by design (arm 1 hybrid ultrasonic plus waterjet plus pulsed plasma; arm 2 bipolar coagulation plus irrigation; arm 3 suction plus tissue collection; arm 4 0.5 T iMRI plus 5-ALA fluorescence plus ultrasound), eliminating tool changeover within the 60-second budget.
 
 The simulation runs as a deterministic 16-iteration sweep across noise (0.01 to 0.05 mm sensor noise sigma), gain (0.8 to 1.2 force feedback gain), inverse kinematics tolerance (1e-6 to 1e-3), and heartbeat jitter (0 to 50 microseconds). Each iteration emits a per-arm L1 50 ms aggregate, an L2 1 second aggregate, an L3 per-phase aggregate, and an event log as Parquet zstd-3 files. The L0 raw at mixed 1 kHz commands plus 10 kHz force across 4 arms is 26 MB per iteration and 416 MB across the sweep; it is deposited to Zenodo (DOI 10.5281/zenodo.18445179) and never committed to Git, while every per-iteration L0 raw is referenced by a 1 KB pointer JSON containing the SHA-256 and DOI. The total committed footprint of the 16-iteration sweep is approximately 8.2 MB plus 1.5 MB of fixed overhead, well inside the GitHub 10 MB committed cap. The release-aggregate metric pipeline computes per-iteration quality, time, cost, safety, and patient experience scores under a frozen weighted formula (0.40 / 0.25 / 0.20 / 0.10 / 0.05), runs a 4-entity tournament via the on-prem LLM judge (default Anthropic claude-opus-4-7), and produces a structured comparison.json plus a markdown plus PDF narrative report and a self-contained Plotly dashboard.
+
+The v0.4.0 release lands the populated full LaTeX paper for this project at `paper/full-paper/` titled **2030: 60 Second Glioblastoma AI Robotic Surgery**. Every bracketed instruction in the v0.3.0 template has been replaced with prose, tables, and ASCII diagrams grounded in the upstream `physical-ai-oncology-trials/competitions/instructions/one_minute_variant/` directory, the generated `2030-gbm-1min/` tree, and the end-to-end execution outputs under `2030-gbm-1min/outputs/`. The full paper compiles cleanly on Overleaf with `pdflatex` plus `bibtex`; the `paper/full-paper/build_zip.sh` helper produces the Overleaf-ready bundle in one command. The paper Zenodo DOI is 10.5281/zenodo.20113157.
 
 The motivating gap is that current state-of-the-art Medtronic ROSA ONE Brain v3.0 is short of the 1-minute requirement on every key parameter by 5 to 200 times: tissue removal rate, end-effector velocity (50 mm per second vs the required 1,000 mm per second), end-effector acceleration (200 mm per second squared vs 10,000), joint angular velocity, E-stop latency (50 ms vs 5 ms), positioning accuracy at speed (0.5 mm RMS vs 0.1 mm RMS), and force resolution (0.01 N vs 0.001 N). The hypothetical NeuroSpeed 1.0 closes those gaps in a 4-arm parallel topology with liquid nitrogen cooling and a 5-minute peak duty cycle. The simulation is open about the structural advantage on the time dimension when comparing the 1-minute robot to the 1-hour ROSA baseline; the comparison report and the LLM judge prompt explicitly flag this and weight it at 0.25 alongside Quality, Cost, Safety, and Patient Experience.
 
@@ -160,6 +163,19 @@ The repository is organized so that Claude Code (CLI, web, or IDE plugin) can dr
     sensors/, xyz_mapping/, iterations/, metrics/
     comparison/, comparison_robot_vs_human/
     diagrams/, viz/, reports/, logs/
+  paper/                                         (v0.3.0 LaTeX paper template)
+    README.md (template navigation index)
+    main.tex, new_paper.sty, references.bib
+    sections/{abstract, introduction, methods, results,
+              discussion, limitations_future, conclusions,
+              back_matter}.tex
+    full-paper/                                  (v0.4.0 populated full LaTeX paper)
+      README.md (populated paper navigation index)
+      main.tex, new_paper.sty, references.bib
+      build_zip.sh (Overleaf-ready zip helper)
+      sections/{abstract, introduction, methods, results,
+                discussion, limitations_future, conclusions,
+                back_matter}.tex (all populated)
 ```
 
 ## Per-Commit Roadmap
@@ -205,6 +221,8 @@ find 2030-gbm-1min -name '*.parquet' -size +5M -print | (! grep -q .)
 ```
 
 The v3.9.1 L0 raw archive (416 MB across 16 iterations of mixed 1 kHz plus 10 kHz force per-arm Parquet) is deposited on Zenodo under the same record. The pointer JSON files in `data/` and `data/iterations/` resolve to the Zenodo deposition.
+
+The v0.4.0 populated full paper at `paper/full-paper/` cites this project (Zenodo DOI 10.5281/zenodo.18445179) and self-cites at Zenodo DOI 10.5281/zenodo.20113157.
 
 ## License
 

@@ -9,9 +9,17 @@ process, how to process the files synergistically, and where to place
 the resulting prose, tables, and ASCII diagrams. This README is the
 navigation index for the template.
 
+The populated full LaTeX paper that replaces every bracketed
+instruction with prose, tables, and ASCII diagrams lives in the
+`full-paper/` subdirectory of this directory; see
+[full-paper/README.md](full-paper/README.md) for the populated paper
+navigation index, ASCII pipeline diagram, section inventory,
+reference inventory, compile recipe, and `build_zip.sh` helper. The
+v0.3.0 template files in this directory are preserved unchanged.
+
 [![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.20113157-blue)](https://doi.org/10.5281/zenodo.20113157)
 [![Repo DOI](https://img.shields.io/badge/Repo%20DOI-10.5281%2Fzenodo.18445179-blue)](https://doi.org/10.5281/zenodo.18445179)
-[![Release](https://img.shields.io/badge/Release-v0.3.0-brightgreen.svg)](../../releases.md)
+[![Release](https://img.shields.io/badge/Release-v0.4.0-brightgreen.svg)](../../releases.md)
 [![License](https://img.shields.io/badge/License-CC%20BY%204.0-yellow.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Variant](https://img.shields.io/badge/Variant-1%20Minute-orange.svg)](../README.md)
 [![CI](https://img.shields.io/badge/CI-lint--and--format-green.svg)](../../.github/workflows/ci.yml)
@@ -64,32 +72,46 @@ listed below.
     back_matter.tex         (Acknowledgments, Ethical Disclosures,
                             Rights and Permissions, Cite This Article,
                             Data Availability; final prose)
+  full-paper/               (v0.4.0 populated full LaTeX paper;
+                            every bracketed instruction replaced
+                            with prose, tables, and ASCII diagrams)
+    README.md               (navigation index for the populated paper)
+    main.tex                (populated preamble + section inputs)
+    new_paper.sty           (carried forward from this directory)
+    references.bib          (carried forward from this directory)
+    build_zip.sh            (one-command Overleaf-ready zip helper)
+    sections/               (8 populated section files)
 ```
 
-The Overleaf-ready `LaTeX Source Files.zip` is **not** committed as a
-binary file under `2030-gbm-1min/paper/`. Instead, the LaTeX sources
-themselves are committed and the zip can be bundled on demand from
-the LaTeX sources using the recipe below.
+The Overleaf-ready `LaTeX Source Files.zip` is built on demand from
+the LaTeX sources in `full-paper/` using the `build_zip.sh` helper:
+
+```
+cd 2030-gbm-1min/paper/full-paper
+chmod +x build_zip.sh
+./build_zip.sh
+```
+
+The resulting `LaTeX Source Files.zip` uploads to Overleaf via
+`New Project -> Upload Project`.
 
 ## Section order and bracketed-instruction status
 
-The downstream 70+ page paper assembled by a future Claude Code Opus
-4.7 1M Max pass replaces each `[bracketed instruction]` block with
-prose, tables, and ASCII diagrams sourced from the exact directories
-listed in the brackets. The bracketed instructions in this template
-are NOT processed in this commit set.
+The template lives in this directory; the populated paper lives in
+`full-paper/`. The table below indicates whether each section is
+bracketed (this directory) or populated (`full-paper/` directory).
 
-| Order | Section | Bracketed prompts |
-|:-----|:--------|:------------------|
-| 1 | Abstract | yes |
-| 2 | Introduction | yes |
-| 3 | Methods | yes |
-| 4 | Results | yes |
-| 5 | Discussion | yes |
-| 6 | Limitations and Future Work | yes |
-| 7 | Conclusions | yes |
-| 8 | References | no (bibliography file) |
-| 9 | Acknowledgments / Ethical Disclosures / Rights and Permissions / Cite This Article / Data Availability | no (final prose) |
+| Order | Section | Template (this directory) | Populated (full-paper/) |
+|:-----|:--------|:--------------------------|:------------------------|
+| 1 | Abstract | bracketed | populated |
+| 2 | Introduction | bracketed | populated |
+| 3 | Methods | bracketed | populated |
+| 4 | Results | bracketed | populated |
+| 5 | Discussion | bracketed | populated |
+| 6 | Limitations and Future Work | bracketed | populated |
+| 7 | Conclusions | bracketed | populated |
+| 8 | References | bibliography (.bib) | bibliography (.bib) |
+| 9 | Back Matter | final prose | final prose |
 
 ## AVAILABLE DIRECTORIES (upstream and current)
 
@@ -103,7 +125,7 @@ when expanding the bracketed prompts.
 
 **B. Code generation** (read-only context):
 
-- Primary: `kevinkawchak/robotic-surgeries/tree/main/2030-gbm-1min/` and subdirectories. Notable subdirs: `docs/`, `config/`, `schemas/`, `src/{sensors,mapping,control,coordination,simulation,metrics,llm,zenodo}/`, `data/`, `data/iterations/`, `prompts/`, `results/`, `viz/`, `notebooks/`, `logs/`, `releases/v3.9.1/`, and `paper/` (this directory).
+- Primary: `kevinkawchak/robotic-surgeries/tree/main/2030-gbm-1min/` and subdirectories. Notable subdirs: `docs/`, `config/`, `schemas/`, `src/{sensors,mapping,control,coordination,simulation,metrics,llm,zenodo}/`, `data/`, `data/iterations/`, `prompts/`, `results/`, `viz/`, `notebooks/`, `logs/`, `releases/v3.9.1/`, and `paper/` (this directory) plus `paper/full-paper/` (the populated paper).
 
 **C. Code execution** (read-only context):
 
@@ -122,23 +144,35 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-Do not compile the PDF as part of the template-population pass.
+Use this directory for the template (with bracketed prompts) or
+`full-paper/` for the populated paper. Do not compile the PDF as part
+of the template-population pass.
 
 ## LaTeX Source Files.zip recipe
 
 The Overleaf-ready bundle is created on demand from the LaTeX sources
-in this directory. The minimal recipe (Linux, MacOS) is:
+in `full-paper/`. The recommended path is the `build_zip.sh` helper:
 
 ```
-cd 2030-gbm-1min/paper
-zip -r "LaTeX Source Files.zip" main.tex new_paper.sty references.bib sections/ orcid_icon.png
+cd 2030-gbm-1min/paper/full-paper
+chmod +x build_zip.sh
+./build_zip.sh
+```
+
+The helper script falls back to Python 3 `zipfile` if `zip` is not
+installed, so it runs on minimal containers and on Git Bash on
+Windows 11. The equivalent manual command on Linux / MacOS is:
+
+```
+cd 2030-gbm-1min/paper/full-paper
+zip -r "LaTeX Source Files.zip" main.tex new_paper.sty references.bib sections/
 ```
 
 On Windows PowerShell:
 
 ```
-cd 2030-gbm-1min\paper
-Compress-Archive -Path main.tex,new_paper.sty,references.bib,sections,orcid_icon.png -DestinationPath "LaTeX Source Files.zip"
+cd 2030-gbm-1min\paper\full-paper
+Compress-Archive -Path main.tex,new_paper.sty,references.bib,sections -DestinationPath "LaTeX Source Files.zip"
 ```
 
 The resulting zip uploads directly to Overleaf via **New Project ->
@@ -211,10 +245,11 @@ checklist is:
 
 The repository CI matrix runs `ruff format --check`, `ruff check`, and
 `yamllint -d relaxed` on Python 3.10, 3.11, and 3.12 against the
-`2030-gbm-1min/` tree. The new files under `2030-gbm-1min/paper/`
-are LaTeX and Markdown only and are not subject to those gates, so
-this PR does not regress the upstream CI `Cl / lint-and-format`
-status. See `../../.github/workflows/ci.yml`.
+`2030-gbm-1min/` tree. The new files under `2030-gbm-1min/paper/` and
+`2030-gbm-1min/paper/full-paper/` are LaTeX, Markdown, and one shell
+script only and are not subject to those gates, so this PR does not
+regress the upstream CI `Cl / lint-and-format` status. See
+`../../.github/workflows/ci.yml`.
 
 ## License
 

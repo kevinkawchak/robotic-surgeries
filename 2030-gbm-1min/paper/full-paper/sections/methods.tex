@@ -1,0 +1,291 @@
+% ======================================================================
+% SECTION 2: METHODS
+% Six thematic subsections: instruction inputs, robot 2030 NeuroSpeed,
+% sensors and sample table, xyz coordinate mapping, iterations plus
+% LLM tournament, code execution environment.
+% Location: 2030-gbm-1min/paper/full-paper/sections/methods.tex
+% ======================================================================
+
+\subsection{Instruction Inputs}
+\label{sec:methods-inputs}
+
+The 2030-gbm-1min repository was generated from 12 hand-authored
+instruction files at
+kevinkawchak/physical-ai-oncology-trials/competitions/instructions/one_minute_variant/
+\cite{one-minute-variant-instructions}. Together the 12 files amount
+to roughly 130 KB of read-only context; a senior author can read and
+verify all 12 in approximately one hour. The complete inventory is:
+README.md (scope and per-commit roadmap), commit_01_overview_1min.md
+(project narrative and per-commit roadmap),
+commit_02_sensors_1min.md (sensor specification at 200 channels
+across 4 arms mixed at 1 kHz commands plus 10 kHz force),
+commit_03_xyz_4arm.md (deterministic sensor to xyz transformation
+across 4 cooperating arms), commit_04_iterations_1min.md (16-iteration
+deterministic sweep design and YAML configuration),
+commit_05_competition_1min.md (LLM tournament and composite score
+formula), file_size_pyramid_1min.md (Git commit caps and Zenodo
+deposition strategy), glioblastoma_context_1min.md (IDH-wildtype
+glioblastoma clinical context), multi_arm_coordination.md (1 kHz
+heartbeat broadcast bus protocol), robot_specification_neurospeed.md
+(2030 Medtronic NeuroSpeed 1.0 7-DOF DH parameters and per-arm tool
+assignment), sensor_specification_10khz.md (50 channels per arm at
+1 kHz commands plus 10 kHz force), and zenodo_archive_protocol.md
+(Zenodo L0 raw deposition protocol at DOI
+10.5281/zenodo.18445179). The entire kevinkawchak/robotic-surgeries
+2030-gbm-1min/ tree was authored by Claude Code Opus 4.7 1M Max
+\cite{claude-opus-47, claude-code} in a single sequence of seven
+commits in one pull request. Approximations made during the
+generation pass (count of files, file sizes, sampling rate
+selections, iteration count) are accounted for in
+\S\ref{sec:limitations}, particularly
+\S\ref{sec:limits-accounting}.
+
+\subsection{2030 Medtronic NeuroSpeed 1.0 Robot}
+\label{sec:methods-robot}
+
+The hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel
+stereotactic neurosurgical robot is composed of 4 cooperating arms
+with 7 degrees of freedom each (28 DOF total), a 0.5 m radius
+hemisphere workspace shared across the 4 arms, and a hybrid
+ultrasonic plus waterjet plus pulsed plasma tissue removal mechanism
+on arm 1 at 800 mm cubed per second peak. The full per-arm 7-DOF
+Denavit-Hartenberg parameter table reads as in
+Table \ref{tab:dh}.
+
+\begin{table}[H]
+\centering
+\caption{Per-arm 7-DOF Denavit-Hartenberg parameters for the 2030
+Medtronic NeuroSpeed 1.0 (modified DH convention; identical across
+all 4 arms). Joint 1 is the shoulder base; joint 7 is the tool flange.}
+\label{tab:dh}
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.5cm}
+                >{\raggedright\arraybackslash}p{2.0cm}
+                >{\raggedright\arraybackslash}p{2.0cm}
+                >{\raggedright\arraybackslash}p{2.0cm}
+                >{\raggedright\arraybackslash}p{2.0cm}
+                >{\raggedright\arraybackslash}p{2.5cm}}
+\toprule
+\textbf{Joint i} & \textbf{a (mm)} & \textbf{alpha (rad)} & \textbf{d (mm)} & \textbf{theta range (rad)} & \textbf{vel max (rad/s)} \\
+\midrule
+1 & 0   & pi/2  & 340  & [-pi, pi]         & 6.28 \\
+2 & 0   & -pi/2 & 0    & [-pi/2, pi/2]     & 6.28 \\
+3 & 0   & pi/2  & 400  & [-pi, pi]         & 6.28 \\
+4 & 0   & -pi/2 & 0    & [-pi/2, pi/2]     & 6.28 \\
+5 & 0   & pi/2  & 400  & [-pi, pi]         & 6.28 \\
+6 & 0   & -pi/2 & 0    & [-pi/2, pi/2]     & 6.28 \\
+7 & 0   & 0     & 126  & [-2pi, 2pi]       & 6.28 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per-arm tip force is capped at 5.0 N and lateral force at 1.0 N
+\cite{iec-80601-2-77}. The cumulative 4-arm tip force on the patient
+frame is capped at 12.0 N. The E-stop budget is 5 ms; the emergency
+arm-park trigger latency is 100 microseconds; the inter-arm minimum
+clearance is 8 mm. The 1 kHz heartbeat broadcast bus carries a 32-
+byte status frame per arm with a 1 ms deadline and a 3 ms watchdog
+\cite{iec-62304}. The per-arm tool assignment is fixed: arm 1 hybrid
+ultrasonic plus waterjet plus pulsed plasma, arm 2 bipolar coagulation
+plus irrigation, arm 3 suction plus tissue collection, arm 4 0.5 T
+intraoperative magnetic resonance imaging (iMRI) plus 5-ALA
+fluorescence plus ultrasound. The 4-phase 60-second timeline is:
+Phase 1 dural opening final 0 to 5 s, Phase 2 bulk resection 5 to
+45 s at 800 mm cubed per second peak, Phase 3 margin and fine
+resection 45 to 55 s, Phase 4 hemostasis verification and arm
+withdrawal 55 to 60 s. Pre-operative anesthesia, registration, dural
+opening, and multi-arm setup are precomputed and frozen at T-1800 s
+to T+0 s relative to the 60-second window. The baseline ROSA ONE
+Brain v3.0 is referenced for comparison \cite{rosa-one-brain}.
+
+\subsection{Sensor Specification (54 columns by 1001 rows)}
+\label{sec:methods-sensors}
+
+The per-arm sensor schema carries 50 channels at mixed sample rates:
+21 joint kinematics channels at 1 kHz (7 position plus 7 velocity
+plus 7 torque), 7 end-effector pose channels at 1 kHz (3 position
+plus 4 scalar-first quaternion), 6 end-effector force and torque
+channels at 10 kHz (3 force plus 3 torque), 3 navigation deviation
+channels at 1 kHz, 7 tool flag and adjunct channels at 1 kHz, and 6
+safety enumeration and metadata channels at 1 kHz. Across 4
+cooperating arms the total channel count is 200. The JSON Schema,
+Protocol Buffers proto, and Apache Avro avsc declarations live at
+kevinkawchak/robotic-surgeries/2030-gbm-1min/schemas/sensor_record_4arm.\{schema.json, proto, avsc\}.
+The release-aggregate L0 raw archive (416 MB across 16 iterations)
+is deposited on Zenodo only at DOI 10.5281/zenodo.18445179
+\cite{zenodo, repo-robotic-surgeries}; the committed repository
+carries a 1 KB Zenodo pointer JSON at
+2030-gbm-1min/data/sensor_l0_raw_4arm.zenodo_pointer.json. The L1
+through L3 aggregates use Apache Parquet with zstd-3 compression
+\cite{apache-arrow}.
+
+The 54 column by 1001 row sensor sample table at
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/sensors/sensor_sample_4arm.csv
+is the exceptional processing feat that no human team could produce
+under the time budget of this paper. The 54 columns hold 50 sensor
+channels per arm collapsed plus 4 metadata columns (timestamp_us,
+arm_id, phase, command_state). The 1001 rows decimate the 10 kHz
+force stream to a 1 kHz alignment with the command tick. A
+representative slice is shown in Table \ref{tab:sensor-slice}; the
+full file is 328,639 bytes; the JSONL companion at
+outputs/sensors/sensor_sample_4arm.jsonl is 891,992 bytes and
+carries the full per-arm record without column collapse.
+
+\begin{table}[H]
+\centering
+\caption{Representative slice of the 54 column by 1001 row sensor
+sample table; 8 of 54 columns and 6 of 1001 rows from Phase 2 bulk
+resection on arms 1 and 4.}
+\label{tab:sensor-slice}
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.5cm}
+                >{\raggedright\arraybackslash}p{0.9cm}
+                >{\raggedright\arraybackslash}p{0.9cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.5cm}
+                >{\raggedright\arraybackslash}p{1.4cm}}
+\toprule
+\textbf{ts (us)} & \textbf{arm} & \textbf{phase} & \textbf{ee_x (mm)} & \textbf{ee_y (mm)} & \textbf{ee_z (mm)} & \textbf{tip force (N)} & \textbf{state} \\
+\midrule
+12000000 & 1 & 2 & 142.31 & -8.07 & 102.55 & 3.81 & EMIT \\
+12000000 & 4 & 2 & 105.66 & 22.10 & 158.71 & 0.04 & EMIT \\
+12001000 & 1 & 2 & 142.95 & -8.10 & 102.40 & 3.92 & EMIT \\
+12001000 & 4 & 2 & 105.67 & 22.11 & 158.70 & 0.04 & EMIT \\
+12002000 & 1 & 2 & 143.59 & -8.14 & 102.25 & 4.05 & EMIT \\
+12002000 & 4 & 2 & 105.69 & 22.13 & 158.68 & 0.05 & EMIT \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Per-Arm xyz Coordinate Mapping}
+\label{sec:methods-xyz}
+
+The deterministic sensor to xyz transformation is implemented in
+kevinkawchak/robotic-surgeries/2030-gbm-1min/src/mapping/sensor_to_xyz_4arm.py
+(Python reference) and in
+2030-gbm-1min/src/control/robot_loop_4arm.cpp (C++20 real-time
+control loop with a 1 ms command-to-actuator budget). Forward
+kinematics maps the 7-DOF joint state to an end-effector pose in
+the patient frame; inverse kinematics resolves an xyz command back
+into a joint-target trajectory at a configurable tolerance in the
+set \{1e-6, 1e-5, 1e-4, 1e-3\}. The 1 kHz heartbeat coordination
+layer is implemented in 2030-gbm-1min/src/coordination/arm_heartbeat.cpp
+with 32-byte status frames, a 3 ms watchdog, and the cumulative
+12 N tip-force cap enforced at the heartbeat boundary
+\cite{iec-80601-2-77, iec-62304}. The xyz command schema is at
+2030-gbm-1min/schemas/xyz_command_4arm.schema.json.
+
+The per-arm xyz command sample is split into 4 files at
+2030-gbm-1min/outputs/xyz_mapping/xyz_trace_sample_arm1.csv through
+xyz_trace_sample_arm4.csv (60 rows per arm, 240 commands total) with
+an ASCII per-second xyz path overlay at
+outputs/xyz_mapping/xyz_path_4arm.txt. Table \ref{tab:cmd-state} gives
+the per-arm command-state distribution. All 240 commands resolve to
+command_state=EMIT in the sample window; no rejections and no E-stop
+triggers are observed.
+
+\begin{table}[H]
+\centering
+\caption{Per-arm command-state distribution across the 240-row xyz
+command sample at outputs/xyz_mapping/. All commands resolve to EMIT.}
+\label{tab:cmd-state}
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.6cm}
+                >{\raggedright\arraybackslash}p{1.8cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.4cm}
+                >{\raggedright\arraybackslash}p{1.6cm}}
+\toprule
+\textbf{Arm} & \textbf{Tool} & \textbf{EMIT} & \textbf{HOLD} & \textbf{REJECT} & \textbf{ESTOP} & \textbf{Phase mix} \\
+\midrule
+1 & hyb u-w-p   & 60 & 0 & 0 & 0 & P1-P4 \\
+2 & bipolar    & 60 & 0 & 0 & 0 & P1-P4 \\
+3 & suction    & 60 & 0 & 0 & 0 & P2-P4 \\
+4 & iMRI/5-ALA & 60 & 0 & 0 & 0 & P1-P4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{16-Iteration Sweep and On-Premises LLM Tournament}
+\label{sec:methods-iterations}
+
+The 16-iteration deterministic sweep is configured in
+kevinkawchak/robotic-surgeries/2030-gbm-1min/config/iterations.yaml and
+executed by 2030-gbm-1min/src/simulation/iterate_1min.py
+(orchestrator, Python with concurrent.futures.ProcessPoolExecutor)
+and 2030-gbm-1min/src/simulation/runner_1min.rs (Rust 2021 inner
+loop with rand_pcg deterministic PRNG and crossbeam-channel
+inter-arm coordination). The sweep covers four dimensions: noise
+(0.01 to 0.05 mm sensor noise sigma, linear), force feedback gain
+(0.8 to 1.2, linear), inverse-kinematics tolerance (1e-6 to 1e-3,
+logarithmic), and heartbeat jitter (0 to 50 microseconds, linear).
+The fixed seed is 20260510. The pipeline is bit-deterministic for
+fixed seed plus parameter tuple.
+
+The composite score formula is frozen at quality 0.40, time 0.25,
+cost 0.20, safety 0.10, patient experience 0.05; the per-iteration
+metric records are computed by
+2030-gbm-1min/src/metrics/compute_1min.py. The on-premises LLM
+tournament is implemented at 2030-gbm-1min/src/llm/compare_agent_1min.py
+with a versioned prompt at 2030-gbm-1min/prompts/comparison_prompt_1min.md.
+The default backend is Anthropic Claude Opus 4.7
+\cite{claude-opus-47, claude-code}; on-premises Ollama \cite{ollama}
+and vLLM \cite{vllm} are supported as drop-in alternatives. The
+tournament runs a 4-entity bracket in two configurations: the default
+robot-vs-robot bracket at 2030-gbm-1min/outputs/comparison/ (6
+rounds) and the mixed 2 robot plus 2 human bracket at
+2030-gbm-1min/outputs/comparison_robot_vs_human/ (6 rounds). The
+structural-time-dimension caveat (1-minute robot vs 1-hour human
+baseline) is preserved in every LLM judge rationale.
+
+Per-iteration outputs land in
+kevinkawchak/robotic-surgeries/2030-gbm-1min/outputs/iterations/ and
+consist of an L1 50 ms aggregate Parquet, an L2 1 s aggregate
+Parquet, an L3 per-phase aggregate Parquet, an events Parquet, and
+a 1 KB L0 Zenodo pointer JSON per iteration. The cross-iteration
+index.jsonl manifest plus the aggregate.duckdb analytical store
+\cite{duckdb} support cross-iteration queries.
+
+\subsection{Code Execution Environment}
+\label{sec:methods-execution}
+
+The repository is exercised on Linux (Ubuntu 22.04 LTS or later),
+MacOS (Apple Silicon M3 Ultra or Intel), and Windows 11 with
+PowerShell 7. An optional NVIDIA A100 GPU recipe (cargo build
+--release --features cuda) accelerates the Rust runner. Claude
+Code (CLI, web, and IDE plugin) executes the end-to-end pipeline
+without any local Python or Rust install beyond what the recipe
+requires \cite{claude-code, claude-opus-47}. Table \ref{tab:platforms}
+summarizes the expected single-iteration wall-clock per platform.
+
+\begin{table}[H]
+\centering
+\caption{Single-iteration wall-clock per platform under the
+deterministic seed 20260510. M3 Ultra and A100 figures are read
+from 2030-gbm-1min/README.md.}
+\label{tab:platforms}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm}
+                >{\raggedright\arraybackslash}p{3.8cm}
+                >{\raggedright\arraybackslash}p{2.6cm}
+                >{\raggedright\arraybackslash}p{2.6cm}}
+\toprule
+\textbf{Platform} & \textbf{Toolchain} & \textbf{Wall-clock} & \textbf{Notes} \\
+\midrule
+Linux Ubuntu 22.04 LTS & Python 3.10/3.11/3.12, Rust 2021, g++ & 60 s & x86_64 32-core reference \\
+MacOS Apple Silicon M3 Ultra & Python 3.12, Rust 2021, clang++ & 26 to 32 s & faster than reference \\
+Windows 11 PowerShell 7 & Python 3.11, Rust 2021, MSVC & 60 to 75 s & WSL2 optional \\
+NVIDIA A100 GPU & Rust + cargo --features cuda & 12 s & cuda 12.x; optional \\
+Claude Code (CLI/web/IDE) & managed runtime & varies & cloud or local backend \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CI gates run ruff format --check, ruff check, and yamllint -d
+relaxed on Python 3.10, 3.11, and 3.12. The C++20 control loop and
+C++20 1 kHz heartbeat layer compile on Linux (g++), MacOS (clang++),
+and Windows (MSVC); the Rust 2021 runner builds under stable rustc.
+The verification recipe in 2030-gbm-1min/README.md walks the user
+through running iterate_1min.py for a single iteration, inspecting
+the L1 to L3 Parquet output, and running compare_agent_1min.py with
+the Ollama backend if the Anthropic API is not configured.

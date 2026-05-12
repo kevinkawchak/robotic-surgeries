@@ -21,7 +21,7 @@ Format: Keep a Changelog. Versioning: Semantic Versioning.
 - `2030-gbm-1min/paper/README.md` updated with a pointer to the populated `full-paper/` subdirectory plus a one-line description of the build_zip.sh helper.
 - @kevinkawchak added LaTeX source files and LaTeX zip file to main/2030-gbm-1min/paper/full-paper/final-paper on 2026-05-11.
 - @kevinkawchak added paper-1, paper-2, paper-3, and paper-4 chunked files and README files to robotic-surgeries/tree/main/2030-pdac-1min/paper/inputs on 2026-05-11 and 2026-05-12.
-- @kevinkawchak added research-1 chunked files and README files to robotic-surgeries/tree/main/2030-pdac-1min/paper/inputs/research-1 on 2026-05-12.
+- @kevinkawchak added research-1 chunked files and README files to robotic-surgeries/tree/main/2030-pdac-1min/paper/inputs/research-1 and inputs/research-2 on 2026-05-12.
 
 ### Fixed
 

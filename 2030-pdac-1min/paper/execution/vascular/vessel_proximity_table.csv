@@ -1,0 +1,6 @@
+vessel,centerline_start_x_mm,centerline_start_y_mm,centerline_start_z_mm,centerline_end_x_mm,centerline_end_y_mm,centerline_end_z_mm,hard_stop_r_mm,soft_warning_r_mm,no_fly_r_mm,active_phases
+superior_mesenteric_vein,15.0,-25.0,-45.0,15.0,-65.0,-55.0,2.0,4.0,6.0,"2,4,5,8"
+portal_vein,5.0,-55.0,-55.0,5.0,-75.0,-50.0,2.0,4.0,6.0,"2,4,5,8"
+hepatic_artery_common,5.0,-60.0,-50.0,20.0,-65.0,-55.0,1.5,3.0,5.0,"2,4,6,8"
+celiac_axis,0.0,-65.0,-60.0,5.0,-70.0,-55.0,1.5,3.0,5.0,"3,4,8"
+superior_mesenteric_artery,0.0,-35.0,-55.0,5.0,-65.0,-60.0,1.5,3.0,5.0,"3,4,8"

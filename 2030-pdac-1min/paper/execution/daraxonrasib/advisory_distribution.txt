@@ -1,0 +1,16 @@
+Daraxonrasib Postoperative Restart Day Distribution (32 Iterations)
+======================================================================
+
+  T+ 7d : ############################# (29 / 32)
+  T+14d : ### (3 / 32)
+
+Decision logic:
+  T+ 7d: realized PJ grade A, HJ leak absent, GJ patent, no intra op events
+  T+14d: PJ grade B/C, HJ leak present, GJ delayed, or intra op events > 0
+  T+21d: max force time integral > 8.0 N s OR realized FRS >= 8
+
+Caveats (preserved in every advisory):
+  - FDA SaMD framework: this advisory is a software function intended
+    to support a board certified oncologist; not a clinical decision.
+  - Daraxonrasib is paused 72 hours pre op per RASolute 302 protocol;
+    intra op serum is at the trough below 0.5 ng/mL.

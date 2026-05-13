@@ -1,0 +1,5 @@
+rank,entrant,composite_mean,composite_ci_low,composite_ci_high,total_wins,win_rate
+1,PancreSpeed_1_0,93.735,93.235,94.235,96,1.0
+2,da_Vinci_Whipple_2030,83.886,83.386,84.386,32,0.5
+3,Hugo_PDAC_2030,80.974,80.474,81.474,0,0.0
+4,Dutch_human_baseline,67.895,67.395,68.395,0,0.0

@@ -1,0 +1,79 @@
+640 Channel Sensor Stack (8 arms x 80 channels = 640 channels total)
+====================================================================
+
+                +---------+---------+---------+---------+
+                | Arm 1   | Arm 2   | Arm 3   | Arm 4   |
+                | 80 ch   | 80 ch   | 80 ch   | 80 ch   |
+                +---------+---------+---------+---------+
+                | Arm 5   | Arm 6   | Arm 7   | Arm 8   |
+                | 80 ch   | 80 ch   | 80 ch   | 80 ch   |
+                +---------+---------+---------+---------+
+
+Per Arm 80 Channel Inventory
+----------------------------
+  +------------------------------+-------+----------+
+  | Channel family               | Count | Rate     |
+  +------------------------------+-------+----------+
+  | Joint position q[7]          |     7 | 10 kHz   |
+  | Joint velocity qd[7]         |     7 | 10 kHz   |
+  | Joint torque tau[7]          |     7 | 10 kHz   |
+  | EE position xyz[3]           |     3 | 10 kHz   |
+  | EE orientation quat[4]       |     4 | 10 kHz   |
+  | EE linear velocity vxyz[3]   |     3 | 10 kHz   |
+  | EE force fxyz[3]             |     3 | 100 kHz  |
+  | EE torque txyz[3]            |     3 | 100 kHz  |
+  | Tool state enum              |     1 | 10 kHz   |
+  | Tool subtype                 |     1 | 10 kHz   |
+  | Bipolar current              |     1 | 10 kHz   |
+  | Bipolar voltage              |     1 | 10 kHz   |
+  | Suction pressure             |     1 | 10 kHz   |
+  | Suction flow                 |     1 | 10 kHz   |
+  | Irrigation flow              |     1 | 10 kHz   |
+  | Vessel proximity             |     1 | 100 kHz  |
+  | NIR ICG channels[4]          |     4 | 10 kHz   |
+  | Duct manometry               |     1 | 10 kHz   |
+  | Ring tension                 |     1 | 10 kHz   |
+  | Bile spectrophotometry[4]    |     4 | 10 kHz   |
+  | US B mode strips[8]          |     8 | 10 kHz   |
+  | Heartbeat seq                |     1 | 10 kHz   |
+  | Heartbeat watchdog           |     1 | 10 kHz   |
+  | Tip force scalar             |     1 | 100 kHz  |
+  | Cumulative cross arm force   |     1 | 10 kHz   |
+  | Force time integral          |     1 | 10 kHz   |
+  | Engagement depth             |     1 | 10 kHz   |
+  | E stop state enum            |     1 | 10 kHz   |
+  | Temperature                  |     1 | 10 kHz   |
+  | Power                        |     1 | 10 kHz   |
+  | Collision state enum         |     1 | 10 kHz   |
+  | Tool changer state           |     1 | 10 kHz   |
+  | Task id                      |     1 | 10 kHz   |
+  | Phase id                     |     1 | 10 kHz   |
+  | Queue depth                  |     1 | 10 kHz   |
+  +------------------------------+-------+----------+
+  | TOTAL PER ARM                |    80 |          |
+  +------------------------------+-------+----------+
+
+Per Arm Tool Assignment (Phase 5, Pancreaticojejunostomy)
+---------------------------------------------------------
+  arm 1: hybrid_scalpel_needle_driver
+  arm 2: bipolar_coag_needle_driver
+  arm 3: articulated_retractor_grasper
+  arm 4: linear_8el_us_imri_nir
+  arm 5: bipolar_suction
+  arm 6: suction_bipolar
+  arm 7: suction_irrigation
+  arm 8: nir_5ala_sample_collector
+
+Per Arm Base Frame Offset (mm, patient frame)
+---------------------------------------------
+  arm 1: (+400, -200, +300)
+  arm 2: (+400, +200, +300)
+  arm 3: (+400, -400, +200)
+  arm 4: (+400, +400, +200)
+  arm 5: (-400, -200, +300)
+  arm 6: (-400, +200, +300)
+  arm 7: (-400, -400, +200)
+  arm 8: (-400, +400, +200)
+
+  Note: arms 1 to 4 sit on the patient right side, arms 5 to 8 on the
+  patient left side. Arm 1 / Arm 5 share the upper deck plane.

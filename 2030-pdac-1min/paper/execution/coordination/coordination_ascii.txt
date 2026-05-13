@@ -1,0 +1,47 @@
+10 kHz Heartbeat Bus - 8 Arm Broadcast Cycle
+=============================================
+
+  T (microseconds, 0 to 100 us per 10 kHz tick)
+  0         12        24        36        48        60        72        84        100
+  +---------+---------+---------+---------+---------+---------+---------+---------+----+
+  | Arm 1   | Arm 2   | Arm 3   | Arm 4   | Arm 5   | Arm 6   | Arm 7   | Arm 8   | RX |
+  | 32 B    | 32 B    | 32 B    | 32 B    | 32 B    | 32 B    | 32 B    | 32 B    |16us|
+  +---------+---------+---------+---------+---------+---------+---------+---------+----+
+
+  Per arm 32 byte response frame layout:
+    bytes 0   to 3   : heartbeat_seq (uint32)
+    bytes 4   to 7   : watchdog_deadline_us (uint32)
+    bytes 8   to 11  : tip_force_scalar (float32)
+    bytes 12  to 15  : cumulative_cross_arm_force (float32)
+    bytes 16  to 19  : force_time_integral (float32)
+    bytes 20  to 23  : phase_id + arm_id + estop_state + collision_state (packed)
+    bytes 24  to 27  : engagement_depth (float32)
+    bytes 28  to 31  : reserved (CRC32 + sequence ack)
+
+  100 us watchdog deadline:
+    if a master to arm tick is not acknowledged within 100 us, the arm
+    raises a local e stop and broadcasts a recovery frame on the next tick.
+
+  3 ms cross arm e stop budget:
+    on any per arm e stop, the master broadcasts an e stop to all 7 other
+    arms within 3 ms across the 10 kHz bus.
+
+  50 us per arm park budget:
+    after e stop receipt, each arm parks in 50 us by ramping
+    target_linear_vel to 0 over 5 ticks.
+
+4 State Collision Avoidance FSM
+================================
+
+  +------------+                     +------------+
+  |   CLEAR    |---  approach  ----->|  PENDING   |
+  |  vel 1.0   |<---  recede  ------ |  vel 0.5   |
+  +------+-----+                     +------+-----+
+         ^                                  |
+         |  recover                         |  approach
+         |                                  v
+  +------+-----+                     +------+-----+
+  |  RECOVERY  |<--- e_stop fire ----|   ACTIVE   |
+  |  vel 0.0   |                     |  vel 0.1   |
+  |  e_stop:Y  |                     +------------+
+  +------------+

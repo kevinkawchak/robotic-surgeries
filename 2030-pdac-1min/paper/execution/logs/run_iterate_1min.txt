@@ -1,0 +1,2 @@
+running 32 iterations on device=cpu with seed=20260513
+wrote 32 iterations to /home/user/robotic-surgeries/2030-pdac-1min/paper/execution/iterations

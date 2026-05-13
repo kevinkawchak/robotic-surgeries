@@ -1,0 +1,31 @@
+{
+  "deposition_doi": "10.5281/zenodo.18445179",
+  "deposition_url": "https://doi.org/10.5281/zenodo.18445179",
+  "project": "pdac-1min",
+  "version": "v0.6.0",
+  "execution_version": "v0.7.0",
+  "release_date": "2026-05-13",
+  "license": "MIT",
+  "manifest_generated_at": "2026-05-13T21:28:09Z",
+  "iterations": [
+    {
+      "iteration_id": 0,
+      "seed": 20260513,
+      "file_name": "run_00000_L0_raw.parquet",
+      "file_size_bytes_estimate": 412750000,
+      "file_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "pending_l0_raw_upload"
+    },
+    {
+      "iteration_id": 1,
+      "seed": 20260514,
+      "file_name": "run_00001_L0_raw.parquet",
+      "file_size_bytes_estimate": 412750000,
+      "file_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "pending_l0_raw_upload"
+    }
+  ],
+  "iteration_count_total": 32,
+  "deposition_size_bytes_estimate": 13208000000,
+  "notes": "Pointer JSON family resolves the committed lightweight slices in 2030-pdac-1min/paper/execution/iterations/ to the L0 raw archive on Zenodo. The live upload step is gated on a ZENODO_TOKEN environment variable. The manifest is canonical at v0.7.0 once the deposition is published."
+}

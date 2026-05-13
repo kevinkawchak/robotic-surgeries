@@ -1,0 +1,31 @@
++==========================================================================+
+|     8-ARM COORDINATION HEARTBEAT (10 kHz, 64-byte frame, 100 us deadline)|
++==========================================================================+
+|    +-------+ 10 kHz broadcast +-------+ 10 kHz broadcast +-------+       |
+|    | ARM 1 |<---------------->| ARM 2 |<---------------->| ARM 3 |      |
+|    | hyb   |                  | bipol |                  | retr  |      |
+|    | u-w-p |                  | + coag|                  | + grsp|      |
+|    +---+---+                  +---+---+                  +---+---+       |
+|        |                          |                          |           |
+|        v                          v                          v           |
+|    +-------+ 10 kHz broadcast +-------+ 10 kHz broadcast +-------+       |
+|    | ARM 4 |<---------------->| ARM 5 |<---------------->| ARM 6 |      |
+|    | iMRI  |                  | bipol |                  | suct  |      |
+|    | + NIR |                  | + suct|                  | + coag|      |
+|    +---+---+                  +---+---+                  +---+---+       |
+|        |                          |                          |           |
+|        v                          v                          v           |
+|    +-------+ 10 kHz broadcast +-------+                                  |
+|    | ARM 7 |<---------------->| ARM 8 |                                  |
+|    | suct  |                  | NIR + |                                  |
+|    | + irr |                  | UV    |                                  |
+|    +-------+                  +-------+                                  |
+|                                                                          |
+|   COORDINATION MASTER (deterministic, 10 kHz, 64-byte frame, 16-bit CRC) |
+|     - broadcasts every 100 us, expects per arm ack within 100 us         |
+|     - cross arm e stop latency budget 3 ms                               |
+|     - per arm park latency budget 50 us                                  |
+|   Per arm tip force cap 3.0 N hard, 2.5 N soft                           |
+|   Cumulative cross arm tip force cap 18.0 N hard, 15.0 N soft            |
+|   Per arm force time integral cap 8.0 N.s hard, 5.0 N.s soft             |
++==========================================================================+

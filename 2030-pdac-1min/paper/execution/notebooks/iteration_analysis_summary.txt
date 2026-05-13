@@ -1,0 +1,24 @@
+Iteration Analysis Notebook Execution Summary
+============================================================
+
+Source notebook: codegen/notebooks/iteration_analysis_1min.ipynb
+Input:           execution/iterations/index.jsonl (32 rows)
+Seed:            20260513
+
+Statistics:
+  iterations:           32
+  mean composite:       93.298
+  composite std:        1.332
+  95 percent CI:        +/- 0.462
+  composite range:      [88.431, 93.735]
+
+Realized outcome rates:
+  PJ grade A rate:      1.0 (32 of 32)
+  PJ grade B rate:      0.0 (0 of 32)
+  PJ grade C rate:      0.0 (0 of 32)
+  HJ leak absent rate:  0.938 (30 of 32)
+  GJ patent rate:       0.938 (30 of 32)
+
+Notebook not run live (no Jupyter kernel in the working environment).
+The numerical outputs above are produced by the equivalent pure Python
+computation against the same input index.jsonl.

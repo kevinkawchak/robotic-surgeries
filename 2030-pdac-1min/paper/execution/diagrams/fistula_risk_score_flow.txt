@@ -1,0 +1,20 @@
++==========================================================================+
+|     FISTULA RISK SCORE (FRS) INPUTS AND CLASSIFICATION                   |
++==========================================================================+
+|                                                                          |
+|  Input                  Source              Value (PAT-PDAC-0001)  Wt    |
+|  ------------------------------------------------------------------------|
+|  Gland texture          preop imaging       soft                    2    |
+|  Pathology              preop histology     PDAC                    0    |
+|  Pancreatic duct (mm)   preop imaging       3.2                     2    |
+|  EBL (mL)               intra op arm 7 sct  200 (projected)         1    |
+|                                                              total: 5    |
+|                                                                          |
+|  Risk classification:                                                    |
+|     0 to 2  Negligible (< 1 percent grade B/C fistula)                   |
+|     3 to 6  Moderate (5 to 10 percent grade B/C fistula)  <-- PAT-PDAC-0001 |
+|     7 to 10 High (15 to 25 percent grade B/C fistula)                    |
+|                                                                          |
+|  PDAC target: drive simulated grade B/C combined to under 5 percent      |
+|  via ring tension control loop tuning and Daraxonrasib pairing.          |
++==========================================================================+

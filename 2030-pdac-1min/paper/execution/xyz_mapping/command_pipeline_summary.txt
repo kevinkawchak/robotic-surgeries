@@ -1,0 +1,70 @@
+XYZ Mapping Pipeline - 6 Stage Cartesian Command Emitter
+=========================================================
+
+  Input: 640 channel sensor stream at 10 kHz command rate
+  Output: per arm xyz Cartesian command record (xyz_command_8arm schema)
+
+  +-------------------+
+  | Stage 1: Sensor   |   reads phase id, ee_pos, vessel_proximity, ring tension,
+  | ingest            |   tip force, e stop state, collision state per arm per tick
+  +---------+---------+
+            |
+            v
+  +-------------------+
+  | Stage 2: Phase    |   t_s -> phase 1 to 8 via the 8 phase boundary table
+  | identification    |   phase 1: 0.000s to 6.000s    (4 arms)
+  |                   |   phase 2: 6.000s to 16.000s   (8 arms, vessel control)
+  |                   |   phase 3: 16.000s to 24.000s  (4 arms, artery first)
+  |                   |   phase 4: 24.000s to 32.000s  (8 arms, en bloc)
+  |                   |   phase 5: 32.000s to 42.000s  (5 arms, PJ anastomosis)
+  |                   |   phase 6: 42.000s to 48.000s  (5 arms, HJ anastomosis)
+  |                   |   phase 7: 48.000s to 54.000s  (4 arms, GJ anastomosis)
+  |                   |   phase 8: 54.000s to 60.000s  (8 arms, hemostasis)
+  +---------+---------+
+            |
+            v
+  +-------------------+
+  | Stage 3: Per arm  |   active arm membership per phase via ACTIVE_ARMS_BY_PHASE
+  | task              |   tool subtype assignment per arm 1001 to 1008
+  | identification    |   tool state per phase (approach, cut, engage, suture, withdraw)
+  +---------+---------+
+            |
+            v
+  +-------------------+
+  | Stage 4: Per arm  |   target_pos = phase target plus sinusoidal arm factor
+  | target generation |   target_quat = identity (placeholder for re orient)
+  |                   |   target_linear_vel = 1200 mm/s * velocity_scale
+  +---------+---------+
+            |
+            v
+  +-------------------+
+  | Stage 5: Safety   |   vascular safety zone gate (5 vessels)
+  | zone gating       |     clear         -> velocity_scale 1.0, force_clamp 3.0
+  |                   |     no_fly        -> velocity_scale 0.5, force_clamp 2.5
+  |                   |     soft_warning  -> velocity_scale 0.1, force_clamp 1.5
+  |                   |     hard_stop     -> e_stop true, velocity_scale 0.0
+  +---------+---------+
+            |
+            v
+  +-------------------+
+  | Stage 6: Command  |   command enum: EMIT, HOLD, SLOW, PARK, E_STOP,
+  | emission          |     HEARTBEAT_ACK, PHASE_BOUNDARY
+  |                   |   ring_tension_target = phase specific (0.45 PJ, 0.50 HJ, 0.60 GJ)
+  |                   |   collision_state = clear / pending / active
+  +-------------------+
+
+  Latency budget per tick (10 kHz period = 100 microseconds):
+    Stage 1 sensor ingest:                10 us
+    Stage 2 phase identification:          1 us
+    Stage 3 task identification:           5 us
+    Stage 4 target generation:            15 us
+    Stage 5 safety zone gating:           30 us
+    Stage 6 command emission:             10 us
+    Reserve / cross arm synchronization:  29 us
+    TOTAL:                                100 us  (matches 10 kHz tick budget)
+
+  Cross arm safety budgets:
+    Per arm e stop latency:                 10 us  (1 tick)
+    Cross arm broadcast latency:             3 ms
+    Per arm park budget:                    50 us
+    100 microsecond watchdog deadline

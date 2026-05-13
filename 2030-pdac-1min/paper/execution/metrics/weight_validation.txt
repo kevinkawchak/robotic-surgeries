@@ -1,0 +1,46 @@
+Composite Score Weight Sum Verification (v0.6.0)
+================================================
+
+  quality              = 0.30
+  time                 = 0.20
+  cost                 = 0.15
+  safety               = 0.15
+  patient_experience   = 0.05
+  anastomosis_quality  = 0.15
+  --------------------------
+  TOTAL                = 1.00 (exact, no floating point drift)
+
+  Verified by pytest:
+    tests/test_smoke.py::test_composite_score_weights_sum_to_one PASSED
+
+  Verified by direct sum:
+    Python:  sum([0.30, 0.20, 0.15, 0.15, 0.05, 0.15])
+             = 1.0  (math.isclose to 1.0 within 1e-6)
+
+Per Entrant Composite Score (Frozen Weights, Baseline Component Scores)
+=======================================================================
+
+  PancreSpeed 1.0:
+    28.500 + 20.000 + 12.000 + 14.400 + 4.600 + 14.250 = 93.750
+
+  da Vinci Whipple 2030:
+    26.400 + 15.600 + 10.500 + 13.500 + 4.400 + 13.500 = 83.900
+
+  Hugo PDAC 2030:
+    25.500 + 14.000 + 11.250 + 12.900 + 4.200 + 13.050 = 80.900
+
+  Dutch human surgeon baseline:
+    24.600 +  1.600 + 13.500 + 12.000 + 3.900 + 12.300 = 67.900
+
+Note on the codegen smoke test discrepancy:
+  The codegen smoke test at tests/test_smoke.py asserts that the
+  PancreSpeed composite equals 93.55 and that the Dutch human
+  baseline composite equals 56.05. The deterministic output of the
+  frozen weights applied to the baseline component scores yields
+  93.75 and 67.90 respectively. The discrepancy is a known issue
+  in the v0.6.0 codegen and is documented at:
+    2030-pdac-1min/paper/execution/tests/test_status.txt
+
+  The execution tree uses the deterministic output (93.75, 67.90)
+  rather than the test target (93.55, 56.05) because the
+  deterministic output is reproducible from the released weights.

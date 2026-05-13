@@ -1,0 +1,52 @@
+Zenodo Deposition Summary
+=========================
+
+  DOI                : 10.5281/zenodo.18445179
+  URL                : https://doi.org/10.5281/zenodo.18445179
+  Title              : 2030 PDAC 1 Minute 8 Arm Whipple Codegen (v0.6.0)
+  Project version    : v0.6.0
+  Execution version  : v0.7.0
+  License            : MIT 2026 Kevin Kawchak
+  Author             : Kevin Kawchak, ChemicalQDevice
+  Release date       : 13 May 2026
+
+Deposition Inventory (Estimated)
+================================
+
+  Per iteration L0 raw Parquet (32 files):    13.20 GB  (412.5 MB each x 32)
+  Cross iteration metadata Parquet (3 files): 8 MB
+  README plus LICENSE:                        25 KB
+  ----------------------------------------------------------
+  Total deposition size estimate:             13.21 GB
+
+Status
+======
+
+  - Pointer JSON family (32 per iteration pointer JSON files) is committed
+    in this execution tree at execution/zenodo/.
+  - The manifest.json skeleton is committed.
+  - The live L0 raw Parquet upload is pending and is gated on a valid
+    ZENODO_TOKEN. The upload command is documented in execution/zenodo/README.md.
+
+Verification After Upload
+=========================
+
+  Each per iteration pointer JSON encodes the expected SHA 256 of the
+  matching L0 raw Parquet on Zenodo. After upload:
+
+    sha256sum run_00000_L0_raw.parquet
+    # compare to file_sha256 in run_00000_L0_raw.zenodo_pointer.json
+
+  Reproducibility contract:
+    - The 32 iteration sweep at root seed 20260513 yields bit identical
+      L0 raw Parquet output across the four cross platform recipes
+      (MacOS Apple Silicon, Windows 11, Linux Ubuntu 22.04 LTS, Claude
+      Code CLI / Web / IDE).
+    - The L0 raw archive is therefore deduplicable across mirror sites.
+
+References
+==========
+
+  - codegen/src/zenodo/patch_pointers.py: pointer JSON writer + manifest
+  - codegen/releases/v0.6.0/zenodo_doi.txt: DOI placeholder
+  - codegen/releases/v0.6.0/manifest.json: codegen release manifest

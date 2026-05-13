@@ -1,0 +1,10 @@
+arm_id,response_frame_bytes,watchdog_deadline_us,broadcast_offset_us,park_budget_us,e_stop_budget_ms
+1,32,100,0,50,3
+2,32,100,12,50,3
+3,32,100,24,50,3
+4,32,100,36,50,3
+5,32,100,48,50,3
+6,32,100,60,50,3
+7,32,100,72,50,3
+8,32,100,84,50,3
+total,256,100,84,50,3

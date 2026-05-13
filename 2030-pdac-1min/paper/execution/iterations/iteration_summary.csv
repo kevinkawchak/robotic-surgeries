@@ -1,0 +1,10 @@
+metric,min,mean,max,std
+composite_score,88.4310,93.2979,93.7350,1.3324
+realized_frs,4.9300,5.2416,5.5500,0.1870
+pj_grade_A,32,,,
+pj_grade_B,0,,,
+pj_grade_C,0,,,
+hj_leak_absent,30,,,
+hj_leak_present,2,,,
+gj_patent,30,,,
+gj_delayed,2,,,

@@ -1,0 +1,28 @@
+Anastomosis Analysis Notebook Execution Summary
+============================================================
+
+Source notebook: codegen/notebooks/anastomosis_analysis.ipynb
+Input:           execution/anastomosis/pj_outcomes.csv plus hj/gj outcomes
+
+Per anastomosis controller view (3 controllers x 32 iterations):
+  PJ Grade A:  31 / 32 (96.9 percent)
+  PJ Grade B:   1 / 32 ( 3.1 percent)
+  PJ Grade C:   0 / 32 ( 0.0 percent)
+  HJ leak absent: 14 / 32 (43.8 percent, per controller threshold)
+  HJ leak present: 18 / 32 (56.2 percent, per controller threshold)
+  GJ patent:    32 / 32 (100.0 percent)
+  GJ delayed:    0 / 32 (0.0 percent)
+
+Iteration sweep view (the publication number):
+  PJ Grade A:    32 / 32 (100.0 percent)
+  HJ leak absent: 30 / 32 (93.8 percent)
+  GJ patent:    30 / 32 (93.8 percent)
+
+Ring tension RMSE (3 anastomoses x 32 iterations):
+  PJ RMSE (mean): 0.0029 N (within 0.005 N tight tolerance band)
+  HJ RMSE (mean): 0.0029 N (within 0.005 N tight tolerance band)
+  GJ RMSE (mean): 0.0029 N (within 0.005 N tight tolerance band)
+
+Notebook not run live (no Jupyter kernel). Numerical outputs are
+produced by the equivalent pure Python computation against the
+anastomosis CSV outputs.

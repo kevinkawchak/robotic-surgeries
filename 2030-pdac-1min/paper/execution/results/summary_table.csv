@@ -1,0 +1,16 @@
+artifact_family,source_codegen_module,output_count,output_size_bytes_committed,headline_value
+sensors,codegen/src/sensors/ingest_8arm.py,1001 records,1110746,tip force range 0.5635 to 0.6671 N
+xyz_mapping,codegen/src/mapping/sensor_to_xyz_8arm.py,1001 records,~120000,EMIT command on all 1001 ticks
+coordination,codegen/src/coordination/arm_heartbeat_10khz.cpp,8 arms,~3000,256 bytes per 10 kHz tick
+iterations,codegen/src/simulation/iterate_1min.py,32 rows index plus 64 row L3,~50000,mean composite 93.298
+metrics,codegen/src/metrics/compute_1min.py,4 entrant table,~1500,sum of weights = 1.00
+comparison,codegen/src/llm/compare_agent_1min.py,128 verdicts,~95000,PancreSpeed 1.0 96 of 96 wins
+vascular,codegen/src/vascular/safety_zone_gate.py,100 verdict path,~10000,5 hard_stop verdicts on approach
+anastomosis,codegen/src/anastomosis/*.py,3 outcome tables,~5000,PJ A 31 of 32 controller view
+daraxonrasib,codegen/src/daraxonrasib/{trajectory,advisory}.py,32 trajectories plus 32 advisories,~12000,T+7d 29 of 32 (90.6 percent)
+zenodo,codegen/src/zenodo/patch_pointers.py,pointer plus manifest skeleton,~2000,DOI 10.5281/zenodo.18445179
+viz,codegen/viz/*.txt,3 ASCII visualizations,~6000,inherited from v0.6.0
+notebooks,codegen/notebooks/*.ipynb,3 summary texts,~6000,equivalent pure Python output
+diagrams,codegen/outputs/diagrams/*.txt,12 ASCII diagrams,~50000,inherited from v0.6.0
+tests,codegen/tests/test_smoke.py,13 tests,~3500,10 pass / 3 known fails
+logs,multiple,per script logs,~3000,deterministic re run yields identical artifacts

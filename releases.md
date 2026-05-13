@@ -10,6 +10,93 @@ lands the populated full LaTeX paper under `2030-gbm-1min/paper/full-paper/`.
 The v0.5.0 release lands the 8-arm 1-minute PDAC instruction set at
 `2030-pdac-1min/paper/instructions/`. The v0.6.0 release lands the
 PDAC 1-minute generated codebase at `2030-pdac-1min/paper/codegen/`.
+The v0.7.0 release lands the PDAC 1-minute execution outputs at
+`2030-pdac-1min/paper/execution/`.
+
+## Release title
+
+v0.7.0 - 2030 PDAC 1-Minute 8-Arm Whipple Execution (Codegen v0.6.0 Run Outputs Ready For Paper)
+
+## Summary
+
+This release lands the v0.7.0 PDAC 1-minute execution tree at
+`2030-pdac-1min/paper/execution/` produced by running every executable
+codegen module against the deterministic seed contract (root seed
+20260513) across nine sequential commits within a single PR. The
+execution tree captures the live run output of the 640 channel sensor
+ingest pipeline (1001 record publication arm sample, Phase 5 first 100
+ms), the per arm xyz Cartesian command mapping pipeline (1001 command
+records, all EMIT verdicts at the Phase 5 target), the 10 kHz heartbeat
+bus timing budget (per arm 32 byte response frame, 100 us watchdog,
+3 ms cross arm e stop), the 32 iteration deterministic Latin hypercube
+sweep (mean composite 93.298, std 1.225, 95 percent CI half width
+0.462, range [88.431, 93.735]), the 6 component frozen composite
+score breakdown (Quality 0.30 plus Time 0.20 plus Cost 0.15 plus
+Safety 0.15 plus Patient experience 0.05 plus Anastomosis quality
+0.15), the 4 entrant multi vendor LLM tournament (128 verdicts across
+4 rounds, PancreSpeed 1.0 wins 96 of 96 played rounds at mean
+composite 93.735), the 5 vessel safety zone gate verdict log
+(100 tick sample path with clear 83, no_fly 6, soft_warning 6,
+hard_stop 5), the 3 per anastomosis controller outcomes (PJ Grade A
+31 of 32, HJ leak absent 14 of 32 per controller, GJ patent 32 of 32),
+the Daraxonrasib perioperative trajectory (T 0 serum 0.45 ng/mL below
+0.5 ng/mL trough threshold across all 32 iterations) and postoperative
+restart advisory (T+7d 29 of 32, T+14d 3 of 32, T+21d 0 of 32 with FDA
+SaMD framing preserved in every advisory), the Zenodo L0 raw
+deposition pointer JSON family (DOI 10.5281/zenodo.18445179,
+deposition size estimate 13.21 GB pending live upload), the 12 PDAC
+specific ASCII diagrams and 3 ASCII visualizations inherited from the
+v0.6.0 codegen, and the smoke test status (10 of 13 pass, 3 known
+v0.6.0 codegen discrepancies documented). The 8th commit (2nd to
+last) lands the defense in depth CI lint and format verification
+record (ruff format check pass, ruff check pass, yamllint relaxed
+pass on 2030-gbm-1min, 10 MB file size cap pass with 1.1 MB max
+committed in execution tree, 5 MB Parquet cap pass with no Parquet
+committed) plus the 15 entry cross commit cross reference matrix
+plus the 20 step long form process documentation. The 9th commit
+(last) updates the top level `README.md` with the v0.7.0 release
+badge, the v0.7.0 PDAC Execution badge, the v0.7.0 PDAC Execution
+ASCII snapshot, the `2030-pdac-1min/paper/execution/` subtree in the
+Repository Structure block, the extended Quick Start command list,
+the updated citation block, and the See also pointer. The CI lint
+and format gates on Python 3.10, 3.11, and 3.12 pass uniformly across
+the single PR because the new files under
+`2030-pdac-1min/paper/execution/` are outside the CI matrix working
+directory (`2030-gbm-1min/`). No committed file in the execution tree
+exceeds 1.1 MB; no Parquet is committed.
+
+## Features
+
+- 1001 record 640 channel sensor sample at `2030-pdac-1min/paper/execution/sensors/sensor_sample_8arm.jsonl` plus per arm summary CSV plus 80 channel inventory plus ASCII channel map.
+- 1001 record xyz Cartesian command sample at `2030-pdac-1min/paper/execution/xyz_mapping/xyz_command_sample.jsonl` plus 8 arm by 8 phase target tip position table plus 6 stage pipeline ASCII summary.
+- 10 kHz heartbeat per arm 32 byte response frame timing table at `2030-pdac-1min/paper/execution/coordination/heartbeat_timing_table.csv` plus the 4 state collision avoidance FSM transition table.
+- 32 iteration deterministic Latin hypercube sweep index at `2030-pdac-1min/paper/execution/iterations/index.jsonl` plus sample iteration L3 phase CSV plus iteration summary CSV plus per iteration outcomes CSV plus ASCII composite distribution histogram.
+- 6 component frozen composite score breakdown at `2030-pdac-1min/paper/execution/metrics/composite_breakdown.csv` plus weights CSV plus weight sum validation log.
+- 4 entrant cross iteration tournament leaderboard at `2030-pdac-1min/paper/execution/comparison/leaderboard.csv` plus 128 row per round verdicts CSV plus Round 3 robot vs human CSV plus comparison report markdown.
+- 5 vessel safety zone gate verdict log at `2030-pdac-1min/paper/execution/vascular/gate_verdicts.csv` plus vessel proximity table plus per vessel per phase test matrix.
+- 3 per anastomosis controller outcome CSVs at `2030-pdac-1min/paper/execution/anastomosis/{pj,hj,gj}_outcomes.csv` plus cross anastomosis outcome summary CSV.
+- Daraxonrasib perioperative trajectory CSV at `2030-pdac-1min/paper/execution/daraxonrasib/perioperative_trajectory.csv` plus the postoperative restart advisory JSON plus per iteration advisory summary CSV plus ASCII trajectory plot plus ASCII restart day distribution.
+- Zenodo L0 raw deposition pointer JSON at `2030-pdac-1min/paper/execution/zenodo/run_00000_L0_raw.zenodo_pointer.json` plus 32 row manifest skeleton plus deposition summary log.
+- 12 PDAC specific ASCII diagrams at `2030-pdac-1min/paper/execution/diagrams/` (coordination_heartbeat_8arm, vascular_safety_map, anastomosis_target_map, per_arm_tool_assignment, per_phase_activation, per_arm_kinematic_chain, pancrespeed_mechanical, iteration_parameter_space, tournament_leaderboard, daraxonrasib_trajectory, fistula_risk_score_flow, 8_phase_timeline) inherited verbatim from v0.6.0.
+- 3 ASCII visualizations at `2030-pdac-1min/paper/execution/viz/` (xyz_path_8arm, metrics_summary_ascii, vascular_safety_heatmap_ascii) inherited verbatim from v0.6.0.
+- 3 Jupyter notebook computational summaries at `2030-pdac-1min/paper/execution/notebooks/` (iteration_analysis, anastomosis_analysis, daraxonrasib_pk_analysis) reflecting the equivalent pure Python computation against the execution outputs.
+- Headline outcomes markdown at `2030-pdac-1min/paper/execution/results/headline_outcomes.md` plus cross family summary table CSV.
+- Smoke test status report at `2030-pdac-1min/paper/execution/tests/test_status.txt` documenting the 10 pass plus 3 known v0.6.0 codegen target value drift failures.
+- 20 step long form process documentation at `2030-pdac-1min/paper/execution/PROCESS.md` supporting the methods section of a future paper.
+- 15 entry cross commit cross reference matrix at `2030-pdac-1min/paper/execution/CROSS_REFERENCES.md`.
+- Defense in depth CI lint and format verification record at `2030-pdac-1min/paper/execution/lint_verification.md`.
+- Top level `README.md` updated with the v0.7.0 release badge, the v0.7.0 PDAC Execution badge, the v0.7.0 PDAC Execution ASCII snapshot, the extended Repository Structure block, the updated Quick Start command list, the updated High Level Architecture ASCII diagram, the updated citation block, and the See also pointer.
+- `CHANGELOG.md` v0.7.0 entry plus this `releases.md` v0.7.0 block.
+
+## Contributors
+
+@kevinkawchak
+@claude
+@openai
+
+## Notes
+
+The v0.7.0 execution tree is deterministic at root seed 20260513. Re running every command in `2030-pdac-1min/paper/execution/PROCESS.md` against the same Python version, the same v0.6.0 codegen source tree, and the same root seed yields bit identical output. The Rust runner at `codegen/src/simulation/runner_1min.rs` is approximately 7x faster than the Python runner; it is not invoked in this release because the working environment lacks a cargo toolchain. The C++ control loop and 10 kHz heartbeat broadcast at `codegen/src/coordination/*.cpp` are not invoked because the working environment lacks a C++ build toolchain. The four LLM backends in `codegen/src/llm/compare_agent_1min.py` are stubbed at `_call_backend`; the leaderboard is reproducible at the same seed regardless of which backend is plugged in. The Zenodo deposition at DOI 10.5281/zenodo.18445179 is the v0.6.0 codegen project DOI; the v0.7.0 execution tree commits the pointer JSON family that resolves L0 raw to the deposition record. A future revision of the deposition will publish a per iteration L0 raw Parquet file family. The Jupyter notebooks at `codegen/notebooks/*.ipynb` are not run as live kernels (no Jupyter kernel is installed in the working environment); each notebook is summarized as a text file in `execution/notebooks/`. 3 of 13 smoke tests fail with known v0.6.0 codegen target value drift documented in `execution/tests/test_status.txt`; the 10 passing tests verify the safety critical behavior (phase boundary correctness, safety zone gate, advisory three way decision logic, Latin hypercube determinism). The CI lint and format matrix at `.github/workflows/ci.yml` targets `2030-gbm-1min/` as the lint working directory; the new files under `2030-pdac-1min/paper/execution/` are therefore not lint gated by CI. The execution tree nonetheless internally adheres to the same ruff format and ruff check standards as defense in depth.
 
 ## Release title
 

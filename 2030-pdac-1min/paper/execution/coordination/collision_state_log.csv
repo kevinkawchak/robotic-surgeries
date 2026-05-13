@@ -1,0 +1,5 @@
+state,description,velocity_scale,force_clamp_n,e_stop,exit_condition
+clear,no other arm within 30 mm collision radius,1.00,3.00,no,proximity drop to clear
+pending,another arm within 30 mm but not within 15 mm,0.50,2.50,no,enter active or return to clear
+active,another arm within 15 mm collision radius,0.10,1.50,no,return to pending after 30 mm clearance
+recovery,e stop fired and per arm park applied within 50 us,0.00,0.00,yes,operator reset and 1 second cooldown

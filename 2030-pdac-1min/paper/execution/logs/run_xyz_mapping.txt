@@ -1,0 +1,1 @@
+wrote 1001 commands to /home/user/robotic-surgeries/2030-pdac-1min/paper/execution/xyz_mapping/xyz_command_sample.jsonl

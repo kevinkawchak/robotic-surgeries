@@ -3,7 +3,7 @@
 Physical AI Oncology Trial Robotic Surgeries simulation repository.
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18445179-blue)](https://doi.org/10.5281/zenodo.18445179)
-[![Release](https://img.shields.io/badge/Release-v0.5.0-brightgreen.svg)](releases.md)
+[![Release](https://img.shields.io/badge/Release-v0.6.0-brightgreen.svg)](releases.md)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Python%203.10%2F3.11%2F3.12-3776ab.svg)](.github/workflows/ci.yml)
 [![Variant GBM](https://img.shields.io/badge/Variant-GBM%201%20Minute-orange.svg)](2030-gbm-1min)
@@ -12,6 +12,7 @@ Physical AI Oncology Trial Robotic Surgeries simulation repository.
 [![Paper Template](https://img.shields.io/badge/Paper%20Template-v0.3.0-9cf.svg)](2030-gbm-1min/paper)
 [![Paper Full](https://img.shields.io/badge/Paper%20Full-v0.4.0-success.svg)](2030-gbm-1min/paper/full-paper)
 [![PDAC Instructions](https://img.shields.io/badge/PDAC%20Instructions-v0.5.0-success.svg)](2030-pdac-1min/paper/instructions)
+[![PDAC Codegen](https://img.shields.io/badge/PDAC%20Codegen-v0.6.0-success.svg)](2030-pdac-1min/paper/codegen)
 [![Adjuvant](https://img.shields.io/badge/Adjuvant-Daraxonrasib-yellow.svg)](https://doi.org/10.5281/zenodo.18099351)
 
 ## Thesis
@@ -20,9 +21,9 @@ On-premises repository based LLMs provide commands to standard oncology surgical
 
 ## Overview
 
-This repository hosts the v0.5.0 release of the multi-arm robotic oncology resection simulation suite. The first variant under this umbrella is the 4-arm 1-minute glioblastoma variant in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. The new v0.5.0 release lands the second variant: the 8-arm 1-minute pancreatic ductal adenocarcinoma (PDAC) Whipple variant instruction set at `2030-pdac-1min/paper/instructions/`, built around a hypothetical 2030 Medtronic PancreSpeed 1.0 eight-arm parallel coelomic oncology robot. Each PDAC arm carries 7 degrees of freedom and is sampled at mixed 10 kHz commands plus 100 kHz force per arm; the eight arms cooperate over a deterministic 10 kHz heartbeat broadcast bus with a 3 ms E-stop budget and an 18 N cumulative force cap on the patient frame. The PDAC variant pairs the 60 second robotic Whipple with Daraxonrasib (the pan KRAS inhibitor from the RASolute 302 and RASolve 301 programs) as the precision oncology adjuvant.
+This repository hosts the v0.6.0 release of the multi-arm robotic oncology resection simulation suite. The first variant is the 4-arm 1-minute glioblastoma trial in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. The v0.5.0 release landed the 8-arm 1-minute PDAC Whipple variant instruction set at `2030-pdac-1min/paper/instructions/`. The new v0.6.0 release lands the PDAC 1-minute codegen tree at `2030-pdac-1min/paper/codegen/` produced by Claude Code Opus 4.7 1M Max from the v0.5.0 instructions across nine sequential commits within a single PR. The codegen tree includes the 640 channel sensor stack at mixed 10 kHz command plus 100 kHz force, the per arm 7 DOF DH kinematics, the 5 vessel vascular safety zones, the 3 anastomosis controllers (pancreaticojejunostomy, hepaticojejunostomy, gastrojejunostomy), the 32 iteration deterministic Latin hypercube sweep, the 6 component frozen composite score, the 4 entrant multi vendor LLM tournament agent, the Daraxonrasib perioperative pause and restart logic, and the Zenodo L0 deposition patcher.
 
-The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release lands the 21 file PDAC instruction set at `2030-pdac-1min/paper/instructions/` that a future Claude Code Opus 4.7 1M Max session will read to author the full PDAC simulation tree across nine sequential commits within a single PR.
+The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release landed the 21 file PDAC instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release lands the generated PDAC simulation tree at `2030-pdac-1min/paper/codegen/` that addresses 7 of the 10 approximations cataloged in the v0.4.0 GBM full paper limitations.
 
 The PDAC variant addresses 7 of the 10 approximations cataloged in the v0.4.0 GBM full paper limitations: doubled iterations (16 to 32), multi vendor tournament (single vendor to 3 robots plus 1 human), force time integral cap (added), 100 kHz force sampling (vs 10 kHz), Daraxonrasib precision oncology integration (new), per vessel safety zones (new), and anastomosis ring tension control (new). The remaining 3 approximations (synthetic patient, non deterministic Claude generation, hypothetical 2030 robot) are inherited with explicit cross simulation caveats.
 
@@ -61,7 +62,7 @@ robotic-surgeries/
     paper/                 # v0.3.0 LaTeX paper template (head start)
       full-paper/          # v0.4.0 populated full LaTeX paper (Overleaf ready)
         final-paper/       # v0.4.0 final populated paper + LaTeX zip
-  2030-pdac-1min/          # 8-arm 1-minute PDAC Whipple variant (v0.5.0)
+  2030-pdac-1min/          # 8-arm 1-minute PDAC Whipple variant (v0.5.0 / v0.6.0)
     paper/
       inputs/              # source research chunks (read only)
         paper-1/           # author prior PDAC paper 1 (Zenodo 17239510)
@@ -71,35 +72,68 @@ robotic-surgeries/
         daraxonrasib-1/    # Daraxonrasib summary
         research-1/        # Daraxonrasib clinical trial historical timeline
         research-2/        # Whipple procedure evidence baseline
-      instructions/        # v0.5.0 PDAC 1-minute instruction set (this PR)
-        README.md          #   top level orientation with bibtex entries
-        pdac_context_1min.md
-        robot_specification_pancrespeed.md
-        sensor_specification_100khz.md
-        multi_arm_coordination_8arm.md
-        file_size_pyramid_1min.md
-        chunking_strategy.md
-        file_format_conventions.md
-        ascii_diagram_guide.md
-        competition_protocol.md
-        runtime_environments.md
-        ci_compliance_checklist.md
-        pr_workflow.md
-        vascular_safety_protocol.md
-        anastomosis_protocols.md
-        daraxonrasib_integration.md
-        gbm_errors_addressed.md
-        zenodo_archive_protocol.md
-        commit_01_overview_1min.md
-        commit_02_sensors_1min.md
-        commit_03_xyz_8arm.md
-        commit_04_iterations_1min.md
-        commit_05_competition_1min.md
-        commit_06_error_fixes.md
-        commit_07_repository_updates.md
-        lint_verification.md
-        .markdownlint.yaml
+      instructions/        # v0.5.0 PDAC 1-minute instruction set
+      codegen/             # v0.6.0 PDAC 1-minute generated codebase (this release)
+        README.md          # project README with DOI badges and pipeline ASCII
+        LICENSE.txt        # MIT
+        pyproject.toml     # Python project plus lint config
+        docker-compose.yml # Python + Rust + DuckDB services
+        .gitignore         # Python + Rust + Jupyter + macOS
+        config/            # project, kinematics, iterations, safety zones, targets
+        docs/              # architecture, sensor spec, coordinate mapping, etc.
+        schemas/           # JSON Schema, Protocol Buffers, Avro
+        src/               # sensors, mapping, control, coordination, vascular,
+                           # anastomosis, daraxonrasib, simulation, metrics, llm, zenodo
+        data/              # sensor and xyz samples, iteration index, baseline, outcomes
+        prompts/           # versioned LLM prompts (tournament + Daraxonrasib advisory)
+        results/           # comparison.json, comparison_report.md, advisory.json
+        viz/               # ASCII tip path, leaderboard, vascular heatmap
+        outputs/           # publication grade output subdirectories
+        notebooks/         # iteration / anastomosis / Daraxonrasib analysis
+        tests/             # smoke tests
+        releases/v0.6.0/   # manifest, metrics, sample seeds, Zenodo DOI
       templates/           # LaTeX templates for the future paper
+```
+
+## v0.6.0 PDAC Codegen (ASCII)
+
+```
++============================================================================+
+|       2030-PDAC-1MIN CODEGEN (v0.6.0, 8-arm 60-second Whipple)             |
++============================================================================+
+
+   paper/codegen/   end to end PDAC 1 minute simulation tree.
+     README.md      DOI badges, pipeline ASCII, runtime recipes.
+     config/        kinematics, iterations, safety zones, anastomosis targets.
+     docs/          architecture, sensor spec, methodology overviews.
+     schemas/       sensor record, xyz command, metrics, anastomosis, daraxo.
+     src/sensors/   640 channel ingest pipeline.
+     src/mapping/   sensor to Cartesian xyz mapping (10 kHz cmd rate).
+     src/control/   per arm robot control loop (C++).
+     src/coordination/  10 kHz heartbeat bus (C++) + collision avoidance.
+     src/vascular/  5 vessel safety zone gate at 10 kHz.
+     src/anastomosis/  PJ, HJ, GJ per anastomosis controllers.
+     src/daraxonrasib/ perioperative pause + LLM bound restart advisory.
+     src/simulation/   32 iteration sweep (Python + Rust runners).
+     src/metrics/   6 component frozen composite score.
+     src/llm/       4 entrant multi vendor tournament agent.
+     src/zenodo/    13.2 GB L0 raw deposition pointer patcher.
+     data/iterations/  per iteration L3/L4/events CSV samples + index.
+     prompts/       tournament + Daraxonrasib advisory prompts.
+     results/       comparison.json, comparison_report.md, advisory.json.
+     viz/           ASCII tip path, leaderboard, vascular heatmap.
+     outputs/       publication grade samples + 12 ASCII diagrams.
+     notebooks/     3 Jupyter notebooks (iteration, anastomosis, Daraxonrasib PK).
+     tests/         smoke tests for schemas, gates, scores, advisories.
+     releases/v0.6.0/  manifest, metrics, sample seeds, Zenodo DOI.
+
+   Generated across 9 commits in a single PR by Claude Code Opus 4.7 1M Max
+   from instructions/ on 2026-05-13. 8th commit fixes errors; 9th commit
+   updates the repository top level documentation. Addresses 7 of 10 GBM
+   approximations: 32 iterations (vs 16), 4 vendor tournament (vs single
+   vendor), force time integral cap, 100 kHz force (vs 10 kHz), Daraxonrasib
+   integration, vessel safety zones, anastomosis ring tension control.
++============================================================================+
 ```
 
 ## v0.5.0 PDAC Instructions (ASCII)
@@ -138,9 +172,9 @@ robotic-surgeries/
      lint_verification.md  v0.5.0 PR commit 8 verification log.
      .markdownlint.yaml  markdownlint config carried from v3.9.1 GBM.
 
-   A future Claude Code Opus 4.7 1M Max session reads this instruction set
-   and authors the full 2030-pdac-1min/ simulation tree across 9 commits in
-   a single PR. The 8th commit fixes errors; the 9th commit updates repo.
+   The v0.6.0 PDAC Codegen tree at paper/codegen/ was generated from these
+   instructions by Claude Code Opus 4.7 1M Max across 9 sequential commits
+   in a single PR.
 +============================================================================+
 ```
 
@@ -229,7 +263,7 @@ robotic-surgeries/
 
 ```
 +-----------------------------------------------------------------------------+
-|                ROBOTIC-SURGERIES SUITE (v0.5.0 / two variants)              |
+|                ROBOTIC-SURGERIES SUITE (v0.6.0 / two variants)              |
 +-----------------------------------------------------------------------------+
 |                                                                             |
 |   physical-ai-oncology-trials       robotic-surgeries (this repo)           |
@@ -243,10 +277,12 @@ robotic-surgeries/
 |                                     +------------------+------------------+ |
 |                                     | 2030-pdac-1min/ (1-minute, 8-arm)   | |
 |                                     |   paper/inputs/ (4 papers + 2 res)  | |
-|                                     |   paper/instructions/  v0.5.0       | |
-|                                     |     - 21 instruction files          | |
-|                                     |     - PDAC + Daraxonrasib + 5 vess  | |
-|                                     |     - 3 anastomoses + 8 arms        | |
+|                                     |   paper/instructions/ v0.5.0        | |
+|                                     |   paper/codegen/      v0.6.0  <--- new| |
+|                                     |     - sensors / mapping / control   | |
+|                                     |     - vascular safety + anastomosis | |
+|                                     |     - Daraxonrasib + Zenodo + viz   | |
+|                                     |     - 32 iter sweep + 4 vendor tourn | |
 |                                     +------------------+------------------+ |
 |                                                        |                    |
 |                                                        v                    |
@@ -264,7 +300,7 @@ robotic-surgeries/
 +-----------------------------------------------------------------------------+
 ```
 
-## 8-Arm PDAC Coordination Snapshot (v0.5.0, 2030-pdac-1min)
+## 8-Arm PDAC Coordination Snapshot (v0.5.0 / v0.6.0, 2030-pdac-1min)
 
 ```
 +============================================================================+
@@ -321,20 +357,21 @@ robotic-surgeries/
 
 ## Quick Start
 
-Detailed cross-platform setup recipes (Linux, MacOS M3 Ultra, Windows, NVIDIA A100 GPU, and Claude Code) live in [2030-gbm-1min/README.md](2030-gbm-1min/README.md). The minimum is:
+Detailed cross-platform setup recipes (Linux, MacOS M3 Ultra, Windows, NVIDIA A100 GPU, and Claude Code) live in [2030-gbm-1min/README.md](2030-gbm-1min/README.md) for the GBM variant and in [2030-pdac-1min/paper/codegen/README.md](2030-pdac-1min/paper/codegen/README.md) for the PDAC v0.6.0 codegen tree. The minimum for the v0.6.0 PDAC codegen is:
 
 ```
 git clone https://github.com/kevinkawchak/robotic-surgeries.git
-cd robotic-surgeries/2030-gbm-1min
-python3.10 -m venv .venv && source .venv/bin/activate
+cd robotic-surgeries/2030-pdac-1min/paper/codegen
+python3.12 -m venv .venv && source .venv/bin/activate
 pip install --upgrade pip
-pip install -e .[dev,llm-local,zenodo]
-python -m src.simulation.iterate_1min --seed 20260510 --iterations 1
+pip install -e .[dev,llm-local,zenodo,pdac]
+python -m src.simulation.iterate_1min --seed 20260513 --iterations 32
+python -m src.metrics.compute_1min
+python -m src.llm.compare_agent_1min
+python -m src.daraxonrasib.advisory
 ```
 
-The same scripts can be run inside Claude Code (CLI, web, or IDE plugin) or on a conventional high-end server, and they target identical Parquet outputs for a fixed seed.
-
-The PDAC 1 minute variant simulation tree at `2030-pdac-1min/` does not yet exist; a future Claude Code Opus 4.7 1M Max session reads the v0.5.0 instruction set at `2030-pdac-1min/paper/instructions/` and generates the simulation tree across nine sequential commits within a single PR. The future generated PDAC tree mirrors the GBM tree structure with PDAC specific extensions documented in the instruction set.
+The same scripts can be run inside Claude Code (CLI, web, or IDE plugin) or on a conventional high-end server, and they target identical CSV/Parquet outputs for a fixed seed (20260513). The Rust runner provides a 7x throughput boost on Linux servers; build it with `cargo run --release` from `src/simulation/`.
 
 To compile the populated full GBM LaTeX paper at `2030-gbm-1min/paper/full-paper/`, upload that directory to Overleaf or run:
 
@@ -361,9 +398,9 @@ The resulting `LaTeX Source Files.zip` uploads to Overleaf via **New Project -> 
 If you use this repository in academic work, please cite:
 
 ```
-@software{kawchak_robotic_surgeries_v0_5_0_2026,
+@software{kawchak_robotic_surgeries_v0_6_0_2026,
   author    = {Kawchak, Kevin},
-  title     = {robotic-surgeries: 4-arm GBM v3.9.1 + 8-arm PDAC v0.5.0 multi-variant},
+  title     = {robotic-surgeries: 4-arm GBM v3.9.1 + 8-arm PDAC v0.5.0/v0.6.0 multi-variant},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18445179},
@@ -384,7 +421,7 @@ For the v0.4.0 GBM paper specifically, cite:
 }
 ```
 
-For the v0.5.0 PDAC instruction set, the future Claude Code Opus 4.7 1M Max session that generates the PDAC simulation tree will issue a new DOI; cite the parent repository DOI 10.5281/zenodo.18445179 until then.
+For the v0.5.0 PDAC instruction set and the v0.6.0 PDAC codegen, the parent repository DOI 10.5281/zenodo.18445179 anchors the citation until the future paper publication DOI is issued.
 
 For the Daraxonrasib clinical trial historical timeline, cite:
 
@@ -405,7 +442,7 @@ MIT License. See [LICENSE](LICENSE).
 
 ## See also
 
-- [releases.md](releases.md) for versioned release notes (v0.1.0, v0.2.0, v0.3.0, v0.4.0, v0.5.0 and later).
+- [releases.md](releases.md) for versioned release notes (v0.1.0, v0.2.0, v0.3.0, v0.4.0, v0.5.0, v0.6.0 and later).
 - [CHANGELOG.md](CHANGELOG.md) for the human-readable change log.
 - [references.md](references.md) for citations of standards, prior art, and inputs.
 - [2030-gbm-1min/README.md](2030-gbm-1min/README.md) for the GBM 4-arm 1-minute variant.
@@ -413,3 +450,4 @@ MIT License. See [LICENSE](LICENSE).
 - [2030-gbm-1min/paper/README.md](2030-gbm-1min/paper/README.md) for the v0.3.0 GBM LaTeX paper template.
 - [2030-gbm-1min/paper/full-paper/README.md](2030-gbm-1min/paper/full-paper/README.md) for the v0.4.0 GBM populated full paper.
 - [2030-pdac-1min/paper/instructions/README.md](2030-pdac-1min/paper/instructions/README.md) for the v0.5.0 PDAC 8-arm 1-minute instruction set navigation index, the 8 phase 60 second Whipple timeline, the 7 BibTeX entries, and the future Claude Code generation plan.
+- [2030-pdac-1min/paper/codegen/README.md](2030-pdac-1min/paper/codegen/README.md) for the v0.6.0 PDAC 8-arm 1-minute generated codebase, the 640 channel sensor stack, the 32 iteration sweep, the 4 entrant tournament, the vascular safety zones, the 3 anastomosis controllers, the Daraxonrasib perioperative pause and restart logic, the Zenodo L0 deposition patcher, and the runtime recipes for MacOS Apple Silicon, Windows 11, Linux Ubuntu 22.04 LTS, and Claude Code (CLI / web / IDE).

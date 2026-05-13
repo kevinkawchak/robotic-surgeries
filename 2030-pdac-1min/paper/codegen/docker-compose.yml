@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  python:
+    image: python:3.12-slim
+    container_name: pdac-python
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    command: bash -c "pip install --upgrade pip && pip install -e .[dev,llm-local,zenodo,pdac] && python -m src.simulation.iterate_1min --seed 20260513 --iterations 32"
+    environment:
+      COMPARE_AGENT_BACKEND: ollama
+      PYTHONUNBUFFERED: 1
+
+  rust:
+    image: rust:1.83-slim
+    container_name: pdac-rust
+    working_dir: /workspace/src/simulation
+    volumes:
+      - ./:/workspace
+    command: bash -c "cargo build --release && ./target/release/runner_1min --seed 20260513 --iterations 32"
+
+  duckdb:
+    image: datacatering/duckdb:latest
+    container_name: pdac-duckdb
+    working_dir: /workspace/data/iterations
+    volumes:
+      - ./data/iterations:/workspace/data/iterations
+    command: duckdb /workspace/data/iterations/aggregate.duckdb "PRAGMA version; SELECT COUNT(*) FROM read_parquet('run_*_L2_1s.parquet');"
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: pdac-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      OLLAMA_MODELS: /root/.ollama/models
+
+volumes:
+  ollama-data:

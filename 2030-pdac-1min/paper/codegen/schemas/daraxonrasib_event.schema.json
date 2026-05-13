@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "daraxonrasib_event.schema.json",
+  "title": "PDAC 1 minute per iteration Daraxonrasib event record",
+  "description": "Per iteration perioperative trajectory record for the daraxonrasib Parquet.",
+  "type": "object",
+  "required": [
+    "iteration_id", "seed", "induction_dose_mg", "induction_serum_ng_per_ml",
+    "t_minus_72h_pause_applied", "t_zero_serum_ng_per_ml",
+    "t_plus_60_seconds_serum_ng_per_ml", "t_plus_7d_restart_recommended",
+    "t_plus_14d_restart_recommended", "restart_recommendation_rationale"
+  ],
+  "properties": {
+    "iteration_id": {"type": "integer", "minimum": 0, "maximum": 31},
+    "seed": {"type": "integer"},
+    "induction_dose_mg": {"type": "number", "const": 300.0},
+    "induction_serum_ng_per_ml": {"type": "number"},
+    "t_minus_72h_pause_applied": {"type": "boolean"},
+    "t_zero_serum_ng_per_ml": {"type": "number"},
+    "t_plus_60_seconds_serum_ng_per_ml": {"type": "number"},
+    "t_plus_7d_restart_recommended": {"type": "boolean"},
+    "t_plus_14d_restart_recommended": {"type": "boolean"},
+    "t_plus_21d_restart_recommended": {"type": "boolean"},
+    "restart_recommendation_rationale": {"type": "string"}
+  }
+}

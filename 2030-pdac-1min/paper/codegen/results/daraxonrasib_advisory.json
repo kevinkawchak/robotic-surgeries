@@ -1,0 +1,17 @@
+{
+  "version": "v0.6.0",
+  "advisories": [
+    {"iteration_id": 0, "recommended_restart_day": 7, "rationale": "Iteration 0: realized PJ grade A, HJ leak absent, GJ patent, FRS 5.0, max force time integral 4.30 N.s below 5.0 N.s soft cap; uncomplicated recovery. Recommend T+7d Daraxonrasib restart per RASolute 302 perioperative pause protocol.", "caveats": ["FDA SaMD framework: this advisory is a software function intended to support a board certified oncologist; not a clinical decision.", "Daraxonrasib is paused 72 hours pre op per RASolute 302 protocol; intra op serum is at the trough below 0.5 ng/mL."]},
+    {"iteration_id": 4, "recommended_restart_day": 14, "rationale": "Iteration 4: realized PJ grade B; complicated recovery. Recommend T+14d Daraxonrasib restart per RASolute 302 perioperative pause protocol.", "caveats": ["FDA SaMD framework: this advisory is a software function intended to support a board certified oncologist; not a clinical decision.", "Daraxonrasib is paused 72 hours pre op per RASolute 302 protocol; intra op serum is at the trough below 0.5 ng/mL."]},
+    {"iteration_id": 11, "recommended_restart_day": 14, "rationale": "Iteration 11: realized PJ grade B; complicated recovery. Recommend T+14d Daraxonrasib restart.", "caveats": ["FDA SaMD framework: this advisory is a software function intended to support a board certified oncologist; not a clinical decision.", "Daraxonrasib is paused 72 hours pre op per RASolute 302 protocol; intra op serum is at the trough below 0.5 ng/mL."]},
+    {"iteration_id": 15, "recommended_restart_day": 14, "rationale": "Iteration 15: realized PJ grade B; complicated recovery. Recommend T+14d Daraxonrasib restart.", "caveats": ["FDA SaMD framework: this advisory is a software function intended to support a board certified oncologist; not a clinical decision.", "Daraxonrasib is paused 72 hours pre op per RASolute 302 protocol; intra op serum is at the trough below 0.5 ng/mL."]},
+    {"iteration_id": 19, "recommended_restart_day": 14, "rationale": "Iteration 19: realized PJ grade B and HJ leak present; complicated recovery. Recommend T+14d Daraxonrasib restart.", "caveats": ["FDA SaMD framework: this advisory is a software function intended to support a board certified oncologist; not a clinical decision.", "Daraxonrasib is paused 72 hours pre op per RASolute 302 protocol; intra op serum is at the trough below 0.5 ng/mL."]},
+    {"iteration_id": 27, "recommended_restart_day": 14, "rationale": "Iteration 27: realized PJ grade B and GJ delayed; complicated recovery. Recommend T+14d Daraxonrasib restart.", "caveats": ["FDA SaMD framework: this advisory is a software function intended to support a board certified oncologist; not a clinical decision.", "Daraxonrasib is paused 72 hours pre op per RASolute 302 protocol; intra op serum is at the trough below 0.5 ng/mL."]}
+  ],
+  "summary": {
+    "total_iterations": 32,
+    "t_plus_7d_count": 27,
+    "t_plus_14d_count": 5,
+    "t_plus_21d_count": 0
+  }
+}

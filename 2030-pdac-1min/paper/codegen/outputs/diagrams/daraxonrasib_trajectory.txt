@@ -1,0 +1,23 @@
++============================================================================+
+|     DARAXONRASIB PERIOPERATIVE TRAJECTORY (PAT-PDAC-0001, 300 mg PO QD)    |
++============================================================================+
+|                                                                            |
+|  serum (ng/mL)                                                             |
+|        35.0 +-------+                                                      |
+|             |       |                                                      |
+|             |       |\                                                    |
+|        17.5 |       | \\                                                   |
+|             |       |  \\                                                  |
+|             |       |   \\___                                              |
+|         6.0 |       |       \___                                          |
+|             |       |           \___                                      |
+|         0.5 |       |               \____________ . . . . . _____________ |
+|             +-------+--------+-----+-----+------+-----------+--------------+
+|             T-30d T-72h    T-36h  T-12h T 0  T+60s        T+7d (or T+14d) |
+|                  PAUSE                  TROUGH        RESTART  RESTART     |
+|                                                                            |
+|  legend: solid line = on drug, dashed line = paused, after surgery line    |
+|          dotted then solid line = restart                                  |
+|          half life approximately 36 hours; 2 half lives clears below 0.5  |
+|          ng/mL active threshold; trough maintained intraoperatively       |
++============================================================================+

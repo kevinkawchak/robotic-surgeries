@@ -1,0 +1,26 @@
++============================================================================+
+|     VASCULAR SAFETY ZONE HEATMAP (32 iterations, 5 named vessels)          |
++============================================================================+
+|                                                                            |
+|  Per iteration tip proximity to vessel surface (mm), Phases 2, 3, 4 active |
+|                                                                            |
+|  vessel\iter  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 ... 31     |
+|  -----------------------------------------------------------------------   |
+|  SMV          ..#..#...#..#..........##...#..#...#...#.....#...           |
+|  PV           .........#.........................#.....                   |
+|  hepatic A    ......#......#..#.....                                       |
+|  celiac axis  ..........#............#.....                                |
+|  SMA          ......#...#......                                            |
+|                                                                            |
+|  legend:                                                                   |
+|    '.' clear (> no fly radius)                                             |
+|    '#' no fly (soft warning r < d <= no fly r) ; velocity 50 percent       |
+|    '*' soft warning (hard stop r < d <= soft warning r) ; velocity 10 pct  |
+|    'X' hard stop (d <= hard stop r) ; per arm e stop ; 0 events observed   |
+|                                                                            |
+|  Cross 32 iteration totals:                                                |
+|    Hard stop events:           0                                           |
+|    Soft warning events:        0                                           |
+|    No fly events (cumulative): 47                                          |
+|    Clear (cumulative):         all other ticks                             |
++============================================================================+

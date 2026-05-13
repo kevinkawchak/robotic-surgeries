@@ -1,0 +1,18 @@
++==========================================================================+
+|     PER PHASE ARM ACTIVATION (8 phases, 8 arms)                          |
++==========================================================================+
+|                                                                          |
+|  Phase                              Active arms (out of 8)               |
+|  ----------------------------------------------------------------------- |
+|  P1 exploration Kocher 0-6s         1, 2, 3, 4                            |
+|  P2 vascular control 6-16s          1, 2, 3, 4, 5, 6, 7, 8                |
+|  P3 uncinate dissection 16-24s      1, 2, 3, 4                            |
+|  P4 specimen removal 24-32s         1, 2, 3, 4, 5, 6, 7, 8                |
+|  P5 pancreaticojejunostomy 32-42s   1, 2, 3, 4, 5                         |
+|  P6 hepaticojejunostomy 42-48s      1, 2, 3, 4, 5                         |
+|  P7 gastrojejunostomy 48-54s        1, 2, 3, 4                            |
+|  P8 hemostasis drain withdraw 54-60s 1, 2, 3, 4, 5, 6, 7, 8               |
+|                                                                          |
+|  Idle arms maintain 10 kHz heartbeat broadcast but do not emit motion.   |
+|  Cross arm collision avoidance treats idle arms as proximity obstacles.  |
++==========================================================================+

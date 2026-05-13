@@ -1,0 +1,4 @@
+anastomosis,phase,start_s,end_s,duration_s,ring_target_n,manometry_target_mmHg,outcome_field,A_count,B_count,C_count,absent_count,present_count,patent_count,delayed_count
+pancreaticojejunostomy,5,32.0,42.0,10.0,0.45,12.0,grade,31,1,0,,,,
+hepaticojejunostomy,6,42.0,48.0,6.0,0.5,8.0,leak,,,,14,18,,
+gastrojejunostomy,7,48.0,54.0,6.0,0.6,0.0,patency,,,,,,32,0

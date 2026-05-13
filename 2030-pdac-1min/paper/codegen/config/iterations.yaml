@@ -1,0 +1,59 @@
+# 32 iteration deterministic sweep configuration.
+# Latin hypercube design with seed 20260513.
+# Per iteration seed is root_seed + iteration_index, iteration_index in [0, 31].
+
+sweep:
+  iteration_count: 32
+  root_seed: 20260513
+  per_iteration_seed_formula: root_seed + iteration_index
+  design: latin_hypercube
+  design_seed: 20260513
+
+parameters:
+  - name: vessel_angle_deviation_deg
+    range: [-2.5, 2.5]
+    step: 0.1
+    notes: Perturbs the SMV centerline angle vs canonical 75 degree abutment
+  - name: pancreatic_duct_diameter_mm
+    range: [2.8, 3.6]
+    step: 0.1
+    notes: Affects fistula risk score and ring tension target
+  - name: anastomosis_ring_tension_perturbation_n
+    range: [-0.05, 0.05]
+    step: 0.005
+    notes: Perturbs canonical 0.45 N PJ target
+  - name: daraxonrasib_serum_at_induction_ng_per_ml
+    range: [5, 25]
+    step: 1
+    notes: Perioperative pause variation
+  - name: arm_1_hybrid_scalpel_power_w
+    range: [18, 24]
+    step: 0.2
+    notes: Affects bipolar coagulator current
+  - name: arm_4_nir_icg_dose_mg_per_kg
+    range: [0.05, 0.20]
+    step: 0.01
+    notes: Affects bile leak detection sensitivity
+  - name: coordination_master_heartbeat_jitter_us
+    range: [0, 50]
+    step: 1
+    notes: Perturbs 100 microsecond watchdog deadline
+  - name: per_arm_estop_latency_perturbation_us
+    range: [0, 200]
+    step: 5
+    notes: Perturbs 3 ms cross arm e stop budget
+
+runtime_budget:
+  per_iteration_python_s: 90
+  per_iteration_rust_s: 12
+  cross_iteration_python_minutes: 48
+  cross_iteration_rust_minutes: 6.4
+
+outputs:
+  l1_publication_sample_only: true
+  l2_per_arm_1hz_rows_per_iteration: 480
+  l3_per_phase_rows_per_iteration: 64
+  l4_per_anastomosis_rows_per_iteration: 3
+  daraxonrasib_rows_per_iteration: 1
+  per_iteration_committed_kb: 480
+  cross_release_committed_mb: 17.4

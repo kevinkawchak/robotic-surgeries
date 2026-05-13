@@ -1,0 +1,16 @@
+[package]
+name = "pdac-runner"
+version = "0.6.0"
+edition = "2021"
+authors = ["Kevin Kawchak <kawchak@chemicalqdevice.com>"]
+description = "High throughput Rust runner for the 32 iteration sweep"
+license = "MIT"
+
+[[bin]]
+name = "runner_1min"
+path = "runner_1min.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

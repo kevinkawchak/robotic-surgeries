@@ -1,0 +1,14 @@
+metric,value,source
+cohort_n,1000,2025 Dutch nationwide cohort
+mean_operative_time_hours,5.4,Dutch cohort summary
+conversion_rate_percent,10.1,Dutch cohort summary
+grade_b_c_fistula_rate_percent,24.4,Dutch cohort summary
+in_hospital_or_30d_mortality_percent,3.9,Dutch cohort summary
+mean_ideal_outcome_rate_percent,47.0,Dutch cohort summary
+quality_composite,82,frozen entrant target
+time_composite,8,frozen entrant target
+cost_composite,90,frozen entrant target
+safety_composite,80,frozen entrant target
+patient_experience_composite,78,frozen entrant target
+anastomosis_quality_composite,82,frozen entrant target
+composite_score,56.05,frozen entrant target

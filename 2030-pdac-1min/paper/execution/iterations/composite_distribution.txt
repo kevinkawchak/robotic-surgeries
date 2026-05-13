@@ -1,0 +1,49 @@
+Composite Score Distribution Across 32 Iterations (Seed 20260513)
+=================================================================
+
+  Range          | Count | Histogram
+  ---------------+-------+--------------------------------------
+  88.0  - 88.99  |     2 | ##
+  89.0  - 89.99  |     0 |
+  90.0  - 90.99  |     0 |
+  91.0  - 91.99  |     1 | #
+  92.0  - 92.99  |     0 |
+  93.0  - 93.99  |    29 | #############################
+
+Summary statistics:
+  count: 32
+  min:   88.431
+  mean:  93.298
+  max:   93.735
+  std:   1.225
+
+PancreSpeed 1.0 target composite at frozen weights:
+  Quality 95.0 x 0.30 + Time 100.0 x 0.20 + Cost 80.0 x 0.15 +
+  Safety 96.0 x 0.15 + Patient experience 92.0 x 0.05 + Anastomosis quality 95.0 x 0.15
+  = 28.50 + 20.00 + 12.00 + 14.40 + 4.60 + 14.25 = 93.75
+
+Realized PJ grade distribution (all 32 iterations):
+  Grade A: 32 (100.0 percent)
+  Grade B: 0
+  Grade C: 0
+
+Realized HJ leak distribution:
+  absent: 30 (93.75 percent)
+  present: 2 (6.25 percent)
+
+Realized GJ patency distribution:
+  patent: 30 (93.75 percent)
+  delayed: 2 (6.25 percent)
+
+Realized fistula risk score (FRS) range:
+  min:  4.93
+  mean: 5.24
+  max:  5.55
+  (clinical fistula risk: low 0 to 2, intermediate 3 to 6, high 7 to 10)
+
+  All 32 iterations fall in the intermediate FRS band.
+
+Cross arm cumulative force time integral:
+  All 32 iterations under the 5.0 N s per arm soft cap.
+  No iteration triggers the 8.0 N s per arm hard cap.
+  Safety component score: 96.0 across all 32 iterations.

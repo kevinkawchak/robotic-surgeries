@@ -1,0 +1,8 @@
+component,weight,description
+quality,0.30,oncologic resection completeness and margin status
+time,0.20,total procedure duration normalized to 1 minute baseline
+cost,0.15,equipment plus consumables plus per minute OR cost
+safety,0.15,cumulative cross arm force plus vessel safety events
+patient_experience,0.05,recovery proxy plus pain proxy plus LOS proxy
+anastomosis_quality,0.15,3 anastomosis grade plus ring tension RMSE
+total,1.00,sum equals 1.00 by construction

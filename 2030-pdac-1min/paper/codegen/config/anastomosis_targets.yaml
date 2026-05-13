@@ -1,0 +1,76 @@
+# Three anastomosis target configuration for PAT-PDAC-0001.
+# Part of the deterministic seed contract.
+
+anastomoses:
+  - id: pancreaticojejunostomy
+    technique: duct_to_mucosa
+    phase: 5
+    start_s: 32.000
+    end_s: 42.000
+    duration_s: 10.0
+    location: {x_mm: 18, y_mm: -30, z_mm: -42}
+    ring_tension_target_n: 0.45
+    ring_tension_tolerance_n: 0.05
+    manometry_target_mmHg: 12.0
+    manometry_tolerance_mmHg: 2.0
+    active_arms: [1, 2, 3, 4, 5]
+    suture_layers:
+      - {name: outer_layer, count: 4, suture: 5-0_Prolene, start_s: 32.000, end_s: 35.500}
+      - {name: duct_to_mucosa, count: 8, suture: 6-0_Prolene, start_s: 35.500, end_s: 39.500}
+      - {name: inner_layer, count: 4, suture: 5-0_Prolene, start_s: 39.500, end_s: 41.500}
+      - {name: confirmation_window, start_s: 41.500, end_s: 42.000}
+    realized_grades: [A, B, C]
+  - id: hepaticojejunostomy
+    technique: end_to_side
+    phase: 6
+    start_s: 42.000
+    end_s: 48.000
+    duration_s: 6.0
+    location: {x_mm: 12, y_mm: -50, z_mm: -48}
+    ring_tension_target_n: 0.50
+    ring_tension_tolerance_n: 0.05
+    manometry_target_mmHg: 8.0
+    manometry_tolerance_mmHg: 2.0
+    active_arms: [1, 2, 3, 4, 5]
+    suture_layers:
+      - {name: posterior_layer, count: 6, suture: 5-0_PDS, start_s: 42.000, end_s: 44.500}
+      - {name: anterior_layer, count: 6, suture: 5-0_PDS, start_s: 44.500, end_s: 47.000}
+      - {name: bile_leak_verification, start_s: 47.000, end_s: 47.500}
+      - {name: confirmation_window, start_s: 47.500, end_s: 48.000}
+    realized_grades: [absent, present]
+  - id: gastrojejunostomy
+    technique: antecolic_pylorus_preserving
+    phase: 7
+    start_s: 48.000
+    end_s: 54.000
+    duration_s: 6.0
+    location: {x_mm: -8, y_mm: -40, z_mm: -30}
+    ring_tension_target_n: 0.60
+    ring_tension_tolerance_n: 0.05
+    manometry_target_mmHg: 0.0
+    manometry_tolerance_mmHg: 0.0
+    active_arms: [1, 2, 3, 4]
+    suture_layers:
+      - {name: stapler_fire, count: 1, suture: 60mm_linear, start_s: 48.000, end_s: 50.000}
+      - {name: posterior_reinforcement, count: 4, suture: 4-0_Vicryl, start_s: 50.000, end_s: 52.000}
+      - {name: anterior_reinforcement, count: 4, suture: 4-0_Vicryl, start_s: 52.000, end_s: 53.500}
+      - {name: patency_confirmation, start_s: 53.500, end_s: 54.000}
+    realized_grades: [patent, delayed]
+
+fistula_risk_score:
+  inputs:
+    - {name: gland_texture, source: preop_imaging, range: [soft, firm], weights: {soft: 2, firm: 0}}
+    - {name: pathology, source: preop_histology, range: [PDAC, other], weights: {PDAC: 0, other: 1}}
+    - {name: duct_diameter_mm, source: preop_imaging, range: [1, 6], weights: linear_decreasing}
+    - {name: estimated_blood_loss_ml, source: intra_op_arm_7_suction, range: [0, 1000], weights: linear_increasing}
+  risk_categories:
+    - {total: [0, 2], category: negligible, expected_b_c_rate_percent: "< 1"}
+    - {total: [3, 6], category: moderate, expected_b_c_rate_percent: "5 to 10"}
+    - {total: [7, 10], category: high, expected_b_c_rate_percent: "15 to 25"}
+  patient_pat_pdac_0001:
+    gland_texture: soft
+    pathology: PDAC
+    duct_diameter_mm: 3.2
+    estimated_blood_loss_ml: 200
+    total: 5
+    category: moderate

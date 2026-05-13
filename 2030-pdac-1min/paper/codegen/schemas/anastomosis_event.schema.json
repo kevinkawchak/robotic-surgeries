@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "anastomosis_event.schema.json",
+  "title": "PDAC 1 minute per anastomosis event record",
+  "description": "Per anastomosis event record for the L4 layer Parquet.",
+  "type": "object",
+  "required": [
+    "iteration_id", "anastomosis_id", "start_s", "end_s", "duration_s",
+    "ring_tension_target_n", "ring_tension_rmse_n", "manometry_target_mmHg",
+    "manometry_rmse_mmHg", "realized_grade", "active_arms"
+  ],
+  "properties": {
+    "iteration_id": {"type": "integer", "minimum": 0, "maximum": 31},
+    "anastomosis_id": {"type": "string", "enum": ["pancreaticojejunostomy", "hepaticojejunostomy", "gastrojejunostomy"]},
+    "start_s": {"type": "number"},
+    "end_s": {"type": "number"},
+    "duration_s": {"type": "number"},
+    "ring_tension_target_n": {"type": "number"},
+    "ring_tension_rmse_n": {"type": "number"},
+    "manometry_target_mmHg": {"type": "number"},
+    "manometry_rmse_mmHg": {"type": "number"},
+    "bile_spectrophotometry_max_410_nm": {"type": "number"},
+    "realized_grade": {"type": "string"},
+    "active_arms": {"type": "array", "items": {"type": "integer"}}
+  }
+}

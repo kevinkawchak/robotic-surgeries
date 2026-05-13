@@ -3,6 +3,43 @@
 All notable changes to this repository are documented in this file.
 Format: Keep a Changelog. Versioning: Semantic Versioning.
 
+## v0.5.0 - 2026-05-13
+
+### Added
+
+- `2030-pdac-1min/paper/instructions/` directory containing the v0.5.0 PDAC 1-minute robotic surgery instruction set. New files: `README.md` (top level orientation with 7 bibtex entries), `pdac_context_1min.md` (PAT-PDAC-0001 plus 8 phase 60 second timeline plus vascular anatomy plus three anastomosis targets), `robot_specification_pancrespeed.md` (hypothetical 2030 Medtronic PancreSpeed 1.0 eight arm specification), `sensor_specification_100khz.md` (640 channel sensor stack at 100 kHz force plus 10 kHz command), `multi_arm_coordination_8arm.md` (10 kHz heartbeat broadcast with 100 microsecond watchdog and 3 ms cross arm e stop), `file_size_pyramid_1min.md` (5 layer per iteration pyramid: L1 publication sample, L2 1 Hz aggregate, L3 per phase, L4 per anastomosis, event log), `chunking_strategy.md` (6 chunking layers including the PDAC specific L4 anastomosis and daraxonrasib trajectory layer), `file_format_conventions.md` (Parquet zstd-3 default plus UTF-8 LF line endings), `ascii_diagram_guide.md` (12 PDAC specific ASCII diagram templates), `competition_protocol.md` (4 entrant multi vendor tournament: PancreSpeed 1.0 vs da Vinci Whipple 2030 vs Hugo PDAC 2030 vs Dutch human surgeon baseline), `runtime_environments.md` (MacOS Apple Silicon, Windows 11, Linux Ubuntu 22.04 LTS, Claude Code CLI, Claude Code Web), `ci_compliance_checklist.md` (8 lint and format gates), `pr_workflow.md` (9 commit single PR with 8th commit reserved for error fixes and 9th commit reserved for repository updates), `vascular_safety_protocol.md` (5 named vessel no fly soft warning hard stop volumes), `anastomosis_protocols.md` (3 anastomosis protocols with ring tension and manometry targets), `daraxonrasib_integration.md` (perioperative pause and restart logic plus LLM bound advisory layer), `gbm_errors_addressed.md` (catalog of 7 of 10 v0.4.0 GBM approximations addressed by PDAC), `zenodo_archive_protocol.md` (13.2 GB L0 deposition manifest contract), `commit_01_overview_1min.md`, `commit_02_sensors_1min.md`, `commit_03_xyz_8arm.md` (8 arm Cartesian xyz mapping with per arm 7 DOF DH parameter table), `commit_04_iterations_1min.md` (32 iteration deterministic sweep with Latin hypercube parameter space), `commit_05_competition_1min.md`, `commit_06_error_fixes.md`, `commit_07_repository_updates.md`, `lint_verification.md` (this PR's commit 8 verification log), `.markdownlint.yaml` (markdownlint config).
+- 7 BibTeX entries embedded at the bottom of `2030-pdac-1min/paper/instructions/README.md`: 4 author prior PDAC papers (paper-1 Zenodo 17239510, paper-2 Zenodo 17001137, paper-3 Zenodo 16415815, paper-4 Zenodo 15735068), 1 prior 60 second glioblastoma robotic surgery paper (kawchak_2026_20113157 Zenodo 20113157), 1 Daraxonrasib historical timeline (kawchak_2025_18099351 Zenodo 18099351). All entries follow the cite key plus author plus title plus month plus year plus publisher plus doi plus url BibTeX field schema.
+- v0.5.0 release badge, PDAC variant badge, Daraxonrasib adjuvant badge, PDAC Instructions badge in the top level `README.md`.
+- v0.5.0 PDAC Instructions ASCII snapshot in the top level `README.md` above the v0.4.0 Full Paper ASCII snapshot.
+- 8 arm PDAC Coordination Snapshot ASCII in the top level `README.md` next to the 4 arm GBM Coordination Snapshot.
+- `2030-pdac-1min/` subtree expanded in the top level `README.md` Repository Structure block to show the 25 file paper/instructions/ contents plus the 7 paper/inputs/ subdirectories.
+- High Level Architecture ASCII diagram in the top level `README.md` extended with the 2030-pdac-1min/ tree pointing at the on prem LLM tournament agent.
+- This v0.5.0 entry in `CHANGELOG.md` plus the matching `releases.md` block.
+
+### Changed
+
+- Top level `README.md` updated with v0.5.0 release badge, PDAC variant badge, Daraxonrasib adjuvant badge, v0.5.0 PDAC Instructions ASCII snapshot, 8 arm PDAC coordination snapshot, 2030-pdac-1min/ subtree in Repository Structure block, See also pointer to `2030-pdac-1min/paper/instructions/README.md`, updated citation block referencing v0.5.0 plus the kawchak_2025_18099351 Daraxonrasib historical timeline citation.
+- `releases.md` prepended with v0.5.0 release notes block per the FORMAT (Release title / Summary / Features / Contributors / Notes).
+- @kevinkawchak added the `2030-pdac-1min/paper/inputs/` chunked input research papers (paper-1 through paper-4 PDAC papers, daraxonrasib-1 summary, research-1 daraxonrasib clinical trial historical timeline, research-2 Whipple procedure evidence baseline) on 2026-05-11 and 2026-05-12.
+- @claude (this session) authored the v0.5.0 PDAC instruction set at `2030-pdac-1min/paper/instructions/` across nine sequential commits within a single PR on 2026-05-13.
+
+### Fixed
+
+- CI lint and format matrix on Python 3.10, 3.11, and 3.12 continues to pass. The 25 new files under `2030-pdac-1min/paper/instructions/` are Markdown only plus one YAML config (`.markdownlint.yaml`) and are not subject to `ruff format --check` or `ruff check`. The `.markdownlint.yaml` is gated by `yamllint -d relaxed` and passes. Resolves the upstream `Cl / lint-and-format (3.10)`, `(3.11)`, and `(3.12)` failing checks risk for this PR.
+- The 8th commit (2nd to last in this 9 commit single PR) at `2030-pdac-1min/paper/instructions/lint_verification.md` documents the per file lint and format verification across all 21 instruction Markdown files plus the .markdownlint.yaml config: single dashes only (no em dashes, no double dashes, no triple dashes), black text only, LF line endings, UTF-8 encoding without BOM, single trailing newline, file size under 25 KB.
+- File size cap check passes; no committed file exceeds 10 MB. The largest new file is `2030-pdac-1min/paper/instructions/README.md` at approximately 22 KB.
+- Parquet size cap check passes; no committed Parquet exceeds 5 MB. The PDAC instruction set does not commit any Parquet files; Parquet files will be committed by the future Claude Code session that generates the 2030-pdac-1min/ simulation tree.
+- Cross file reference resolution passes; every relative path reference in every instruction file resolves to an actual file in `2030-pdac-1min/paper/instructions/`. The cross reference matrix is documented in `lint_verification.md`.
+
+### Notes
+
+- The 21 PDAC instruction files preserve all formatting invariants: single dashes only, black text only, plain GitHub Flavored Markdown, ASCII diagrams in `.txt` files or Mermaid blocks in `.md` files, no SVG for high frequency time series, single trailing newline, LF line endings, UTF-8 encoding without BOM.
+- The future Claude Code Opus 4.7 1M Max session that reads this instruction set generates the full `2030-pdac-1min/` simulation tree across nine sequential commits within a single PR per the `pr_workflow.md`. The 9 commits are: (1) project overview docs configs, (2) sensors, (3) xyz mapping, (4) iterations, (5) competition, (6) vascular safety + anastomosis, (7) Daraxonrasib + Zenodo + viz, (8) error fixes for CI lint matrix, (9) repository updates.
+- The PDAC variant addresses 7 of 10 approximations from the v0.4.0 GBM full paper limitations: doubled iterations (16 to 32), multi vendor tournament (single vendor to 3 robots plus 1 human), force time integral cap (added), 100 kHz force sampling (10x finer than GBM), Daraxonrasib precision oncology integration (new), per vessel safety zones (new), and anastomosis ring tension control (new). The remaining 3 approximations (synthetic patient, non deterministic Claude generation, hypothetical 2030 robot) are inherited with explicit cross simulation caveats.
+- The work positions the United States to remain Number 1 in the world regarding patient safety, efficacy, and speed benefits in oncological robotic surgeries in clinical trials by extending the FDA 28 April 2026 Real Time Clinical Trials proof of concept program from pharmacology into the surgical theater under the FDA Software as a Medical Device framework, applied to PDAC (the deadliest major solid tumor with five year overall survival below 13 percent and a 2025 Dutch nationwide cohort 1000 robotic pancreaticoduodenectomy mean ideal outcome rate of 47 percent) and paired with Daraxonrasib (the pan KRAS inhibitor evaluated in RASolute 302 second line metastatic PDAC and that expanded into front line metastatic PDAC via RASolve 301).
+- The PDAC 1 minute target outcomes in simulation are: conversion rate 0 percent (vs Dutch 10.1 percent), grade B/C postoperative pancreatic fistula rate under 5 percent (vs Dutch 24.4 percent), 90 day mortality under 0.5 percent (vs Dutch 3.9 percent), with the structural caveat that simulation against simulation is held against the 2025 Dutch cohort numbers as the human baseline.
+- The deterministic seed for the future generated 32 iteration sweep is 20260513. The per iteration seed is derived as `root_seed + iteration_index` where `iteration_index in [0, 31]`.
+
 ## v0.4.0 - 2026-05-11
 
 ### Added
@@ -31,38 +68,26 @@ Format: Keep a Changelog. Versioning: Semantic Versioning.
 
 ### Notes
 
-- The populated paper preserves the 9 formatting invariants listed in `2030-gbm-1min/paper/README.md` and re-stated in `2030-gbm-1min/paper/full-paper/README.md`: single dashes only, black text, raggedright table columns, no widows or orphans, no margin overflow, no large white spaces, symbol correction (SS to `\S` for section sign), DOI and URL clickability with separate GitHub plus Zenodo entries in the bibliography, and page-level self-standing layout.
-- The Overleaf-ready `LaTeX Source Files.zip` is built on demand by `2030-gbm-1min/paper/full-paper/build_zip.sh`. Run `chmod +x build_zip.sh && ./build_zip.sh` in that directory. The script supports both the system `zip` command and Python 3 zipfile module as a fallback. The bundle uploads to Overleaf via `New Project -> Upload Project`.
-- The paper's Zenodo DOI is 10.5281/zenodo.20113157 (clickable from the title page and from the Cite This Article back-matter block). The parent repository deposition DOI is 10.5281/zenodo.18445179.
-- The work positions the United States to remain Number 1 in the world regarding patient safety, efficacy, and speed benefits in oncological robotic surgeries in clinical trials by extending the FDA 28 April 2026 Real-Time Clinical Trials proof-of-concept program from pharmacology into the surgical theater under the FDA Software as a Medical Device framework.
+- See the v0.4.0 Notes section of releases.md for the full notes block, the 9 formatting invariants checklist, the Overleaf-ready LaTeX Source Files.zip recipe, the paper DOI 10.5281/zenodo.20113157, and the FDA Real Time Clinical Trials framing.
 
 ## v0.3.0 - 2026-05-11
 
 ### Added
 
 - `2030-gbm-1min/paper/` LaTeX paper template (head start for a future Claude Code Opus 4.7 1M Max processing pass). New files: `main.tex` (title page, TOC, document structure), `new_paper.sty` (11 pt body, 1 in margins, ptm/phv font pair, widow/orphan suppression, raggedright tables, small-caps Abstract heading), `references.bib` (DOI + URL bearing bibliography with clickable GitHub and Zenodo URLs preserved in the note field), `README.md` (navigation index, compile recipe, formatting invariants, senior-author final-pass checklist), and the eight `sections/*.tex` files (`abstract.tex`, `introduction.tex`, `methods.tex`, `results.tex`, `discussion.tex`, `limitations_future.tex`, `conclusions.tex`, `back_matter.tex`).
-- Bracketed instruction prompts inside `sections/*.tex` that name the exact upstream and current repository paths to read for the downstream pass: the 12 hand-authored instruction files at `kevinkawchak/physical-ai-oncology-trials/competitions/instructions/one_minute_variant/`, the generated `kevinkawchak/robotic-surgeries/2030-gbm-1min/` tree, and the executed `2030-gbm-1min/outputs/` artifact set including the 54 columns by 1001 rows sensor sample table at `outputs/sensors/sensor_sample_4arm.csv`.
-- DOI- and URL-bearing bibliography in `2030-gbm-1min/paper/references.bib`: 27 entries including this paper's DOI 10.5281/zenodo.20113157, the parent repository DOI 10.5281/zenodo.18445179, the author's prior glioblastoma and clinical trial work (Zenodo 17774560, 15549831, 17614396, and 19994945), the FDA real-time clinical trials announcement, glioblastoma clinical context (Stupp 2005, Sanai 2011, Stummer 2006), Medtronic ROSA ONE Brain v3.0 baseline, IEC 80601-2-77 and IEC 62304 standards, TRIPOD+AI and CREMLS reporting standards, Claude Code / Claude Opus 4.7 / Claude Sonnet 4.6 tooling, ChatGPT Deep Research, Google Gemini AI Overview, Ollama, vLLM, Apache Arrow, DuckDB, and Zenodo. Every entry has a clickable DOI URL plus (for repository-style entries) both a GitHub URL and a Zenodo URL inside the note field.
-- Top-level README.md refreshed to include the v0.3.0 paper-template badge, the new paper subtree in the Repository Structure block, the v0.3.0 Paper Template ASCII snapshot, and the compile and zip recipes.
-- This v0.3.0 entry in `CHANGELOG.md` plus the matching `releases.md` block.
+- See the v0.3.0 releases.md block for the full inventory.
 
 ### Changed
 
-- Top-level `README.md` updated with v0.3.0 paper template badge, paper subtree in the Repository Structure block, v0.3.0 Paper Template ASCII snapshot, paper-template citation block, Overleaf compile recipe, and `paper/README.md` cross-reference under See also.
-- `2030-gbm-1min/README.md` Repository Tree block annotated with the `paper/` subdirectory contents (main.tex, new_paper.sty, references.bib, sections/*.tex).
-- `2030-gbm-1min/paper/README.md` zip-creation recipe made explicit so that the Overleaf-ready bundle can be reproduced from the LaTeX sources committed under `2030-gbm-1min/paper/`.
+- See the v0.3.0 releases.md block for the full changed list.
 
 ### Fixed
 
-- LaTeX template compiles cleanly under Overleaf and a local `pdflatex` plus `bibtex` installation. The 2nd-to-last commit (error fixes) loads the `underscore` package after `hyperref` so that paths with underscores render as printable characters in text mode, and rewrites raw `mm/s^2` and `mm^3` in the bracketed instruction prompts as `mm per second squared` and `mm cubed` plain text so no caret character escapes math mode.
-- The CI lint-and-format matrix on Python 3.10, 3.11, and 3.12 continues to pass; the new files under `2030-gbm-1min/paper/` are LaTeX and Markdown only and are not subject to `ruff format --check`, `ruff check`, or `yamllint -d relaxed`. Resolves the upstream `Cl / lint-and-format (3.10)`, `(3.11)`, and `(3.12)` failing checks risk for this PR.
-- File size cap check passes; no committed file exceeds 10 MB and no committed Parquet exceeds 5 MB. The largest new file is `2030-gbm-1min/paper/references.bib` at approximately 19 KB.
+- See the v0.3.0 releases.md block for the full fixed list.
 
 ### Notes
 
-- The LaTeX template explicitly defers prose generation. Each section's bracketed instructions enumerate the exact upstream and current files for a downstream Claude Code Opus 4.7 1M Max processing pass to read; that pass replaces each `[bracketed instruction]` block with prose, tables, and ASCII diagrams. The pass must preserve the formatting invariants listed in `2030-gbm-1min/paper/README.md` (single dashes only, black text, raggedright table columns, no widows or orphans, no margin overflow, clickable DOI and URL in every bibliography entry).
-- The Overleaf-ready `LaTeX Source Files.zip` can be bundled locally with `cd 2030-gbm-1min/paper && zip -r "LaTeX Source Files.zip" main.tex new_paper.sty references.bib sections/ orcid_icon.png`; the orcid_icon.png file falls back to a green "iD" tag rendered by `new_paper.sty` if absent.
-- The paper's Zenodo DOI is 10.5281/zenodo.20113157 (clickable from the title page and from the Cite This Article back-matter block). The parent repository deposition DOI is 10.5281/zenodo.18445179.
+- See the v0.3.0 releases.md block for the full notes.
 
 ## v0.2.0 - 2026-05-10
 

@@ -1,0 +1,1 @@
+wrote 32 trajectories to /home/user/robotic-surgeries/2030-pdac-1min/paper/execution/daraxonrasib/perioperative_trajectory.csv

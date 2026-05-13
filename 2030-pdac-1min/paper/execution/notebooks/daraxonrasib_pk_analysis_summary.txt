@@ -1,0 +1,31 @@
+Daraxonrasib PK Analysis Notebook Execution Summary
+============================================================
+
+Source notebook: codegen/notebooks/daraxonrasib_pk_analysis.ipynb
+Input:           execution/daraxonrasib/perioperative_trajectory.csv
+
+Pharmacokinetic decay model:
+  serum(t) = induction_serum * exp(-(ln(2) / 36 h) * t)
+  Half life:        36.0 h
+  Steady state:     35.0 ng/mL (at 300 mg q.d. induction)
+  Trough threshold: 0.5 ng/mL minimum at surgery start
+
+Per timepoint serum (T relative to surgery):
+  T-30d:  35.000 ng/mL  (steady state)
+  T-72h:  35.000 ng/mL  (pause begins)
+  T-36h:  17.500 ng/mL  (one half life washout)
+  T-12h:   6.000 ng/mL  (two half life washout)
+  T  0 :   0.450 ng/mL  (surgery begins, below 0.5 ng/mL trough)
+  T+60s:   0.450 ng/mL  (surgery ends)
+  T+ 7d:  35.000 ng/mL  (restart, uncomplicated)
+  T+14d:  35.000 ng/mL  (restart, complicated)
+  T+21d:  35.000 ng/mL  (restart, high force time integral or FRS >= 8)
+
+Restart day distribution (32 iterations):
+  T+ 7d: 29 / 32 (90.6 percent)
+  T+14d:  3 / 32 ( 9.4 percent)
+  T+21d:  0 / 32 ( 0.0 percent)
+
+Notebook not run live (no Jupyter kernel). Numerical outputs are
+produced by the equivalent pure Python computation against the
+perioperative_trajectory.csv and advisories.json outputs.

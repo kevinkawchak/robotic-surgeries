@@ -1,0 +1,31 @@
++==========================================================================+
+|     4 ENTRANT TOURNAMENT LEADERBOARD (PDAC 1 minute, 32 iterations)      |
++==========================================================================+
+|                                                                          |
+|     Composite score (frozen weights: Q 0.30, T 0.20, Co 0.15,            |
+|                                       S 0.15, Px 0.05, A 0.15)            |
+|                                                                          |
+|   100 +    P                                                             |
+|       |    *                                                             |
+|       |    *                                                             |
+|    90 +    *                                                             |
+|       |    *      D                                                      |
+|       |    *      *      H                                               |
+|    80 +    *      *      *                                               |
+|       |    *      *      *                                               |
+|       |    *      *      *                                               |
+|    70 +    *      *      *                                               |
+|       |    *      *      *                                               |
+|       |    *      *      *                                               |
+|    60 +    *      *      *      Du                                       |
+|       |    *      *      *      *                                        |
+|       |    *      *      *      *                                        |
+|    50 +____*______*______*______*___                                     |
+|         PancreSpeed da Vinci Hugo Dutch human                            |
+|           1.0       Whipple 2030  PDAC 2030 baseline                     |
+|           (8 arm)  (6 arm)        (6 arm)   (2025)                       |
+|                                                                          |
+|   PancreSpeed 1.0 wins Rounds 1, 2, and 3 in all 32 iterations (96/96).  |
+|   Round 4 (Hugo vs da Vinci): da Vinci wins 21 of 32 ; Hugo 11 of 32.    |
+|   Structural caveat: Round 3 is 1 minute robot vs 5.4 hour human.        |
++==========================================================================+

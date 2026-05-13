@@ -1,0 +1,30 @@
++==========================================================================+
+|     PancreSpeed 1.0 (hypothetical 2030) - 8 arms x 7 DOF, 56 DOF total   |
++==========================================================================+
+|                                                                          |
+|   Patient (supine, abdomen up)                                           |
+|       O---------+                                                        |
+|       |   PT    |   Patient longitudinal axis (y axis, caudal)           |
+|       |  abdo   |                                                        |
+|       +----+----+                                                        |
+|            |                                                             |
+|   right    |       left           Top down view:                         |
+|   side     |       side                                                  |
+|            |                                                             |
+|  [Arm 1]  [Arm 5]                                                        |
+|  [Arm 2]  [Arm 6]   8 articulated arms,                                  |
+|  [Arm 3]  [Arm 7]   each 7 DOF,                                          |
+|  [Arm 4]  [Arm 8]   docked over a sterile boom,                          |
+|                     converging on the upper abdomen.                     |
+|                                                                          |
+|  Each arm: 7 DOF kinematic chain                                         |
+|    J1 yaw -> J2 pitch -> J3 yaw -> J4 elbow ->                           |
+|    J5 wrist yaw -> J6 wrist pitch -> J7 wrist roll                       |
+|    Tip workspace radius approx 1.3 m at peak velocity 1,200 mm/s         |
+|    Positioning accuracy 0.05 mm RMS at 1,200 mm/s                        |
+|                                                                          |
+|  Sterile boom + coordination master + 10 kHz heartbeat bus               |
+|    Master broadcasts 64 byte frame every 100 us                          |
+|    Per arm responds with 32 byte frame within 100 us watchdog            |
+|    Cross arm e stop budget 3 ms; per arm park 50 us                      |
++==========================================================================+

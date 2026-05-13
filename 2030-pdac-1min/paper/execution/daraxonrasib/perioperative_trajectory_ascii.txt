@@ -1,0 +1,53 @@
+Daraxonrasib Perioperative Trajectory (35.0 ng/mL steady state, 36 h half life)
+================================================================================
+
+  Serum (ng/mL)
+   |
+40 |
+   |  o------o     <- steady state at 300 mg q.d. induction
+35 |  |      |
+   |  |      | T-72h pause begins
+30 |  |      |
+   |  |      |
+25 |  |      |
+   |  |      |
+20 |  |      |
+   |  |       \
+17.5|  |        o   <- one half life washout at T-36h
+   |  |         \
+15 |  |          \
+   |  |           \
+10 |  |            \
+   |  |              \
+ 6 |  |                o  <- two half life washout at T-12h
+   |  |                 \
+ 5 |  |                  \
+   |  |                   \
+ 1 |  |                    o------o   <- surgery 0 to 60 s, trough 0.45 ng/mL
+   |  |                    |
+0.5|  |                    |
+   |  |                    |
+ 0 |  |                    +- - - - - - - - - - - - - - - - - - -
+   |  |                                                  o------o  <- T+7d restart
+   |  |                                                  300 mg
+   +--+--------------------+----------------+------------+---------> time
+     T-30d                T-72h            T 0          T+7d
+                                           |
+                                           surgery 0 to 60 s
+
+  Restart decision (per advisory):
+    T+ 7d : uncomplicated case (29 of 32 iterations)
+    T+14d : complicated case (PJ B/C OR HJ leak present OR GJ delayed)
+    T+21d : high force time integral (> 8.0 N s) OR realized FRS >= 8
+
+  Trough threshold:
+    0.50 ng/mL minimum at surgery start (T 0)
+    Actual: 0.45 ng/mL (below threshold, contract held across all 32 iterations)
+
+  Half life model:
+    serum(t) = induction_serum * exp(-(ln(2) / 36 h) * t)
+
+    serum(36 h) = 35.0 / 2 = 17.5 ng/mL
+    serum(72 h) = 35.0 / 4 = 8.75 ng/mL
+    serum(108 h) = 35.0 / 8 = 4.375 ng/mL
+    serum(180 h) = 35.0 / 32 = 1.09 ng/mL

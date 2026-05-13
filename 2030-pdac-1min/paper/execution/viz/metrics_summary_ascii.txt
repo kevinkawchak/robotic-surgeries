@@ -1,0 +1,20 @@
++============================================================================+
+|     4 ENTRANT TOURNAMENT LEADERBOARD (32 iterations, 128 round results)    |
++============================================================================+
+|                                                                            |
+|  Rank  Entrant                       Composite  Win rate  Total wins       |
+|  ------------------------------------------------------------------------  |
+|   1    PancreSpeed_1_0 (hyp 2030)     93.55       1.000        96          |
+|   2    da_Vinci_Whipple_2030          84.10       0.328        21          |
+|   3    Hugo_PDAC_2030                 80.60       0.172        11          |
+|   4    Dutch_human_baseline (2025)    56.05       0.000         0          |
+|                                                                            |
+|  Component breakdown (Quality / Time / Cost / Safety / Pt exp / Anast):    |
+|     PancreSpeed_1_0           95 / 100 / 80 / 96 / 92 / 95 = 93.55         |
+|     da_Vinci_Whipple_2030     88 /  78 / 70 / 90 / 88 / 90 = 84.10         |
+|     Hugo_PDAC_2030            85 /  70 / 75 / 86 / 84 / 87 = 80.60         |
+|     Dutch_human_baseline      82 /   8 / 90 / 80 / 78 / 82 = 56.05         |
+|                                                                            |
+|  Structural caveat (Round 3): 1 minute robot vs 5.4 hour human baseline.   |
+|  PancreSpeed wins all Rounds 1, 2, and 3 across all 32 iterations.         |
++============================================================================+

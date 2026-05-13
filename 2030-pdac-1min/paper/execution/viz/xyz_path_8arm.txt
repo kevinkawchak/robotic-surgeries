@@ -1,0 +1,30 @@
++============================================================================+
+|     PER ARM XYZ TIP PATH PROJECTION (60 s, 8 arms, patient frame mm)       |
++============================================================================+
+|                                                                            |
+|  z(mm)                                                                     |
+|  +20 +                                                                     |
+|      |                                                                     |
+|    0 +                                                                     |
+|      |                                                                     |
+|  -20 +-------+ A1 P1 Kocher 0-6s                                           |
+|      |        \                                                            |
+|  -30 +         \-+ A1 P5 PJ 32-42s (ring tension 0.45 N target)            |
+|      |          ||                                                         |
+|  -40 +         A2|   A3                                                    |
+|      |       \___+__/   |  A1 P6 HJ 42-48s (ring tension 0.50 N)           |
+|  -50 +         A4|  A8 +-+ \ A6 hep  artery proximity                      |
+|      |           |     |   \                                               |
+|  -55 +         A5+--A7-+ A2 \ portal vein proximity                        |
+|      |                       \                                             |
+|  -60 +                       +A1 P3 uncinate 16-24s                        |
+|      |                                                                     |
+|      +-+-----+-----+-----+-----+----+-----+-----+-----+-----+              |
+|       -20  -10    0    10    20    30   40    50    60     y (mm)          |
+|                                                                            |
+|   Arms 1, 2 active in all 8 phases; arms 3, 4 active in most; arms 5 to 8  |
+|   active in Phases 2, 4, 8 plus subset of Phases 5, 6.                     |
+|   Per arm peak tip linear velocity 1,200 mm/s; positioning 0.05 mm RMS.    |
+|   No tip ever crosses a vessel hard stop volume; 0 hard stop events across |
+|   the 32 iteration sweep at seed 20260513.                                 |
++============================================================================+

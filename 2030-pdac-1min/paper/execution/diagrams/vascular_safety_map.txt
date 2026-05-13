@@ -1,0 +1,25 @@
++==========================================================================+
+|     VASCULAR SAFETY ZONES (PAT-PDAC-0001, 5 named vessels)               |
++==========================================================================+
+|                                                                          |
+|  patient frame (mm, origin = umbilicus):                                 |
+|  x = right, y = caudal, z = anterior                                     |
+|                                                                          |
+|              +----------- celiac axis (1.5/3.0/5.0) ----------+          |
+|              |                                                |          |
+|              v                                                v          |
+|     hepatic artery (1.5/3.0/5.0) ----+                                   |
+|                                       \                                  |
+|                                        v                                 |
+|     superior mesenteric vein <-->  portomesenteric    +-> portal vein    |
+|     (2.0/4.0/6.0)                  confluence         |   (2.0/4.0/6.0)  |
+|                                                       |                  |
+|                                       |               |                  |
+|                                       v               v                  |
+|                       superior mesenteric artery (1.5/3.0/5.0)           |
+|                                                                          |
+|     legend: (hard stop r / soft warning r / no fly r) in mm              |
+|     hard stop: per arm e stop, 3 ms budget, 50 us park                   |
+|     soft warning: velocity 10 percent, force soft cap 1.5 N              |
+|     no fly: velocity 50 percent, force soft cap 2.5 N                    |
++==========================================================================+

@@ -1,0 +1,99 @@
+{
+  "version": "v0.6.0",
+  "seed": 20260513,
+  "iterations": [
+    {
+      "iteration_id": 0,
+      "seed": 20260513,
+      "rounds": [
+        {
+          "round": 1,
+          "entrant_a": "PancreSpeed_1_0",
+          "entrant_b": "da_Vinci_Whipple_2030",
+          "entrant_a_composite": 93.55,
+          "entrant_b_composite": 84.10,
+          "winner": "PancreSpeed_1_0",
+          "confidence": 0.965,
+          "rationale": "Round 1: PancreSpeed 1.0 wins on every component except cost. The 100 kHz force resolution and 0.05 mm RMS positioning at 1,200 mm/s drive the Quality 95.0 vs 88.0 gap. The 3 ms cross arm e stop and the force time integral cap drive the Safety 96.0 vs 90.0 gap. The 8 arm coordination during the three anastomoses drives the Anastomosis quality 95.0 vs 90.0 gap.",
+          "caveats": [
+            "PancreSpeed 1.0 is a hypothetical 2030 platform; comparison is simulation against simulation."
+          ]
+        },
+        {
+          "round": 2,
+          "entrant_a": "PancreSpeed_1_0",
+          "entrant_b": "Hugo_PDAC_2030",
+          "entrant_a_composite": 93.55,
+          "entrant_b_composite": 80.60,
+          "winner": "PancreSpeed_1_0",
+          "confidence": 0.985,
+          "rationale": "Round 2: PancreSpeed 1.0 wins by a larger margin against the Hugo PDAC 2030 modular cart due to the modular cart's lower force sample rate (30 kHz vs 100 kHz) and slower e stop latency (8 ms vs 3 ms). The Anastomosis quality 95.0 vs 87.0 gap is the dominant driver.",
+          "caveats": [
+            "PancreSpeed 1.0 is a hypothetical 2030 platform; comparison is simulation against simulation."
+          ]
+        },
+        {
+          "round": 3,
+          "entrant_a": "PancreSpeed_1_0",
+          "entrant_b": "Dutch_human_baseline",
+          "entrant_a_composite": 93.55,
+          "entrant_b_composite": 56.05,
+          "winner": "PancreSpeed_1_0",
+          "confidence": 0.999,
+          "rationale": "Round 3: PancreSpeed 1.0 wins overwhelmingly against the Dutch human surgeon baseline. The Time component 100.0 vs 8.0 dominates the composite total. Quality 95.0 vs 82.0, Safety 96.0 vs 80.0, and Anastomosis quality 95.0 vs 82.0 also favor PancreSpeed. Cost 80.0 vs 90.0 favors the human baseline due to capital amortization. Structural time dimension caveat: this round compares a 1 minute robot run against a 5.4 hour human baseline; the time component score is dominated by the orders of magnitude duration delta.",
+          "caveats": [
+            "Structural time dimension caveat: this round compares a 1 minute robot run against a 5.4 hour human baseline; the time component score is dominated by the orders of magnitude duration delta.",
+            "PancreSpeed 1.0 is a hypothetical 2030 platform; comparison is simulation against simulation."
+          ]
+        },
+        {
+          "round": 4,
+          "entrant_a": "da_Vinci_Whipple_2030",
+          "entrant_b": "Hugo_PDAC_2030",
+          "entrant_a_composite": 84.10,
+          "entrant_b_composite": 80.60,
+          "winner": "da_Vinci_Whipple_2030",
+          "confidence": 0.617,
+          "rationale": "Round 4: da Vinci Whipple 2030 wins on most components against the Hugo PDAC 2030 modular cart. The Cost 70.0 vs 75.0 favors Hugo, but the Time 78.0 vs 70.0 and Anastomosis quality 90.0 vs 87.0 favor da Vinci. Net composite 84.10 vs 80.60.",
+          "caveats": [
+            "Both entrants are hypothetical 2030 platforms; comparison is simulation against simulation."
+          ]
+        }
+      ]
+    }
+  ],
+  "leaderboard": [
+    {
+      "entrant": "PancreSpeed_1_0",
+      "composite_mean": 93.55,
+      "composite_ci_low": 93.42,
+      "composite_ci_high": 93.68,
+      "win_rate": 1.0,
+      "total_wins": 96
+    },
+    {
+      "entrant": "da_Vinci_Whipple_2030",
+      "composite_mean": 84.10,
+      "composite_ci_low": 83.95,
+      "composite_ci_high": 84.25,
+      "win_rate": 0.328,
+      "total_wins": 21
+    },
+    {
+      "entrant": "Hugo_PDAC_2030",
+      "composite_mean": 80.60,
+      "composite_ci_low": 80.45,
+      "composite_ci_high": 80.75,
+      "win_rate": 0.172,
+      "total_wins": 11
+    },
+    {
+      "entrant": "Dutch_human_baseline",
+      "composite_mean": 56.05,
+      "composite_ci_low": 55.85,
+      "composite_ci_high": 56.25,
+      "win_rate": 0.0,
+      "total_wins": 0
+    }
+  ]
+}

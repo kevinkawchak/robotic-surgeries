@@ -1,0 +1,7 @@
+v0.6.0 PDAC 1 minute codegen Zenodo DOI:
+  parent repository deposition: 10.5281/zenodo.18445179
+  v0.6.0 sub deposition: to be assigned by Zenodo on archive publication
+
+The per iteration L0 raw Parquet files (32 iterations x 412 MB = 13.2 GB)
+are uploaded via src/zenodo/patch_pointers.py and referenced from per
+iteration pointer JSON files at data/iterations/run_NNNNN_L0_raw.zenodo_pointer.json.

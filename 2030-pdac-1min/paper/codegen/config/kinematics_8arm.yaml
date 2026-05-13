@@ -1,0 +1,120 @@
+# Per arm 7 DOF Denavit Hartenberg parameters and per arm base frame offsets
+# for the hypothetical 2030 Medtronic PancreSpeed 1.0 platform.
+# Identical across all 8 arms (mechanical design); only the base offset differs.
+# Part of the deterministic seed contract.
+
+dh_parameters:
+  - link: 1
+    a_mm: 0
+    alpha_deg: 90
+    d_mm: 360
+    theta_offset_deg: 0
+    joint_range_deg: [-180, 180]
+    max_velocity_deg_per_s: 540
+    max_torque_nm: 320
+  - link: 2
+    a_mm: 0
+    alpha_deg: -90
+    d_mm: 0
+    theta_offset_deg: 0
+    joint_range_deg: [-135, 135]
+    max_velocity_deg_per_s: 540
+    max_torque_nm: 320
+  - link: 3
+    a_mm: 0
+    alpha_deg: 90
+    d_mm: 420
+    theta_offset_deg: 0
+    joint_range_deg: [-180, 180]
+    max_velocity_deg_per_s: 540
+    max_torque_nm: 200
+  - link: 4
+    a_mm: 0
+    alpha_deg: -90
+    d_mm: 0
+    theta_offset_deg: 0
+    joint_range_deg: [-135, 135]
+    max_velocity_deg_per_s: 540
+    max_torque_nm: 200
+  - link: 5
+    a_mm: 0
+    alpha_deg: 90
+    d_mm: 400
+    theta_offset_deg: 0
+    joint_range_deg: [-180, 180]
+    max_velocity_deg_per_s: 720
+    max_torque_nm: 80
+  - link: 6
+    a_mm: 0
+    alpha_deg: -90
+    d_mm: 0
+    theta_offset_deg: 0
+    joint_range_deg: [-135, 135]
+    max_velocity_deg_per_s: 720
+    max_torque_nm: 80
+  - link: 7
+    a_mm: 0
+    alpha_deg: 0
+    d_mm: 126
+    theta_offset_deg: 0
+    joint_range_deg: [-360, 360]
+    max_velocity_deg_per_s: 720
+    max_torque_nm: 40
+
+workspace:
+  radius_m: 1.3
+  peak_tip_linear_velocity_mm_per_s: 1200
+  peak_joint_angular_velocity_deg_per_s: 720
+  positioning_accuracy_at_peak_mm_rms: 0.05
+  force_resolution_n: 0.01
+  backlash_arcsec: 1
+
+base_offsets:
+  - arm: 1
+    x_mm: 400
+    y_mm: -200
+    z_mm: 300
+    yaw_deg: -22.5
+    side: right
+  - arm: 2
+    x_mm: 400
+    y_mm: 200
+    z_mm: 300
+    yaw_deg: -22.5
+    side: right
+  - arm: 3
+    x_mm: 400
+    y_mm: -400
+    z_mm: 200
+    yaw_deg: -22.5
+    side: right
+  - arm: 4
+    x_mm: 400
+    y_mm: 400
+    z_mm: 200
+    yaw_deg: -22.5
+    side: right
+  - arm: 5
+    x_mm: -400
+    y_mm: -200
+    z_mm: 300
+    yaw_deg: 22.5
+    side: left
+  - arm: 6
+    x_mm: -400
+    y_mm: 200
+    z_mm: 300
+    yaw_deg: 22.5
+    side: left
+  - arm: 7
+    x_mm: -400
+    y_mm: -400
+    z_mm: 200
+    yaw_deg: 22.5
+    side: left
+  - arm: 8
+    x_mm: -400
+    y_mm: 400
+    z_mm: 200
+    yaw_deg: 22.5
+    side: left

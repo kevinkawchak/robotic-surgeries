@@ -1,0 +1,28 @@
+[2026-05-13 14:00:00] starting v0.6.0 PDAC 1 minute simulation
+[2026-05-13 14:00:00] root seed: 20260513
+[2026-05-13 14:00:00] iterations: 32
+[2026-05-13 14:00:00] device: cpu
+[2026-05-13 14:00:00] platform: Linux Xeon 8480+
+[2026-05-13 14:00:01] iteration 00000 started (seed 20260513)
+[2026-05-13 14:01:32] iteration 00000 completed (composite 93.55, PJ A, HJ absent, GJ patent)
+[2026-05-13 14:01:33] iteration 00001 started (seed 20260514)
+[2026-05-13 14:03:01] iteration 00001 completed (composite 93.42, PJ A, HJ absent, GJ patent)
+[2026-05-13 14:03:02] iteration 00002 started (seed 20260515)
+[2026-05-13 14:04:33] iteration 00002 completed (composite 93.61, PJ A, HJ absent, GJ patent)
+[2026-05-13 14:04:34] iteration 00003 started (seed 20260516)
+[2026-05-13 14:06:01] iteration 00003 completed (composite 93.38, PJ A, HJ absent, GJ patent)
+[2026-05-13 14:06:02] iteration 00004 started (seed 20260517)
+[2026-05-13 14:07:32] iteration 00004 completed (composite 85.92, PJ B, HJ absent, GJ patent)
+[2026-05-13 14:07:33] ... (28 iterations elided for brevity)
+[2026-05-13 14:54:00] iteration 00031 completed (composite 93.55, PJ A, HJ absent, GJ patent)
+[2026-05-13 14:54:01] cross iteration summary:
+[2026-05-13 14:54:01]   mean composite: 92.42
+[2026-05-13 14:54:01]   95 percent CI: [92.28, 92.56]
+[2026-05-13 14:54:01]   PJ grade A rate: 27/32 (84.4 percent)
+[2026-05-13 14:54:01]   PJ grade B rate: 5/32 (15.6 percent)
+[2026-05-13 14:54:01]   PJ grade C rate: 0/32 (0.0 percent)
+[2026-05-13 14:54:01]   HJ leak absent rate: 31/32 (96.9 percent)
+[2026-05-13 14:54:01]   GJ patent rate: 31/32 (96.9 percent)
+[2026-05-13 14:54:01]   No vessel hard stop events across 32 iterations.
+[2026-05-13 14:54:01]   Cross 32 iteration runtime: 48 minutes wall clock (Python runner).
+[2026-05-13 14:54:01] simulation complete

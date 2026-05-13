@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xyz_command_8arm.schema.json",
+  "title": "PDAC 1 minute 8 arm xyz command record",
+  "description": "Per arm per tick xyz command record at the 10 kHz command channel rate.",
+  "type": "object",
+  "required": [
+    "tick", "arm_id", "phase", "target_pos", "target_quat", "target_linear_vel",
+    "force_clamp", "tool_state_transition", "safety_zone_action", "collision_state",
+    "ring_tension_target", "command_enum"
+  ],
+  "properties": {
+    "tick": {"type": "integer", "minimum": 0, "maximum": 599999, "description": "100 microsecond tick index"},
+    "arm_id": {"type": "integer", "minimum": 1, "maximum": 8},
+    "phase": {"type": "integer", "minimum": 1, "maximum": 8},
+    "target_pos": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3, "description": "x y z in mm in patient frame"},
+    "target_quat": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+    "target_linear_vel": {"type": "number", "minimum": 0, "maximum": 1200, "description": "mm/s"},
+    "force_clamp": {"type": "number", "minimum": 0.0, "maximum": 3.0, "description": "N"},
+    "tool_state_transition": {"type": "string", "enum": ["idle", "approach", "engage", "coag", "cut", "suction", "suture", "withdraw"]},
+    "safety_zone_action": {"type": "string", "enum": ["clear", "no_fly", "soft_warning", "hard_stop"]},
+    "collision_state": {"type": "string", "enum": ["clear", "proximity", "contact", "unsafe"]},
+    "ring_tension_target": {"type": "number", "minimum": 0.0, "maximum": 1.0, "description": "N"},
+    "command_enum": {"type": "string", "enum": ["EMIT", "HOLD", "SLOW", "PARK", "E_STOP", "HEARTBEAT_ACK", "PHASE_BOUNDARY"]}
+  }
+}

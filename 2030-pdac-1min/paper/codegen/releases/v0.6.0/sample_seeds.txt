@@ -1,0 +1,37 @@
+# Deterministic seed contract for v0.6.0 PDAC 1 minute codegen
+# per_iteration_seed = root_seed + iteration_index ; iteration_index in [0, 31]
+
+root_seed = 20260513
+
+iteration 0  seed 20260513
+iteration 1  seed 20260514
+iteration 2  seed 20260515
+iteration 3  seed 20260516
+iteration 4  seed 20260517
+iteration 5  seed 20260518
+iteration 6  seed 20260519
+iteration 7  seed 20260520
+iteration 8  seed 20260521
+iteration 9  seed 20260522
+iteration 10 seed 20260523
+iteration 11 seed 20260524
+iteration 12 seed 20260525
+iteration 13 seed 20260526
+iteration 14 seed 20260527
+iteration 15 seed 20260528
+iteration 16 seed 20260529
+iteration 17 seed 20260530
+iteration 18 seed 20260531
+iteration 19 seed 20260532
+iteration 20 seed 20260533
+iteration 21 seed 20260534
+iteration 22 seed 20260535
+iteration 23 seed 20260536
+iteration 24 seed 20260537
+iteration 25 seed 20260538
+iteration 26 seed 20260539
+iteration 27 seed 20260540
+iteration 28 seed 20260541
+iteration 29 seed 20260542
+iteration 30 seed 20260543
+iteration 31 seed 20260544

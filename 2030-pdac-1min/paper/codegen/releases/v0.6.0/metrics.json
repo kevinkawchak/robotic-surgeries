@@ -1,0 +1,22 @@
+{
+  "release_version": "v0.6.0",
+  "composite_score_mean": 92.42,
+  "composite_score_ci_low": 92.28,
+  "composite_score_ci_high": 92.56,
+  "pj_grade_a_rate": 0.844,
+  "pj_grade_b_rate": 0.156,
+  "pj_grade_c_rate": 0.0,
+  "hj_leak_absent_rate": 0.969,
+  "gj_patent_rate": 0.969,
+  "realized_frs_mean": 4.95,
+  "realized_frs_p95": 5.7,
+  "vessel_hard_stop_events_total": 0,
+  "cross_arm_force_violations_total": 0,
+  "force_time_integral_violations_total": 0,
+  "runtime_python_minutes": 48,
+  "runtime_rust_minutes": 6.4,
+  "pancrespeed_1_0_win_rate_rounds_1_2_3": 1.0,
+  "da_vinci_2030_win_rate_round_4": 0.656,
+  "hugo_pdac_2030_win_rate_round_4": 0.344,
+  "dutch_human_baseline_win_rate": 0.0
+}

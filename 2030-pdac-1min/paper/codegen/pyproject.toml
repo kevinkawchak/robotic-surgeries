@@ -1,0 +1,104 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdac-1min"
+version = "0.6.0"
+description = "2030 PDAC 1 minute 8 arm Whipple robotic surgery simulation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Kevin Kawchak", email = "kawchak@chemicalqdevice.com"}]
+keywords = ["robotics", "oncology", "pdac", "whipple", "simulation", "daraxonrasib"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+    "numpy>=1.26",
+    "click>=8.1",
+    "pyyaml>=6.0",
+    "jsonschema>=4.21",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.7.0",
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "mypy>=1.10",
+    "types-PyYAML",
+    "yamllint>=1.35",
+]
+llm-local = [
+    "anthropic>=0.30",
+    "ollama>=0.3",
+    "vllm>=0.6",
+    "openai>=1.40",
+]
+zenodo = [
+    "requests>=2.31",
+]
+pdac = [
+    "scipy>=1.13",
+    "pandas>=2.2",
+    "pyarrow>=17.0",
+    "duckdb>=1.1",
+    "scikit-learn>=1.5",
+    "matplotlib>=3.9",
+]
+cuda = [
+    "torch>=2.5",
+]
+
+[project.scripts]
+pdac-iterate = "src.simulation.iterate_1min:main"
+pdac-compute-metrics = "src.metrics.compute_1min:main"
+pdac-compare = "src.llm.compare_agent_1min:main"
+pdac-daraxonrasib = "src.daraxonrasib.trajectory:main"
+pdac-zenodo-patch = "src.zenodo.patch_pointers:main"
+
+[tool.setuptools]
+packages = ["src", "src.sensors", "src.mapping", "src.coordination", "src.vascular", "src.anastomosis", "src.daraxonrasib", "src.simulation", "src.metrics", "src.llm", "src.zenodo"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [
+    ".venv",
+    "build",
+    "dist",
+    "data/iterations",
+    "outputs",
+    "paper/inputs",
+    "paper/templates",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "PT", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"src/anastomosis/*" = []
+"src/daraxonrasib/*" = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true
+exclude = [".venv", "build", "dist", "data/iterations", "outputs"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

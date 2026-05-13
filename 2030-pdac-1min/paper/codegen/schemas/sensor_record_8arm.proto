@@ -1,0 +1,73 @@
+// sensor_record_8arm.proto
+// Protocol Buffers proto3 schema for the PDAC 1 minute 8 arm sensor record.
+// Derived bit identical from sensor_record_8arm.schema.json.
+
+syntax = "proto3";
+
+package pdac_1min.v0_6_0;
+
+enum ToolState {
+  TOOL_STATE_IDLE = 0;
+  TOOL_STATE_APPROACH = 1;
+  TOOL_STATE_ENGAGE = 2;
+  TOOL_STATE_COAG = 3;
+  TOOL_STATE_CUT = 4;
+  TOOL_STATE_SUCTION = 5;
+  TOOL_STATE_SUTURE = 6;
+  TOOL_STATE_WITHDRAW = 7;
+}
+
+enum EStopState {
+  ESTOP_STATE_IDLE = 0;
+  ESTOP_STATE_ARMED = 1;
+  ESTOP_STATE_TRIGGERED = 2;
+  ESTOP_STATE_PARKED = 3;
+}
+
+enum CollisionState {
+  COLLISION_STATE_CLEAR = 0;
+  COLLISION_STATE_PROXIMITY = 1;
+  COLLISION_STATE_CONTACT = 2;
+  COLLISION_STATE_UNSAFE = 3;
+}
+
+message SensorRecord8Arm {
+  uint64 tick = 1;
+  uint32 arm_id = 2;
+  uint32 phase = 3;
+  repeated double q = 4;
+  repeated double qd = 5;
+  repeated double tau = 6;
+  repeated double ee_pos = 7;
+  repeated double ee_quat = 8;
+  repeated double ee_vel = 9;
+  repeated double ee_force = 10;
+  repeated double ee_torque = 11;
+  ToolState tool_state = 12;
+  uint32 tool_subtype = 13;
+  double bipolar_current = 14;
+  double bipolar_voltage = 15;
+  double suction_pressure = 16;
+  double suction_flow = 17;
+  double irrigation_flow = 18;
+  double vessel_proximity = 19;
+  repeated double nir_icg = 20;
+  double duct_manometry = 21;
+  double ring_tension = 22;
+  repeated double bile_spectrophotometry = 23;
+  repeated double us_b_mode = 24;
+  uint64 heartbeat_seq = 25;
+  uint32 heartbeat_watchdog = 26;
+  double tip_force_scalar = 27;
+  double cumulative_cross_arm_force = 28;
+  double force_time_integral = 29;
+  double engagement_depth = 30;
+  EStopState estop_state = 31;
+  double temperature = 32;
+  double power = 33;
+  CollisionState collision_state = 34;
+  uint32 tool_changer_state = 35;
+  uint64 task_id = 36;
+  uint32 phase_id = 37;
+  uint32 queue_depth = 38;
+}

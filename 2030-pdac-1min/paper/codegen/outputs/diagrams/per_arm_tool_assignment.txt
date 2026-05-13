@@ -1,0 +1,27 @@
++==========================================================================+
+|     PER ARM TOOL ASSIGNMENT BY PHASE (8 arms x 8 phases = 64 cells)      |
++==========================================================================+
+|                                                                          |
+|  Arm | P1     P2     P3     P4     P5     P6     P7     P8               |
+|  ----+----+--------+--------+--------+--------+--------+--------+--------+|
+|   1  | Koc | SMVx   | UnUx   | spec   | PJsut  | HJsut  | GJsut  | with  ||
+|      | hyb | hyb    | hyb    | hyb    | needle | needle | needle | hyb   ||
+|   2  | mob | PVx    | mret   | spec   | PJsut  | HJsut  | GJsut  | hem   ||
+|      |bipol| bipol  | bipol  | bipol  | needle | needle | needle | bipol ||
+|   3  | duo | hepA   | celAx  | hem    | PJret  | HJret  | GJret  | with  ||
+|      | ret | ret    | ret    | ret    | ret    | ret    | ret    | ret   ||
+|   4  | map | map    | map    | mgnsc  | imag   | bilNIR | paten  | finsc ||
+|      | iMRI| iMRI   | iMRI   | iMRI   | iMRI   | iMRI   | iMRI   | iMRI  ||
+|   5  | sb  | brCoag | sb     | mgnvr  | rtmon  | bilNIR | sb     | drain ||
+|      |idle | bipol  | idle   | bipol  | bipol  | bipol  | idle   | bipol ||
+|   6  | sb  | brCoag | sb     | mgnvr  | bowel  | bowel  | sb     | drain ||
+|      |idle | bipol  | idle   | bipol  | sct    | sct    | idle   | sct   ||
+|   7  | sb  | suct   | sb     | mgnvr  | bowel  | bowel  | sb     | paten ||
+|      |idle | s+i    | idle   | s+i    | s+i    | s+i    | idle   | s+i   ||
+|   8  | sb  | imag   | sb     | mgnvr  | bowel  | bowel  | sb     | finsc ||
+|      |idle | NIR+UV | idle   | NIR+UV | NIR+UV | NIR+UV | idle   | NIR+UV||
+|                                                                          |
+|  Legend: sb=stand by, hem=hemostasis, rtmon=ring tension monitor          |
+|          mgnvr=margin verify, paten=patency, finsc=final scan             |
+|          PJ=pancreaticojejunostomy, HJ=hepaticojejunostomy, GJ=gastrojej. |
++==========================================================================+

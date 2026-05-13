@@ -1,0 +1,7 @@
+iteration_id,tick,arm_id,event_type,severity,resolution
+0,160000,1,phase_boundary,info,auto
+0,320000,1,phase_boundary,info,auto
+0,420000,1,phase_boundary,info,auto
+0,480000,1,phase_boundary,info,auto
+0,540000,1,phase_boundary,info,auto
+0,600000,1,phase_boundary,info,auto

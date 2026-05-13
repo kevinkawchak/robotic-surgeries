@@ -1,0 +1,15 @@
+{
+  "release_version": "v0.6.0",
+  "release_date": "2026-05-13",
+  "deposition_doi": "10.5281/zenodo.18445179",
+  "deposition_url": "https://doi.org/10.5281/zenodo.18445179",
+  "variant": "pdac_1min",
+  "arms": 8,
+  "iterations": 32,
+  "seed": 20260513,
+  "commits": 9,
+  "file_count": 95,
+  "committed_total_kb": 850,
+  "l0_raw_total_mb": 13184,
+  "notes": "Per iteration L0 raw Parquet files are archived to Zenodo and referenced from data/iterations/run_NNNNN_L0_raw.zenodo_pointer.json. The cross 32 iteration L0 raw deposition totals 13.2 GB and is not committed to Git."
+}

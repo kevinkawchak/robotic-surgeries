@@ -1,0 +1,139 @@
+# Frozen project parameters for the v0.6.0 PDAC 1 minute 8 arm Whipple simulation.
+# These values are part of the deterministic seed contract and must not change
+# between iterations or across re generations from the same seed.
+
+project:
+  name: pdac-1min
+  version: 0.6.0
+  release_date: 2026-05-13
+  upstream_doi: 10.5281/zenodo.18445179
+  parent_instructions: 2030-pdac-1min/paper/instructions/
+
+seed:
+  root: 20260513
+  iteration_offset: 0
+  iterations: 32
+  per_iteration_seed_formula: root_seed + iteration_index
+
+patient:
+  id: PAT-PDAC-0001
+  age_years: 68
+  sex: M
+  ecog: 1
+  bmi_kg_m2: 26.4
+  diagnosis: pancreatic_ductal_adenocarcinoma
+  tumor_location: head_of_pancreas
+  tumor_diameter_cm: 3.4
+  vascular_abutment_vessel: superior_mesenteric_vein
+  vascular_abutment_degrees: 75
+  resectability_nccn_2026: borderline_resectable
+  kras_mutation: G12D
+  microsatellite_status: MSI_stable
+  ca_19_9_at_diagnosis_u_per_ml: 412
+  ca_19_9_after_neoadjuvant_u_per_ml: 78
+  bilirubin_at_diagnosis_mg_per_dl: 3.1
+  bilirubin_after_biliary_stent_mg_per_dl: 0.9
+  neoadjuvant_regimen: modified_FOLFIRINOX_4_cycles
+  neoadjuvant_response: partial_response_RECIST_1_1
+  daraxonrasib_eligible: true
+  fistula_risk_score_preop: 5
+
+procedure:
+  name: pancreaticoduodenectomy_whipple
+  pylorus_preservation: true
+  artery_first_uncinate: true
+  portomesenteric_resection_as_needed: true
+  duration_seconds: 60
+  phase_count: 8
+  anastomosis_count: 3
+
+timing:
+  command_rate_hz: 10000
+  force_rate_hz: 100000
+  heartbeat_rate_hz: 10000
+  watchdog_deadline_us: 100
+  cross_arm_estop_ms: 3
+  per_arm_park_us: 50
+  total_ticks_command: 600000
+  total_ticks_force: 6000000
+
+robot:
+  platform: PancreSpeed_1_0
+  arms: 8
+  dof_per_arm: 7
+  total_dof: 56
+  workspace_radius_m: 1.3
+  peak_tip_linear_velocity_mm_per_s: 1200
+  peak_joint_angular_velocity_deg_per_s: 720
+  positioning_accuracy_at_peak_mm_rms: 0.05
+  force_resolution_n: 0.01
+  per_arm_tip_force_soft_n: 2.5
+  per_arm_tip_force_hard_n: 3.0
+  cumulative_cross_arm_force_soft_n: 15.0
+  cumulative_cross_arm_force_hard_n: 18.0
+  per_arm_force_time_integral_soft_ns: 5.0
+  per_arm_force_time_integral_hard_ns: 8.0
+
+sensor_stack:
+  channels_per_arm: 80
+  total_channels: 640
+  force_sample_rate_hz: 100000
+  command_sample_rate_hz: 10000
+
+phases:
+  - id: 1
+    name: exploration_kocher
+    start_s: 0.000
+    end_s: 6.000
+    duration_s: 6.0
+    active_arms: [1, 2, 3, 4]
+  - id: 2
+    name: vascular_control_venous_dissection
+    start_s: 6.000
+    end_s: 16.000
+    duration_s: 10.0
+    active_arms: [1, 2, 3, 4, 5, 6, 7, 8]
+  - id: 3
+    name: uncinate_dissection_artery_first
+    start_s: 16.000
+    end_s: 24.000
+    duration_s: 8.0
+    active_arms: [1, 2, 3, 4]
+  - id: 4
+    name: specimen_removal_en_bloc
+    start_s: 24.000
+    end_s: 32.000
+    duration_s: 8.0
+    active_arms: [1, 2, 3, 4, 5, 6, 7, 8]
+  - id: 5
+    name: pancreaticojejunostomy
+    start_s: 32.000
+    end_s: 42.000
+    duration_s: 10.0
+    active_arms: [1, 2, 3, 4, 5]
+  - id: 6
+    name: hepaticojejunostomy
+    start_s: 42.000
+    end_s: 48.000
+    duration_s: 6.0
+    active_arms: [1, 2, 3, 4, 5]
+  - id: 7
+    name: gastrojejunostomy
+    start_s: 48.000
+    end_s: 54.000
+    duration_s: 6.0
+    active_arms: [1, 2, 3, 4]
+  - id: 8
+    name: hemostasis_drain_withdrawal
+    start_s: 54.000
+    end_s: 60.000
+    duration_s: 6.0
+    active_arms: [1, 2, 3, 4, 5, 6, 7, 8]
+
+composite_score_weights:
+  quality: 0.30
+  time: 0.20
+  cost: 0.15
+  safety: 0.15
+  patient_experience: 0.05
+  anastomosis_quality: 0.15

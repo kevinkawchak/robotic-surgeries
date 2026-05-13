@@ -1,0 +1,2 @@
+iteration_id,seed,induction_dose_mg,induction_serum_ng_per_ml,t_minus_72h_pause_applied,t_zero_serum_ng_per_ml,t_plus_60s_serum_ng_per_ml,t_plus_7d_restart_recommended,t_plus_14d_restart_recommended,restart_recommendation_rationale
+0,20260513,300,35.0,true,0.42,0.42,true,false,"realized PJ grade A; HJ leak absent; GJ patent; max force time integral 4.30 N.s below 5.0 N.s soft cap; FRS 5.0 moderate; recommend T+7d restart per RASolute 302 perioperative pause protocol"

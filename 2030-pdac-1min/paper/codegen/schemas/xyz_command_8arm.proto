@@ -1,0 +1,39 @@
+// xyz_command_8arm.proto
+// Protocol Buffers proto3 schema for the PDAC 1 minute 8 arm xyz command record.
+// Derived bit identical from xyz_command_8arm.schema.json.
+
+syntax = "proto3";
+
+package pdac_1min.v0_6_0;
+
+enum SafetyZoneAction {
+  SZ_CLEAR = 0;
+  SZ_NO_FLY = 1;
+  SZ_SOFT_WARNING = 2;
+  SZ_HARD_STOP = 3;
+}
+
+enum CommandEnum {
+  CMD_EMIT = 0;
+  CMD_HOLD = 1;
+  CMD_SLOW = 2;
+  CMD_PARK = 3;
+  CMD_E_STOP = 4;
+  CMD_HEARTBEAT_ACK = 5;
+  CMD_PHASE_BOUNDARY = 6;
+}
+
+message XYZCommand8Arm {
+  uint64 tick = 1;
+  uint32 arm_id = 2;
+  uint32 phase = 3;
+  repeated double target_pos = 4;
+  repeated double target_quat = 5;
+  double target_linear_vel = 6;
+  double force_clamp = 7;
+  string tool_state_transition = 8;
+  SafetyZoneAction safety_zone_action = 9;
+  string collision_state = 10;
+  double ring_tension_target = 11;
+  CommandEnum command_enum = 12;
+}

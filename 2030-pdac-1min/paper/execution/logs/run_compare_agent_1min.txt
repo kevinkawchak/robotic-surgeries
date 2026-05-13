@@ -1,0 +1,2 @@
+running 4 entrant tournament on backend=ollama for 32 iterations
+wrote tournament results to /home/user/robotic-surgeries/2030-pdac-1min/paper/execution/comparison/comparison.json

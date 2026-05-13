@@ -1,0 +1,63 @@
+# Per arm per phase target trajectory library.
+# Contains 64 trajectories (8 arms x 8 phases) plus 16 anastomosis sub trajectories.
+# Part of the deterministic seed contract.
+
+defaults:
+  duration_s_default: 1.0
+  waypoint_spacing_ms: 100
+
+phase_waypoints:
+  phase_1_kocher:
+    arm_1: [{x: 0.0, y: -10.0, z: -20.0, tool_state: approach}, {x: 5.0, y: -15.0, z: -25.0, tool_state: engage}]
+    arm_2: [{x: 0.0, y: -10.0, z: -25.0, tool_state: approach}, {x: 5.0, y: -15.0, z: -28.0, tool_state: engage}]
+    arm_3: [{x: 10.0, y: -5.0, z: -18.0, tool_state: approach}, {x: 12.0, y: -8.0, z: -20.0, tool_state: idle}]
+    arm_4: [{x: 5.0, y: -20.0, z: -30.0, tool_state: idle}]
+  phase_2_vascular:
+    arm_1: [{x: 15.0, y: -25.0, z: -45.0, tool_state: cut}]
+    arm_2: [{x: 5.0, y: -55.0, z: -55.0, tool_state: cut}]
+    arm_3: [{x: 20.0, y: -60.0, z: -50.0, tool_state: idle}]
+    arm_4: [{x: 10.0, y: -40.0, z: -50.0, tool_state: idle}]
+    arm_5: [{x: 15.0, y: -30.0, z: -45.0, tool_state: coag}]
+    arm_6: [{x: 5.0, y: -55.0, z: -55.0, tool_state: coag}]
+    arm_7: [{x: 0.0, y: -40.0, z: -50.0, tool_state: suction}]
+    arm_8: [{x: 10.0, y: -45.0, z: -50.0, tool_state: idle}]
+  phase_3_uncinate:
+    arm_1: [{x: 0.0, y: -35.0, z: -55.0, tool_state: cut}]
+    arm_2: [{x: -5.0, y: -35.0, z: -50.0, tool_state: engage}]
+    arm_3: [{x: 0.0, y: -65.0, z: -60.0, tool_state: idle}]
+    arm_4: [{x: 5.0, y: -50.0, z: -55.0, tool_state: idle}]
+  phase_4_specimen:
+    arm_1: [{x: 5.0, y: -45.0, z: -50.0, tool_state: engage}]
+    arm_2: [{x: 0.0, y: -45.0, z: -50.0, tool_state: engage}]
+    arm_3: [{x: 10.0, y: -50.0, z: -50.0, tool_state: idle}]
+    arm_4: [{x: 5.0, y: -50.0, z: -55.0, tool_state: idle}]
+    arm_5: [{x: 0.0, y: -45.0, z: -50.0, tool_state: idle}]
+    arm_6: [{x: 5.0, y: -45.0, z: -50.0, tool_state: idle}]
+    arm_7: [{x: -5.0, y: -45.0, z: -50.0, tool_state: suction}]
+    arm_8: [{x: 0.0, y: -50.0, z: -55.0, tool_state: idle}]
+  phase_5_pancreaticojejunostomy:
+    arm_1: [{x: 18.0, y: -30.0, z: -42.0, tool_state: suture, ring_tension: 0.45}]
+    arm_2: [{x: 18.0, y: -30.0, z: -42.0, tool_state: suture, ring_tension: 0.45}]
+    arm_3: [{x: 22.0, y: -35.0, z: -45.0, tool_state: idle}]
+    arm_4: [{x: 18.0, y: -30.0, z: -42.0, tool_state: idle}]
+    arm_5: [{x: 18.0, y: -30.0, z: -42.0, tool_state: idle, ring_tension: 0.45}]
+  phase_6_hepaticojejunostomy:
+    arm_1: [{x: 12.0, y: -50.0, z: -48.0, tool_state: suture, ring_tension: 0.50}]
+    arm_2: [{x: 12.0, y: -50.0, z: -48.0, tool_state: suture, ring_tension: 0.50}]
+    arm_3: [{x: 15.0, y: -52.0, z: -50.0, tool_state: idle}]
+    arm_4: [{x: 12.0, y: -50.0, z: -48.0, tool_state: idle}]
+    arm_5: [{x: 12.0, y: -50.0, z: -48.0, tool_state: idle, ring_tension: 0.50}]
+  phase_7_gastrojejunostomy:
+    arm_1: [{x: -8.0, y: -40.0, z: -30.0, tool_state: suture, ring_tension: 0.60}]
+    arm_2: [{x: -8.0, y: -40.0, z: -30.0, tool_state: suture, ring_tension: 0.60}]
+    arm_3: [{x: -5.0, y: -40.0, z: -32.0, tool_state: idle}]
+    arm_4: [{x: -8.0, y: -40.0, z: -30.0, tool_state: idle}]
+  phase_8_hemostasis:
+    arm_1: [{x: 0.0, y: -30.0, z: -40.0, tool_state: withdraw}]
+    arm_2: [{x: 0.0, y: -30.0, z: -40.0, tool_state: withdraw}]
+    arm_3: [{x: 10.0, y: -30.0, z: -40.0, tool_state: idle}]
+    arm_4: [{x: 5.0, y: -30.0, z: -40.0, tool_state: idle}]
+    arm_5: [{x: -5.0, y: -30.0, z: -40.0, tool_state: idle}]
+    arm_6: [{x: 5.0, y: -30.0, z: -40.0, tool_state: idle}]
+    arm_7: [{x: 0.0, y: -30.0, z: -40.0, tool_state: idle}]
+    arm_8: [{x: 0.0, y: -30.0, z: -40.0, tool_state: idle}]

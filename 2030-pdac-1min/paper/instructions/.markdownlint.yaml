@@ -1,0 +1,11 @@
+# markdownlint configuration for 2030-pdac-1min/paper/instructions/
+# Tracks the v3.9.1 GBM 1 minute markdownlint configuration with one PDAC addition.
+
+default: true
+MD007:
+  indent: 2
+MD013: false
+MD025: false
+MD033: false
+MD034: false
+MD041: false

@@ -3,7 +3,7 @@
 Physical AI Oncology Trial Robotic Surgeries simulation repository.
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18445179-blue)](https://doi.org/10.5281/zenodo.18445179)
-[![Release](https://img.shields.io/badge/Release-v0.8.0-brightgreen.svg)](releases.md)
+[![Release](https://img.shields.io/badge/Release-v0.9.0-brightgreen.svg)](releases.md)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Python%203.10%2F3.11%2F3.12-3776ab.svg)](.github/workflows/ci.yml)
 [![Variant GBM](https://img.shields.io/badge/Variant-GBM%201%20Minute-orange.svg)](2030-gbm-1min)
@@ -15,6 +15,8 @@ Physical AI Oncology Trial Robotic Surgeries simulation repository.
 [![PDAC Codegen](https://img.shields.io/badge/PDAC%20Codegen-v0.6.0-success.svg)](2030-pdac-1min/paper/codegen)
 [![PDAC Execution](https://img.shields.io/badge/PDAC%20Execution-v0.7.0-success.svg)](2030-pdac-1min/paper/execution)
 [![PDAC Draft Paper](https://img.shields.io/badge/PDAC%20Draft%20Paper-v0.8.0-success.svg)](2030-pdac-1min/paper/draft-paper)
+[![PDAC Full Paper](https://img.shields.io/badge/PDAC%20Full%20Paper-v0.9.0-success.svg)](2030-pdac-1min/paper/full-paper)
+[![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.20174131-blue)](https://doi.org/10.5281/zenodo.20174131)
 [![Adjuvant](https://img.shields.io/badge/Adjuvant-Daraxonrasib-yellow.svg)](https://doi.org/10.5281/zenodo.18099351)
 
 ## Thesis
@@ -23,9 +25,11 @@ On-premises repository based LLMs provide commands to standard oncology surgical
 
 ## Overview
 
-This repository hosts the v0.8.0 release of the multi-arm robotic oncology resection simulation suite. The first variant is the 4-arm 1-minute glioblastoma trial in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. The v0.5.0 release landed the 8-arm 1-minute PDAC Whipple variant instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the PDAC 1-minute codegen tree at `2030-pdac-1min/paper/codegen/` produced by Claude Code Opus 4.7 1M Max from the v0.5.0 instructions. The v0.7.0 release landed the PDAC 1-minute execution tree at `2030-pdac-1min/paper/execution/` produced by running every executable codegen module against the deterministic seed contract (root seed 20260513). The new v0.8.0 release lands the PDAC 1-minute draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/` populated by Claude Code Opus 4.7 1M Max from the v0.5.0 instruction tree, the v0.6.0 codegen tree, the v0.7.0 execution tree, and the four prior author PDAC papers plus the Daraxonrasib summary plus the two research chunks under `2030-pdac-1min/paper/inputs/`. The draft template ships with bracketed downstream processing instructions in each section file (abstract, introduction, methods, results, discussion, limitations_future, conclusions, back_matter) so a future Claude Code Opus 4.7 1M Max session can expand the brackets into the final 70 plus page paper at `2030-pdac-1min/paper/full-paper/` without re-discovering source files. The reference inventory carries 41 entries with the doi + url + note triad invariant; repository style entries embed both the GitHub URL and the Zenodo URL inside the note field so each link renders as clickable in the final PDF.
+This repository hosts the v0.9.0 release of the multi-arm robotic oncology resection simulation suite. The new v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/` expanded by Claude Code Opus 4.7 1M Max from the v0.8.0 bracketed draft template at `2030-pdac-1min/paper/draft-paper/` across fourteen sequential commits within a single PR. Every bracketed instruction in the upstream draft has been resolved into running prose, anchored tables, and ASCII diagrams in the corresponding `sections/*.tex` file. The Overleaf ready `LaTeX Source Files.zip` bundle ships next to `main.tex`, `new_paper.sty`, `references.bib` (35 entries with the doi + url + note triad invariant; repository style entries embed both the GitHub URL and the Zenodo URL inside the note field so each link renders as clickable in the final PDF), and `README.md`.
 
-The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release landed the 26 file PDAC instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the generated PDAC simulation tree at `2030-pdac-1min/paper/codegen/`. The v0.7.0 release landed the executed PDAC simulation outputs at `2030-pdac-1min/paper/execution/`. The v0.8.0 release lands the bracketed draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/` ready to serve as the head start for the future final paper at `2030-pdac-1min/paper/full-paper/`.
+The first variant is the 4-arm 1-minute glioblastoma trial in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. The v0.5.0 release landed the 8-arm 1-minute PDAC Whipple variant instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the PDAC 1-minute codegen tree at `2030-pdac-1min/paper/codegen/` produced by Claude Code Opus 4.7 1M Max from the v0.5.0 instructions. The v0.7.0 release landed the PDAC 1-minute execution tree at `2030-pdac-1min/paper/execution/` produced by running every executable codegen module against the deterministic seed contract (root seed 20260513). The v0.8.0 release landed the PDAC 1-minute draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/` populated by Claude Code Opus 4.7 1M Max from the v0.5.0 instruction tree, the v0.6.0 codegen tree, the v0.7.0 execution tree, and the four prior author PDAC papers plus the Daraxonrasib summary plus the two research chunks under `2030-pdac-1min/paper/inputs/`. The draft template shipped with bracketed downstream processing instructions in each section file, which the v0.9.0 full paper has now resolved.
+
+The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release landed the 26 file PDAC instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the generated PDAC simulation tree at `2030-pdac-1min/paper/codegen/`. The v0.7.0 release landed the executed PDAC simulation outputs at `2030-pdac-1min/paper/execution/`. The v0.8.0 release landed the bracketed draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/`. The v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/`.
 
 The PDAC variant addresses 7 of the 10 approximations cataloged in the v0.4.0 GBM full paper limitations: doubled iterations (16 to 32), multi vendor tournament (single vendor to 3 robots plus 1 human), force time integral cap (added), 100 kHz force sampling (vs 10 kHz), Daraxonrasib precision oncology integration (new), per vessel safety zones (new), and anastomosis ring tension control (new). The remaining 3 approximations (synthetic patient, non deterministic Claude generation, hypothetical 2030 robot) are inherited with explicit cross simulation caveats.
 
@@ -115,22 +119,95 @@ robotic-surgeries/
         logs/              # per script run logs plus pytest smoke output
         results/           # headline outcomes plus cross family summary table
         tests/             # smoke test status
-      draft-paper/         # v0.8.0 PDAC 1-minute draft LaTeX paper (this release)
+      draft-paper/         # v0.8.0 PDAC 1-minute draft LaTeX paper template
         README.md          # draft README with DOI badges, 8 arm pipeline ASCII
         main.tex           # preamble, title page, TOC, \input{sections/*}
         new_paper.sty      # 11 pt, 1 in margins, raggedright tables, dark blue accents
         references.bib     # 41 entry doi + url + note triad bibliography
-        LaTeX Source Files.zip  # Overleaf ready bundle (commit 11 artifact)
+        LaTeX Source Files.zip  # Overleaf ready bundle
         sections/          # 8 bracketed section .tex files
-          abstract.tex     # bracketed instruction for the 900 char abstract
+      full-paper/          # v0.9.0 PDAC 1-minute full LaTeX paper (this release)
+        README.md          # full-paper README with DOI badges, 8 arm pipeline ASCII
+        main.tex           # preamble, title page, TOC, \input{sections/*}
+        new_paper.sty      # 11 pt, 1 in margins, raggedright tables, dark blue accents
+        references.bib     # 35 entry doi + url + note triad bibliography
+        LaTeX Source Files.zip  # Overleaf ready bundle (commit 14 artifact)
+        sections/          # 8 fully populated section .tex files
+          abstract.tex     # 1416 char body single paragraph
           introduction.tex # 5 subsections + Table 1 robot comparison
-          methods.tex      # 7 subsections + 4 anchored tables
+          methods.tex      # 7 subsections + 5 anchored tables
           results.tex      # 7 subsections + 4 anchored tables, includes 1001 record feat
           discussion.tex   # 5 subsections + Table 1 real-life adoption gaps
           limitations_future.tex  # 5 subsections + 3 anchored tables (10 deliverables)
           conclusions.tex  # 4 thematic blocks + Table 1 themes
           back_matter.tex  # acknowledgments, ethics, rights, cite, data availability
-      templates/           # LaTeX templates carried into v0.8.0 draft paper
+      templates/           # LaTeX templates carried into v0.8.0 draft + v0.9.0 full paper
+```
+
+## v0.9.0 PDAC Full Paper (ASCII)
+
+```
++============================================================================+
+|       2030-PDAC-1MIN FULL PAPER (v0.9.0, populated end-to-end)             |
++============================================================================+
+
+   paper/full-paper/        Overleaf ready populated full LaTeX paper.
+     README.md              DOI badges, title metadata, 8 arm pipeline ASCII,
+                            file layout, 35 reference inventory by category,
+                            senior author final pass checklist.
+     main.tex               preamble (11 pt + raggedright + dark blue accents +
+                            widow/orphan/broken-page penalties 10000), title
+                            (2 line), author (ORCID iD + DOI hyperlink),
+                            abstract block, disclaimer, keywords, TOC, \input
+                            lines for the 8 section files plus back matter.
+     new_paper.sty          dark blue section heading + ruled title block +
+                            keyword command + widow/orphan suppression.
+     references.bib         35 entry bibliography with the doi + url + note
+                            triad invariant; repository style entries embed
+                            both the GitHub URL and the Zenodo URL inside
+                            \url{...} so each link is clickable in the PDF.
+     LaTeX Source Files.zip Overleaf ready bundle of all the above plus
+                            sections/; built in commit 14 of the v0.9.0 PR.
+     sections/abstract.tex  1416 char body single paragraph (thesis, 4 phase
+                            workflow, 60 s 8 arm Whipple + Daraxonrasib,
+                            93.298 mean composite, 93.735 leaderboard,
+                            1001 record feat, T+7d 29 of 32).
+     sections/introduction.tex  FDA RTCT extension, PDAC clinical context,
+                                robotic Whipple SOTA, on-prem LLM thesis,
+                                transition. Table 1: robot comparison.
+                                ASCII: 8 arm 10 kHz heartbeat snapshot.
+     sections/methods.tex    PancreSpeed 1.0 spec, 640 ch sensor stack, xyz
+                             Cartesian mapping, vascular zones + 3
+                             anastomoses, 32 iteration sweep, 4 entrant
+                             tournament, Daraxonrasib advisory layer.
+                             5 anchored tables.
+     sections/results.tex    v0.5.0 + v0.6.0 + v0.7.0 results, the 1001
+                             record Phase 5 first 100 ms sensor sample feat,
+                             32 iteration mean composite 93.298, 4 entrant
+                             leaderboard 93.735, T+7d advisory 29 of 32.
+                             4 anchored tables.
+     sections/discussion.tex significance, FDA framing, on-prem LLM single
+                             robot error minimization, head start, real
+                             life adoption insights. 1 anchored table.
+     sections/limitations_future.tex  approximations vs generated vs
+                             executed accounting, 60 min vs 1 min delta,
+                             data + time tracks, 10 future deliverables.
+                             3 anchored tables.
+     sections/conclusions.tex  headline result, 3 themes, safety, forward.
+                                1 anchored table.
+     sections/back_matter.tex  acknowledgments + ethics + rights + cite
+                                + data availability (populated for v0.9.0).
+
+   Built across 14 commits in a single PR by Claude Code Opus 4.7 1M Max
+   on 2026-05-15. Commits 1 to 4 land main + sty + bib + README. Commits
+   5 to 12 land the 8 fully populated section files. Commit 13 fixes
+   formatting errors across all files. Commit 14 lands the LaTeX
+   Source Files.zip bundle plus this README + releases.md + CHANGELOG
+   entry. Every bracketed instruction in the upstream v0.8.0 draft
+   template has been resolved into running prose, anchored tables, and
+   ASCII diagrams. The upstream draft at 2030-pdac-1min/paper/draft-paper/
+   is preserved verbatim and is not modified by the v0.9.0 PR.
++============================================================================+
 ```
 
 ## v0.8.0 PDAC Draft Paper (ASCII)
@@ -425,15 +502,15 @@ robotic-surgeries/
 |                                     |   paper/instructions/ v0.5.0        | |
 |                                     |   paper/codegen/      v0.6.0        | |
 |                                     |   paper/execution/    v0.7.0        | |
-|                                     |   paper/draft-paper/  v0.8.0 <- new | |
+|                                     |   paper/draft-paper/  v0.8.0        | |
+|                                     |   paper/full-paper/   v0.9.0 <- new | |
 |                                     |     - main.tex + new_paper.sty      | |
-|                                     |     - references.bib (41 entries)   | |
-|                                     |     - 8 bracketed section files     | |
+|                                     |     - references.bib (35 entries)   | |
+|                                     |     - 8 populated section files     | |
 |                                     |     - LaTeX Source Files.zip        | |
-|                                     |     - bracket targets in instr/,    | |
-|                                     |       codegen/, execution/, inputs/ | |
-|                                     |     - downstream final-paper head   | |
-|                                     |       start; 70 plus pages target   | |
+|                                     |     - Overleaf ready PDF source     | |
+|                                     |     - brackets resolved into prose  | |
+|                                     |     - 14 anchored tables + 1 ASCII  | |
 |                                     +------------------+------------------+ |
 |                                                        |                    |
 |                                                        v                    |
@@ -525,10 +602,10 @@ PYTHONPATH=. python -m src.daraxonrasib.advisory --input-index ../execution/iter
 
 The same scripts can be run inside Claude Code (CLI, web, or IDE plugin) or on a conventional high-end server, and they target identical CSV/Parquet outputs for a fixed seed (20260513). The Rust runner provides a 7x throughput boost on Linux servers; build it with `cargo run --release` from `src/simulation/`.
 
-To compile the populated full GBM LaTeX paper at `2030-gbm-1min/paper/full-paper/` or the v0.8.0 PDAC draft paper at `2030-pdac-1min/paper/draft-paper/`, upload that directory to Overleaf or run:
+To compile the populated full GBM LaTeX paper at `2030-gbm-1min/paper/full-paper/`, the v0.8.0 PDAC draft paper at `2030-pdac-1min/paper/draft-paper/`, or the v0.9.0 PDAC full paper at `2030-pdac-1min/paper/full-paper/`, upload that directory to Overleaf or run:
 
 ```
-cd 2030-gbm-1min/paper/full-paper      # or 2030-pdac-1min/paper/draft-paper
+cd 2030-pdac-1min/paper/full-paper      # or 2030-pdac-1min/paper/draft-paper / 2030-gbm-1min/paper/full-paper
 pdflatex main.tex
 bibtex   main
 pdflatex main.tex
@@ -550,9 +627,9 @@ The resulting `LaTeX Source Files.zip` uploads to Overleaf via **New Project -> 
 If you use this repository in academic work, please cite:
 
 ```
-@software{kawchak_robotic_surgeries_v0_8_0_2026,
+@software{kawchak_robotic_surgeries_v0_9_0_2026,
   author    = {Kawchak, Kevin},
-  title     = {robotic-surgeries: 4-arm GBM v3.9.1 + 8-arm PDAC v0.5.0/v0.6.0/v0.7.0/v0.8.0 multi-variant},
+  title     = {robotic-surgeries: 4-arm GBM v3.9.1 + 8-arm PDAC v0.5.0/v0.6.0/v0.7.0/v0.8.0/v0.9.0 multi-variant},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18445179},
@@ -573,7 +650,7 @@ For the v0.4.0 GBM paper specifically, cite:
 }
 ```
 
-For the v0.5.0 PDAC instruction set, the v0.6.0 PDAC codegen, the v0.7.0 PDAC execution, and the v0.8.0 PDAC draft paper, the parent repository DOI 10.5281/zenodo.18445179 anchors the citation until the future final paper publication DOI is issued. The v0.8.0 PDAC draft paper itself is deposited under DOI 10.5281/zenodo.20174131:
+For the v0.5.0 PDAC instruction set, the v0.6.0 PDAC codegen, the v0.7.0 PDAC execution, the v0.8.0 PDAC draft paper, and the v0.9.0 PDAC full paper, the parent repository DOI 10.5281/zenodo.18445179 anchors the citation. The v0.9.0 PDAC full paper itself is deposited under DOI 10.5281/zenodo.20174131:
 
 ```
 @misc{kawchak_2026_20174131,
@@ -615,3 +692,5 @@ MIT License. See [LICENSE](LICENSE).
 - [2030-pdac-1min/paper/instructions/README.md](2030-pdac-1min/paper/instructions/README.md) for the v0.5.0 PDAC 8-arm 1-minute instruction set navigation index, the 8 phase 60 second Whipple timeline, the 7 BibTeX entries, and the future Claude Code generation plan.
 - [2030-pdac-1min/paper/codegen/README.md](2030-pdac-1min/paper/codegen/README.md) for the v0.6.0 PDAC 8-arm 1-minute generated codebase, the 640 channel sensor stack, the 32 iteration sweep, the 4 entrant tournament, the vascular safety zones, the 3 anastomosis controllers, the Daraxonrasib perioperative pause and restart logic, the Zenodo L0 deposition patcher, and the runtime recipes for MacOS Apple Silicon, Windows 11, Linux Ubuntu 22.04 LTS, and Claude Code (CLI / web / IDE).
 - [2030-pdac-1min/paper/execution/README.md](2030-pdac-1min/paper/execution/README.md) for the v0.7.0 PDAC 8-arm 1-minute execution outputs produced by running every executable codegen module against the deterministic seed contract (root seed 20260513). Includes the 1001 record sensor sample, the 32 iteration index plus L3 phase sample, the 128 verdict tournament leaderboard, the 5 vessel safety zone gate verdict log, the 3 per anastomosis controller outcome tables, the Daraxonrasib perioperative trajectory plus the postoperative restart advisory, the Zenodo deposition pointer JSON family, the 12 PDAC ASCII diagrams, and the smoke test status.
+- [2030-pdac-1min/paper/draft-paper/README.md](2030-pdac-1min/paper/draft-paper/README.md) for the v0.8.0 PDAC 8-arm 1-minute bracketed draft LaTeX paper template. The bracketed processing instructions name the exact source files and bibtex keys for the downstream final paper population pass.
+- [2030-pdac-1min/paper/full-paper/README.md](2030-pdac-1min/paper/full-paper/README.md) for the v0.9.0 PDAC 8-arm 1-minute full LaTeX paper populated by Claude Code Opus 4.7 1M Max from the v0.8.0 bracketed draft. Includes the 14 anchored tables, the 8 arm 10 kHz heartbeat ASCII snapshot, the 35 entry references.bib, and the Overleaf ready `LaTeX Source Files.zip` bundle. Compiles cleanly with `pdflatex + bibtex + pdflatex + pdflatex`.

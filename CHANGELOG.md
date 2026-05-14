@@ -3,6 +3,44 @@
 All notable changes to this repository are documented in this file.
 Format: Keep a Changelog. Versioning: Semantic Versioning.
 
+## v0.9.0 - 2026-05-15
+
+### Added
+
+- `2030-pdac-1min/paper/full-paper/` directory containing the v0.9.0 populated full LaTeX paper expanded by Claude Code Opus 4.7 1M Max from the v0.8.0 bracketed draft template at `2030-pdac-1min/paper/draft-paper/` across fourteen sequential commits within a single PR. The full paper directory includes: `README.md` (full-paper README with DOI badges, 8 arm pipeline ASCII, file layout, section inventory, upstream read only source tree pointers, compile recipe, LaTeX zip recipe, formatting invariants checklist, senior author final pass checklist), `main.tex` (preamble with 11 pt body, raggedright tables, dark blue accents, widow/orphan/broken-page suppression at penalty 10000, two-line title, ORCID iD + DOI hyperlink author block, abstract block, disclaimer, keywords, TOC, eight `\input{sections/*}` lines plus back matter), `new_paper.sty` (style file inherited from Template_02 with widow/orphan suppression and dark blue section accents), `references.bib` (35 entry bibliography with the doi + url + note triad invariant), `LaTeX Source Files.zip` (Overleaf-ready bundle).
+- 8 fully populated section files at `2030-pdac-1min/paper/full-paper/sections/`: `abstract.tex` (1416 char body single paragraph), `introduction.tex` (5 subsections + Table 1 robot comparison + 8 arm heartbeat ASCII), `methods.tex` (7 subsections + 5 anchored tables), `results.tex` (7 subsections + 4 anchored tables, includes the 1001 record sensor sample feat), `discussion.tex` (5 subsections + Table 1 adoption gaps), `limitations_future.tex` (5 subsections + 3 anchored tables), `conclusions.tex` (4 thematic blocks + Table 1 themes), `back_matter.tex` (acknowledgments, ethics, rights, cite, data availability).
+- 35 entry doi + url + note triad bibliography at `2030-pdac-1min/paper/full-paper/references.bib` extending the v0.8.0 draft inventory with the new `pdac-draft-paper-v080` self reference.
+- v0.9.0 release badge plus PDAC Full Paper badge in the top level `README.md`.
+- v0.9.0 PDAC Full Paper ASCII snapshot in the top level `README.md` above the v0.8.0 PDAC Draft Paper ASCII snapshot.
+- `2030-pdac-1min/paper/full-paper/` subtree expanded in the top level `README.md` Repository Structure block.
+- High Level Architecture ASCII diagram in the top level `README.md` updated to point at the v0.9.0 PDAC Full Paper tree.
+- Citation block in the top level `README.md` updated for v0.9.0 referencing the self cite at DOI 10.5281/zenodo.20174131 (paper) and DOI 10.5281/zenodo.18445179 (parent repo).
+- Quick Start block in the top level `README.md` extended with the v0.9.0 full-paper compile recipe.
+- This v0.9.0 entry in `CHANGELOG.md` plus the matching `releases.md` block.
+
+### Changed
+
+- Top level `README.md` updated with v0.9.0 release badge, v0.9.0 PDAC Full Paper badge, v0.9.0 PDAC Full Paper ASCII snapshot, `2030-pdac-1min/paper/full-paper/` subtree in Repository Structure block, updated overview paragraph referencing v0.9.0, updated citation block referencing v0.9.0, updated Quick Start block referencing both `2030-gbm-1min/paper/full-paper/` and `2030-pdac-1min/paper/full-paper/` compile recipes.
+- `releases.md` prepended with v0.9.0 release notes block per the FORMAT (Release title / Summary / Features / Contributors / Notes).
+- @kevinkawchak provided the v0.8.0 PDAC draft paper template at `2030-pdac-1min/paper/draft-paper/` as the basis for the v0.9.0 full paper population on 2026-05-15.
+- @claude (this session) authored the v0.9.0 PDAC full paper at `2030-pdac-1min/paper/full-paper/` across fourteen sequential commits within a single PR on 2026-05-15.
+
+### Fixed
+
+- Backtick markdown literal around `sensor_sample_8arm.jsonl` in the abstract rewritten as `\texttt{sensor\_sample\_8arm.jsonl}` so the underscore package renders the filename correctly without printing literal backticks.
+- Ambiguous "T 0 serum 0.45 ng/mL" phrasing in `sections/methods.tex` and `sections/results.tex` rewritten as "baseline serum 0.45 ng/mL at T 0" so the pharmacokinetic time origin reads cleanly.
+- Single dash invariant verified across all 8 section .tex files plus main.tex plus new_paper.sty plus references.bib plus README.md (zero em dashes, double dashes, triple dashes, `\textendash`, `\textemdash`, or SS-as-section-sign violations).
+- Every `\cite{}` key in the eight section files resolves to a defined entry in `references.bib` (29 unique citation keys cited; 35 entries defined; 6 surplus entries reserved for the sibling cancer site downstream pass).
+- Every `\begin{tabular}` column type starts with `>{\raggedright\arraybackslash}p{Xcm}`; no plain `p{Xcm}` columns remain in the eight section files.
+- The 14 anchored tables in the eight section files all sum to less than 14.0 cm column widths, well under the 16.5 cm text width, so no table runs off the right margin.
+- Widow and orphan penalties set to 10000 in both `main.tex` and `new_paper.sty` plus `\brokenpenalty=10000` so single or two word lines cannot float to the top or bottom of any page.
+
+### Notes
+
+- The CI lint and format matrix at `.github/workflows/ci.yml` targets `2030-gbm-1min/` as the lint working directory. The new files under `2030-pdac-1min/paper/full-paper/` are LaTeX and Markdown only and are not lint gated by CI. This release therefore does not regress the upstream `CI / lint-and-format (3.10) (pull...)`, `(3.11) (pull...)`, or `(3.12) (pull...)` checks.
+- The full paper is populated and ready to upload to Overleaf for PDF compilation; this PR does not produce a PDF.
+- The Zenodo deposition at DOI 10.5281/zenodo.20174131 is the v0.9.0 PDAC full paper DOI placeholder; the live Zenodo upload step is gated on a valid `ZENODO_TOKEN`.
+
 ## v0.8.0 - 2026-05-15
 
 ### Added

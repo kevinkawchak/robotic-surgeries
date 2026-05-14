@@ -13,7 +13,73 @@ PDAC 1-minute generated codebase at `2030-pdac-1min/paper/codegen/`.
 The v0.7.0 release lands the PDAC 1-minute execution outputs at
 `2030-pdac-1min/paper/execution/`. The v0.8.0 release lands the
 PDAC 1-minute draft LaTeX paper template at
-`2030-pdac-1min/paper/draft-paper/`.
+`2030-pdac-1min/paper/draft-paper/`. The v0.9.0 release lands the
+populated PDAC 1-minute full LaTeX paper at
+`2030-pdac-1min/paper/full-paper/`.
+
+## Release title
+
+v0.9.0 - 2030 PDAC 1-Minute Full LaTeX Paper (Populated From The v0.8.0 Bracketed Draft Template)
+
+## Summary
+
+This release lands the v0.9.0 PDAC 1-minute full LaTeX paper at
+`2030-pdac-1min/paper/full-paper/` expanded by Claude Code Opus
+4.7 1M Max from the v0.8.0 bracketed draft template at
+`2030-pdac-1min/paper/draft-paper/` across fourteen sequential
+commits within a single PR. Every bracketed instruction in the
+upstream draft (abstract synthesis brackets, 5 introduction
+subsection brackets, 7 methods subsection brackets, 7 results
+subsection brackets, 5 discussion subsection brackets, 5
+limitations subsection brackets, 4 conclusions block brackets)
+has been resolved into running prose, anchored tables, and ASCII
+diagrams in the corresponding `sections/*.tex` file. The
+upstream v0.8.0 draft template under
+`2030-pdac-1min/paper/draft-paper/` is preserved verbatim and is
+not modified by this PR. The 35 entry doi + url + note triad
+bibliography at `2030-pdac-1min/paper/full-paper/references.bib`
+preserves the clickable DOI plus GitHub plus Zenodo hyperlinks
+for every repository style entry and adds the new
+`pdac-draft-paper-v080` self reference. The 2nd to last commit
+verifies all senior author final pass invariants (single dashes
+only, black text only, raggedright table cells everywhere, every
+`\cite{}` resolves, every `\label{}` resolves, every `\S`
+renders, no SS in body, table column widths sum under 14.0 cm,
+abstract under 1500 char paragraph). The last commit lands the
+`LaTeX Source Files.zip` Overleaf ready bundle plus the v0.9.0
+entries in this `releases.md`, in the top level `README.md`, and
+in `CHANGELOG.md`. The CI lint and format gates on Python 3.10,
+3.11, and 3.12 pass uniformly across the single PR because the
+new files under `2030-pdac-1min/paper/full-paper/` are LaTeX and
+Markdown only and live outside the CI matrix working directory
+(`2030-gbm-1min/`).
+
+## Features
+
+- Populated full LaTeX paper at `2030-pdac-1min/paper/full-paper/main.tex` with the dark blue accent style file at `new_paper.sty`, the 35 entry doi + url + note triad bibliography at `references.bib`, and the navigation README at `README.md`.
+- 8 fully populated section files at `2030-pdac-1min/paper/full-paper/sections/`: `abstract.tex` (single paragraph 1416 char body opening with the on premises repository based LLM thesis, naming the four phase Claude Code workflow, the PancreSpeed 1.0 60 second target, Daraxonrasib, the headline composite 93.298 plus leaderboard 93.735 plus T+7d 29 of 32 numbers, the 1001 record exceptional processing feat, and the practical adoption gap), `introduction.tex` (5 subsections with the anchored Table 1 robot comparison and the 8 arm 10 kHz heartbeat ASCII snapshot), `methods.tex` (7 subsections with 5 anchored tables for per arm tool assignment, 10 channel sensor sample, xyz command state enum, vascular safety zones plus anastomosis ring tension, and 6 frozen composite weights), `results.tex` (7 subsections with 4 anchored tables for codegen subpackage size, 6 component composite per iteration mean and std, 4 entrant leaderboard, and Daraxonrasib restart day distribution; explicitly highlights the 1001 record Phase 5 first 100 ms `sensor_sample_8arm.jsonl` exceptional processing feat), `discussion.tex` (5 subsections with Table 1 real life adoption gaps), `limitations_future.tex` (5 subsections with 3 anchored tables for 4 phase accounting, 60 min vs 1 min delta, and 10 future deliverables), `conclusions.tex` (4 thematic blocks with Table 1 themes), `back_matter.tex` (acknowledgments, ethical disclosures, rights and permissions, cite this article, data availability fully populated and extended to name the v0.9.0 full paper directory).
+- Title page metadata: title `2030: 60 Second Pancreatic Cancer Whipple Surgery + Daraxonrasib Simulation` across two centered lines, author Kevin Kawchak with the green ORCID logo plus `https://orcid.org/0009-0007-5457-8667` clickable hyperlink, affiliation CEO ChemicalQDevice, DOI `10.5281/zenodo.20174131` clickable hyperlink to `https://doi.org/10.5281/zenodo.20174131`, date May 15, 2026.
+- Disclaimer block under the abstract: `Disclaimer: This work is independent and not endorsed or sponsored by trial sponsors, FDA, CRO, site, IRB, regulator, or medical society; and was generated using Artificial Intelligence.`
+- Keywords block under the disclaimer: `60 Second Surgery, Pancreatic Ductal Adenocarcinoma, Whipple Procedure, Physical AI, Robotic Surgery, On-Premises LLM, Daraxonrasib, KRAS`.
+- 14 anchored tables across the 8 section files, all using the `>{\raggedright\arraybackslash}p{Xcm}` column type contract, all summing to under 14.0 cm column widths so no table runs off the right margin.
+- 35 entry doi + url + note triad bibliography at `references.bib` extending the v0.8.0 draft inventory with the new `pdac-draft-paper-v080` self reference plus the existing entries (this paper self cite, parent repos, 4 prior PDAC author papers, Daraxonrasib summary, prior 60 second GBM paper, upstream v0.5.0 to v0.7.0 PDAC tree anchors, FDA RTCT announcement, PDAC clinical context, Daraxonrasib trial anchors, competitor robot platforms, IEC plus FDA plus ICH standards, reporting standards, AI tooling).
+- Overleaf ready bundle at `2030-pdac-1min/paper/full-paper/LaTeX Source Files.zip` containing main.tex + new_paper.sty + references.bib + README.md + sections/.
+- Top level `README.md` updated with v0.9.0 release badge, v0.9.0 PDAC Full Paper badge, v0.9.0 PDAC Full Paper ASCII snapshot, `2030-pdac-1min/paper/full-paper/` subtree in Repository Structure block, updated High Level Architecture ASCII diagram, updated citation block referencing v0.9.0, updated Quick Start block referencing the full paper compile recipe.
+- This v0.9.0 release notes block in `releases.md` plus the matching v0.9.0 entry in `CHANGELOG.md`.
+
+## Contributors
+
+@kevinkawchak
+@claude
+@openai
+@google-gemini
+
+## Notes
+
+- The CI lint and format matrix at `.github/workflows/ci.yml` targets `2030-gbm-1min/` as the lint working directory. The new files under `2030-pdac-1min/paper/full-paper/` are LaTeX and Markdown only and are not lint gated by CI. This PR therefore does not regress the upstream `CI / lint-and-format (3.10) (pull...)`, `(3.11) (pull...)`, or `(3.12) (pull...)` checks.
+- The full paper is populated; every bracketed instruction in the upstream v0.8.0 draft template has been resolved into running prose, anchored tables, and ASCII diagrams. The upstream draft template at `2030-pdac-1min/paper/draft-paper/` is preserved verbatim and is not modified by this PR.
+- The Zenodo deposition at DOI 10.5281/zenodo.20174131 is the v0.9.0 PDAC full paper DOI placeholder; the live Zenodo upload step is gated on a valid `ZENODO_TOKEN` and follows the same deposition pattern as the v0.4.0 GBM full paper at DOI 10.5281/zenodo.20113157.
+- The 6 surplus bibliography entries (`apache-arrow`, `ccby4`, `chatgpt-thinking`, `duckdb`, `google-gemini-overview`, `repo-physical-ai-oncology-trials`, `repo-robotic-surgeries`, `zenodo`) are present in `references.bib` but not yet cited in the body; they are available for the sibling cancer site downstream pass.
 
 ## Release title
 

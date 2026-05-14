@@ -3,6 +3,43 @@
 All notable changes to this repository are documented in this file.
 Format: Keep a Changelog. Versioning: Semantic Versioning.
 
+## v0.8.0 - 2026-05-15
+
+### Added
+
+- `2030-pdac-1min/paper/draft-paper/` directory containing the v0.8.0 PDAC 1-minute draft LaTeX paper template populated by Claude Code Opus 4.7 1M Max from the v0.5.0 instruction tree, the v0.6.0 codegen tree, the v0.7.0 execution tree, and the four prior author PDAC papers plus the Daraxonrasib summary plus the two research chunks under `2030-pdac-1min/paper/inputs/` across eleven sequential commits within a single PR. The draft template includes: `README.md` (draft README with DOI badges, 8-arm pipeline ASCII, file layout, formatting invariants, senior author final pass checklist), `main.tex` (preamble with 11 pt body + raggedright tables + dark blue accents, two-line title, ORCID iD + DOI hyperlink author block, abstract block, disclaimer, keywords, TOC, eight `\input{sections/*}` lines plus back matter), `new_paper.sty` (style file inherited from Template_02 with widow/orphan suppression and dark blue section accents), `references.bib` (41 entry bibliography with the doi + url + note triad invariant), `LaTeX Source Files.zip` (Overleaf-ready bundle).
+- 8 bracketed section files at `2030-pdac-1min/paper/draft-paper/sections/`: `abstract.tex` (single paragraph 900 to 1000 char target with 8 input synthesis brackets), `introduction.tex` (5 subsections + 1 anchored Table 1 robot comparison), `methods.tex` (7 subsections + 4 anchored tables for per-arm tool assignment, xyz command state enum, vascular safety zones plus anastomosis ring tension targets, and 6 frozen composite weights), `results.tex` (7 subsections + 4 anchored tables for codegen subpackage size, 6 component composite per-iteration mean and std, 4 entrant leaderboard, and Daraxonrasib restart day distribution; explicitly highlights the 1001 record Phase 5 first 100 ms `sensor_sample_8arm.jsonl` exceptional processing feat), `discussion.tex` (5 subsections + Table 1 real-life adoption gaps), `limitations_future.tex` (5 subsections + 3 anchored tables for 4 phase accounting, 60 min vs 1 min delta, and 10 future deliverables), `conclusions.tex` (4 thematic blocks + Table 1 themes), `back_matter.tex` (acknowledgments, ethical disclosures, rights and permissions, cite this article, data availability fully populated).
+- 41 entry doi + url + note triad bibliography at `2030-pdac-1min/paper/draft-paper/references.bib` covering this paper self-cite (`kawchak_2026_20174131`), parent repositories, 4 prior PDAC author papers, Daraxonrasib summary, prior 60 second GBM paper, upstream v0.5.0 to v0.7.0 PDAC tree anchors, FDA RTCT announcement, PDAC clinical context, Daraxonrasib clinical trial anchors (RASolute 302 + RASolve 301 + FDA Breakthrough), competitor robot platforms, IEC + FDA + ICH standards, reporting standards, and AI tooling.
+- v0.8.0 release badge plus PDAC Draft Paper badge in the top level `README.md`.
+- v0.8.0 PDAC Draft Paper ASCII snapshot in the top level `README.md` above the v0.7.0 PDAC Execution ASCII snapshot.
+- `2030-pdac-1min/paper/draft-paper/` subtree expanded in the top level `README.md` Repository Structure block.
+- High Level Architecture ASCII diagram in the top level `README.md` updated to point at the v0.8.0 PDAC Draft Paper tree.
+- Citation block in the top level `README.md` extended with the standalone `kawchak_2026_20174131` self-cite for the v0.8.0 PDAC draft paper DOI 10.5281/zenodo.20174131.
+- Quick Start block in the top level `README.md` extended with the v0.8.0 draft-paper compile recipe.
+- This v0.8.0 entry in `CHANGELOG.md` plus the matching `releases.md` block.
+
+### Changed
+
+- Top level `README.md` updated with v0.8.0 release badge, v0.8.0 PDAC Draft Paper badge, v0.8.0 PDAC Draft Paper ASCII snapshot, `2030-pdac-1min/paper/draft-paper/` subtree in Repository Structure block, updated overview paragraph referencing v0.8.0, updated citation block referencing v0.8.0 plus the standalone `kawchak_2026_20174131` self-cite, updated Quick Start block referencing both `2030-gbm-1min/paper/full-paper/` and `2030-pdac-1min/paper/draft-paper/` compile recipes.
+- `releases.md` prepended with v0.8.0 release notes block per the FORMAT (Release title / Summary / Features / Contributors / Notes).
+- @kevinkawchak provided the v0.5.0 instruction tree, the v0.6.0 codegen tree, the v0.7.0 execution tree, and the inputs/ tree as the basis for the v0.8.0 draft paper population on 2026-05-15.
+- @claude (this session) authored the v0.8.0 PDAC draft paper template at `2030-pdac-1min/paper/draft-paper/` across eleven sequential commits within a single PR on 2026-05-15.
+
+### Fixed
+
+- Less than and greater than character escaping in two table cells: `sections/conclusions.tex` Table 1 cell `5-year OS < 13\%` rewritten as `5 year OS less than 13\%`; `sections/results.tex` Table 4 cell `PJ Grade A + serum < 0.5 ng/mL` rewritten as `PJ Grade A + serum below 0.5 ng/mL`. Both rewrites prevent unintended math-mode shifts in pdflatex.
+- Single dash invariant verified across all `.tex` files. The `references.bib` `FOUR-PHASE` comment marker uses an acceptable hyphen in a comment line. The `README.md` ASCII diagram dashes are deliberate ASCII art.
+- Every `\cite{}` key in the eight section files resolves to a defined entry in `references.bib` (32 unique citation keys cited; 41 entries defined; 9 surplus entries reserved for the downstream final-paper pass).
+- Every `\begin{tabular}` column type starts with `>{\raggedright\arraybackslash}p{Xcm}`; no plain `p{Xcm}` columns remain in the eight section files.
+- The 14 anchored tables in the eight section files all sum to less than 16.5 cm column widths, so no table runs off the right margin under the 6.5 inch text width.
+- The bracketed instructions live in body text only, not in commands that would consume them as optional arguments. A blank line separates every `\subsection{...}` `\label{...}` pair from its bracketed instruction block.
+
+### Notes
+
+- The CI lint and format matrix at `.github/workflows/ci.yml` targets `2030-gbm-1min/` as the lint working directory. The new files under `2030-pdac-1min/paper/draft-paper/` are LaTeX and Markdown only and are not lint gated by CI. This release therefore does not regress the upstream `Cl / lint-and-format (3.10) (pull...)`, `(3.11) (pull...)`, or `(3.12) (pull...)` checks.
+- The draft template is bracketed; the bracketed instructions in each section file are not processed in this release. A future Claude Code Opus 4.7 1M Max session reads the brackets and expands them into the final 70 plus page paper at `2030-pdac-1min/paper/full-paper/`.
+- The Zenodo deposition at DOI 10.5281/zenodo.20174131 is the v0.8.0 PDAC draft paper DOI placeholder; the live Zenodo upload step is gated on a valid `ZENODO_TOKEN`.
+
 ## v0.7.0 - 2026-05-13
 
 ### Added

@@ -11,7 +11,76 @@ The v0.5.0 release lands the 8-arm 1-minute PDAC instruction set at
 `2030-pdac-1min/paper/instructions/`. The v0.6.0 release lands the
 PDAC 1-minute generated codebase at `2030-pdac-1min/paper/codegen/`.
 The v0.7.0 release lands the PDAC 1-minute execution outputs at
-`2030-pdac-1min/paper/execution/`.
+`2030-pdac-1min/paper/execution/`. The v0.8.0 release lands the
+PDAC 1-minute draft LaTeX paper template at
+`2030-pdac-1min/paper/draft-paper/`.
+
+## Release title
+
+v0.8.0 - 2030 PDAC 1-Minute Draft LaTeX Paper Template (Bracketed Head Start For Future Final Paper)
+
+## Summary
+
+This release lands the v0.8.0 PDAC 1-minute draft LaTeX paper
+template at `2030-pdac-1min/paper/draft-paper/` populated by Claude
+Code Opus 4.7 1M Max from the v0.5.0 instruction tree, the v0.6.0
+codegen tree, the v0.7.0 execution tree, and the four prior author
+PDAC papers plus the Daraxonrasib summary plus the two research
+chunks under `2030-pdac-1min/paper/inputs/` across eleven
+sequential commits within a single PR. The draft template ships
+with bracketed downstream processing instructions in each section
+file (sections/abstract.tex, introduction.tex, methods.tex,
+results.tex, discussion.tex, limitations_future.tex, conclusions.tex,
+back_matter.tex) so a future Claude Code Opus 4.7 1M Max session can
+expand the brackets into the final 70 plus page paper at
+`2030-pdac-1min/paper/full-paper/` without re-discovering source
+files. Each bracketed instruction names the exact source file paths
+in `2030-pdac-1min/paper/{instructions, codegen, execution, inputs}/`,
+the exact bibtex citation keys to use, and the position the
+subsection should take in the wider field. The reference inventory
+at `references.bib` carries 41 entries with the doi + url + note
+triad invariant; repository style entries embed both the GitHub URL
+and the Zenodo URL inside the note field so each link renders as
+clickable in the final PDF. The 2nd to last commit fixes formatting
+errors (less than and greater than character escaping in two table
+cells, single dash invariant verification across all .tex files,
+\cite{} key resolution against the 41 entry bibliography, raggedright
+column type contract verification across the 14 anchored tables,
+table column width verification within the 16.5 cm text width). The
+last commit lands the LaTeX Source Files.zip Overleaf-ready bundle
+plus the v0.8.0 entries in this releases.md, in the top level
+README.md, and in CHANGELOG.md. The CI lint and format gates on
+Python 3.10, 3.11, and 3.12 pass uniformly across the single PR
+because the new files under `2030-pdac-1min/paper/draft-paper/` are
+LaTeX and Markdown only and live outside the CI matrix working
+directory (`2030-gbm-1min/`).
+
+## Features
+
+- Bracketed draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/main.tex` with the dark blue accent style file at `new_paper.sty`, the 41 entry doi + url + note triad bibliography at `references.bib`, and the navigation README at `README.md`.
+- 8 bracketed section files at `2030-pdac-1min/paper/draft-paper/sections/`: `abstract.tex` (single paragraph 900 to 1000 char target with 8 input synthesis brackets), `introduction.tex` (5 subsections with 1 anchored Table 1 robot comparison), `methods.tex` (7 subsections with 4 anchored tables for per-arm tool assignment, xyz command state enum, vascular safety zones plus anastomosis ring tension, and 6 frozen composite weights), `results.tex` (7 subsections with 4 anchored tables for codegen subpackage size, 6 component composite per-iteration mean and std, 4 entrant leaderboard, and Daraxonrasib restart day distribution), `discussion.tex` (5 subsections with Table 1 real-life adoption gaps), `limitations_future.tex` (5 subsections with 3 anchored tables for 4 phase accounting, 60 min vs 1 min delta, and 10 future deliverables), `conclusions.tex` (4 thematic blocks with Table 1 themes), `back_matter.tex` (acknowledgments, ethics, rights, cite, data availability blocks fully populated).
+- Title page metadata: title `2030: 60 Second Pancreatic Cancer Whipple Surgery + Daraxonrasib Simulation` across two centered lines, author Kevin Kawchak with the green ORCID logo + `https://orcid.org/0009-0007-5457-8667` clickable hyperlink, affiliation CEO ChemicalQDevice, DOI `10.5281/zenodo.20174131` clickable hyperlink to `https://doi.org/10.5281/zenodo.20174131`, date May 15, 2026.
+- Disclaimer block under the abstract: `Disclaimer: This work is independent and not endorsed or sponsored by trial sponsors, FDA, CRO, site, IRB, regulator, or medical society; and was generated using Artificial Intelligence.`
+- Keywords block under the disclaimer: `60 Second Surgery, Pancreatic Ductal Adenocarcinoma, Whipple Procedure, Physical AI, Robotic Surgery, On-Premises LLM, Daraxonrasib, KRAS`.
+- 14 pre-populated anchored tables across the 8 section files, all using the `>{\raggedright\arraybackslash}p{Xcm}` column type contract, all summing to less than 16.5 cm text width, all under 5 row count for cell density.
+- 41 entry doi + url + note triad bibliography at `references.bib` covering: this paper self-cite (`kawchak_2026_20174131`), parent repositories (`repo-robotic-surgeries`, `repo-physical-ai-oncology-trials`), 4 prior PDAC author papers (`kawchak_2025_15735068`, `kawchak_2025_16415815`, `kawchak_2025_17001137`, `kawchak_2025_17239510`), Daraxonrasib summary (`kawchak_2025_18099351`), prior 60 second GBM paper (`kawchak_2026_20113157`), upstream v0.5.0 to v0.7.0 PDAC tree anchors (`pdac-instructions-v050`, `pdac-codegen-v060`, `pdac-execution-v070`), FDA RTCT announcement (`fda2026realtime`), PDAC clinical context (`Siegel2025CancerStatistics`, `DutchCohort2025Whipple`, `Conroy2018FOLFIRINOXAdjuvant`, `Bassi2017ISGPSPostOpFistula`), Daraxonrasib clinical trial anchors (`rasolute302`, `rasolve301`, `rev-fda-breakthrough`), competitor robot platforms (`intuitive-davinci-sp`, `medtronic-hugo-ras`, `verb-surgical`), IEC plus FDA plus ICH standards (`iec-80601-2-77`, `iec-62304`, `cfr-21-50-30`, `fda-samd`, `ich-e6r3`), reporting standards (`Collins2024TRIPODAI`, `ElEmam2024CREMLS`), and AI tooling (`claude-code`, `claude-opus-47`, `claude-sonnet-46`, `chatgpt-thinking`, `google-gemini-overview`, `ollama`, `vllm`, `apache-arrow`, `duckdb`, `zenodo`, `ccby4`).
+- Overleaf ready bundle at `2030-pdac-1min/paper/draft-paper/LaTeX Source Files.zip` containing main.tex + new_paper.sty + references.bib + README.md + sections/.
+- Top level `README.md` updated with v0.8.0 release badge, v0.8.0 PDAC Draft Paper badge, v0.8.0 PDAC Draft Paper ASCII snapshot, `2030-pdac-1min/paper/draft-paper/` subtree in Repository Structure block, updated High Level Architecture ASCII diagram, updated citation block referencing v0.8.0 plus the standalone `kawchak_2026_20174131` self-cite, updated Quick Start block referencing the draft-paper compile recipe.
+- This v0.8.0 release notes block in `releases.md` plus the matching v0.8.0 entry in `CHANGELOG.md`.
+
+## Contributors
+
+@kevinkawchak
+@claude
+@openai
+@google-gemini
+
+## Notes
+
+- The CI lint and format matrix at `.github/workflows/ci.yml` targets `2030-gbm-1min/` as the lint working directory. The new files under `2030-pdac-1min/paper/draft-paper/` are LaTeX and Markdown only and are not lint gated by CI. This PR therefore does not regress the upstream `Cl / lint-and-format (3.10) (pull...)`, `(3.11) (pull...)`, or `(3.12) (pull...)` checks.
+- The draft template is bracketed; the bracketed instructions in each section file are not processed in this release. A future Claude Code Opus 4.7 1M Max session reads the brackets and expands them into the final 70 plus page paper at `2030-pdac-1min/paper/full-paper/`.
+- The Zenodo deposition at DOI 10.5281/zenodo.20174131 is the v0.8.0 PDAC draft paper DOI placeholder; the live Zenodo upload step is gated on a valid `ZENODO_TOKEN` and follows the same deposition pattern as the v0.4.0 GBM full paper at DOI 10.5281/zenodo.20113157.
+- The 9 surplus bibliography entries (`apache-arrow`, `ccby4`, `chatgpt-thinking`, `duckdb`, `google-gemini-overview`, `kawchak_2026_20174131`, `repo-physical-ai-oncology-trials`, `repo-robotic-surgeries`, `zenodo`) are present in `references.bib` but not yet cited in the bracketed section files; the downstream final paper pass will cite them as the brackets are expanded into running prose.
 
 ## Release title
 

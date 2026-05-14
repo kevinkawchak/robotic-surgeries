@@ -1,0 +1,187 @@
+% ======================================================================
+% SECTION 2: METHODS
+% Seven thematic subsections: PancreSpeed 1.0 specification, sensor
+% stack, xyz Cartesian mapping plus per-arm coordination, vascular
+% safety + anastomosis protocols, deterministic 32 iteration sweep,
+% 4 entrant tournament, Daraxonrasib advisory layer.
+% Location: 2030-pdac-1min/paper/draft-paper/sections/methods.tex
+%
+% [DOWNSTREAM CLAUDE CODE PROCESSING INSTRUCTION - DO NOT EXECUTE NOW]
+% Each \subsection placeholder below specifies the read-only context
+% files to process, the table that the subsection ends on (raggedright
+% p column type contract from main.tex), and the exact bibtex
+% citation keys. Single dashes only. Black text only. Use \S for the
+% section sign. Do not exceed the per-page text density invariant
+% (see README.md formatting invariants).
+% ======================================================================
+
+\subsection{PancreSpeed 1.0 8 Arm Robot Specification}
+\label{sec:methods-robot}
+
+[METHODS SUBSECTION 2.1 PLACEHOLDER. Process the following inputs and expand into 2 to 3 paragraphs of running prose plus Table \ref{tab:methods-pancrespeed}:
+(a) 2030-pdac-1min/paper/instructions/robot_specification_pancrespeed.md (the full hypothetical 2030 Medtronic PancreSpeed 1.0 specification: 8 arms, 7 DOF per arm, 56 DOF total, 1,200 mm/s peak tip velocity, 100 kHz force, 1,600 mm cubed per second peak removal, 0.05 mm RMS positioning at 1,200 mm/s, 3 ms E-stop, 18 N cumulative cross-arm tip force cap, 3 N per-arm tip force cap, hybrid ultrasonic plus waterjet plus pneumatic removal endeffector for the pancreatic head dissection).
+(b) 2030-pdac-1min/paper/codegen/docs/architecture_8arm.md (the per-arm 7 DOF DH kinematics table that the codegen tree authored from the spec).
+(c) 2030-pdac-1min/paper/codegen/config/kinematics_8arm.yaml (the per-arm DH parameter values that the deterministic seed contract froze).
+(d) 2030-pdac-1min/paper/execution/diagrams/pancrespeed_mechanical.txt and per_arm_kinematic_chain.txt (the ASCII mechanical schematics that visualize the 8-arm parallel coelomic configuration).
+End on Table \ref{tab:methods-pancrespeed} that lists per-arm tool assignment per phase (Arm 1 SMV dissection, Arm 2 PV dissection, Arm 3 hepatic artery control, Arm 4 NIR + ICG imaging, Arm 5 PJ ring tension monitor, Arm 6 bipolar coag, Arm 7 suction, Arm 8 final imaging) crossed with the 8 phases. Use the L column type with raggedright. Cite \cite{kawchak_2026_20113157} for the GBM cross-study NeuroSpeed 1.0 anchor.]
+
+\begin{table}[H]
+\caption{Per-arm tool assignment by phase for the 2030 PancreSpeed 1.0 8-arm parallel coelomic platform.}
+\label{tab:methods-pancrespeed}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{1.4cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{4.0cm}}
+\toprule
+\textbf{Arm} & \textbf{Primary tool} & \textbf{Phase coverage} & \textbf{Sensor channels (10 of 80)} \\
+\midrule
+  Arm 1 & Hybrid u-w-p endeffector & P1, P2, P3, P4, P5, P6, P7, P8 & Tip force, joint torque, tool ID \\
+  Arm 2 & Hybrid u-w-p endeffector & P1, P2, P3, P4, P5, P6, P7, P8 & Tip force, joint torque, tool ID \\
+  Arm 3 & Bipolar + retractor & P1, P2, P3, P4, P5, P6, P7, P8 & Tip force, current, retractor force \\
+  Arm 4 & NIR + ICG imaging probe & P1, P2, P3, P4, P5, P6, P7, P8 & ICG fluorescence, NIR depth \\
+  Arm 5 & Anastomosis ring tension probe & P5, P6, P7 (idle others) & Ring tension, ring strain \\
+  Arm 6 & Bipolar coag + cautery & P2, P5, P6, P7, P8 (idle others) & Tip force, RF power \\
+  Arm 7 & Suction + irrigation & P1 to P8 & Suction pressure, pH \\
+  Arm 8 & Final imaging + drain placement & P1, P4, P8 (light load) & ICG fluorescence, drain ID \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{640 Channel Mixed 100 kHz Force Plus 10 kHz Command Sensor Stack}
+\label{sec:methods-sensors}
+
+[METHODS SUBSECTION 2.2 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus a sensor channel summary table:
+(a) 2030-pdac-1min/paper/instructions/sensor_specification_100khz.md (the 80 channel per arm spec including PDAC specific channels: NIR ICG imaging, vessel surface proximity, pancreatic duct manometry, anastomosis ring tension, bile spectrophotometry).
+(b) 2030-pdac-1min/paper/codegen/docs/sensor_spec_640ch.md (the codegen tree's authored channel summary that the execution tree wrote against).
+(c) 2030-pdac-1min/paper/codegen/schemas/sensor_record_8arm.schema.json plus sensor_record_8arm.proto plus sensor_record_8arm.avsc (the three sensor record schemas authored in v0.6.0).
+(d) 2030-pdac-1min/paper/execution/sensors/channel_inventory.csv (the 640 row channel inventory CSV; reproduce 10 representative rows in the table below).
+(e) 2030-pdac-1min/paper/execution/sensors/sensor_channel_ascii.txt (the ASCII channel map; reference but do not embed; cite as visual aid in the prose).
+(f) 2030-pdac-1min/paper/execution/sensors/per_arm_summary.csv (the 8 row summary that confirms 80 channels per arm).
+End on a table that lists 10 representative channels with arm index, channel name, sample rate, unit, and dynamic range. Use the L column type with raggedright.]
+
+\subsection{Per-Arm xyz Cartesian Mapping Plus 10 kHz Heartbeat Coordination}
+\label{sec:methods-xyz}
+
+[METHODS SUBSECTION 2.3 PLACEHOLDER. Process the following inputs and expand into 2 to 3 paragraphs:
+(a) 2030-pdac-1min/paper/instructions/commit_03_xyz_8arm.md (the per-arm safety zone gating contract).
+(b) 2030-pdac-1min/paper/instructions/multi_arm_coordination_8arm.md (10 kHz heartbeat bus, 100 microsecond emergency arm park trigger, 18 N cumulative cross-arm tip force cap, 3 N per-arm tip force cap).
+(c) 2030-pdac-1min/paper/codegen/docs/coordinate_mapping_8arm.md plus multi_arm_coordination_8arm.md (the codegen tree's per-arm mapping contract).
+(d) 2030-pdac-1min/paper/codegen/src/mapping/sensor_to_xyz_8arm.py (the actual Python module that maps 640 channel sensor records to per-arm Cartesian commands).
+(e) 2030-pdac-1min/paper/codegen/src/coordination/arm_heartbeat_10khz.cpp (the C++ heartbeat coordinator).
+(f) 2030-pdac-1min/paper/execution/coordination/heartbeat_timing_table.csv plus collision_state_log.csv (the run output of the 10 kHz heartbeat bus and the 4 state collision avoidance FSM).
+(g) 2030-pdac-1min/paper/execution/coordination/coordination_ascii.txt and 2030-pdac-1min/paper/execution/diagrams/coordination_heartbeat_8arm.txt (ASCII visualizations).
+(h) 2030-pdac-1min/paper/execution/xyz_mapping/xyz_command_sample.jsonl plus per_arm_target_table.csv plus command_pipeline_summary.txt (the 1001 record xyz Cartesian command sample, 8 arm by 8 phase target tip position table, and 6 stage pipeline ASCII summary).
+(i) 2030-pdac-1min/paper/codegen/schemas/xyz_command_8arm.schema.json plus xyz_command_8arm.proto (the per-arm Cartesian command schemas).
+End on Table \ref{tab:methods-xyz} that summarizes the per-arm 9-state command enum (NOOP, MOVE, COAG, SUCTION, IMAGE, RETRACT, ANASTOMOSIS, ESTOP, HEARTBEAT) and the per-state force clamp.]
+
+\begin{table}[H]
+\caption{Per-arm command state enumeration and force clamp budget for the 10 kHz xyz Cartesian command bus.}
+\label{tab:methods-xyz}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}p{4.6cm}}
+\toprule
+\textbf{State} & \textbf{Per-arm force clamp} & \textbf{Watchdog window} & \textbf{Phase coverage} \\
+\midrule
+  NOOP & 0.0 N & 100 us & Idle between commands \\
+  MOVE & 3.0 N & 100 us & Free-space repositioning \\
+  COAG & 3.0 N & 100 us & Bipolar coagulation \\
+  SUCTION & 1.0 N & 100 us & Continuous fluid clearance \\
+  IMAGE & 0.5 N & 100 us & NIR ICG depth scan \\
+  RETRACT & 3.0 N & 100 us & Tissue retraction holds \\
+  ANASTOMOSIS & 2.5 N & 100 us & Ring tension control loop \\
+  ESTOP & 0.0 N (hard stop) & 50 us & 3 ms full-platform halt \\
+  HEARTBEAT & 0.0 N & 100 us & 10 kHz bus heartbeat \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Vascular Safety Zones and the Three Anastomosis Protocols}
+\label{sec:methods-safety}
+
+[METHODS SUBSECTION 2.4 PLACEHOLDER. Process the following inputs and expand into 2 to 3 paragraphs:
+(a) 2030-pdac-1min/paper/instructions/vascular_safety_protocol.md (no fly volumes, soft warning volumes, and hard stop volumes for the SMV, PV, hepatic artery, celiac axis, and SMA).
+(b) 2030-pdac-1min/paper/instructions/anastomosis_protocols.md (the three protocols: pancreaticojejunostomy duct to mucosa, hepaticojejunostomy end to side, gastrojejunostomy or duodenojejunostomy antecolic, plus the anastomosis ring tension targets, fistula risk score inputs, and bile spectrophotometry leak detection thresholds).
+(c) 2030-pdac-1min/paper/codegen/config/vascular_safety_zones.yaml plus anastomosis_targets.yaml (the codegen tree's authored config files).
+(d) 2030-pdac-1min/paper/codegen/src/vascular/safety_zone_gate.py and 2030-pdac-1min/paper/codegen/src/anastomosis/{pancreaticojejunostomy.py, hepaticojejunostomy.py, gastrojejunostomy.py} (the Python implementations).
+(e) 2030-pdac-1min/paper/codegen/schemas/anastomosis_event.schema.json (the L4 anastomosis event schema).
+(f) 2030-pdac-1min/paper/execution/vascular/{gate_verdicts.csv, per_vessel_test_matrix.csv, vessel_proximity_table.csv} (the run outputs).
+(g) 2030-pdac-1min/paper/execution/anastomosis/{pj_outcomes.csv, hj_outcomes.csv, gj_outcomes.csv, anastomosis_summary.csv} (the per-anastomosis controller outcomes).
+(h) 2030-pdac-1min/paper/execution/diagrams/{vascular_safety_map.txt, anastomosis_target_map.txt, fistula_risk_score_flow.txt} (ASCII visualizations).
+End on Table \ref{tab:methods-safety} that summarizes the 5 vessel safety zones (no_fly, soft_warning, hard_stop) and the 3 anastomosis target ring tensions. Cite \cite{Bassi2017ISGPSPostOpFistula} for the ISGPS Grade A/B/C fistula classification.]
+
+\begin{table}[H]
+\caption{Vascular safety zone gate verdict and per-anastomosis ring tension target.}
+\label{tab:methods-safety}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{3.6cm}}
+\toprule
+\textbf{Vessel or anastomosis} & \textbf{Zone or target} & \textbf{Threshold} & \textbf{Gate verdict on breach} \\
+\midrule
+  SMV & no_fly + soft_warning + hard_stop & 1.0/3.0/5.0 mm & ESTOP at hard_stop \\
+  PV & no_fly + soft_warning + hard_stop & 1.0/3.0/5.0 mm & ESTOP at hard_stop \\
+  Hepatic artery & no_fly + soft_warning + hard_stop & 1.5/3.0/5.0 mm & ESTOP at hard_stop \\
+  Celiac axis & no_fly + soft_warning + hard_stop & 1.5/3.0/5.0 mm & ESTOP at hard_stop \\
+  SMA & no_fly + soft_warning + hard_stop & 1.5/3.0/5.0 mm & ESTOP at hard_stop \\
+  PJ ring tension & duct to mucosa target & 0.30 N to 0.60 N & Soft warn outside band \\
+  HJ ring tension & end to side target & 0.20 N to 0.50 N & Soft warn outside band \\
+  GJ ring tension & antecolic target & 0.40 N to 0.80 N & Soft warn outside band \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Deterministic 32 Iteration Latin Hypercube Sweep at 1 Minute}
+\label{sec:methods-iterations}
+
+[METHODS SUBSECTION 2.5 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs:
+(a) 2030-pdac-1min/paper/instructions/commit_04_iterations_1min.md (the 32 iteration sweep plan; doubled from GBM 16 due to PDAC free parameter expansion).
+(b) 2030-pdac-1min/paper/instructions/file_size_pyramid_1min.md (the per iteration committed budget of 980 KB across L1, L2, L3, L4 anastomosis, plus event log; 31.4 MB across 32 iterations plus 2.0 MB fixed overhead = 33.4 MB committed).
+(c) 2030-pdac-1min/paper/instructions/chunking_strategy.md (the L4 PDAC specific anastomosis chunking layer).
+(d) 2030-pdac-1min/paper/codegen/config/iterations.yaml (the deterministic seed contract; root seed 20260513).
+(e) 2030-pdac-1min/paper/codegen/src/simulation/iterate_1min.py and runner_1min.rs (the Python and Rust implementations).
+(f) 2030-pdac-1min/paper/execution/iterations/{index.jsonl, iteration_summary.csv, per_iteration_outcomes.csv, run_00000_L3_phase.csv, composite_distribution.txt} (the run outputs).
+(g) 2030-pdac-1min/paper/execution/diagrams/iteration_parameter_space.txt (ASCII visualization of the Latin hypercube parameter space).
+End with the headline numbers in prose: mean composite 93.298, std 1.225, 95 percent CI half width 0.462, range [88.431, 93.735] across 32 iterations.]
+
+\subsection{4 Entrant Multi-Vendor LLM Tournament Plus Frozen Composite Score}
+\label{sec:methods-tournament}
+
+[METHODS SUBSECTION 2.6 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus Table \ref{tab:methods-weights}:
+(a) 2030-pdac-1min/paper/instructions/competition_protocol.md plus commit_05_competition_1min.md (the 4 entrant protocol: PancreSpeed 1.0 plus three 2030 hypothetical successor robots plus the 2025 Dutch human baseline).
+(b) 2030-pdac-1min/paper/codegen/docs/comparison_methodology_4vendor.md (the codegen tree's authored methodology).
+(c) 2030-pdac-1min/paper/codegen/src/llm/compare_agent_1min.py (the LLM compare agent).
+(d) 2030-pdac-1min/paper/codegen/prompts/comparison_prompt_1min.md (the LLM tournament prompt).
+(e) 2030-pdac-1min/paper/codegen/results/comparison.json plus comparison_report.md (the codegen tree's structured output).
+(f) 2030-pdac-1min/paper/execution/comparison/{comparison.json, comparison_report.md, leaderboard.csv, per_round_verdicts.csv, robot_vs_human_round3.csv} (the 128 verdict run output across 4 rounds, PancreSpeed 1.0 wins 96 of 96 played rounds at mean composite 93.735).
+(g) 2030-pdac-1min/paper/execution/metrics/{composite_breakdown.csv, weights.csv, weight_validation.txt} (the 6 component frozen composite weights with sum-to-1 validation).
+End on Table \ref{tab:methods-weights} listing the 6 frozen composite weights: Quality 0.30, Time 0.20, Cost 0.15, Safety 0.15, Patient experience 0.05, Anastomosis quality 0.15. Cite \cite{Collins2024TRIPODAI, ElEmam2024CREMLS} for the reporting standard floor.]
+
+\begin{table}[H]
+\caption{Frozen composite score weights for the 4 entrant LLM tournament.}
+\label{tab:methods-weights}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{6.4cm}}
+\toprule
+\textbf{Component} & \textbf{Weight} & \textbf{Rationale} \\
+\midrule
+  Quality (resection completeness, R0 margin) & 0.30 & Primary efficacy axis \\
+  Time (60 s vs 4-8 h structural delta) & 0.20 & Compression value \\
+  Cost (run, capital, OR) & 0.15 & Health system economics \\
+  Safety (E-stop hits, force clamp violations) & 0.15 & Patient safety floor \\
+  Patient experience (length of stay proxy) & 0.05 & Downstream QoL \\
+  Anastomosis quality (PJ + HJ + GJ outcomes) & 0.15 & PDAC specific axis \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Daraxonrasib Perioperative Advisory Layer}
+\label{sec:methods-daraxonrasib}
+
+[METHODS SUBSECTION 2.7 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs:
+(a) 2030-pdac-1min/paper/instructions/daraxonrasib_integration.md (the perioperative pause and restart logic per RASolute 302 and RASolve 301 protocols, the LLM bound advisory layer, the per iteration Daraxonrasib eligibility tracking, the serum concentration trajectory).
+(b) 2030-pdac-1min/paper/codegen/docs/daraxonrasib_integration.md (the codegen tree's authored integration spec).
+(c) 2030-pdac-1min/paper/codegen/src/daraxonrasib/{trajectory.py, advisory.py} (the Python serum trajectory and LLM advisory implementations).
+(d) 2030-pdac-1min/paper/codegen/schemas/daraxonrasib_event.schema.json (the Daraxonrasib event schema).
+(e) 2030-pdac-1min/paper/codegen/prompts/daraxonrasib_advisory_prompt.md (the LLM advisory prompt).
+(f) 2030-pdac-1min/paper/codegen/results/daraxonrasib_advisory.json (the codegen tree's structured advisory output).
+(g) 2030-pdac-1min/paper/execution/daraxonrasib/{advisories.json, perioperative_trajectory.csv, advisory_summary.csv, perioperative_trajectory_ascii.txt, advisory_distribution.txt} (the 32 iteration trajectory and the per iteration restart day advisory: T+7d 29 of 32, T+14d 3 of 32, T+21d 0 of 32).
+(h) 2030-pdac-1min/paper/inputs/daraxonrasib-1/main.tex (the historical anchor citing FDA Breakthrough 06/25 \cite{rev-fda-breakthrough}, RASolute 302 \cite{rasolute302}, RASolve 301 \cite{rasolve301}, plus Kawchak 2025 prior author works \cite{kawchak_2025_15735068, kawchak_2025_16415815, kawchak_2025_17001137, kawchak_2025_17239510, kawchak_2025_18099351}).
+(i) 2030-pdac-1min/paper/inputs/research-1/ (the Daraxonrasib clinical trial historical timeline; pull dates and milestones for the perioperative serum concentration anchor).
+End with the headline numbers in prose: T 0 serum 0.45 ng/mL below the 0.5 ng/mL trough threshold across all 32 iterations, postop restart advisory T+7d 29 of 32, T+14d 3 of 32, T+21d 0 of 32, FDA SaMD framing preserved in every advisory \cite{fda-samd}.]

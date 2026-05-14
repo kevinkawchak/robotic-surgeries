@@ -1,0 +1,126 @@
+% ======================================================================
+% SECTION 5: LIMITATIONS AND FUTURE WORK
+% Five thematic subsections: Approximations vs Generated vs Executed
+% accounting, the 60-minute vs 1-minute structural delta, the
+% data approximation reduction roadmap, the surgery time and time
+% resolution roadmap, and the 10 concrete future work deliverables.
+% Location: 2030-pdac-1min/paper/draft-paper/sections/limitations_future.tex
+%
+% [DOWNSTREAM CLAUDE CODE PROCESSING INSTRUCTION - DO NOT EXECUTE NOW]
+% Each \subsection placeholder below specifies the read-only context
+% files to process and the table that the subsection ends on.
+% Single dashes only. Black text only. Use \S for the section sign.
+% This section is the most important page-budget section in the
+% paper because it sets the future work roadmap; allow up to 6 pages
+% of expansion in the downstream pass.
+% ======================================================================
+
+\subsection{Approximations vs Generated vs Executed Accounting}
+\label{sec:limits-accounting}
+
+[LIMITATIONS SUBSECTION 5.1 PLACEHOLDER. Process the following inputs and expand into 2 to 3 paragraphs plus Table \ref{tab:limits-accounting}:
+(a) 2030-pdac-1min/paper/instructions/README.md (the v0.5.0 approximation contract: per iteration committed budget of 980 KB; 33.4 MB total committed across 32 iterations plus 2.0 MB fixed overhead; the L0 raw 412 MB per iteration and 13.2 GB across 32 iterations is archived to Zenodo per zenodo_archive_protocol.md and is never committed).
+(b) 2030-pdac-1min/paper/instructions/file_size_pyramid_1min.md (the per-pyramid-level budget breakdown across L1, L2, L3, L4 anastomosis, plus event log).
+(c) 2030-pdac-1min/paper/instructions/gbm_errors_addressed.md (the catalog of GBM 7 approximations that the PDAC variant explicitly addresses).
+(d) 2030-pdac-1min/paper/codegen/README.md (the v0.6.0 code generation contract; what was authored vs what was approximated).
+(e) 2030-pdac-1min/paper/codegen/CROSS_REFERENCES.md plus 2030-pdac-1min/paper/execution/CROSS_REFERENCES.md (the 15 entry cross commit cross reference matrices).
+(f) 2030-pdac-1min/paper/execution/README.md plus PROCESS.md (the v0.7.0 execution contract; what was actually run vs what was deferred).
+(g) 2030-pdac-1min/paper/execution/tests/test_status.txt (the smoke test status: 10 of 13 pass, 3 known v0.6.0 codegen discrepancies).
+(h) 2030-pdac-1min/paper/execution/zenodo/{deposition_summary.txt, manifest.json, run_00000_L0_raw.zenodo_pointer.json, README.md} (the L0 raw deposition pointer family; deposition size estimate 13.21 GB pending live upload).
+End on Table \ref{tab:limits-accounting} that lists the 4 phases (instructions, codegen, execution, draft paper) with the per-phase artifact count, size, and the per-phase top approximation flag.]
+
+\begin{table}[H]
+\caption{4 phase accounting: approximated vs generated vs executed across the v0.5.0 to v0.8.0 workflow.}
+\label{tab:limits-accounting}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{5.6cm}}
+\toprule
+\textbf{Phase} & \textbf{Artifacts} & \textbf{Size} & \textbf{Top approximation flag} \\
+\midrule
+  Instructions (v0.5.0) & 26 files & ~175 KB & 980 KB per iteration commit budget assumed \\
+  Codegen (v0.6.0) & 15 src modules + cfg + schemas & ~1.5 MB & Per-arm DH parameters are reference values \\
+  Execution (v0.7.0) & 16 subdirectories & ~33 MB committed & L0 raw 13.2 GB stays on Zenodo \\
+  Draft paper (v0.8.0) & 8 .tex + bib + README & ~30 KB + 1 zip & Bracketed instructions, not yet processed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{60 Minute vs 1 Minute Structural Time Delta}
+\label{sec:limits-time}
+
+[LIMITATIONS SUBSECTION 5.2 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus Table \ref{tab:limits-time}:
+(a) 2030-gbm-1min/paper/full-paper/final-paper/sections/limitations_future.tex (the prior GBM 60 min vs 1 min formal delta table pattern; carry over to the Whipple 4 to 8 hour vs 1 minute compression).
+(b) The Whipple structural-time delta from 2030-pdac-1min/paper/instructions/README.md: human Whipple 4 to 8 hours of in-room time, target 60 seconds, compression ratio 240x to 480x.
+(c) Why this delta is a limitation: tissue creep, anastomosis healing, pharmacokinetics, and clinical decision intervals do not compress with the surgical motion compression. The per-iteration Daraxonrasib serum concentration trajectory at 2030-pdac-1min/paper/execution/daraxonrasib/perioperative_trajectory.csv is computed at the simulation timescale, not the biological timescale.
+(d) The honest accounting: the 60 second simulation is a computational checkpoint, not a clinical readiness claim. Cite \cite{kawchak_2026_20113157} for the parallel GBM checkpoint and \cite{ich-e6r3} for the GCP framing.
+End on Table \ref{tab:limits-time} that lists the 5 axes of the 60-min vs 1-min delta and the 1-minute vs 4-to-8-hour Whipple compression.]
+
+\begin{table}[H]
+\caption{60 minute vs 1 minute structural delta extended to the 4-to-8-hour vs 1-minute Whipple compression.}
+\label{tab:limits-time}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{4.0cm}}
+\toprule
+\textbf{Axis} & \textbf{Human baseline} & \textbf{1 min target} & \textbf{Compression rationale} \\
+\midrule
+  Surgical motion & 4 to 8 hours & 60 seconds & 240x to 480x; PancreSpeed 1.0 1,200 mm/s tip \\
+  Anastomosis healing & weeks & not modeled in 60 s & Out of scope; downstream PK model needed \\
+  Tissue creep & hours to days & not modeled in 60 s & Out of scope; downstream FE model needed \\
+  Daraxonrasib serum kinetics & hours to days & sampled at 60 s & PK clock decoupled from surgical clock \\
+  Clinical decision intervals & minutes to hours & not modeled in 60 s & Out of scope; downstream IRB protocol needed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Data Approximation Reduction Roadmap}
+\label{sec:limits-data}
+
+[LIMITATIONS SUBSECTION 5.3 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs:
+(a) The current approximations across the 4 phases:
+    1. The 980 KB per iteration committed budget at 2030-pdac-1min/paper/instructions/file_size_pyramid_1min.md is a deliberate L1-L4 down-sampling. The full L0 raw at 412 MB per iteration is approximated by the Zenodo deposition pointer.
+    2. The synthetic patient PAT-PDAC-0001 at 2030-pdac-1min/paper/instructions/pdac_context_1min.md is one synthetic patient. The downstream cohort scale-up under TRIPOD+AI \cite{Collins2024TRIPODAI} reduces this gap.
+    3. The per-arm DH parameter values at 2030-pdac-1min/paper/codegen/config/kinematics_8arm.yaml are reference values for the hypothetical PancreSpeed 1.0; bench measurements on a physical prototype reduce this gap.
+    4. The smoke test 10 of 13 pass at 2030-pdac-1min/paper/execution/tests/test_status.txt has 3 known v0.6.0 codegen discrepancies; closing those discrepancies reduces this gap.
+(b) The reduction roadmap: each gap closes with a discrete next step, all of which are tractable within a 6 to 12 month follow-on PR. List the 4 next steps in order of expected impact on the composite score variance (currently std 1.225 around mean 93.298).]
+
+\subsection{Surgery Time and Time Resolution Roadmap}
+\label{sec:limits-resolution}
+
+[LIMITATIONS SUBSECTION 5.4 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs:
+(a) The current surgery time of 60 seconds is a 240x to 480x compression of the 4 to 8 hour human Whipple. Two reduction tracks open:
+    Track A: Reduce the simulation surgery time from 60 seconds to 30 seconds. The PancreSpeed 1.0 spec at 2030-pdac-1min/paper/instructions/robot_specification_pancrespeed.md would need to support 2,400 mm/s peak tip velocity (2x the current 1,200 mm/s) and the per-phase budgets in 2030-pdac-1min/paper/instructions/pdac_context_1min.md would need to halve.
+    Track B: Increase the simulation surgery time from 60 seconds to 120 seconds. The biological realism of tissue creep, anastomosis healing, and pharmacokinetics improves; the LLM advisory layer can carry more inter-phase deliberation cycles.
+(b) The current time resolution is 100 microseconds at the 100 kHz force channel and 100 microseconds at the 10 kHz command channel. Two refinement tracks open:
+    Track C: Refine to 10 microseconds (1 MHz force sampling, 100 kHz command). Requires 10x more storage at the L0 raw layer (132 GB per iteration), which forces a hierarchical storage tier above Zenodo.
+    Track D: Coarsen to 1 millisecond (1 kHz force, 1 kHz command). Removes the exceptional-processing feat at 2030-pdac-1min/paper/execution/sensors/sensor_sample_8arm.jsonl but enables a 100x larger iteration sweep (3,200 iterations under the same per-iteration budget).
+End with the recommendation: pursue Track B (longer surgery, more deliberation) and Track D (coarser resolution, larger sweep) in parallel because they are compatible; defer Track A and Track C to a later PR because they require new hardware envelopes.]
+
+\subsection{10 Concrete Future Work Deliverables}
+\label{sec:limits-future}
+
+[LIMITATIONS SUBSECTION 5.5 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus Table \ref{tab:limits-future}:
+(a) The 10 concrete future work deliverables that this PR enables. Use the v0.4.0 GBM paper at 2030-gbm-1min/paper/full-paper/final-paper/sections/limitations_future.tex as the pattern anchor and extend with PDAC specific items.
+(b) Each deliverable cites a tractable reduction in the gap budget identified in \S \ref{sec:limits-data} and \S \ref{sec:limits-resolution}.
+End on Table \ref{tab:limits-future} listing the 10 deliverables and the gap each closes.]
+
+\begin{table}[H]
+\caption{10 concrete future work deliverables for the 60 second 8 arm Whipple plus Daraxonrasib pairing.}
+\label{tab:limits-future}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.7cm} >{\raggedright\arraybackslash}p{6.0cm} >{\raggedright\arraybackslash}p{6.7cm}}
+\toprule
+\textbf{\#} & \textbf{Deliverable} & \textbf{Gap closed} \\
+\midrule
+  1 & Cohort scale-up to 100 synthetic PDAC patients & Single patient PAT-PDAC-0001 limit \\
+  2 & Bench prototype of one PancreSpeed 1.0 arm & 5x to 500x SOTA hardware gap \\
+  3 & Porcine cadaver Whipple at 5 min target & Tissue creep + anastomosis healing realism \\
+  4 & Track B: 120 second surgery time variant & Inter-phase deliberation cycles \\
+  5 & Track D: 1 ms time resolution + 3,200 iter sweep & Larger composite score CI tightening \\
+  6 & Daraxonrasib PK model with patient covariates & Decoupled pharmacology clock realism \\
+  7 & Multi-vendor handoff PR with cross-licensed data & Simulation vs simulation gap \\
+  8 & FDA Q-Sub for the on-premises LLM advisory & SaMD pre-submission gap \\
+  9 & TRIPOD+AI plus CREMLS reporting checklist file & Reporting standard compliance gap \\
+  10 & Federation across 5 academic centers & Single-site evaluation gap \\
+\bottomrule
+\end{tabular}
+\end{table}

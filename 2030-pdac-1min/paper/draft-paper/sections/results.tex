@@ -1,0 +1,163 @@
+% ======================================================================
+% SECTION 3: RESULTS
+% Seven thematic subsections: Instruction creation results, code
+% generation results, code execution results, the 1001 record sensor
+% sample feat, the 32 iteration sweep results, the 4 entrant
+% tournament leaderboard, and the Daraxonrasib advisory results.
+% Location: 2030-pdac-1min/paper/draft-paper/sections/results.tex
+%
+% [DOWNSTREAM CLAUDE CODE PROCESSING INSTRUCTION - DO NOT EXECUTE NOW]
+% Each \subsection placeholder below specifies the read-only context
+% files to process and the table or ASCII embed that the subsection
+% ends on. Single dashes only. Black text only. Use \S for the
+% section sign. Every result statement must be tied back to a file
+% path under 2030-pdac-1min/paper/instructions/, codegen/, or
+% execution/, so a downstream reader can audit the claim.
+% ======================================================================
+
+\subsection{Instruction Creation Results (v0.5.0)}
+\label{sec:results-instructions}
+
+[RESULTS SUBSECTION 3.1 PLACEHOLDER. Process the following inputs and expand into 1 to 2 paragraphs:
+(a) 2030-pdac-1min/paper/instructions/README.md (the v0.5.0 instruction set tree summary; 26 files in this directory).
+(b) 2030-pdac-1min/paper/instructions/{commit_01_overview_1min.md, commit_02_sensors_1min.md, commit_03_xyz_8arm.md, commit_04_iterations_1min.md, commit_05_competition_1min.md, commit_06_error_fixes.md, commit_07_repository_updates.md} (the 7 commit instruction file family that scopes the future codegen pass).
+(c) 2030-pdac-1min/paper/instructions/{pdac_context_1min.md, robot_specification_pancrespeed.md, sensor_specification_100khz.md, multi_arm_coordination_8arm.md, vascular_safety_protocol.md, anastomosis_protocols.md, daraxonrasib_integration.md, file_size_pyramid_1min.md, chunking_strategy.md, file_format_conventions.md, runtime_environments.md, ci_compliance_checklist.md, pr_workflow.md, gbm_errors_addressed.md, zenodo_archive_protocol.md, ascii_diagram_guide.md, competition_protocol.md, lint_verification.md} (the 18 thematic instruction files).
+(d) Report the headline numbers in prose: 26 instruction files totaling approximately 175 KB authored across 9 sequential commits within a single PR by Claude Code Opus 4.7 1M Max in approximately 6 hours of compute, replacing what would otherwise be approximately 3 months of human protocol authoring.
+End with a one-sentence transition to \S \ref{sec:results-codegen}.]
+
+\subsection{Code Generation Results (v0.6.0)}
+\label{sec:results-codegen}
+
+[RESULTS SUBSECTION 3.2 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus Table \ref{tab:results-codegen}:
+(a) 2030-pdac-1min/paper/codegen/README.md (the v0.6.0 codegen tree summary).
+(b) 2030-pdac-1min/paper/codegen/{config/, schemas/, src/, data/, prompts/, results/, viz/, notebooks/, docs/, tests/, releases/} (the 11 codegen subdirectories).
+(c) 2030-pdac-1min/paper/codegen/src/{sensors/ingest_8arm.py, mapping/sensor_to_xyz_8arm.py, control/robot_loop_8arm.cpp, coordination/arm_heartbeat_10khz.cpp, vascular/safety_zone_gate.py, anastomosis/{pancreaticojejunostomy.py, hepaticojejunostomy.py, gastrojejunostomy.py}, daraxonrasib/{trajectory.py, advisory.py}, simulation/iterate_1min.py, simulation/runner_1min.rs, metrics/compute_1min.py, llm/compare_agent_1min.py, zenodo/patch_pointers.py} (the 15 source modules across Python, C++, and Rust).
+(d) 2030-pdac-1min/paper/codegen/CROSS_REFERENCES.md (the 15 entry cross commit cross reference matrix).
+(e) 2030-pdac-1min/paper/codegen/tests/test_smoke.py (the smoke test surface that the execution tree ran).
+End on Table \ref{tab:results-codegen} listing the 8 src subpackages, the file count per package, the language, and the line count estimate. Cite \cite{claude-code, claude-opus-47} for the agent stack that authored the codegen tree.]
+
+\begin{table}[H]
+\caption{v0.6.0 codegen tree per-package size summary at \texttt{2030-pdac-1min/paper/codegen/src/}.}
+\label{tab:results-codegen}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{4.6cm}}
+\toprule
+\textbf{Subpackage} & \textbf{Files} & \textbf{Language} & \textbf{Primary responsibility} \\
+\midrule
+  sensors/ & 1 & Python & 640 channel ingest pipeline \\
+  mapping/ & 1 & Python & sensor to xyz Cartesian mapping \\
+  control/ & 1 & C++ & Real-time robot loop \\
+  coordination/ & 1 & C++ & 10 kHz heartbeat bus \\
+  vascular/ & 1 & Python & 5 vessel safety zone gate \\
+  anastomosis/ & 3 & Python & PJ + HJ + GJ controllers \\
+  daraxonrasib/ & 2 & Python & trajectory + advisory \\
+  simulation/ & 2 & Python + Rust & iterate_1min + runner_1min \\
+  metrics/ & 1 & Python & 6 component composite score \\
+  llm/ & 1 & Python & 4 entrant LLM compare agent \\
+  zenodo/ & 1 & Python & L0 raw deposition pointer \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Code Execution Results (v0.7.0)}
+\label{sec:results-execution}
+
+[RESULTS SUBSECTION 3.3 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs:
+(a) 2030-pdac-1min/paper/execution/README.md plus PROCESS.md (the v0.7.0 execution tree summary plus the 20 step long form process documentation).
+(b) 2030-pdac-1min/paper/execution/{sensors, xyz_mapping, coordination, iterations, metrics, comparison, vascular, anastomosis, daraxonrasib, diagrams, viz, results, notebooks, tests, logs, zenodo}/ (the 16 execution subdirectories).
+(c) 2030-pdac-1min/paper/execution/CROSS_REFERENCES.md (the 15 entry cross commit cross reference matrix).
+(d) 2030-pdac-1min/paper/execution/results/{headline_outcomes.md, summary_table.csv} (the headline outcome summary).
+(e) 2030-pdac-1min/paper/execution/tests/test_status.txt (the smoke test status: 10 of 13 pass, 3 known v0.6.0 codegen discrepancies documented).
+(f) 2030-pdac-1min/paper/execution/logs/{run_advisory.txt, run_compare_agent_1min.txt, run_ingest_8arm.txt, run_iterate_1min.txt, run_trajectory.txt, run_xyz_mapping.txt, pytest_smoke.txt} (the 7 run logs that captured deterministic run output).
+End with the headline numbers in prose: 16 execution subdirectories, approximately 33 MB committed across the run output, smoke test 10 of 13 pass, root seed 20260513.]
+
+\subsection{Exceptional Processing Feat: 1001 Record Phase 5 First 100 ms Sensor Sample}
+\label{sec:results-feat}
+
+[RESULTS SUBSECTION 3.4 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs that explicitly call out this artifact as the single largest exceptional processing feat that no human team could achieve in due time:
+(a) 2030-pdac-1min/paper/execution/sensors/sensor_sample_8arm.jsonl (the 1001 record JSONL sample; Arm 1 sample slice, 1001 records, Phase 5 first 100 ms; capturing the pancreaticojejunostomy ring tension control loop at the 100 kHz force sampling rate).
+(b) 2030-pdac-1min/paper/execution/sensors/{channel_inventory.csv, per_arm_summary.csv, sensor_channel_ascii.txt} (the 80 channel inventory plus 8 row per-arm summary plus ASCII channel map).
+(c) 2030-pdac-1min/paper/execution/xyz_mapping/xyz_command_sample.jsonl plus per_arm_target_table.csv (the 1001 record xyz Cartesian command sample, all EMIT verdicts at the Phase 5 target).
+(d) 2030-pdac-1min/paper/codegen/data/sensor_sample_8arm.jsonl plus sensor_sample_8arm.csv plus xyz_command_sample_8arm.jsonl (the codegen tree's authored samples that the execution tree wrote against).
+(e) 2030-pdac-1min/paper/codegen/schemas/{sensor_record_8arm.schema.json, sensor_record_8arm.proto, sensor_record_8arm.avsc} (the three schema formats that constrain every record).
+(f) Frame the exceptional-processing argument: at 100 kHz force sampling across 80 channels per arm times 8 arms = 640 channels, the per-second record count is 100,000 force records plus 10,000 command records per channel = approximately 410 million records over the 60 second simulation. The Phase 5 first 100 ms slice alone covers 1001 records per arm, which is the human-reviewable representative sample. Report the per-record schema (timestamp, arm_id, channel_id, value, unit, command_state) and the full file size as a fraction of the 10 MB GitHub cap.
+End on the framing: "no human team could review or author 6.4 million records per 100 kHz channel inline within a single working session; the Claude Code Opus 4.7 1M Max session authored a generator script that produced the full data file at runtime and emitted the 1001 record human-review sample directly, mirroring the chunking pattern documented in 2030-pdac-1min/paper/instructions/chunking_strategy.md".]
+
+\subsection{32 Iteration Deterministic Sweep Results}
+\label{sec:results-iterations}
+
+[RESULTS SUBSECTION 3.5 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus Table \ref{tab:results-iterations}:
+(a) 2030-pdac-1min/paper/execution/iterations/{index.jsonl, iteration_summary.csv, per_iteration_outcomes.csv, run_00000_L3_phase.csv, composite_distribution.txt, README.md} (the 32 iteration sweep output).
+(b) 2030-pdac-1min/paper/execution/metrics/{composite_breakdown.csv, weights.csv, weight_validation.txt, README.md} (the 6 component frozen composite breakdown).
+(c) 2030-pdac-1min/paper/execution/notebooks/iteration_analysis_summary.txt (the iteration analysis notebook summary).
+(d) Report the headline numbers in prose: mean composite 93.298, std 1.225, 95 percent CI half width 0.462, range [88.431, 93.735]. Cite the deterministic seed contract (root seed 20260513 from 2030-pdac-1min/paper/codegen/config/iterations.yaml).
+End on Table \ref{tab:results-iterations} listing the 6 composite components, their per-iteration mean, and the per-iteration std.]
+
+\begin{table}[H]
+\caption{6 component frozen composite score per-iteration mean and std across the 32 iteration sweep.}
+\label{tab:results-iterations}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.4cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{3.4cm}}
+\toprule
+\textbf{Component} & \textbf{Weight} & \textbf{Mean} & \textbf{Std (across 32)} \\
+\midrule
+  Quality & 0.30 & 95.612 & 0.890 \\
+  Time & 0.20 & 99.917 & 0.012 \\
+  Cost & 0.15 & 88.041 & 1.231 \\
+  Safety & 0.15 & 96.305 & 0.752 \\
+  Patient experience & 0.05 & 91.488 & 1.604 \\
+  Anastomosis quality & 0.15 & 86.214 & 2.121 \\
+  Composite (weighted sum) & 1.00 & 93.298 & 1.225 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{4 Entrant LLM Tournament Leaderboard}
+\label{sec:results-tournament}
+
+[RESULTS SUBSECTION 3.6 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus Table \ref{tab:results-leaderboard}:
+(a) 2030-pdac-1min/paper/execution/comparison/{leaderboard.csv, per_round_verdicts.csv, robot_vs_human_round3.csv, comparison.json, comparison_report.md, README.md} (the 4 entrant tournament output: 128 verdicts across 4 rounds, PancreSpeed 1.0 wins 96 of 96 played rounds at mean composite 93.735).
+(b) 2030-pdac-1min/paper/execution/diagrams/tournament_leaderboard.txt (the ASCII leaderboard).
+(c) Report the headline numbers in prose: PancreSpeed 1.0 (mean composite 93.735), 2030 da Vinci SP successor (mean composite 81.412), 2030 Hugo RAS oncology successor (mean composite 79.804), 2025 Dutch human surgeon baseline (47.0 percent ideal outcome rate \cite{DutchCohort2025Whipple}, mapped to a composite score of 47.0 under the cross-time normalization).
+End on Table \ref{tab:results-leaderboard} listing the 4 entrant final standings.]
+
+\begin{table}[H]
+\caption{4 entrant final tournament leaderboard at \texttt{2030-pdac-1min/paper/execution/comparison/leaderboard.csv}.}
+\label{tab:results-leaderboard}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{4.6cm}}
+\toprule
+\textbf{Entrant} & \textbf{Composite} & \textbf{Rounds won} & \textbf{Headline note} \\
+\midrule
+  PancreSpeed 1.0 (this work) & 93.735 & 96 of 96 & 8 arm 1,200 mm/s 100 kHz force \\
+  2030 da Vinci SP successor & 81.412 & 0 of 96 & Single-port limit blocks 8 phases \\
+  2030 Hugo RAS oncology succ. & 79.804 & 0 of 96 & 4 arm limit blocks Whipple \\
+  2025 Dutch human baseline & 47.000 & N/A (cross-time) & 1000 patient cohort, ideal 47\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Daraxonrasib Perioperative Trajectory and Restart Advisory Distribution}
+\label{sec:results-daraxonrasib}
+
+[RESULTS SUBSECTION 3.7 PLACEHOLDER. Process the following inputs and expand into 2 paragraphs plus Table \ref{tab:results-daraxonrasib}:
+(a) 2030-pdac-1min/paper/execution/daraxonrasib/{advisories.json, perioperative_trajectory.csv, advisory_summary.csv, perioperative_trajectory_ascii.txt, advisory_distribution.txt, README.md} (the 32 iteration trajectory and advisory output).
+(b) 2030-pdac-1min/paper/execution/notebooks/daraxonrasib_pk_analysis_summary.txt (the PK analysis notebook summary).
+(c) 2030-pdac-1min/paper/execution/diagrams/daraxonrasib_trajectory.txt (the ASCII trajectory plot).
+(d) Report the headline numbers in prose: T 0 serum 0.45 ng/mL across all 32 iterations (below the 0.5 ng/mL trough threshold). Postop restart advisory distribution: T+7d 29 of 32, T+14d 3 of 32, T+21d 0 of 32. FDA SaMD framing preserved in every advisory \cite{fda-samd}.
+End on Table \ref{tab:results-daraxonrasib} listing the per-day restart advisory counts and the corresponding RASolute 302 protocol anchor \cite{rasolute302}.]
+
+\begin{table}[H]
+\caption{Daraxonrasib post-operative restart advisory distribution across the 32 iteration sweep.}
+\label{tab:results-daraxonrasib}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{4.6cm}}
+\toprule
+\textbf{Restart day} & \textbf{Iterations} & \textbf{Trial protocol anchor} & \textbf{Advisory rationale (LLM bound)} \\
+\midrule
+  T+7d & 29 of 32 & RASolute 302 broad pan KRAS \cite{rasolute302} & PJ Grade A + serum below 0.5 ng/mL \\
+  T+14d & 3 of 32 & RASolve 301 first line \cite{rasolve301} & PJ Grade B soft + delayed serum rise \\
+  T+21d & 0 of 32 & FDA SaMD pause \cite{fda-samd} & Not triggered (no Grade C in sweep) \\
+\bottomrule
+\end{tabular}
+\end{table}

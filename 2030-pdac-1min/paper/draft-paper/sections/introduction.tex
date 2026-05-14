@@ -1,0 +1,87 @@
+% ======================================================================
+% SECTION 1: INTRODUCTION
+% Five thematic subsections: FDA RTCT extension, PDAC clinical
+% context, current robotic Whipple state of the art, on-premises LLM
+% thesis, and the transition to the 60-second 8-arm Whipple.
+% Location: 2030-pdac-1min/paper/draft-paper/sections/introduction.tex
+%
+% [DOWNSTREAM CLAUDE CODE PROCESSING INSTRUCTION - DO NOT EXECUTE NOW]
+% Expand each \subsection placeholder below into 2 to 4 paragraphs of
+% running prose plus a single Table 1 (intro-overview) at the end of
+% \S 1.5. Use the read-only context trees in the order below and keep
+% every claim cited inline using a \cite{<bibtex-key>} entry from
+% references.bib. Single dashes only. Black text only.
+% ======================================================================
+
+\subsection{FDA Real-Time Clinical Trials Announcement and Surgical Extension}
+\label{sec:intro-fda}
+
+[INTRODUCTION SUBSECTION 1.1 PLACEHOLDER. Process the following inputs to expand this subsection into 2 to 3 paragraphs of running prose:
+(a) The 28 April 2026 FDA RTCT announcement \cite{fda2026realtime} and its naming of AstraZeneca TRAVERSE plus Amgen STREAM-SCLC as the two oncology pharmacology pilots; pull the FDA Commissioner Marty Makary plus FDA Chief AI Officer Jeremy Walsh framing from the v0.4.0 GBM paper at 2030-gbm-1min/paper/full-paper/final-paper/sections/introduction.tex \cite{kawchak_2026_20113157}.
+(b) The opportunistic surgical extension framing from 2030-pdac-1min/paper/instructions/README.md (the on-premises LLM thesis paragraph and the United States Number 1 patient safety paragraph).
+(c) The cross-study handoff from the prior 60 second GBM resection \cite{kawchak_2026_20113157} to the 60 second Whipple plus Daraxonrasib pairing in this paper.
+(d) Position the present work as the second computational checkpoint along the FDA roadmap that pairs a precision oncology drug development program (RASolute 302 plus RASolve 301 \cite{rasolute302, rasolve301}) with a precision oncology robotic surgery program (PancreSpeed 1.0 at 2030-pdac-1min/paper/instructions/robot_specification_pancrespeed.md). Mention the FDA SaMD framework \cite{fda-samd} as the regulatory anchor without claiming endorsement.
+End on a one-sentence transition to \S \ref{sec:intro-pdac}.]
+
+\subsection{Pancreatic Cancer Clinical Context}
+\label{sec:intro-pdac}
+
+[INTRODUCTION SUBSECTION 1.2 PLACEHOLDER. Process the following inputs to expand into 2 to 3 paragraphs:
+(a) PDAC disease impact: third leading cause of cancer death in the United States, fourth in the European Union, 5 year overall survival below 13 percent, all from 2030-pdac-1min/paper/instructions/README.md and Cancer Statistics 2025 \cite{Siegel2025CancerStatistics}.
+(b) The Whipple procedure complexity (resection plus reconstruction of four luminal structures, dissection of two named vessels plus the artery first SMA approach, leading lethal cascade pancreatic fistula plus intra abdominal infection plus hemorrhage plus sepsis plus failure to rescue), all from 2030-pdac-1min/paper/instructions/pdac_context_1min.md and 2030-pdac-1min/paper/inputs/research-2/.
+(c) The 2025 Dutch nationwide cohort numbers (1000 robotic pancreaticoduodenectomies, conversion 10.1 percent, Clavien Dindo grade III or higher 41.3 percent, grade B/C postoperative pancreatic fistula 24.4 percent \cite{Bassi2017ISGPSPostOpFistula}, 30 day mortality 3.9 percent, mean ideal outcome rate 47 percent), all from \cite{DutchCohort2025Whipple}.
+(d) Synthetic patient PAT-PDAC-0001 (68 year old, head of pancreas PDAC, 3.4 cm tumor abutting the SMV at 75 degrees, KRAS G12D mutant, MSI stable, CA 19 9 of 412 U/mL, ECOG 1, neoadjuvant modified FOLFIRINOX times 4 cycles \cite{Conroy2018FOLFIRINOXAdjuvant}, Daraxonrasib eligible per the RASolute 302 broad pan KRAS criteria \cite{rasolute302}), pulled verbatim through paraphrase from 2030-pdac-1min/paper/instructions/pdac_context_1min.md.
+(e) The cross-study comparator: 4 to 8 hour single-arm human Whipple as the structural-time baseline; the 60 second target is a 240x to 480x compression that no current commercial robot achieves.
+End on a one-sentence transition to \S \ref{sec:intro-baseline}.]
+
+\subsection{Current Robotic Whipple State of the Art and the 4 Entrant Tournament}
+\label{sec:intro-baseline}
+
+[INTRODUCTION SUBSECTION 1.3 PLACEHOLDER. Process the following inputs to expand into 2 paragraphs plus an inline robot-comparison table referenced as Table \ref{tab:robot-comparison}:
+(a) The 2025 SOTA platforms cited in 2030-pdac-1min/paper/instructions/competition_protocol.md: Intuitive da Vinci SP \cite{intuitive-davinci-sp}, Medtronic Hugo RAS \cite{medtronic-hugo-ras}, and Verb Surgical \cite{verb-surgical}.
+(b) Why none of the 2025 SOTA platforms can perform a 60 second Whipple: per arm end effector velocity, joint angular velocity, E-stop latency, positioning accuracy at the vessel surface, and force resolution are each 5x to 500x short of the requirement (see 2030-pdac-1min/paper/instructions/robot_specification_pancrespeed.md).
+(c) The hypothetical 2030 Medtronic PancreSpeed 1.0 closes the gap: 8 arms, 1,200 mm/s tip velocity, 100 kHz force, 1,600 mm cubed per second peak removal, 0.05 mm RMS positioning at 1,200 mm/s, 3 ms E-stop, 18 N cumulative cross-arm tip force cap, 3 N per-arm tip force cap.
+(d) The 4 entrant tournament protocol from 2030-pdac-1min/paper/instructions/competition_protocol.md plus 2030-pdac-1min/paper/instructions/commit_05_competition_1min.md: PancreSpeed 1.0 versus three 2030 hypothetical successor robots (da Vinci SP successor, Hugo RAS oncology successor, Verb Surgical successor) versus the 2025 Dutch human surgeon baseline \cite{DutchCohort2025Whipple}.
+End on a one-sentence transition to \S \ref{sec:intro-thesis}.
+
+Table \ref{tab:robot-comparison} below uses the L-column type defined in main.tex with raggedright cells; do not modify the column type or widths during downstream expansion.]
+
+\begin{table}[H]
+\caption{Robot platform comparison: 2025 SOTA versus the 2030 PancreSpeed 1.0 target.}
+\label{tab:robot-comparison}
+\centering
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.4cm} >{\raggedright\arraybackslash}p{4.6cm} >{\raggedright\arraybackslash}p{5.4cm}}
+\toprule
+\textbf{Spec} & \textbf{2025 SOTA (da Vinci SP, Hugo RAS, Verb)} & \textbf{2030 PancreSpeed 1.0 target} \\
+\midrule
+  Arms & 1 to 4 \cite{intuitive-davinci-sp, medtronic-hugo-ras, verb-surgical} & 8 (Whipple coverage of dissection, three anastomoses, hemostasis, drains) \\
+  Tip velocity & up to ~250 mm/s & 1,200 mm/s (5x faster) \\
+  Force sampling & 1 to 10 kHz & 100 kHz force + 10 kHz command (10x finer) \\
+  E-stop latency & 30 to 50 ms & 3 ms (10x to 17x faster) \\
+  Position accuracy at velocity & 0.5 to 1.0 mm RMS & 0.05 mm RMS at 1,200 mm/s (10x to 20x finer) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{On-Premises Repository Based LLM Thesis}
+\label{sec:intro-thesis}
+
+[INTRODUCTION SUBSECTION 1.4 PLACEHOLDER. Process the following inputs to expand into 2 to 3 paragraphs:
+(a) The thesis paragraph verbatim through paraphrase from 2030-pdac-1min/paper/instructions/README.md: "On premises repository based LLMs provide commands to standard oncology surgical robots based on real time sensor data and controlled via x, y, z coordinates to administer patient treatment. This workflow minimizes single robot error potential."
+(b) Why an on-premises LLM minimizes single-robot error potential: the LLM acts as a second-opinion oracle that sits outside the robot kinematic stack, so a fault in the robot vendor controller does not propagate into the LLM advisory layer. Cross-reference 2030-pdac-1min/paper/instructions/multi_arm_coordination_8arm.md for the 10 kHz heartbeat bus plus 100 microsecond watchdog plus 3 ms E-stop budget that the LLM advisories must respect.
+(c) The repository-based grounding requirement: every LLM command is sourced from a hash-pinned in-repository file under 2030-pdac-1min/paper/codegen/ and 2030-pdac-1min/paper/execution/. Cite \cite{ollama, vllm} for the local inference stack and \cite{claude-code, claude-opus-47, claude-sonnet-46} for the agent stack used in this paper.
+(d) The privacy and data residency benefits: an on-premises deployment never sends patient sensor data outside the institution, which aligns with the FDA SaMD framework \cite{fda-samd}, ICH E6(R3) Good Clinical Practice \cite{ich-e6r3}, and 21 CFR 50.30 informed consent obligations \cite{cfr-21-50-30}.
+End on a one-sentence transition to \S \ref{sec:intro-transition}.]
+
+\subsection{Transition to the 60-Second 8-Arm Whipple Plus Daraxonrasib Pairing}
+\label{sec:intro-transition}
+
+[INTRODUCTION SUBSECTION 1.5 PLACEHOLDER. Process the following inputs to expand into 2 paragraphs:
+(a) The four-phase Claude Code workflow that produced the artifacts paired with this draft paper:
+    Phase 1: instructions at 2030-pdac-1min/paper/instructions/ (v0.5.0) \cite{pdac-instructions-v050}.
+    Phase 2: codegen at 2030-pdac-1min/paper/codegen/ (v0.6.0) \cite{pdac-codegen-v060}.
+    Phase 3: execution at 2030-pdac-1min/paper/execution/ (v0.7.0) \cite{pdac-execution-v070}.
+    Phase 4: this draft-paper at 2030-pdac-1min/paper/draft-paper/ (v0.8.0).
+(b) The Daraxonrasib pairing rationale from 2030-pdac-1min/paper/instructions/daraxonrasib_integration.md and 2030-pdac-1min/paper/inputs/daraxonrasib-1/main.tex \cite{kawchak_2025_18099351}: KRAS G12D positivity in PAT-PDAC-0001, the perioperative pause and restart logic per RASolute 302 plus RASolve 301 \cite{rasolute302, rasolve301}, the FDA Breakthrough Therapy designation \cite{rev-fda-breakthrough}, and the LLM bound advisory layer that recommends restart day on T+7d, T+14d, or T+21d post operatively.
+(c) The four prior author PDAC papers under 2030-pdac-1min/paper/inputs/paper-1/ through paper-4/ \cite{kawchak_2025_15735068, kawchak_2025_16415815, kawchak_2025_17001137, kawchak_2025_17239510}: each independently complemented the real RASolute 302 trial development throughout 2025; the present paper makes the surgical-robot complement explicit.
+End on a single sentence that promises the Methods section will detail the deterministic seed contract, the 32 iteration sweep, and the 4 entrant tournament protocol. No table at the end of \S \ref{sec:intro-transition}; the intro overview Table \ref{tab:robot-comparison} above is the only table in this section.]

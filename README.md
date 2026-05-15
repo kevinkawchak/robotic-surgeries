@@ -16,7 +16,7 @@ Physical AI Oncology Trial Robotic Surgeries simulation repository.
 [![PDAC Execution](https://img.shields.io/badge/PDAC%20Execution-v0.7.0-success.svg)](2030-pdac-1min/paper/execution)
 [![PDAC Draft Paper](https://img.shields.io/badge/PDAC%20Draft%20Paper-v0.8.0-success.svg)](2030-pdac-1min/paper/draft-paper)
 [![PDAC Full Paper](https://img.shields.io/badge/PDAC%20Full%20Paper-v0.9.0-success.svg)](2030-pdac-1min/paper/full-paper)
-[![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.20174131-blue)](https://doi.org/10.5281/zenodo.20174131)
+[![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.20196639-blue)](https://doi.org/10.5281/zenodo.20196639)
 [![Adjuvant](https://img.shields.io/badge/Adjuvant-Daraxonrasib-yellow.svg)](https://doi.org/10.5281/zenodo.18099351)
 
 ## Thesis

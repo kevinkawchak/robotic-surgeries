@@ -10,7 +10,7 @@ which directories and files belong in each section. The bracketed
 instructions are **not** processed in the current commit; they are
 read by the downstream pass.
 
-[![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.20174131-blue)](https://doi.org/10.5281/zenodo.20174131)
+[![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.20196639-blue)](https://doi.org/10.5281/zenodo.20196639)
 [![Repo DOI](https://img.shields.io/badge/Repo%20DOI-10.5281%2Fzenodo.18445179-blue)](https://doi.org/10.5281/zenodo.18445179)
 [![Release](https://img.shields.io/badge/Release-v0.8.0-brightgreen.svg)](../../../releases.md)
 [![License](https://img.shields.io/badge/License-CC%20BY%204.0-yellow.svg)](https://creativecommons.org/licenses/by/4.0/)

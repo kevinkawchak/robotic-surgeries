@@ -26,7 +26,7 @@ Title:    2030: 60 Second Pancreatic Cancer Whipple Surgery +
           Daraxonrasib Simulation (two lines, centered)
 Author:   Kevin Kawchak  (green ORCID logo + https://orcid.org/0009-0007-5457-8667)
 Affil:    CEO ChemicalQDevice
-DOI:      10.5281/zenodo.20174131  (https://doi.org/10.5281/zenodo.20174131)
+DOI:      10.5281/zenodo.20196639  (https://doi.org/10.5281/zenodo.20196639)
 Date:     May 15, 2026
 ```
 

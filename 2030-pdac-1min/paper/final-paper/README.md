@@ -1,8 +1,7 @@
 # 2030 PDAC 1-Minute Full Paper (v0.9.0, May 15, 2026)
 
 This directory holds the populated full LaTeX paper for the project
-titled **2030: 60 Second Pancreatic Cancer Whipple Surgery +
-Daraxonrasib Simulation**. The bracketed processing instructions that
+titled **2030: 60 Second Pancreatic Ductal Adenocarcinoma Robotic Whipple Procedure & Daraxonrasib Simulation**. The bracketed processing instructions that
 lived in the upstream draft template at
 `2030-pdac-1min/paper/draft-paper/` have been resolved into running
 prose, anchored tables, and ASCII diagrams in each section file. The
@@ -22,8 +21,7 @@ paper compiles cleanly on Overleaf and on any local `pdflatex` plus
 ## Title page metadata
 
 ```text
-Title:    2030: 60 Second Pancreatic Cancer Whipple Surgery +
-          Daraxonrasib Simulation (two lines, centered)
+Title:    2030: 60 Second Pancreatic Ductal Adenocarcinoma Robotic Whipple Procedure & Daraxonrasib Simulation (two lines, centered)
 Author:   Kevin Kawchak  (green ORCID logo + https://orcid.org/0009-0007-5457-8667)
 Affil:    CEO ChemicalQDevice
 DOI:      10.5281/zenodo.20196639  (https://doi.org/10.5281/zenodo.20196639)

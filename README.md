@@ -650,16 +650,16 @@ For the v0.4.0 GBM paper specifically, cite:
 }
 ```
 
-For the v0.5.0 PDAC instruction set, the v0.6.0 PDAC codegen, the v0.7.0 PDAC execution, the v0.8.0 PDAC draft paper, and the v0.9.0 PDAC full paper, the parent repository DOI 10.5281/zenodo.18445179 anchors the citation. The v0.9.0 PDAC full paper itself is deposited under DOI 10.5281/zenodo.20174131:
+For the v0.5.0 PDAC instruction set, the v0.6.0 PDAC codegen, the v0.7.0 PDAC execution, the v0.8.0 PDAC draft paper, and the v0.9.0 PDAC full paper, the parent repository DOI 10.5281/zenodo.18445179 anchors the citation. The v0.9.0 PDAC full paper itself is deposited under DOI 10.5281/zenodo.20196639:
 
 ```
-@misc{kawchak_2026_20174131,
+@misc{kawchak_2026_20196639,
   author    = {Kawchak, Kevin},
   title     = {2030: 60 Second Pancreatic Cancer Whipple Surgery + Daraxonrasib Simulation},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.20174131},
-  url       = {https://doi.org/10.5281/zenodo.20174131}
+  doi       = {10.5281/zenodo.20196639},
+  url       = {https://doi.org/10.5281/zenodo.20196639}
 }
 ```
 

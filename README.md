@@ -23,127 +23,6 @@ Physical AI Oncology Trial Robotic Surgeries simulation repository.
 
 On-premises repository based LLMs provide commands to standard oncology surgical robots based on real-time sensor data and controlled via x, y, z coordinates to administer patient treatment. This workflow minimizes single robot error potential.
 
-## Overview
-
-This repository hosts the v0.9.0 release of the multi-arm robotic oncology resection simulation suite. The new v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/` expanded by Claude Code Opus 4.7 1M Max from the v0.8.0 bracketed draft template at `2030-pdac-1min/paper/draft-paper/` across fourteen sequential commits within a single PR. Every bracketed instruction in the upstream draft has been resolved into running prose, anchored tables, and ASCII diagrams in the corresponding `sections/*.tex` file. The Overleaf ready `LaTeX Source Files.zip` bundle ships next to `main.tex`, `new_paper.sty`, `references.bib` (35 entries with the doi + url + note triad invariant; repository style entries embed both the GitHub URL and the Zenodo URL inside the note field so each link renders as clickable in the final PDF), and `README.md`.
-
-The first variant is the 4-arm 1-minute glioblastoma trial in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. The v0.5.0 release landed the 8-arm 1-minute PDAC Whipple variant instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the PDAC 1-minute codegen tree at `2030-pdac-1min/paper/codegen/` produced by Claude Code Opus 4.7 1M Max from the v0.5.0 instructions. The v0.7.0 release landed the PDAC 1-minute execution tree at `2030-pdac-1min/paper/execution/` produced by running every executable codegen module against the deterministic seed contract (root seed 20260513). The v0.8.0 release landed the PDAC 1-minute draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/` populated by Claude Code Opus 4.7 1M Max from the v0.5.0 instruction tree, the v0.6.0 codegen tree, the v0.7.0 execution tree, and the four prior author PDAC papers plus the Daraxonrasib summary plus the two research chunks under `2030-pdac-1min/paper/inputs/`. The draft template shipped with bracketed downstream processing instructions in each section file, which the v0.9.0 full paper has now resolved.
-
-The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release landed the 26 file PDAC instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the generated PDAC simulation tree at `2030-pdac-1min/paper/codegen/`. The v0.7.0 release landed the executed PDAC simulation outputs at `2030-pdac-1min/paper/execution/`. The v0.8.0 release landed the bracketed draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/`. The v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/`.
-
-The PDAC variant addresses 7 of the 10 approximations cataloged in the v0.4.0 GBM full paper limitations: doubled iterations (16 to 32), multi vendor tournament (single vendor to 3 robots plus 1 human), force time integral cap (added), 100 kHz force sampling (vs 10 kHz), Daraxonrasib precision oncology integration (new), per vessel safety zones (new), and anastomosis ring tension control (new). The remaining 3 approximations (synthetic patient, non deterministic Claude generation, hypothetical 2030 robot) are inherited with explicit cross simulation caveats.
-
-Subsequent variants under this same repository will explore longer durations, alternative robot platforms, and additional cancer sites. The shared instruction layer continues to live in `kevinkawchak/physical-ai-oncology-trials` and is read in the future to generate sibling output trees here.
-
-## Repository Structure
-
-```
-robotic-surgeries/
-  README.md                # this file
-  releases.md              # versioned release notes (v0.1.0 and later)
-  CHANGELOG.md             # human-readable change log per release
-  references.md            # citations for standards, prior art, and inputs
-  LICENSE                  # MIT
-  .github/workflows/ci.yml # ruff format / ruff check / yamllint matrix
-  2030-gbm-1min/           # 4-arm 1-minute glioblastoma trial (v0.1.0 first variant)
-    README.md
-    LICENSE.txt
-    pyproject.toml
-    docker-compose.yml
-    .gitignore
-    docs/                  # architecture, sensor spec, coordination, methodology
-    config/                # project, kinematics, iterations YAML
-    schemas/               # JSON Schema, Protocol Buffers, Avro
-    src/                   # sensors, mapping, control, coordination, simulation,
-                           # metrics, llm, zenodo
-    data/                  # sensor and xyz samples, baseline, outcomes
-    data/iterations/       # 16-iteration L1/L2/L3/events Parquet, index, DuckDB
-    prompts/               # versioned LLM prompt
-    results/               # comparison.json, comparison_report.{md,pdf}
-    viz/                   # ASCII path, HTML dashboard, PNG charts
-    notebooks/             # iteration analysis Jupyter notebook
-    logs/                  # iteration_run.txt
-    releases/v3.9.1/       # immutable per-version snapshot
-    outputs/               # v0.2.0 end-to-end pipeline outputs
-    paper/                 # v0.3.0 LaTeX paper template (head start)
-      full-paper/          # v0.4.0 populated full LaTeX paper (Overleaf ready)
-        final-paper/       # v0.4.0 final populated paper + LaTeX zip
-  2030-pdac-1min/          # 8-arm 1-minute PDAC Whipple variant (v0.5.0 / v0.6.0)
-    paper/
-      inputs/              # source research chunks (read only)
-        paper-1/           # author prior PDAC paper 1 (Zenodo 17239510)
-        paper-2/           # author prior PDAC paper 2 (Zenodo 17001137)
-        paper-3/           # author prior PDAC paper 3 (Zenodo 16415815)
-        paper-4/           # author prior PDAC paper 4 (Zenodo 15735068)
-        daraxonrasib-1/    # Daraxonrasib summary
-        research-1/        # Daraxonrasib clinical trial historical timeline
-        research-2/        # Whipple procedure evidence baseline
-      instructions/        # v0.5.0 PDAC 1-minute instruction set
-      codegen/             # v0.6.0 PDAC 1-minute generated codebase
-        README.md          # project README with DOI badges and pipeline ASCII
-        LICENSE.txt        # MIT
-        pyproject.toml     # Python project plus lint config
-        docker-compose.yml # Python + Rust + DuckDB services
-        .gitignore         # Python + Rust + Jupyter + macOS
-        config/            # project, kinematics, iterations, safety zones, targets
-        docs/              # architecture, sensor spec, coordinate mapping, etc.
-        schemas/           # JSON Schema, Protocol Buffers, Avro
-        src/               # sensors, mapping, control, coordination, vascular,
-                           # anastomosis, daraxonrasib, simulation, metrics, llm, zenodo
-        data/              # sensor and xyz samples, iteration index, baseline, outcomes
-        prompts/           # versioned LLM prompts (tournament + Daraxonrasib advisory)
-        results/           # comparison.json, comparison_report.md, advisory.json
-        viz/               # ASCII tip path, leaderboard, vascular heatmap
-        outputs/           # publication grade output subdirectories
-        notebooks/         # iteration / anastomosis / Daraxonrasib analysis
-        tests/             # smoke tests
-        releases/v0.6.0/   # manifest, metrics, sample seeds, Zenodo DOI
-      execution/           # v0.7.0 PDAC 1-minute execution outputs
-        README.md          # execution README with badges, 9 commit plan, ASCII pipeline
-        PROCESS.md         # 20 step long form process documentation
-        CROSS_REFERENCES.md  # 15 entry cross commit reference matrix
-        lint_verification.md # commit 8 lint and format verification record
-        sensors/           # 1001 record sensor sample plus per arm summary
-        xyz_mapping/       # 1001 xyz command sample plus per arm target table
-        coordination/      # 10 kHz heartbeat timing plus collision FSM tables
-        iterations/        # 32 iteration index.jsonl plus L3 phase sample
-        metrics/           # 6 component composite breakdown plus weights
-        comparison/        # 4 entrant tournament leaderboard plus 128 verdicts
-        vascular/          # 5 vessel gate verdicts plus vessel proximity table
-        anastomosis/       # 3 per anastomosis outcome tables plus summary
-        daraxonrasib/      # perioperative trajectory plus restart advisories
-        zenodo/            # L0 deposition pointer JSON plus manifest skeleton
-        viz/               # 3 ASCII visualizations inherited from v0.6.0
-        notebooks/         # 3 notebook computational summaries
-        diagrams/          # 12 PDAC ASCII diagrams inherited from v0.6.0
-        logs/              # per script run logs plus pytest smoke output
-        results/           # headline outcomes plus cross family summary table
-        tests/             # smoke test status
-      draft-paper/         # v0.8.0 PDAC 1-minute draft LaTeX paper template
-        README.md          # draft README with DOI badges, 8 arm pipeline ASCII
-        main.tex           # preamble, title page, TOC, \input{sections/*}
-        new_paper.sty      # 11 pt, 1 in margins, raggedright tables, dark blue accents
-        references.bib     # 41 entry doi + url + note triad bibliography
-        LaTeX Source Files.zip  # Overleaf ready bundle
-        sections/          # 8 bracketed section .tex files
-      full-paper/          # v0.9.0 PDAC 1-minute full LaTeX paper (this release)
-        README.md          # full-paper README with DOI badges, 8 arm pipeline ASCII
-        main.tex           # preamble, title page, TOC, \input{sections/*}
-        new_paper.sty      # 11 pt, 1 in margins, raggedright tables, dark blue accents
-        references.bib     # 35 entry doi + url + note triad bibliography
-        LaTeX Source Files.zip  # Overleaf ready bundle (commit 14 artifact)
-        sections/          # 8 fully populated section .tex files
-          abstract.tex     # 1416 char body single paragraph
-          introduction.tex # 5 subsections + Table 1 robot comparison
-          methods.tex      # 7 subsections + 5 anchored tables
-          results.tex      # 7 subsections + 4 anchored tables, includes 1001 record feat
-          discussion.tex   # 5 subsections + Table 1 real-life adoption gaps
-          limitations_future.tex  # 5 subsections + 3 anchored tables (10 deliverables)
-          conclusions.tex  # 4 thematic blocks + Table 1 themes
-          back_matter.tex  # acknowledgments, ethics, rights, cite, data availability
-      templates/           # LaTeX templates carried into v0.8.0 draft + v0.9.0 full paper
-```
-
 ## v0.9.0 PDAC Full Paper (ASCII)
 
 ```
@@ -479,6 +358,127 @@ robotic-surgeries/
   Cumulative 4-arm tip force <= 12 N. Per-arm tip force <= 5.0 N.
   E-stop budget 5 ms. Heartbeat watchdog 3 ms. 100 microsecond park.
 +==========================================================================+
+```
+
+## Overview
+
+This repository hosts the v0.9.0 release of the multi-arm robotic oncology resection simulation suite. The new v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/` expanded by Claude Code Opus 4.7 1M Max from the v0.8.0 bracketed draft template at `2030-pdac-1min/paper/draft-paper/` across fourteen sequential commits within a single PR. Every bracketed instruction in the upstream draft has been resolved into running prose, anchored tables, and ASCII diagrams in the corresponding `sections/*.tex` file. The Overleaf ready `LaTeX Source Files.zip` bundle ships next to `main.tex`, `new_paper.sty`, `references.bib` (35 entries with the doi + url + note triad invariant; repository style entries embed both the GitHub URL and the Zenodo URL inside the note field so each link renders as clickable in the final PDF), and `README.md`.
+
+The first variant is the 4-arm 1-minute glioblastoma trial in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. The v0.5.0 release landed the 8-arm 1-minute PDAC Whipple variant instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the PDAC 1-minute codegen tree at `2030-pdac-1min/paper/codegen/` produced by Claude Code Opus 4.7 1M Max from the v0.5.0 instructions. The v0.7.0 release landed the PDAC 1-minute execution tree at `2030-pdac-1min/paper/execution/` produced by running every executable codegen module against the deterministic seed contract (root seed 20260513). The v0.8.0 release landed the PDAC 1-minute draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/` populated by Claude Code Opus 4.7 1M Max from the v0.5.0 instruction tree, the v0.6.0 codegen tree, the v0.7.0 execution tree, and the four prior author PDAC papers plus the Daraxonrasib summary plus the two research chunks under `2030-pdac-1min/paper/inputs/`. The draft template shipped with bracketed downstream processing instructions in each section file, which the v0.9.0 full paper has now resolved.
+
+The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release landed the 26 file PDAC instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the generated PDAC simulation tree at `2030-pdac-1min/paper/codegen/`. The v0.7.0 release landed the executed PDAC simulation outputs at `2030-pdac-1min/paper/execution/`. The v0.8.0 release landed the bracketed draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/`. The v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/`.
+
+The PDAC variant addresses 7 of the 10 approximations cataloged in the v0.4.0 GBM full paper limitations: doubled iterations (16 to 32), multi vendor tournament (single vendor to 3 robots plus 1 human), force time integral cap (added), 100 kHz force sampling (vs 10 kHz), Daraxonrasib precision oncology integration (new), per vessel safety zones (new), and anastomosis ring tension control (new). The remaining 3 approximations (synthetic patient, non deterministic Claude generation, hypothetical 2030 robot) are inherited with explicit cross simulation caveats.
+
+Subsequent variants under this same repository will explore longer durations, alternative robot platforms, and additional cancer sites. The shared instruction layer continues to live in `kevinkawchak/physical-ai-oncology-trials` and is read in the future to generate sibling output trees here.
+
+## Repository Structure
+
+```
+robotic-surgeries/
+  README.md                # this file
+  releases.md              # versioned release notes (v0.1.0 and later)
+  CHANGELOG.md             # human-readable change log per release
+  references.md            # citations for standards, prior art, and inputs
+  LICENSE                  # MIT
+  .github/workflows/ci.yml # ruff format / ruff check / yamllint matrix
+  2030-gbm-1min/           # 4-arm 1-minute glioblastoma trial (v0.1.0 first variant)
+    README.md
+    LICENSE.txt
+    pyproject.toml
+    docker-compose.yml
+    .gitignore
+    docs/                  # architecture, sensor spec, coordination, methodology
+    config/                # project, kinematics, iterations YAML
+    schemas/               # JSON Schema, Protocol Buffers, Avro
+    src/                   # sensors, mapping, control, coordination, simulation,
+                           # metrics, llm, zenodo
+    data/                  # sensor and xyz samples, baseline, outcomes
+    data/iterations/       # 16-iteration L1/L2/L3/events Parquet, index, DuckDB
+    prompts/               # versioned LLM prompt
+    results/               # comparison.json, comparison_report.{md,pdf}
+    viz/                   # ASCII path, HTML dashboard, PNG charts
+    notebooks/             # iteration analysis Jupyter notebook
+    logs/                  # iteration_run.txt
+    releases/v3.9.1/       # immutable per-version snapshot
+    outputs/               # v0.2.0 end-to-end pipeline outputs
+    paper/                 # v0.3.0 LaTeX paper template (head start)
+      full-paper/          # v0.4.0 populated full LaTeX paper (Overleaf ready)
+        final-paper/       # v0.4.0 final populated paper + LaTeX zip
+  2030-pdac-1min/          # 8-arm 1-minute PDAC Whipple variant (v0.5.0 / v0.6.0)
+    paper/
+      inputs/              # source research chunks (read only)
+        paper-1/           # author prior PDAC paper 1 (Zenodo 17239510)
+        paper-2/           # author prior PDAC paper 2 (Zenodo 17001137)
+        paper-3/           # author prior PDAC paper 3 (Zenodo 16415815)
+        paper-4/           # author prior PDAC paper 4 (Zenodo 15735068)
+        daraxonrasib-1/    # Daraxonrasib summary
+        research-1/        # Daraxonrasib clinical trial historical timeline
+        research-2/        # Whipple procedure evidence baseline
+      instructions/        # v0.5.0 PDAC 1-minute instruction set
+      codegen/             # v0.6.0 PDAC 1-minute generated codebase
+        README.md          # project README with DOI badges and pipeline ASCII
+        LICENSE.txt        # MIT
+        pyproject.toml     # Python project plus lint config
+        docker-compose.yml # Python + Rust + DuckDB services
+        .gitignore         # Python + Rust + Jupyter + macOS
+        config/            # project, kinematics, iterations, safety zones, targets
+        docs/              # architecture, sensor spec, coordinate mapping, etc.
+        schemas/           # JSON Schema, Protocol Buffers, Avro
+        src/               # sensors, mapping, control, coordination, vascular,
+                           # anastomosis, daraxonrasib, simulation, metrics, llm, zenodo
+        data/              # sensor and xyz samples, iteration index, baseline, outcomes
+        prompts/           # versioned LLM prompts (tournament + Daraxonrasib advisory)
+        results/           # comparison.json, comparison_report.md, advisory.json
+        viz/               # ASCII tip path, leaderboard, vascular heatmap
+        outputs/           # publication grade output subdirectories
+        notebooks/         # iteration / anastomosis / Daraxonrasib analysis
+        tests/             # smoke tests
+        releases/v0.6.0/   # manifest, metrics, sample seeds, Zenodo DOI
+      execution/           # v0.7.0 PDAC 1-minute execution outputs
+        README.md          # execution README with badges, 9 commit plan, ASCII pipeline
+        PROCESS.md         # 20 step long form process documentation
+        CROSS_REFERENCES.md  # 15 entry cross commit reference matrix
+        lint_verification.md # commit 8 lint and format verification record
+        sensors/           # 1001 record sensor sample plus per arm summary
+        xyz_mapping/       # 1001 xyz command sample plus per arm target table
+        coordination/      # 10 kHz heartbeat timing plus collision FSM tables
+        iterations/        # 32 iteration index.jsonl plus L3 phase sample
+        metrics/           # 6 component composite breakdown plus weights
+        comparison/        # 4 entrant tournament leaderboard plus 128 verdicts
+        vascular/          # 5 vessel gate verdicts plus vessel proximity table
+        anastomosis/       # 3 per anastomosis outcome tables plus summary
+        daraxonrasib/      # perioperative trajectory plus restart advisories
+        zenodo/            # L0 deposition pointer JSON plus manifest skeleton
+        viz/               # 3 ASCII visualizations inherited from v0.6.0
+        notebooks/         # 3 notebook computational summaries
+        diagrams/          # 12 PDAC ASCII diagrams inherited from v0.6.0
+        logs/              # per script run logs plus pytest smoke output
+        results/           # headline outcomes plus cross family summary table
+        tests/             # smoke test status
+      draft-paper/         # v0.8.0 PDAC 1-minute draft LaTeX paper template
+        README.md          # draft README with DOI badges, 8 arm pipeline ASCII
+        main.tex           # preamble, title page, TOC, \input{sections/*}
+        new_paper.sty      # 11 pt, 1 in margins, raggedright tables, dark blue accents
+        references.bib     # 41 entry doi + url + note triad bibliography
+        LaTeX Source Files.zip  # Overleaf ready bundle
+        sections/          # 8 bracketed section .tex files
+      full-paper/          # v0.9.0 PDAC 1-minute full LaTeX paper (this release)
+        README.md          # full-paper README with DOI badges, 8 arm pipeline ASCII
+        main.tex           # preamble, title page, TOC, \input{sections/*}
+        new_paper.sty      # 11 pt, 1 in margins, raggedright tables, dark blue accents
+        references.bib     # 35 entry doi + url + note triad bibliography
+        LaTeX Source Files.zip  # Overleaf ready bundle (commit 14 artifact)
+        sections/          # 8 fully populated section .tex files
+          abstract.tex     # 1416 char body single paragraph
+          introduction.tex # 5 subsections + Table 1 robot comparison
+          methods.tex      # 7 subsections + 5 anchored tables
+          results.tex      # 7 subsections + 4 anchored tables, includes 1001 record feat
+          discussion.tex   # 5 subsections + Table 1 real-life adoption gaps
+          limitations_future.tex  # 5 subsections + 3 anchored tables (10 deliverables)
+          conclusions.tex  # 4 thematic blocks + Table 1 themes
+          back_matter.tex  # acknowledgments, ethics, rights, cite, data availability
+      templates/           # LaTeX templates carried into v0.8.0 draft + v0.9.0 full paper
 ```
 
 ## High-Level Architecture (ASCII)

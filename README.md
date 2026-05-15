@@ -655,7 +655,7 @@ For the v0.5.0 PDAC instruction set, the v0.6.0 PDAC codegen, the v0.7.0 PDAC ex
 ```
 @misc{kawchak_2026_20196639,
   author    = {Kawchak, Kevin},
-  title     = {2030: 60 Second Pancreatic Cancer Whipple Surgery + Daraxonrasib Simulation},
+  title     = {2030: 60 Second Pancreatic Ductal Adenocarcinoma Robotic Whipple Procedure & Daraxonrasib Simulation},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.20196639},

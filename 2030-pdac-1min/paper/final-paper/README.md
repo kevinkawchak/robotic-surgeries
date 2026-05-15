@@ -44,13 +44,13 @@ on page 2. The remaining sections follow in the order listed below.
    10 kHz + 100 kHz force)     with 3 ms e-stop)        + Dutch human cohort)
   +-----------------------+    +-----------------------+   +----------------+
   | Arm 1 dissect SMV     | -> | Per-arm x, y, z, q,   |-> | Quality 0.30   |
-  | Arm 2 dissect PV      |    | linear_vel up to       |   | Time     0.20  |
-  | Arm 3 hep artery ctrl |    | 1,200 mm/s, force      |   | Cost     0.15  |
-  | Arm 4 NIR + ICG IM    |    | clamp 3 N/arm, 18 N    |   | Safety   0.15  |
-  | Arm 5 PJ ring tension |    | cumulative cap, tool,  |   | PtExp    0.05  |
-  | Arm 6 bipolar coag    |    | 9-state command enum   |   | AnastQ   0.15  |
-  | Arm 7 suction         |    | + 10 kHz heartbeat     |   | structural-t   |
-  | Arm 8 imaging final   |    |   watchdog 100 us      |   | weight delta   |
+  | Arm 2 dissect PV      |    | linear_vel up to      |   | Time     0.20  |
+  | Arm 3 hep artery ctrl |    | 1,200 mm/s, force     |   | Cost     0.15  |
+  | Arm 4 NIR + ICG IM    |    | clamp 3 N/arm, 18 N   |   | Safety   0.15  |
+  | Arm 5 PJ ring tension |    | cumulative cap, tool, |   | PtExp    0.05  |
+  | Arm 6 bipolar coag    |    | 9-state command enum  |   | AnastQ   0.15  |
+  | Arm 7 suction         |    | + 10 kHz heartbeat    |   | structural-t   |
+  | Arm 8 imaging final   |    |   watchdog 100 us     |   | weight delta   |
   +-----------------------+    +-----------------------+   +----------------+
         |                          |                          |
         v                          v                          v

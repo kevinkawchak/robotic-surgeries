@@ -34,6 +34,7 @@ Format: Keep a Changelog. Versioning: Semantic Versioning.
 - Every `\begin{tabular}` column type starts with `>{\raggedright\arraybackslash}p{Xcm}`; no plain `p{Xcm}` columns remain in the eight section files.
 - The 14 anchored tables in the eight section files all sum to less than 14.0 cm column widths, well under the 16.5 cm text width, so no table runs off the right margin.
 - Widow and orphan penalties set to 10000 in both `main.tex` and `new_paper.sty` plus `\brokenpenalty=10000` so single or two word lines cannot float to the top or bottom of any page.
+- @kevinkawchak added LaTeX source files to robotic-surgeries/tree/main/2030-pdac-1min/paper/final-paper on 2026-05-14.
 
 ### Notes
 

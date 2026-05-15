@@ -24,6 +24,7 @@ Format: Keep a Changelog. Versioning: Semantic Versioning.
 - `releases.md` prepended with v0.9.0 release notes block per the FORMAT (Release title / Summary / Features / Contributors / Notes).
 - @kevinkawchak provided the v0.8.0 PDAC draft paper template at `2030-pdac-1min/paper/draft-paper/` as the basis for the v0.9.0 full paper population on 2026-05-15.
 - @claude (this session) authored the v0.9.0 PDAC full paper at `2030-pdac-1min/paper/full-paper/` across fourteen sequential commits within a single PR on 2026-05-15.
+- @kevinkawchak added LaTeX source files for the final PDAC robotic surgery to robotic-surgeries/tree/main/2030-pdac-1min/paper/final-paper on 2026-05-14.
 
 ### Fixed
 
@@ -34,7 +35,7 @@ Format: Keep a Changelog. Versioning: Semantic Versioning.
 - Every `\begin{tabular}` column type starts with `>{\raggedright\arraybackslash}p{Xcm}`; no plain `p{Xcm}` columns remain in the eight section files.
 - The 14 anchored tables in the eight section files all sum to less than 14.0 cm column widths, well under the 16.5 cm text width, so no table runs off the right margin.
 - Widow and orphan penalties set to 10000 in both `main.tex` and `new_paper.sty` plus `\brokenpenalty=10000` so single or two word lines cannot float to the top or bottom of any page.
-- @kevinkawchak added LaTeX source files to robotic-surgeries/tree/main/2030-pdac-1min/paper/final-paper on 2026-05-14.
+
 
 ### Notes
 

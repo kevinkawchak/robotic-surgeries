@@ -34,20 +34,20 @@ listed below.
 ## Pipeline diagram (4-arm 60-second 1-minute trial)
 
 ```
-  4-Arm Sensor Streams         Per-Arm XYZ Commands     1-Min vs Human Compare
-  (50 ch/arm x 4 arms,   --->  (per-arm phase-      --> (on-prem LLM judge,
-   200 ch total at mixed         conditioned 1 kHz       4-entity tournament)
+   4-Arm Sensor Streams          Per-Arm XYZ Commands      1-Min vs Human Compare
+   (50 ch/arm x 4 arms,    --->  (per-arm phase-      -->  (on-prem LLM judge,
+   200 ch total at mixed         conditioned 1 kHz         4-entity tournament)
    1 kHz + 10 kHz force)         with 5 ms e-stop)
-  +-----------------------+    +-----------------------+   +----------------+
-  | Arm 1 hyb u-w-p cut   | -> | Per-arm x, y, z, q,   |-> | Quality 0.40   |
-  | Arm 2 bipolar coag    |    | linear_vel up to       |   | Time     0.25  |
-  | Arm 3 suction collect |    | 1,000 mm/s, force      |   | Cost     0.20  |
-  | Arm 4 iMRI + 5-ALA    |    | clamp 5 N/arm, tool,   |   | Safety   0.10  |
-  | 1 kHz heartbeat bus   |    | 7-state command enum   |   | PtExp    0.05  |
-  | 12 N cumulative cap   |    | + heartbeat watchdog   |   | structural-t   |
-  +-----------------------+    +-----------------------+   +----------------+
-        |                          |                          |
-        v                          v                          v
+  +-----------------------+    +------------------------+    +----------------+
+  | Arm 1 hyb u-w-p cut   | -> | Per-arm x, y, z, q,    | -> | Quality 0.40   |
+  | Arm 2 bipolar coag    |    | linear_vel up to       |    | Time     0.25  |
+  | Arm 3 suction collect |    | 1,000 mm/s, force      |    | Cost     0.20  |
+  | Arm 4 iMRI + 5-ALA    |    | clamp 5 N/arm, tool,   |    | Safety   0.10  |
+  | 1 kHz heartbeat bus   |    | 7-state command enum   |    | PtExp    0.05  |
+  | 12 N cumulative cap   |    | + heartbeat watchdog   |    | structural-t   |
+  +-----------------------+    +------------------------+    +----------------+
+             |                             |                         |
+             v                             v                         v
   +-----------------------+    +-----------------------+   +----------------+
   | NeuroSpeed 1.0 (2030) |    | 4-phase 60s timeline  |   | Robot 88.53    |
   | 4 arms x 7 DOF, 28    |    | P1 dural 0-5s, P2     |   | Human 70.35    |
@@ -57,8 +57,8 @@ listed below.
   | per s peak via hybrid |    | hemostasis 55-60s     |   | 1.000          |
   | u-w-p removal         |    | (pre-op precomputed)  |   | (1-min vs 1-h) |
   +-----------------------+    +-----------------------+   +----------------+
-           |                                |                       |
-           v                                v                       v
+             |                             |                       |
+             v                             v                       v
   +-----------------------------------------------------------------------------+
   | v0.4.0: Full LaTeX paper at 2030-gbm-1min/paper/full-paper/ populated by    |
   | Claude Code Opus 4.7 1M Max from the bracketed template at                  |

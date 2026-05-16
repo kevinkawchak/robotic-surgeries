@@ -36,10 +36,10 @@ on page 2. The remaining sections follow in the order listed below.
 ## Pipeline diagram (8-arm 60-second 1-minute Whipple plus drug)
 
 ```text
-  8-Arm Sensor Streams         Per-Arm XYZ Commands     1-Min vs Human Compare
-  (80 ch/arm x 8 arms,    --> (per-arm phase-       --> (on-prem LLM judge,
-   640 ch total at mixed       conditioned 10 kHz       4-entrant tournament,
-   10 kHz + 100 kHz force)     with 3 ms e-stop)        + Dutch human cohort)
+   8-Arm Sensor Streams         Per-Arm XYZ Commands       1-Min vs Human Compare
+   (80 ch/arm x 8 arms,    -->  (per-arm phase-        --> (on-prem LLM judge,
+   640 ch total at mixed        conditioned 10 kHz         4-entrant tournament,
+   10 kHz + 100 kHz force)      with 3 ms e-stop)          + Dutch human cohort)
   +-----------------------+    +-----------------------+   +----------------+
   | Arm 1 dissect SMV     | -> | Per-arm x, y, z, q,   |-> | Quality 0.30   |
   | Arm 2 dissect PV      |    | linear_vel up to      |   | Time     0.20  |
@@ -50,8 +50,8 @@ on page 2. The remaining sections follow in the order listed below.
   | Arm 7 suction         |    | + 10 kHz heartbeat    |   | structural-t   |
   | Arm 8 imaging final   |    |   watchdog 100 us     |   | weight delta   |
   +-----------------------+    +-----------------------+   +----------------+
-        |                          |                          |
-        v                          v                          v
+            |                              |                       |
+            v                              v                       v
   +-----------------------+    +-----------------------+   +----------------+
   | PancreSpeed 1.0 (2030)|    | 8-phase 60s timeline  |   | Robot 93.735   |
   | 8 arms x 7 DOF, 56    |    | P1 Kocher 0-6s, P2    |   | Human 47.0%    |
@@ -61,8 +61,8 @@ on page 2. The remaining sections follow in the order listed below.
   | mm cubed per s peak   |    | P6 HJ 42-48s, P7 GJ   |   | conf >= 0.95   |
   | hybrid u-w-p removal  |    | 48-54s, P8 hem 54-60s |   | (1-min vs 4-8h)|
   +-----------------------+    +-----------------------+   +----------------+
-           |                                |                       |
-           v                                v                       v
+              |                             |                       |
+              v                             v                       v
   +-----------------------------------------------------------------------------+
   | v0.9.0: Populated full LaTeX paper at                                       |
   | 2030-pdac-1min/paper/full-paper/ expanded from the v0.8.0 bracketed draft   |

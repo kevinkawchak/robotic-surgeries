@@ -484,66 +484,66 @@ robotic-surgeries/
 ## High-Level Architecture (ASCII)
 
 ```
-+-----------------------------------------------------------------------------+
-|                ROBOTIC-SURGERIES SUITE (v0.8.0 / two variants)              |
-+-----------------------------------------------------------------------------+
-|                                                                             |
-|   physical-ai-oncology-trials       robotic-surgeries (this repo)           |
-|   +----------------------------+    +-------------------------------------+ |
-|   | competitions/instructions/ |--->| 2030-gbm-1min/  (1-minute, 4-arm)   | |
-|   |   one_minute_variant/      |    |   docs / config / schemas / src /   | |
-|   |     - README.md            |    |   data / prompts / results / viz /  | |
-|   |     - 12 instruction docs  |    |   outputs/ + paper/ + full-paper/   | |
-|   +----------------------------+    +------------------+------------------+ |
-|                                                        |                    |
-|                                     +------------------+------------------+ |
-|                                     | 2030-pdac-1min/ (1-minute, 8-arm)   | |
-|                                     |   paper/inputs/ (4 papers + 2 res)  | |
-|                                     |   paper/instructions/ v0.5.0        | |
-|                                     |   paper/codegen/      v0.6.0        | |
-|                                     |   paper/execution/    v0.7.0        | |
-|                                     |   paper/draft-paper/  v0.8.0        | |
-|                                     |   paper/full-paper/   v0.9.0 <- new | |
-|                                     |     - main.tex + new_paper.sty      | |
-|                                     |     - references.bib (35 entries)   | |
-|                                     |     - 8 populated section files     | |
-|                                     |     - LaTeX Source Files.zip        | |
-|                                     |     - Overleaf ready PDF source     | |
-|                                     |     - brackets resolved into prose  | |
-|                                     |     - 14 anchored tables + 1 ASCII  | |
-|                                     +------------------+------------------+ |
-|                                                        |                    |
-|                                                        v                    |
-|                                            +-----------+-----------+        |
-|                                            | On-prem LLM (Anthropic|        |
-|                                            | claude-opus-4-7) +    |        |
-|                                            | tournament agent      |        |
-|                                            +-----------+-----------+        |
-|                                                        |                    |
-|                                                        v                    |
-|                                            +-----------+-----------+        |
-|                                            | Zenodo L0 raw archive |        |
-|                                            | DOI 10.5281/...18445179|       |
-|                                            +-----------------------+        |
-+-----------------------------------------------------------------------------+
++-------------------------------------------------------------------------------+
+|                ROBOTIC-SURGERIES SUITE (v0.8.0 / two variants)                |
++-------------------------------------------------------------------------------+
+|                                                                               |
+|   physical-ai-oncology-trials       robotic-surgeries (this repo)             |
+|   +----------------------------+    +-------------------------------------+   |
+|   | competitions/instructions/ |--->| 2030-gbm-1min/  (1-minute, 4-arm)   |   |
+|   |   one_minute_variant/      |    |   docs / config / schemas / src /   |   |
+|   |     - README.md            |    |   data / prompts / results / viz /  |   |
+|   |     - 12 instruction docs  |    |   outputs/ + paper/ + full-paper/   |   |
+|   +----------------------------+    +------------------+------------------+   |
+|                                                        |                      |
+|                                     +------------------+------------------+   |
+|                                     | 2030-pdac-1min/ (1-minute, 8-arm)   |   |
+|                                     |   paper/inputs/ (4 papers + 2 res)  |   |
+|                                     |   paper/instructions/ v0.5.0        |   |
+|                                     |   paper/codegen/      v0.6.0        |   |
+|                                     |   paper/execution/    v0.7.0        |   |
+|                                     |   paper/draft-paper/  v0.8.0        |   |
+|                                     |   paper/full-paper/   v0.9.0 <- new |   |
+|                                     |     - main.tex + new_paper.sty      |   |
+|                                     |     - references.bib (35 entries)   |   |
+|                                     |     - 8 populated section files     |   |
+|                                     |     - LaTeX Source Files.zip        |   |
+|                                     |     - Overleaf ready PDF source     |   |
+|                                     |     - brackets resolved into prose  |   |
+|                                     |     - 14 anchored tables + 1 ASCII  |   |
+|                                     +------------------+------------------+   |
+|                                                        |                      |
+|                                                        v                      |
+|                                            +-----------+-----------+          |
+|                                            | On-prem LLM (Anthropic|          |
+|                                            | claude-opus-4-7) +    |          |
+|                                            | tournament agent      |          |
+|                                            +-----------+-----------+          |
+|                                                        |                      |
+|                                                        v                      |
+|                                            +-----------+-----------+          |
+|                                            | Zenodo L0 raw archive |          |
+|                                            | DOI 10.5281/...18445179|         |
+|                                            +-----------------------+          |
++-------------------------------------------------------------------------------+
 ```
 
 ## 8-Arm PDAC Coordination Snapshot (v0.5.0 / v0.6.0, 2030-pdac-1min)
 
 ```
 +============================================================================+
-|     8-ARM PDAC COORDINATION HEARTBEAT (10 kHz, 64-byte frame, 100 us deadline)|
+| 8-ARM PDAC COORDINATION HEARTBEAT (10 kHz, 64-byte frame, 100 us deadline) |
 +============================================================================+
 |    +-------+ 10 kHz broadcast +-------+ 10 kHz broadcast +-------+         |
-|    | ARM 1 |<---------------->| ARM 2 |<---------------->| ARM 3 |        |
-|    | hyb   |                  | bipol |                  | retr  |        |
-|    | u-w-p |                  | + coag|                  | + grsp|        |
+|    | ARM 1 |<---------------->| ARM 2 |<---------------->| ARM 3 |         |
+|    | hyb   |                  | bipol |                  | retr  |         |
+|    | u-w-p |                  | + coag|                  | + grsp|         |
 |    +---+---+                  +---+---+                  +---+---+         |
 |        v                          v                          v             |
 |    +-------+ 10 kHz broadcast +-------+ 10 kHz broadcast +-------+         |
-|    | ARM 4 |<---------------->| ARM 5 |<---------------->| ARM 6 |        |
-|    | iMRI  |                  | bipol |                  | suct  |        |
-|    | + NIR |                  | + suct|                  | + coag|        |
+|    | ARM 4 |<---------------->| ARM 5 |<---------------->| ARM 6 |         |
+|    | iMRI  |                  | bipol |                  | suct  |         |
+|    | + NIR |                  | + suct|                  | + coag|         |
 |    +---+---+                  +---+---+                  +---+---+         |
 |        v                          v                                        |
 |    +-------+ 10 kHz broadcast +-------+                                    |
@@ -564,7 +564,7 @@ robotic-surgeries/
 
 ```
 +==========================================================================+
-|     4-ARM COORDINATION HEARTBEAT (1 kHz, 32-byte frame, 1 ms deadline)   |
+| 4-ARM COORDINATION HEARTBEAT (1 kHz, 32-byte frame, 1 ms deadline)       |
 +==========================================================================+
 |        +-------+  1 kHz broadcast  +-------+                             |
 |        | ARM 1 |<----------------->| ARM 2 |                             |

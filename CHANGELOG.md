@@ -25,7 +25,7 @@ Format: Keep a Changelog. Versioning: Semantic Versioning.
 - @kevinkawchak provided the v0.8.0 PDAC draft paper template at `2030-pdac-1min/paper/draft-paper/` as the basis for the v0.9.0 full paper population on 2026-05-15.
 - @claude (this session) authored the v0.9.0 PDAC full paper at `2030-pdac-1min/paper/full-paper/` across fourteen sequential commits within a single PR on 2026-05-15.
 - @kevinkawchak added LaTeX source files for the final PDAC robotic surgery to robotic-surgeries/tree/main/2030-pdac-1min/paper/final-paper on 2026-05-14.
-- @kevinkawchak fixed DOI and title issues related to the v0.9.0 final paper in robotic-surgeries/tree/main/2030-pdac-1min/paper directories and in main/README.md. User also created new project directories for robotic-surgeries/tree/main/full-automation and uploaded two deep research input file sets on 2026-05-15.
+- @kevinkawchak fixed DOI and title issues related to the v0.9.0 final paper in robotic-surgeries/tree/main/2030-pdac-1min/paper directories and in main/README.md. User also created new project subdirectories for robotic-surgeries/tree/main/full-automation and uploaded two deep research input file sets on 2026-05-15.
 
 ### Fixed
 

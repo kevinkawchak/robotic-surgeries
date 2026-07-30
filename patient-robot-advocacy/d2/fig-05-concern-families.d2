@@ -1,0 +1,109 @@
+# =====================================================================
+# Figure 5. Twenty-one documented concerns, in the six families they fall into
+# Type            : D2-type, nested containers
+# Paper section   : § 3, The Documented Patient Concerns
+# Concern answered: all twenty-one, by making the set finite and legible. The
+#                   single most disabling property of patient apprehension
+#                   about surgical robots is that it feels unbounded. Drawing
+#                   the whole documented set inside six labelled containers
+#                   makes it a list of twenty-one items, each of which has an
+#                   address in this paper.
+# Why this type   : Containment is the argument. A flowchart would imply an
+#                   order the concerns do not have; a grid would imply two
+#                   dimensions they do not have. D2 nesting says exactly what
+#                   is true: six groups, disjoint, jointly exhaustive of the
+#                   surveyed literature.
+#
+# Sources         : ../research/research-a.md, six Gemini families;
+#                   ../research/research-b.md, sixteen ChatGPT concerns.
+#                   De-duplicated on the overlapping items to twenty-one.
+#
+# TikZ: draw with the d2* vocabulary of patientstyle.sty.
+# TikZ: Six d2cont containers in a 3 x 2 arrangement, container centres at
+# TikZ:   (0,0), (6.6,0), (13.2,0), (0,-7.4), (6.6,-7.4), (13.2,-7.4).
+# TikZ: Each container is fitted over its member d2box nodes plus its title,
+# TikZ:   inner sep 7pt, so no member touches a container border.
+# TikZ: Members are d2box, text width 24mm, stacked at 1.5cm pitch inside the
+# TikZ:   container, giving at least 7mm of clear space between members.
+# TikZ: Container titles are d2title anchored south west on the container's
+# TikZ:   north west corner, in the form "concerns.<family>".
+# TikZ: The paper-section address is set in \tiny\sffamily\itshape on a second
+# TikZ:   line inside each member box, so no leader line is needed and no
+# TikZ:   label can overlap a box.
+# TikZ: Only two edges exist in this figure, both from the "answered softly"
+# TikZ:   marker to its two containers; both use
+# TikZ:   to[out=-90,in=90,looseness=0.8].
+# =====================================================================
+
+vars: {
+  d2-config: {
+    theme-overrides: {
+      B1: "#00417A"
+      B2: "#3C7DB2"
+      B3: "#DCE8F1"
+      B4: "#E9ECEF"
+      B5: "#CED4DA"
+      AA2: "#6C757D"
+      N7: "#FFFFFF"
+    }
+    layout-engine: elk
+  }
+}
+
+title: "The twenty-one documented concerns" {
+  near: top-center
+  style: { font-size: 20; font-color: "#00417A"; bold: true }
+}
+
+control: "concerns.control_and_the_human_element" {
+  style: { fill: "#F1F6FA"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+  c1: "1. Who is actually driving the robot\n§ 7.3, Figure 19" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  c2: "2. Can the surgeon stop it, and how fast\n§ 7.4, Figure 18" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  c3: "3. Will the surgeon defer to the model\n§ 7.3, Figure 19" { style: { fill: "#FFFFFF" } }
+  c4: "4. Will I still have a doctor who knows me\n§ 3.1, Figure 8" { style: { fill: "#FFFFFF" } }
+  c5: "5. Less time with my care team\n§ 6.2, Figure 15" { style: { fill: "#FFFFFF" } }
+}
+
+safety: "concerns.safety_and_technical_failure" {
+  style: { fill: "#F1F6FA"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+  s1: "6. Malfunction or unintended motion\n§ 7.4, Figure 20" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  s2: "7. Misreading tissue or a margin\n§ 7.5, Figure 20" { style: { fill: "#FFFFFF" } }
+  s3: "8. Injury to a major vessel\n§ 7.5, Figure 21" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  s4: "9. Instrument failure mid-procedure\n§ 7.6, Figure 20" { style: { fill: "#FFFFFF" } }
+  s5: "10. Conversion to open surgery\n§ 5.3, Figure 12" { style: { fill: "#FFFFFF" } }
+}
+
+evidence: "concerns.evidence_and_effectiveness" {
+  style: { fill: "#F1F6FA"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+  e1: "11. Will this remove my cancer as well\n§ 10.1, Figure 27" { style: { fill: "#CED4DA" } }
+  e2: "12. Am I among the first humans\n§ 5.1, Figure 13" { style: { fill: "#FFFFFF" } }
+  e3: "13. Newer described as better\n§ 10.4, Figure 28" { style: { fill: "#CED4DA" } }
+  e4: "14. How experienced is this team\n§ 11.2, Figure 29" { style: { fill: "#FFFFFF" } }
+}
+
+data: "concerns.data_privacy_and_security" {
+  style: { fill: "#F1F6FA"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+  d1: "15. Who sees the recording of my operation\n§ 9.3, Figure 24" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  d2: "16. Will my data train other systems\n§ 9.3, Figure 24" { style: { fill: "#FFFFFF" } }
+  d3: "17. Could the system be attacked\n§ 9.4, Figure 17" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+}
+
+fairness: "concerns.fairness_and_applicability" {
+  style: { fill: "#F1F6FA"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+  f1: "18. Was it tested on people like me\n§ 6.3, Figure 14" { style: { fill: "#CED4DA" } }
+  f2: "19. Can the software change after I consent\n§ 8.3, Figure 23" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+}
+
+burden: "concerns.accountability_and_burden" {
+  style: { fill: "#F1F6FA"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+  b1: "20. Who is accountable if I am harmed\n§ 11.1, Figure 29" { style: { fill: "#CED4DA" } }
+  b2: "21. What will this cost me\n§ 12.2, Figure 30" { style: { fill: "#CED4DA" } }
+}
+
+key: "Fill key" {
+  near: bottom-center
+  style: { fill: "#FFFFFF"; stroke: "#6C757D"; stroke-dash: 3; border-radius: 6 }
+  k1: "Corporate Blue: answered by a hard numeric limit (7 of 21)" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  k2: "White: answered by a procedural guarantee (9 of 21)" { style: { fill: "#FFFFFF" } }
+  k3: "Medium gray: answered by governance or disclosure only (5 of 21)" { style: { fill: "#CED4DA" } }
+}

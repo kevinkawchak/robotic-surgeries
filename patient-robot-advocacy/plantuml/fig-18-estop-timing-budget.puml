@@ -1,0 +1,110 @@
+@startuml fig-18-estop-timing-budget
+' =====================================================================
+' Figure 18. What "the surgeon can stop it" costs in milliseconds
+' Type            : PlantUML-type, timing diagram (robust and concise clocks)
+' Paper section   : § 7, What Happens in the Operating Room
+' Concern answered: ChatGPT concern 3 (human override and rescue capability)
+'                   and concern 1 (safety, malfunction, unintended actions);
+'                   Gemini family 2. "The surgeon can always stop it" is the
+'                   most common reassurance offered to patients and the least
+'                   informative, because it does not say how long stopping
+'                   takes. This figure puts the whole chain on a millisecond
+'                   axis and shows every budget line the protocol commits to.
+' Why this type   : A timing diagram is the only formal notation with time as a
+'                   metric axis rather than an ordering. The argument here is
+'                   quantitative, so the axis has to be quantitative.
+'
+' TikZ: draw with the uml* vocabulary of patientstyle.sty.
+' TikZ: Five stacked timelines, each a 14 cm horizontal band at
+' TikZ:   y = 0, -1.6, -3.2, -4.8, -6.4, with the state name anchored east in
+' TikZ:   a 3.4 cm left gutter in \tiny\sffamily.
+' TikZ: The x axis is logarithmic in milliseconds from 0.1 to 1000, with decade
+' TikZ:   ticks at 0.1, 1, 10, 100, 1000 in protogray 0.4pt and \tiny labels
+' TikZ:   beneath the lowest band.
+' TikZ: A state segment is a 4mm-tall rectangle; filled protoblue while the
+' TikZ:   signal is asserted, pablue2 while armed, pagraym while idle.
+' TikZ: Transitions are vertical 0.5pt protoblack rules between bands, drawn at
+' TikZ:   the transition instant, never diagonal.
+' TikZ: Budget markers are 0.8pt protoblue dashed verticals spanning all five
+' TikZ:   bands, labelled at the top in \tiny\sffamily\bfseries inside a
+' TikZ:   white-filled mmlabel node so the label never sits on a band.
+' TikZ: No curved connectors in this figure, so no looseness is required.
+' =====================================================================
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam ArrowColor #6C757D
+skinparam NoteBackgroundColor #E9ECEF
+skinparam NoteBorderColor #6C757D
+
+scale 1 as 40 pixels
+
+robust "Surgeon intent" as SUR
+robust "Heartbeat bus (10 kHz)" as BUS
+robust "Arm 1 to 8 motion" as ARM
+robust "Force at the tip" as FRC
+concise "Protocol budget line" as BUD
+
+SUR has Operating, Stop_pressed
+BUS has Nominal, Halt_broadcast, Quiescent
+ARM has Commanded, Decelerating, Held
+FRC has Within_cap, Falling, Zero
+
+@0
+SUR is Operating
+BUS is Nominal
+ARM is Commanded
+FRC is Within_cap
+BUD is "steady state"
+
+@0.1
+SUR is Stop_pressed
+BUD is "t = 0, stop asserted"
+
+@0.2
+BUS is Halt_broadcast
+BUD is "one bus tick, 0.1 ms period"
+
+@1.4
+ARM is Decelerating
+BUD is "arms accept halt"
+
+@2.8
+FRC is Falling
+
+@3.0
+ARM is Held
+BUS is Quiescent
+BUD is "cross-arm budget: 3 ms"
+
+@4.2
+FRC is Zero
+
+@50
+BUD is "system-wide budget: 500 ms"
+
+@60
+SUR is Operating
+BUD is "surgeon resumes or converts"
+
+highlight 0.1 to 3.0 #DCE8F1 : cross-arm halt, budget 3 ms
+highlight 3.0 to 50 #E9ECEF : remaining system-wide margin, budget 500 ms
+
+note bottom
+  Three budget lines, all protocol-specified, none aspirational:
+  heartbeat period 0.1 ms; cross-arm emergency stop at most 3 ms;
+  system-wide emergency stop at most 500 ms. The gap between the
+  cross-arm halt and the system-wide budget is deliberate margin,
+  not unaccounted latency.
+end note
+
+note top
+  For scale: a human blink is roughly 100 to 150 ms.
+  Every arm is held before a blink completes, and the
+  system-wide guarantee is under four blinks.
+end note
+
+@enduml

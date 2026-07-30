@@ -1,0 +1,123 @@
+# =====================================================================
+# Figure 11. The endpoint registry, with a column the protocol does not have
+# Type            : D2-type, sql_table shapes with typed rows
+# Paper section   : § 4, Objectives and Patient-Facing Endpoints
+# Concern answered: ChatGPT concern 6 (cancer-control effectiveness) and
+#                   concern 15 (hype and unrealistic expectations). An endpoint
+#                   is a typed record: it has a definition, a timepoint, an
+#                   analysis population, and a source. Drawing it as a schema
+#                   rather than a list forces every one of those fields to be
+#                   filled, and exposes the endpoints where a field is empty.
+# Why this type   : D2's sql_table shape is the only permitted construct that
+#                   renders typed rows with keys and shows relations between
+#                   records. The relation that matters here is which endpoints
+#                   feed which analysis population.
+#
+# TikZ: draw with the d2* vocabulary of patientstyle.sty.
+# TikZ: Five d2sql rectangle-split nodes, header filled protoblue with white
+# TikZ:   text, body white, text width 40mm.
+# TikZ: Placement: primary_safety at (0,0), secondary_oncology at (0,-6.2),
+# TikZ:   exploratory_advisory at (0,-11.4), analysis_population at (7.8,-2.6),
+# TikZ:   provenance at (7.8,-9.0). Column pitch 7.8cm keeps at least 20mm of
+# TikZ:   clear space between the two columns.
+# TikZ: Each row inside a d2sql node is a 4.4mm-tall ruled band; the key column
+# TikZ:   is \tiny\sffamily\bfseries, the type column \tiny\ttfamily right
+# TikZ:   aligned, separated by a 0.3pt pagraym vertical rule.
+# TikZ: Relations are d2edge with crow-foot ends drawn as three 1.2mm strokes;
+# TikZ:   the two that cross ranks use to[out=0,in=180,looseness=0.85].
+# TikZ: The PLAIN MEANING row in each table is filled pablue2 to mark it as the
+# TikZ:   column the parent protocol does not carry.
+# =====================================================================
+
+vars: {
+  d2-config: {
+    theme-overrides: {
+      B1: "#00417A"
+      B2: "#3C7DB2"
+      B3: "#DCE8F1"
+      B4: "#E9ECEF"
+      B5: "#CED4DA"
+      AA2: "#6C757D"
+      N7: "#FFFFFF"
+    }
+    layout-engine: elk
+  }
+}
+
+primary_safety: {
+  shape: sql_table
+  style: { fill: "#FFFFFF"; stroke: "#00417A"; stroke-width: 2 }
+  endpoint_id: "varchar PK"
+  dlt_rate: "proportion, DL1 to DL3"
+  device_sae_rate: "proportion to day 30"
+  clavien_dindo_ge3: "proportion to day 30"
+  timepoint: "day 30"
+  population: "DLT-evaluable FK"
+  plain_meaning: "the dose was tolerated and\nthe device did not harm you"
+  provenance_class: "P protocol-specified"
+}
+
+secondary_oncology: {
+  shape: sql_table
+  style: { fill: "#FFFFFF"; stroke: "#00417A"; stroke-width: 2 }
+  endpoint_id: "varchar PK"
+  r0_rate: "proportion at day-90 pathology"
+  isgps_bc_fistula: "proportion, ISGPS 2016 grade"
+  mortality_90d: "proportion at day 90"
+  pfs: "time to event, months"
+  os_24mo: "time to event, months"
+  population: "safety analysis set FK"
+  plain_meaning: "the margins were clear, the join\nheld, and you were alive"
+  provenance_class: "M measured, C comparator"
+}
+
+exploratory_advisory: {
+  shape: sql_table
+  style: { fill: "#FFFFFF"; stroke: "#6C757D"; stroke-width: 2 }
+  endpoint_id: "varchar PK"
+  advisory_concordance: "proportion accepted"
+  override_rate: "proportion declined by surgeon"
+  gate_rejection_rate: "proportion blocked pre-approval"
+  restart_window_hit: "T+7 / T+14 / T+21 accuracy"
+  population: "per-procedure FK"
+  plain_meaning: "your surgeon disagreed with the\nmodel here, and was free to"
+  provenance_class: "S simulation anchor"
+}
+
+analysis_population: {
+  shape: sql_table
+  style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2 }
+  population_id: "varchar PK"
+  safety_analysis_set: "all who receive any intervention"
+  dlt_evaluable: "completed the DLT window"
+  per_protocol: "no major deviation"
+  itt_equivalent: "all enrolled"
+  who_you_are_in: "you are in the safety set from\nthe first study procedure onward"
+}
+
+provenance: {
+  shape: sql_table
+  style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2 }
+  class_id: "char PK"
+  M: "measured in a cited human series"
+  C: "contemporaneous nationwide comparator"
+  S: "author simulation, not human data"
+  P: "protocol-specified limit, not a result"
+  rule: "every number in § 10 carries one\nof these four letters"
+}
+
+primary_safety.population -> analysis_population.population_id: "one to many"
+secondary_oncology.population -> analysis_population.population_id: "one to many"
+exploratory_advisory.population -> analysis_population.population_id: "one to many"
+primary_safety.provenance_class -> provenance.class_id: "typed"
+secondary_oncology.provenance_class -> provenance.class_id: "typed"
+exploratory_advisory.provenance_class -> provenance.class_id: "typed"
+
+note: |md
+  The `plain_meaning` row exists in no clinical protocol. It is the
+  contribution of this paper: an endpoint that cannot be restated as a
+  sentence about the participant has not yet been explained to them.
+| {
+  near: bottom-center
+  style: { fill: "#E9ECEF"; stroke: "#6C757D"; border-radius: 6 }
+}

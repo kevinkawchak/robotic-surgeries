@@ -1,0 +1,250 @@
+\section{Your Visits, Your Data, Your Robot Instructions}
+
+\subsection{The calendar, and what it costs you}
+
+Figure 25 converts the Schedule of Activities into a calendar with durations,
+and then totals it. Roughly 18 visits, 8 to 10 inpatient days, and about 27 days
+of contact spread across 24 months. The dates on the figure are illustrative and
+anchored to a September 2026 first visit; the intervals, not the calendar dates,
+are what the protocol fixes.
+
+Totalling the burden is not a courtesy. The National Cancer Institute's guidance
+on trial costs identifies travel, time away from work, and caregiving as the
+practical burdens participants most often underestimate before enrolling
+\cite{NCICosts2024}, and none of the three can be estimated from a matrix of
+crosses.
+
+\begin{pafig}[mermaid-type: gantt]
+\foreach \i/\bg/\lab in {0/pagrayl/{Screening, up to 28 days},1/protowhite/{Baseline and surgery},2/pagrayl/{Early recovery},3/protowhite/{Confirmatory},4/pagrayl/{Long-term follow-up, every 12 weeks}}{
+  \fill[\bg] (0,{-\i*2.55-1.20}) rectangle (15.0,{-\i*2.55+1.20});
+  \draw[pagraym,line width=0.3pt] (0,{-\i*2.55-1.20}) rectangle (15.0,{-\i*2.55+1.20});
+  \node[font=\tiny\sffamily\bfseries,text=protoblue,anchor=north west] at (0.12,{-\i*2.55+1.14}) {\lab};}
+\foreach \x/\lab in {0/{Sep 26},1.9/{Dec 26},3.8/{Mar 27},5.7/{Jun 27},7.6/{Sep 27},9.5/{Dec 27},11.4/{Mar 28},13.3/{Jun 28},15.0/{Sep 28}}{
+  \draw[pagraym,line width=0.3pt] (\x,1.20) -- (\x,-11.4);
+  \node[font=\tiny\sffamily,anchor=north] at (\x,-11.6) {\lab};}
+\draw[protogray,line width=0.4pt] (0,-11.4) -- (15.0,-11.4);
+\node[font=\tiny\sffamily,anchor=north] at (7.5,-12.5) {elapsed calendar time, September 2026 to September 2028};
+% ---- bars: (y, x start, x end, fill, label) ----
+\foreach \y/\xa/\xb/\bg/\lab in {%
+  0.72/0.05/0.32/pagraym/{Consent conversation, no procedures},
+  0.30/0.32/0.58/pagraym/{Staging imaging and CA 19-9},
+  -0.12/0.58/0.88/pagraym/{KRAS G12 confirmation on tissue},
+  -0.54/0.88/1.02/pagraym/{Eligibility review and enrollment},
+  -1.75/1.06/1.16/pablue2/{Baseline day, Phase 0 sign-off shown},
+  -2.25/1.16/1.26/pablue1/{Robotic Whipple, day 0},
+  -2.75/1.26/1.58/pablue2/{Inpatient acute window, days 1 to 7},
+  -4.30/1.32/1.60/pablue2/{ISGPS fistula grading},
+  -4.80/1.60/2.22/pablue2/{Daraxonrasib restart advisory window},
+  -5.30/2.22/2.36/pablue1/{Day 30 safety visit, Clavien-Dindo},
+  -6.85/4.05/4.19/pablue1/{Day 90 pathology and mortality review},
+  -7.35/4.05/4.24/pablue2/{RECIST imaging, day 90},
+  -8.90/5.80/5.94/pablue2/{Visit at week 24},
+  -9.30/7.60/7.74/pablue2/{Visit at week 36},
+  -9.70/9.40/9.54/pablue2/{Visit at week 48},
+  -10.10/11.15/11.29/pablue2/{Visit at week 60},
+  -10.50/12.95/13.09/pablue2/{Visit at week 72},
+  -10.90/14.20/14.34/pablue2/{Visit at week 84},
+  -11.30/14.84/15.00/pablue1/{24-month overall-survival endpoint}}{
+  \fill[\bg] (\xa,{\y-0.17}) rectangle (\xb,{\y+0.17});
+  \draw[protoblue,line width=0.35pt] (\xa,{\y-0.17}) rectangle (\xb,{\y+0.17});
+  \node[font=\tiny\sffamily,anchor=east] at (-0.16,\y) {\lab};}
+\foreach \x/\lab in {1.21/{surgery},2.29/{day 30},4.12/{day 90},14.92/{endpoint}}{
+  \draw[protoblue,line width=0.55pt,dashed] (\x,1.20) -- (\x,-11.4);
+  \node[font=\tiny\sffamily\bfseries,text=protoblue,anchor=south,fill=protowhite,inner sep=1.2pt] at (\x,1.28) {\lab};}
+\legkey{-4.9}{-13.4}{pagraym}{screening, before consent takes effect}
+\legkey{-0.9}{-13.4}{pablue2}{a scheduled visit or window}
+\legkey{3.1}{-13.4}{pablue1}{a critical milestone}
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-4.9,-14.0) {Dates are illustrative and anchored to a September 2026 first visit. The intervals, not the calendar dates, are what the protocol\\fixes. Totals: about 18 visits, 8 to 10 inpatient days, and roughly 27 days of contact across 24 months.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 25. The participant calendar from screening through the 24-month endpoint,\\
+drawn with real durations rather than crosses in a matrix, and with the four critical\\
+milestones, surgery, day 30, day 90, and the endpoint, marked down to the axis.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{3.3cm} C{1.4cm} C{2.0cm} C{1.9cm} Y}
+\toprule
+\textbf{Phase} & \textbf{Visits} & \textbf{Inpatient days} & \textbf{Clinic days} & \textbf{Notes for planning} \\
+\midrule
+Screening & 4 & 0 & about 4 & Imaging and tissue work; no study procedure occurs before consent \\
+Baseline and surgery & 2 & 8 to 10 & 1 & The single inpatient stay of the whole study \\
+Early recovery & 3 & 0 & 3 & The restart advisory is a conversation, not a procedure \\
+Confirmatory & 2 & 0 & 2 & Day 90 carries the two results most people want \\
+Long-term & 7 & 0 & 7 & One half-day every 12 weeks for 24 months \\
+\textbf{Total} & \textbf{18} & \textbf{8 to 10} & \textbf{about 17} & Roughly 27 days of contact over 24 months \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Everything recorded about you}
+
+Four kinds of data are captured. Arm motion, tip force, and vessel proximity
+across 640 sensor channels at 10 kHz. Operative video and the endoscope feed.
+Clinical measurements: vital signs, laboratory values, CA 19-9, and drain
+output. And the case report form, which is the structured clinical record of the
+study.
+
+All four are written into a hash-chained record that cannot be edited after the
+fact, under the electronic records and electronic signatures rule
+\cite{ecfr2026part11}. From there the pipeline splits into an identified store
+and a de-identified store, and the split is one-way: nothing flows back from
+de-identified to identified.
+
+\begin{pafig}[diagrams (python)-type: pipeline with an access-control overlay]
+\dgnode{dgtile}{-7.4}{0}{\glyphsignal}{Arm motion, tip force, vessel proximity, 640 ch}{p1}
+\dgnode{dgtile}{-7.4}{-2.6}{\glyphmon}{Operative video and endoscope feed}{p2}
+\dgnode{dgtile}{-7.4}{-5.2}{\glyphflask}{Vitals, labs, CA 19-9, drain output}{p3}
+\dgnodew{dgtiled}{-2.4}{-1.0}{\glyphlock}{Hash chain, 21 CFR part 11, 15 year retention}{q1}
+\dgnode{dgtile}{-2.4}{-4.0}{\glyphdoc}{Case report form, 15 year retention}{q2}
+\dgnode{dgtile}{2.6}{0.4}{\glyphdb}{Identified store, name, MRN, images, 15 years}{s1}
+\dgnodew{dgtiled}{2.6}{-2.6}{\glyphshield}{De-identification, HIPAA safe harbour, one way}{s2}
+\dgnode{dgtile}{2.6}{-5.4}{\glyphdb}{De-identified store, 10 years}{s3}
+\dgnode{dgtile}{7.6}{0.4}{\glyphdoc}{Your own copy, on request, any time}{t1}
+\dgnode{dgtile}{7.6}{-2.6}{\glyphchart}{Analysis outputs, tables and figures}{t2}
+\dgnodeg{dgtileg}{7.6}{-5.4}{\glyphdoc}{Regulatory reports, FDA, IRB, DSMB}{t3}
+\dgnodeg{dgtileg}{7.6}{-8.0}{\glyphdoc}{Publication, no identifiers}{t4}
+\dgnodew{dgtiled}{-7.4}{-9.4}{\glyphuser}{You, every store above}{u1}
+\dgnodeg{dgtileg}{-3.9}{-9.4}{\glyphuser}{Site PI, identified and de-identified}{u2}
+\dgnodeg{dgtileg}{-0.4}{-9.4}{\glyphuser}{Sponsor-Investigator, de-identified and chain}{u3}
+\dgnodeg{dgtileg}{3.1}{-9.4}{\glyphuser}{DSMB, de-identified only}{u4}
+\dgnodeg{dgtileg}{6.6}{-9.4}{\glyphuser}{FDA on inspection, chain and CRF}{u5}
+\begin{scope}[on background layer]
+\node[dgcluster,fit=(p1)(p1l)(p2)(p2l)(p3)(p3l)] (G1) {};
+\node[dgcluster2,fit=(q1)(q1l)(q2)(q2l)] (G2) {};
+\node[dgcluster,fit=(s1)(s1l)(s2)(s2l)(s3)(s3l)] (G3) {};
+\node[dgcluster2,fit=(t1)(t1l)(t2)(t2l)(t3)(t3l)(t4)(t4l)] (G4) {};
+\node[dgcluster2,fit=(u1)(u1l)(u5)(u5l)] (G5) {};
+\end{scope}
+\node[dgctitle,anchor=south west]  at (G1.north west) {1. capture, in the room};
+\node[dgctitle2,anchor=south west] at (G2.north west) {2. write once, edit never};
+\node[dgctitle,anchor=south west]  at (G3.north west) {3. two stores, one boundary};
+\node[dgctitle2,anchor=south west] at (G4.north west) {4. what leaves};
+\node[dgctitle2,anchor=south west] at (G5.north west) {who may read each store, and nothing is drawn for a role that may not};
+\draw[dgedge] (p1) to[out=0,in=180,looseness=0.85] (q1);
+\draw[dgedge] (p2) to[out=0,in=180,looseness=0.85] (q1);
+\draw[dgedge] (p3) to[out=0,in=180,looseness=0.85] (q2);
+\draw[dgedge] (q2) -- (q1);
+\draw[dgedge] (q1) to[out=0,in=180,looseness=0.85] (s1);
+\draw[dgedgeb] (s1) -- node[font=\tiny\sffamily,right,pos=0.5]{one way} (s2);
+\draw[dgedgeb] (s2) -- (s3);
+\draw[dgedgeb] (s1) to[out=0,in=180,looseness=0.85] node[font=\tiny\sffamily,above,pos=0.5]{always available} (t1);
+\draw[dgedge] (s3) to[out=0,in=200,looseness=0.85] (t2);
+\draw[dgedge] (t2) to[out=-90,in=90,looseness=0.85] (t3);
+\draw[dgedge] (t3) to[out=-90,in=90,looseness=0.85] (t4);
+\draw[dgedgeb] (u1) to[out=90,in=-135,looseness=0.85] (s1);
+\draw[dgedged] (u2) to[out=90,in=-140,looseness=0.85] (s1);
+\draw[dgedged] (u3) to[out=90,in=-120,looseness=0.85] (s3);
+\draw[dgedged] (u4) to[out=90,in=-60,looseness=0.85] (s3);
+\draw[dgedged] (u5) to[out=120,in=-60,looseness=0.85] (q1);
+\draw[dgedgek] (s3) to[out=-30,in=-150,looseness=0.9] (t4);
+\pxmark{5.1}{-7.6}
+\node[font=\tiny\sffamily\bfseries,fill=protowhite,inner sep=1.6pt,anchor=east] at (4.85,-7.6) {no commercial model training without a separate consent};
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-9.4,-11.2) {A role that may read a store is joined to it by a line. A role that may not is joined by nothing at all. The absence of an edge is\\the access statement, which is why this figure is worth reading rather than being replaced by a paragraph.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 24. Your data through four stages, capture, a write-once hash chain, the identified\\
+and de-identified stores, and what leaves, with the read list attached to every store\\
+and no edge at all drawn for a principal who may not read that particular store.}
+
+\subsection{Who can read what, and for how long}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{3.5cm} C{1.7cm} Y}
+\toprule
+\textbf{Store} & \textbf{Retention} & \textbf{Who may read it} \\
+\midrule
+Raw telemetry & 10 years & Site PI, Sponsor-Investigator, and you on request \\
+Operative video & 10 years & Operating surgeon, Site PI, and you on request \\
+Case report form & 15 years & Site PI, CRO monitor, and you on request \\
+Hash chain & 15 years & Sponsor-Investigator, FDA on inspection, and you on request \\
+Identified store & 15 years & Site PI, and you on request \\
+De-identified store & 10 years & Sponsor-Investigator, DSMB, and the study statistician \\
+Analysis outputs & 15 years & Everyone above, and the public at publication \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent Your data is not used to train a commercial model without a separate
+consent. That is a statement about something that does not happen, and Figure 24
+draws it as a struck edge rather than asserting it in a caption, because a
+negative claim rendered as an absence is checkable and a negative claim rendered
+as a sentence is not.
+
+\subsection{Cybersecurity, in the terms the question is asked}
+
+The question participants ask is "could someone hack the system", and the answer
+is architectural. During a procedure there is no network route out of the
+building. The external interface is closed for the duration, so the attack
+surface during the operation is the building itself, and the building is a
+controlled environment with the usual physical access controls.
+
+Three things cross the boundary before a procedure: a cryptographically signed
+model build, the protocol version, and the registry entry that pins the two
+together. Two cross afterwards: the required reports to the FDA and to the IRB.
+If hospital connectivity fails entirely, mid-procedure or otherwise, the
+procedure is unaffected, because the procedure does not depend on it. The FDA's
+premarket cybersecurity guidance frames what such a design has to document
+\cite{FDACyber2026}; \S 7.1 and Figure 17 show the design.
+
+\subsection{The robots you will meet, and the ones you will not}
+
+The author's instruction set covers ten robot types \cite{patrobotinst}. In this
+protocol, two are certain, four are possible depending on recovery, and four are
+not used at all. Knowing which is which is itself an answer to the question of
+what the participant is agreeing to, and it is why the four unused types are
+listed rather than silently dropped: a participant who has read about steerable
+needle robots elsewhere needs to know that this study does not use one.
+
+The source sheets are mixed-oncology and are illustrated with photographs. Both
+change here. The clinical content is re-scoped to this PDAC Whipple protocol,
+and no raster image is carried across: Figure 26 is a card grid drawn as vector
+line art like every other figure in this paper.
+
+\begin{pafig}[d2-type: grid of cards, full page]
+\foreach \i/\cx/\cy/\brd/\ttl/\bdy/\rsc in {%
+  1/-4.15/0/1.4/{1. Eight-arm surgical system, you will meet this one}/{1. Lie face up, arms secured, and stay still for about two minutes while anaesthesia begins.\\2. You are asleep for the whole 240 to 420 minute Whipple; eight arms work through 8 to 12 mm ports while your surgeon approves every motion from the console.\\3. You wake in recovery 30 to 60 minutes after the arms retract; keep your abdomen relaxed and follow the nurse's breathing checks.}/{Re-scoped from the mediastinal sheet: PDAC pancreaticoduodenectomy, far longer, three anastomoses, a drain placed.},
+  2/4.15/0/1.4/{2. Imaging robot, screening, day 90, and every 12 weeks}/{1. Lie still on the table; the gantry moves around you and never touches you.\\2. Hold your breath when asked, for 10 to 20 seconds at a time.\\3. Tell the technologist at once if you feel unwell; the sequence pauses without losing the study.}/{Re-scoped: pancreatic-protocol CT and RECIST assessment, with CA 19-9 drawn on the same visit.},
+  3/-4.15/-3.7/0.8/{3. Bedside cobot, likely, days 1 to 7}/{1. The cobot works beside you at reduced speed and stops on contact; you may touch it without harm.\\2. Keep your drain line on the side the nurse indicates so the arm's path stays clear.\\3. Say stop at any time; the arm halts and a nurse takes over the task.}/{Re-scoped: the acute-window tasks here are drain handling and early mobilisation after a Whipple.},
+  4/4.15/-3.7/0.8/{4. Needle-placement robot, only if a collection needs drainage}/{1. You are awake with local anaesthetic; tell the team if you feel sharp pain rather than pressure.\\2. Stay still and breathe shallowly while the needle advances, about 60 seconds.\\3. The robot holds the trajectory; the radiologist advances it and can withdraw it instantly.}/{Re-scoped: used for a post-operative collection or a suspected grade B fistula, not a lung biopsy.},
+  5/-4.15/-7.4/0.8/{5. Companion robot, optional, inpatient stay}/{1. It reminds, records, and calls a human; it performs no clinical task and touches nothing.\\2. Ask it to fetch a nurse; it will, and it logs that it did so.\\3. You may switch it off, and switching it off changes nothing at all about your care.}/{Re-scoped: reminders are Whipple-specific, drain output, early mobilisation, diet advancement.},
+  6/4.15/-7.4/0.8/{6. Humanoid transport assistant, possible, ward transfers}/{1. It moves at walking pace with a human escort at all times; it never transports you alone.\\2. Keep your hands inside the chair rails while it is moving.\\3. Any staff member can halt it with the panel stop within one second.}/{Re-scoped: post-Whipple transfers with a drain and an epidural line, which constrain route and speed.},
+  7/-4.15/-11.1/0.8/{7. Rehabilitation exoskeleton, optional, week 2 onward}/{1. A physiotherapist fits and starts it; it will not move until they release the brake.\\2. Walk at your own pace; the device assists and does not lead.\\3. Stop when your abdomen aches, not when the session timer ends.}/{Re-scoped: abdominal-incision recovery, so the gait programme is low load and short duration.},
+  8/4.15/-11.1/0.8/{8. Radiotherapy positioning robot, not used in this protocol}/{1. The couch moves in six axes and pauses if you move.\\2. Breathe normally unless a breath hold is requested.\\3. The intercom is always open, and speaking pauses the beam.}/{Not part of this protocol. Included because you may receive radiotherapy outside the study.},
+  9/-4.15/-14.8/0.8/{9. Radiotherapy motion-tracking robot, not used here}/{1. Markers on your skin or an implanted fiducial let the system follow your breathing.\\2. Do not adjust the markers between fractions.\\3. Coughing interrupts the beam automatically and does not spoil the treatment.}/{Not part of this protocol. Retained for completeness of the ten-sheet source set.},
+  10/4.15/-14.8/0.8/{10. Steerable needle robot, not used in this protocol}/{1. Not used in this study at any timepoint.\\2. If offered outside this study, ask which steps are autonomous and who approves each one.\\3. The same questions in \S 3 of this paper apply to it unchanged.}/{Explicitly excluded here. Listed so you can tell what this protocol does not involve.}}{
+  \draw[rounded corners=3pt,draw=protoblue,line width=\brd pt,fill=protowhite]
+    ({\cx-3.55},{\cy+0.78}) rectangle ({\cx+3.55},{\cy-2.62});
+  \node[d2key,text width=62mm,minimum height=5.5mm,align=center,anchor=north,font=\tiny\sffamily\bfseries]
+    at ({\cx},{\cy+0.70}) {\ttl};
+  \node[d2soft,text width=62mm,minimum height=17mm,align=left,anchor=north,inner sep=3pt]
+    at ({\cx},{\cy+0.02}) {\bdy};
+  \node[d2gray,text width=62mm,minimum height=5mm,align=left,anchor=north,inner sep=3pt,font=\tiny\sffamily\itshape]
+    at ({\cx},{\cy-1.92}) {\rsc};}
+\node[d2soft,text width=152mm,align=left,anchor=north west] at (-7.7,-18.0)
+  {Of the ten robot types in the source instruction set, \textbf{two} are certain in this protocol, the eight-arm surgical system and the imaging robot; \textbf{four} are possible depending on your recovery; and \textbf{four} are not used at all. Knowing which is which is itself an answer to the question of what you are agreeing to. The two certain cards carry a heavier border.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 26. Ten robot-type instruction cards re-scoped from general oncology to this\\
+PDAC Whipple protocol, each with three numbered instructions and a re-scoping note,\\
+and with the four robot types this protocol does not use marked plainly as unused.}
+
+\subsection{Software changes during your participation}
+
+The software version is frozen at the moment of consent and recorded in a
+version registry that the participant is shown. Any change to it forces a
+re-consent, and until the participant acts on that re-consent no study procedure
+proceeds under the changed version.
+
+Declining the change ends participation and returns the participant to standard
+care with no penalty. That is a real option rather than a formality, and \S 8.2
+and Figure 23 draw it as a transition of the consent state machine rather than
+as a paragraph. The regulatory frame for treating version change as a
+communication obligation is the joint transparency guidance
+\cite{FDATrans2024}, and the frame for monitoring performance change without a
+version change is the FDA's real-world performance work \cite{FDARealW2025}.

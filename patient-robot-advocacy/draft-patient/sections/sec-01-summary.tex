@@ -4,7 +4,7 @@
 
 \draftinstr{Roughly 1,100 characters, written at the reading level of a
 well-informed adult with no clinical training. Adapt the synopsis from
-\texttt{inputs/phase-1-trial-protocol.zip}, \texttt{sections/sec-01-summary.tex}
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip}, \texttt{sections/\pfb sec-\pfb 01-\pfb summary.tex}
 \S1.1, and remove every term that a consent conversation would have to define
 twice. Cite \texttt{Siegel2025} for the survival baseline and
 \texttt{rasolute302} for the drug. State up front that this is a first-in-human
@@ -28,11 +28,11 @@ single-patient journey simulation \cite{paipatientjr}, which was non-small cell
 lung cancer, and that this study is PDAC. Name the four differences that matter:
 the operation, the drug, the dominant early complication, and the survival
 baseline. Source the distinction from
-\texttt{inputs/cancer-patient-journey.zip} and \texttt{inputs/README.md}.}
+\texttt{inputs/\pfb cancer-\pfb patient-\pfb journey.zip} and \texttt{inputs/README.md}.}
 
 \begin{pafig}[mermaid-type: flowchart LR, full page]
 \node[mmgoal] (a) at (0,0) {Figure 3 slot\\journey schema\\full page, five lanes};
-\node[mmin] (b) at (0,-2.2) {Source:\\mermaid/fig-03-journey-schema.md};
+\node[mmin] (b) at (0,-2.2) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 03-\pfb journey-\pfb schema.md};
 \draw[mmedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -41,7 +41,7 @@ baseline. Source the distinction from
 and every node the sponsor controls left white, so the balance of control is visible.}
 
 \draftinstr{Replace the Figure 3 slot with the full-page mermaid-type flowchart
-from \texttt{mermaid/fig-03-journey-schema.md}. Five \texttt{mmlane} lanes at
+from \texttt{mermaid/\pfb fig-\pfb 03-\pfb journey-\pfb schema.md}. Five \texttt{mmlane} lanes at
 $x = 0, 4.6, 9.2, 13.4, 18.0$; four participant \texttt{mmgoal} nodes; the
 operation in \texttt{pablue1}; three dotted exits routed below all lanes at
 $y = -11.2$ with right-angle routing, never diagonally through a lane.}
@@ -50,14 +50,14 @@ $y = -11.2$ with right-angle routing, never diagonally through a lane.}
 
 \draftinstr{Roughly 800 characters introducing Figure 4 and the totals it
 carries. Adapt from the Schedule of Activities in
-\texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-01-summary.tex} \S1.3, and convert every cross in that
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 01-\pfb summary.tex} \S1.3, and convert every cross in that
 matrix into a statement of what the participant does. Cite
 \texttt{NCITrial2024} for the general shape of trial participation.}
 
 \begin{pafig}[d2-type: grid-rows, grid-columns]
 \node[d2key] (a) at (0,0) {Figure 4 slot\\Schedule of Activities grid};
-\node[d2box] (b) at (0,-1.8) {Source:\\d2/fig-04-soa-patient-grid.d2};
+\node[d2box] (b) at (0,-1.8) {\ttfamily\tiny Source\\ d2/\\ fig-\pfb 04-\pfb soa-\pfb patient-\pfb grid.d2};
 \draw[d2edge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -66,7 +66,7 @@ participant's chair, with each cell stating what they do rather than what is col
 and a totals row giving the approximate hours of their time each visit consumes.}
 
 \draftinstr{Replace the Figure 4 slot with the full D2-type grid from
-\texttt{d2/fig-04-soa-patient-grid.d2}: eight columns by thirteen rows of
+\texttt{d2/\pfb fig-\pfb 04-\pfb soa-\pfb patient-\pfb grid.d2}: eight columns by thirteen rows of
 \texttt{d2cell} rectangles sharing their rules, header row \texttt{d2cellh},
 label column \texttt{d2celll}, participant-decision cells \texttt{protoblue},
 activity cells \texttt{pablue1}, totals row \texttt{pagrayl}. Add the four-key
@@ -76,8 +76,8 @@ legend beneath.}
 
 \draftinstr{Retain the conventional matrix as well as the grid, because a
 participant may want to hand it to their own oncologist. Populate every cell
-from \texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-01-summary.tex} \S1.3, unchanged.}
+from \texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 01-\pfb summary.tex} \S1.3, unchanged.}
 
 \vspace{0.30em}
 
@@ -116,4 +116,4 @@ else. It cannot establish that this combination improves survival. Cite
 \texttt{NCITrial2024} and \texttt{FDARobot2022}, the latter for the FDA's own
 statement that long-term cancer outcomes have not been established for every use
 of robotically assisted surgical devices. This subsection is load-bearing for
-the paper's credibility and must not be trimmed in \texttt{full-patient}.}
+the paper's credibility and must not be trimmed in \texttt{full-\pfb patient}.}

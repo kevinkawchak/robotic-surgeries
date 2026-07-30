@@ -17,7 +17,7 @@ configuration has no equivalent of.}
 \node[dgtiled] (a) at (0,0) {};
 \glyphserver{a}{protowhite}
 \node[dglabel,anchor=north] at ([yshift=-5.4mm]a.center) {Figure 17 slot, OR and on-prem stack};
-\node[dglabel,anchor=north] at (0,-1.6) {Source: diagrams-python/fig\_17\_operating\_room\_stack.py};
+\node[dglabel,anchor=north] at (0,-1.6) {\ttfamily\tiny Source\\ diagrams-python/\\ fig\_\pfb 17\_\pfb operating\_\pfb room\_\pfb stack.py};
 \end{pafig}
 \vspace{-0.7cm}
 \figcaption{Figure 17. The operating room and the on-premises stack drawn as a deployment
@@ -26,7 +26,7 @@ store, and the network boundary that carries no intra-procedural route at all.}
 
 \draftinstr{Replace the Figure 17 slot with the full-page Diagrams
 (Python)-type deployment from
-\texttt{diagrams-python/fig\_17\_operating\_room\_stack.py}. Five
+\texttt{diagrams-\pfb python/\pfb fig\_\pfb 17\_\pfb operating\_\pfb room\_\pfb stack.py}. Five
 \texttt{dgcluster} containers in the two-column arrangement given in that file;
 every tile a \texttt{\textbackslash dgnode} with the named pictogram; the absent
 cable interrupted by a \texttt{\textbackslash pxmark} with its label in a
@@ -56,7 +56,7 @@ supervision, and \texttt{FDARobot2022}.}
 
 \begin{pafig}[mermaid-type: sequenceDiagram]
 \node[mmactor] (a) at (0,0) {Figure 19 slot};
-\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-19-advise-approve-execute.md};
+\node[mmin] (b) at (0,-2.0) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 19-\pfb advise-\pfb approve-\pfb execute.md};
 \draw[mmedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -65,7 +65,7 @@ deterministic gate between advice and approval, and no arrow at all from the mod
 to the arms, which is the safety argument this figure makes by an absence.}
 
 \draftinstr{Replace the Figure 19 slot with the mermaid-type sequence from
-\texttt{mermaid/fig-19-advise-approve-execute.md}. Five \texttt{mmactor} headers
+\texttt{mermaid/\pfb fig-\pfb 19-\pfb advise-\pfb approve-\pfb execute.md}. Five \texttt{mmactor} headers
 at 3.6 cm pitch; \texttt{mmlife} lifelines from $-0.6$ to $-12.6$;
 \texttt{mmact} activation bars; self-messages as 4 mm right-hand loops at
 looseness 6; the \texttt{alt} fragment with a corner tab; the two closing notes
@@ -83,7 +83,7 @@ monitor. Cite \texttt{ieee7009}.}
 
 \begin{pafig}[plantuml-type: timing, @startuml]
 \node[umlkey] (a) at (0,0) {Figure 18 slot\\e-stop timing budget};
-\node[umlbox] (b) at (0,-1.9) {Source:\\plantuml/fig-18-estop-timing-budget.puml};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 18-\pfb estop-\pfb timing-\pfb budget.puml};
 \draw[umlarrow] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -92,7 +92,7 @@ instant the surgeon presses stop through the bus broadcast and arm deceleration 
 zero tip force, with all three protocol budget lines marked across every timeline.}
 
 \draftinstr{Replace the Figure 18 slot with the PlantUML-type timing diagram
-from \texttt{plantuml/fig-18-estop-timing-budget.puml}. Five stacked 14 cm
+from \texttt{plantuml/\pfb fig-\pfb 18-\pfb estop-\pfb timing-\pfb budget.puml}. Five stacked 14 cm
 bands at 1.6 cm pitch; a logarithmic axis from 0.1 to 1000 ms with decade ticks;
 state segments as 4 mm rectangles filled \texttt{protoblue} while asserted,
 \texttt{pablue2} while armed, \texttt{pagraym} while idle; budget markers as
@@ -108,7 +108,7 @@ the figure draws them as sibling containers inside one envelope for that reason.
 
 \begin{pafig}[d2-type: container with measurement grid]
 \node[d2key] (a) at (0,0) {Figure 21 slot\\force and no-fly envelope};
-\node[d2box] (b) at (0,-1.8) {Source:\\d2/fig-21-force-nofly-envelope.d2};
+\node[d2box] (b) at (0,-1.8) {\ttfamily\tiny Source\\ d2/\\ fig-\pfb 21-\pfb force-\pfb nofly-\pfb envelope.d2};
 \draw[d2edge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -117,7 +117,7 @@ limits with their observed headroom on the left and the vascular no-fly geometry
 the right, joined by the deterministic gate that rejects any plan violating either.}
 
 \draftinstr{Replace the Figure 21 slot with the D2-type envelope figure from
-\texttt{d2/fig-21-force-nofly-envelope.d2}. One outer \texttt{d2cont}, two
+\texttt{d2/\pfb fig-\pfb 21-\pfb force-\pfb nofly-\pfb envelope.d2}. One outer \texttt{d2cont}, two
 \texttt{d2cont2} sub-containers 1.6 cm apart; the force sub-container as a
 5-row measurement grid using \texttt{\textbackslash hbarrow} with the cap as a
 dashed vertical and the observed value as a filled bar; the geometry
@@ -134,7 +134,7 @@ drift beyond 2 mm is caught by the deterministic gate alone. Do not omit the gap
 
 \begin{pafig}[graphviz-type: fault tree, AND and OR gates]
 \node[gvboxd] (a) at (0,0) {Figure 20 slot\\hazard and barrier fault tree};
-\node[gvbox] (b) at (0,-2.0) {Source:\\graphviz/fig-20-hazard-barrier-fault-tree.dot};
+\node[gvbox] (b) at (0,-2.0) {\ttfamily\tiny Source\\ graphviz/\\ fig-\pfb 20-\pfb hazard-\pfb barrier-\pfb fault-\pfb tree.dot};
 \draw[gvedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -143,7 +143,7 @@ harm requires all four intermediate events together, and with the single-barrier
 at registration drift marked in medium-dark gray rather than quietly omitted.}
 
 \draftinstr{Replace the Figure 20 slot with the graphviz-type fault tree from
-\texttt{graphviz/fig-20-hazard-barrier-fault-tree.dot}. Use
+\texttt{graphviz/\pfb fig-\pfb 20-\pfb hazard-\pfb barrier-\pfb fault-\pfb tree.dot}. Use
 \texttt{\textbackslash umlgateand} and \texttt{\textbackslash umlgateor} for the
 five gates; ten basic events as 9 mm \texttt{gvcircle} nodes on the lowest rank;
 barrier annotations in the right margin attached by 0.5pt dashed leaders so they

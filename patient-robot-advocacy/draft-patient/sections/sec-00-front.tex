@@ -13,7 +13,7 @@ doctor, the nurse, the trial sponsor, the Institutional Review Board, or the
 regulator, is the priority participant \cite{paibillprior, hr9510billv5}.
 
 \draftinstr{Expand this opening to roughly 1,300 characters. Source the framing
-from \texttt{inputs/patient-priority-physical-ai.zip} and cite
+from \texttt{inputs/\pfb patient-\pfb priority-\pfb physical-\pfb ai.zip} and cite
 \texttt{hr9510billv5} for the legislative premise. State explicitly that this is
 an advocacy document written from the protocol's own record, not a substitute
 for the consent form.}
@@ -24,8 +24,8 @@ for the consent form.}
 each, in the order below. Each paragraph names the commitment, states the
 protocol clause that carries it, and states what a participant can check to
 verify it. Source every clause from
-\texttt{inputs/phase-1-trial-protocol.zip}, sections \texttt{sec-00-compliance},
-\texttt{sec-04-design}, and \texttt{sec-06-intervention}.}
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip}, sections \texttt{sec-\pfb 00-\pfb compliance},
+\texttt{sec-\pfb 04-\pfb design}, and \texttt{sec-\pfb 06-\pfb intervention}.}
 
 \vspace{0.30em}
 
@@ -63,13 +63,13 @@ that this paper is designed to be read before that form, not instead of it.}
 \draftinstr{Roughly 800 characters. Explain the five diagram types and the
 question each answers, drawing the wording from the five stage READMEs at
 \texttt{mermaid/README.md}, \texttt{plantuml/README.md}, \texttt{d2/README.md},
-\texttt{diagrams-python/README.md}, and \texttt{graphviz/README.md}. State that
+\texttt{diagrams-\pfb python/\pfb README.md}, and \texttt{graphviz/README.md}. State that
 the monospace tag at the top left of every frame names the native construct the
 figure reproduces, so a reader can carry any figure back to its platform.}
 
 \begin{pafig}[mermaid-type: flowchart TD]
 \node[mmgoal] (a) at (0,0) {Figure 1 slot\\seven commitments\\flowchart TD};
-\node[mmin] (b) at (0,-2.2) {Source:\\mermaid/fig-01-seven-commitments.md};
+\node[mmin] (b) at (0,-2.2) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 01-\pfb seven-\pfb commitments.md};
 \draw[mmedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -78,7 +78,7 @@ conversation through consent, the Phase 0 gate, and dose assignment, to the day-
 safety window and the day-90 pathology result that is reported back to them directly.}
 
 \draftinstr{Replace the Figure 1 slot with the full mermaid-type flowchart
-specified in \texttt{mermaid/fig-01-seven-commitments.md}, following the TikZ
+specified in \texttt{mermaid/\pfb fig-\pfb 01-\pfb seven-\pfb commitments.md}, following the TikZ
 rendering notes at the foot of that file: seven \texttt{mmin} commitment nodes
 in one column at 2.4 cm pitch, three \texttt{mmdec} gates at $x=5.6$, one
 \texttt{mmdark} halt node reached by three \texttt{mmedged} edges, and the
@@ -95,7 +95,7 @@ call.}
 
 \begin{pafig}[graphviz-type: digraph, rooted DAG]
 \node[gvkey] (a) at (0,0) {Figure 2 slot\\accountability DAG};
-\node[gvbox] (b) at (0,-2.0) {Source:\\graphviz/fig-02-accountability-dag.dot};
+\node[gvbox] (b) at (0,-2.0) {\ttfamily\tiny Source\\ graphviz/\\ fig-\pfb 02-\pfb accountability-\pfb dag.dot};
 \draw[gvedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -104,7 +104,7 @@ with the participant at the root, showing the people in the room, the bodies acc
 for the study, the independent reviewers, and the three obligations that point back.}
 
 \draftinstr{Replace the Figure 2 slot with the full graphviz-type DAG specified
-in \texttt{graphviz/fig-02-accountability-dag.dot}. Preserve the stated
+in \texttt{graphviz/\pfb fig-\pfb 02-\pfb accountability-\pfb dag.dot}. Preserve the stated
 invariant: the graph is acyclic, so no body in the chart is its own reviewer.
 Draw exactly three back-reference edges to the root, no more, because three is
 what the protocol actually owes the participant.}

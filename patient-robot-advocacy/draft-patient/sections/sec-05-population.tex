@@ -7,12 +7,12 @@ direction: the protocol tests the participant and returns eligible or screen
 failure. Under the author's proposed legislation the participant is also doing
 the selecting, and the second direction leaves a record. Cite
 \texttt{hr9510billv5} and \texttt{paibillprior}. Adapt the criteria from
-\texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-05-population.tex} \S5.1 and \S5.2.}
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 05-\pfb population.tex} \S5.1 and \S5.2.}
 
 \begin{pafig}[mermaid-type: flowchart TD, two decision columns]
 \node[mmgoal] (a) at (0,0) {Figure 14 slot\\two-way eligibility gate};
-\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-14-eligibility-self-selection.md};
+\node[mmin] (b) at (0,-2.0) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 14-\pfb eligibility-\pfb self-\pfb selection.md};
 \draw[mmedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -21,7 +21,7 @@ other, what the protocol asks of the participant and what the participant may as
 the protocol, converging on a single enrollment node that requires both to be satisfied.}
 
 \draftinstr{Replace the Figure 14 slot with the mermaid-type two-column
-flowchart from \texttt{mermaid/fig-14-eligibility-self-selection.md}. Two
+flowchart from \texttt{mermaid/\pfb fig-\pfb 14-\pfb eligibility-\pfb self-\pfb selection.md}. Two
 \texttt{mmlane} boxes at $x = -3.4$ and $x = 4.6$; four \texttt{mmdec} diamonds
 per lane at 2.4 cm pitch; the two edges out of \texttt{START} at looseness 0.75
 so neither clips a lane title; the two "all yes" edges into enrollment at
@@ -30,8 +30,8 @@ looseness 0.8.}
 \subsection{Inclusion and exclusion, in plain terms}
 
 \draftinstr{Populate both tables from
-\texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-05-population.tex} \S5.1 and \S5.2. Keep the second column
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 05-\pfb population.tex} \S5.1 and \S5.2. Keep the second column
 in the participant's own terms: an inclusion criterion is a statement about
 them, not about the study.}
 
@@ -108,7 +108,7 @@ is additional and not a replacement. Cite \texttt{hr9510billv5} and
 
 \begin{pafig}[plantuml-type: sequence, @startuml]
 \node[umlkey] (a) at (0,0) {Figure 15 slot\\booking and sponsor response};
-\node[umlbox] (b) at (0,-1.9) {Source:\\plantuml/fig-15-booking-sponsor-response.puml};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 15-\pfb booking-\pfb sponsor-\pfb response.puml};
 \draw[umlarrow] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -117,7 +117,7 @@ named human at the sponsor, with activation bars showing who is blocked at each 
 and every branch of the eligibility fragment notifying the participant's own oncologist.}
 
 \draftinstr{Replace the Figure 15 slot with the PlantUML-type sequence from
-\texttt{plantuml/fig-15-booking-sponsor-response.puml}. Five lifelines at
+\texttt{plantuml/\pfb fig-\pfb 15-\pfb booking-\pfb sponsor-\pfb response.puml}. Five lifelines at
 $x = 0, 3.8, 7.6, 11.4, 15.2$; \texttt{umlact} activation bars spanning exactly
 the messages they enclose; message labels above the arrow, never on it; the
 single self-message as a 4 mm loop at looseness 6; the \texttt{alt} fragment as
@@ -133,7 +133,7 @@ of surgery. Cite \texttt{NCIConsent24} and \texttt{cfr050paiuni}.}
 
 \begin{pafig}[d2-type: layers and steps]
 \node[d2key] (a) at (0,0) {Figure 16 slot\\five choices, layered};
-\node[d2box] (b) at (0,-1.8) {Source:\\d2/fig-16-five-choices-layers.d2};
+\node[d2box] (b) at (0,-1.8) {\ttfamily\tiny Source\\ d2/\\ fig-\pfb 16-\pfb five-\pfb choices-\pfb layers.d2};
 \draw[d2edge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -142,7 +142,7 @@ layers with the choice, the interval in which it is live, and what happens if th
 is no, so that no decision that matters is taken at the moment of least capacity.}
 
 \draftinstr{Replace the Figure 16 slot with the D2-type layered figure from
-\texttt{d2/fig-16-five-choices-layers.d2}. Five \texttt{d2step} panels stacked
+\texttt{d2/\pfb fig-\pfb 16-\pfb five-\pfb choices-\pfb layers.d2}. Five \texttt{d2step} panels stacked
 at 3.6 cm pitch; earlier panels redrawn as \texttt{d2ghost} 0.4pt outlines with
 no text so the reveal reads as accumulation; the panel-to-panel connector on the
 left margin at looseness 0.7.}

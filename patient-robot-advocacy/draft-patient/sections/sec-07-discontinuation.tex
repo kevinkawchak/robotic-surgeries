@@ -7,13 +7,13 @@ routinely told they may withdraw at any time and are almost never told what
 withdrawal does to the data already collected. The honest answer depends on
 which route out is taken, and there are four: stop the drug only; stop study
 procedures but keep follow-up; full withdrawal; and withdrawal of consent for
-data use as well. Adapt from \texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-07-discontinuation.tex}, and cite \texttt{ecfr2026part50}
+data use as well. Adapt from \texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 07-\pfb discontinuation.tex}, and cite \texttt{ecfr2026part50}
 and \texttt{NCIConsent24}.}
 
 \begin{pafig}[plantuml-type: activity with swimlanes, @startuml]
 \node[umlkey] (a) at (0,0) {Figure 22 slot\\withdrawal activity};
-\node[umlbox] (b) at (0,-1.9) {Source:\\plantuml/fig-22-withdrawal-activity.puml};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 22-\pfb withdrawal-\pfb activity.puml};
 \draw[umlarrow] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -22,7 +22,7 @@ one lane for the participant, one for the site team, and one for the data and sp
 so each route's consequence for the record is visible beside the route itself.}
 
 \draftinstr{Replace the Figure 22 slot with the PlantUML-type activity from
-\texttt{plantuml/fig-22-withdrawal-activity.puml}. Three vertical
+\texttt{plantuml/\pfb fig-\pfb 22-\pfb withdrawal-\pfb activity.puml}. Three vertical
 \texttt{umlpkg} swimlanes at $x = -5.0, 0.6, 6.6$ sharing one top and one bottom
 edge; actions as \texttt{umlstate} boxes at 2.2 cm pitch; one \texttt{mmdec}
 decision at $(0.6,-3.0)$; fork and join as \texttt{umlbar} rectangles; four
@@ -59,7 +59,7 @@ they have not been told about. Cite \texttt{FDATrans2024} and
 
 \begin{pafig}[mermaid-type: stateDiagram-v2, composite]
 \node[mmgoal] (a) at (0,0) {Figure 23 slot\\consent lifecycle};
-\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-23-consent-lifecycle.md};
+\node[mmin] (b) at (0,-2.0) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 23-\pfb consent-\pfb lifecycle.md};
 \draw[mmedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -68,7 +68,7 @@ withdrawal reachable from every state, and a re-consent transition the participa
 not cause, triggered by a software version change, a new risk, or a protocol amendment.}
 
 \draftinstr{Replace the Figure 23 slot with the mermaid-type state diagram from
-\texttt{mermaid/fig-23-consent-lifecycle.md}. \texttt{umlinit} at $(0,1.4)$,
+\texttt{mermaid/\pfb fig-\pfb 23-\pfb consent-\pfb lifecycle.md}. \texttt{umlinit} at $(0,1.4)$,
 two \texttt{umlfinal} discs at $y=-13.0$; the enrolled composite as a
 \texttt{umlpkg} fitted over five \texttt{umlstate} substates at 1.4 cm pitch;
 transitions out of the composite leave the composite border rather than a
@@ -79,8 +79,8 @@ dashed leaders.}
 
 \draftinstr{Roughly 900 characters. Distinguish clearly between the participant
 stopping and the study stopping the participant. Populate the triggers from
-\texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-07-discontinuation.tex} \S7.2, and state that in every case
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 07-\pfb discontinuation.tex} \S7.2, and state that in every case
 the participant is told the reason, in writing, and returns to standard care.}
 
 \vspace{0.30em}

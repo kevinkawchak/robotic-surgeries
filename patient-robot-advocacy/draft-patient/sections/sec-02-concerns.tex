@@ -4,7 +4,7 @@
 
 \draftinstr{Roughly 1,000 characters. Two dated research passes on July 28,
 2026, one by Gemini 3.1 Pro and one by ChatGPT 5.6 Thinking Extended, filed at
-\texttt{research/research-a.md} and \texttt{research/research-b.md}. Six concern
+\texttt{research/\pfb research-\pfb a.md} and \texttt{research/\pfb research-\pfb b.md}. Six concern
 families and sixteen numbered concerns, overlapping on five items,
 de-duplicating to twenty-one. Cite the underlying human evidence:
 \texttt{WuSemiAI2026}, \texttt{TelesAI2026A}, \texttt{Jauniaux2025}, and
@@ -16,7 +16,7 @@ cancer care.}
 
 \vspace{0.30em}
 
-\noindent\begin{tabularx}{\textwidth}{L{4.3cm} C{1.5cm} Y}
+\noindent\begin{tabularx}{\textwidth}{L{4.2cm} C{1.9cm} Y}
 \toprule
 \textbf{Concern family} & \textbf{Concerns} & \textbf{Where this paper answers it} \\
 \midrule
@@ -37,7 +37,7 @@ at least one section and one figure. Source the mapping from
 
 \begin{pafig}[d2-type: nested containers]
 \node[d2key] (a) at (0,0) {Figure 5 slot\\six concern containers};
-\node[d2box] (b) at (0,-1.8) {Source:\\d2/fig-05-concern-families.d2};
+\node[d2box] (b) at (0,-1.8) {\ttfamily\tiny Source\\ d2/\\ fig-\pfb 05-\pfb concern-\pfb families.d2};
 \draw[d2edge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -46,7 +46,7 @@ families, with the answering section and figure printed inside each item, and a 
 key stating how many are answered by a limit, a guarantee, or governance alone.}
 
 \draftinstr{Replace the Figure 5 slot with the full D2-type nested-container
-figure from \texttt{d2/fig-05-concern-families.d2}. Six \texttt{d2cont}
+figure from \texttt{d2/\pfb fig-\pfb 05-\pfb concern-\pfb families.d2}. Six \texttt{d2cont}
 containers in a 3 by 2 arrangement at the coordinates given in that file's TikZ
 notes. Fill key: seven items Corporate Blue for a hard numeric limit, nine white
 for a procedural guarantee, five \texttt{pagraym} for governance or disclosure
@@ -100,7 +100,7 @@ real-world performance monitoring. Forward to Figures 14, 23, 29, and 30.}
 
 \begin{pafig}[graphviz-type: bipartite graph, full page]
 \node[gvkey] (a) at (0,0) {Figure 6 slot\\concern to clause map};
-\node[gvbox] (b) at (0,-2.0) {Source:\\graphviz/fig-06-concern-to-clause.dot};
+\node[gvbox] (b) at (0,-2.0) {\ttfamily\tiny Source\\ graphviz/\\ fig-\pfb 06-\pfb concern-\pfb to-\pfb clause.dot};
 \draw[gvedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -109,7 +109,7 @@ answers it, drawn as a strictly bipartite graph so that no concern is answered w
 another concern, and dashed where the answer is governance or disclosure alone.}
 
 \draftinstr{Replace the Figure 6 slot with the full-page graphviz-type bipartite
-map from \texttt{graphviz/fig-06-concern-to-clause.dot}. Twenty-one concern
+map from \texttt{graphviz/\pfb fig-\pfb 06-\pfb concern-\pfb to-\pfb clause.dot}. Twenty-one concern
 ellipses on the left, nineteen clause boxes on the right, twenty-four edges
 between them and none within a partition. Fourteen edges solid Corporate Blue,
 seven solid gray, three dashed. This is the load-bearing figure of the paper.}
@@ -124,7 +124,7 @@ quadrant 4 and do not argue them away.}
 
 \begin{pafig}[mermaid-type: quadrantChart]
 \node[mmgoal] (a) at (0,0) {Figure 7 slot\\concern quadrant};
-\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-07-concern-quadrant.md};
+\node[mmin] (b) at (0,-2.0) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 07-\pfb concern-\pfb quadrant.md};
 \draw[mmedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -133,7 +133,7 @@ raised in the surveyed literature against how completely this protocol answers t
 with the lower-right quadrant collecting the concerns answered by governance alone.}
 
 \draftinstr{Replace the Figure 7 slot with the mermaid-type quadrant from
-\texttt{mermaid/fig-07-concern-quadrant.md}. Fill the four quadrant fields
+\texttt{mermaid/\pfb fig-\pfb 07-\pfb concern-\pfb quadrant.md}. Fill the four quadrant fields
 first, then the dividing cross, then the sixteen points as 1.6 mm Corporate Blue
 discs. Where two points fall within 8 mm, alternate the label anchor and add a
 0.4pt leader so no label overlaps another.}
@@ -148,7 +148,7 @@ inside the build system, and neither can be exercised against the participant.}
 
 \begin{pafig}[plantuml-type: use case, @startuml]
 \node[umlkey] (a) at (0,0) {Figure 8 slot\\patient as primary actor};
-\node[umlbox] (b) at (0,-1.9) {Source:\\plantuml/fig-08-patient-actor-usecase.puml};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 08-\pfb patient-\pfb actor-\pfb usecase.puml};
 \draw[umlarrow] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -157,7 +157,7 @@ with the participant as the primary actor, so that each one reads as a capabilit
 hold rather than as an obligation the sponsor has undertaken on their behalf.}
 
 \draftinstr{Replace the Figure 8 slot with the PlantUML-type use case diagram
-from \texttt{plantuml/fig-08-patient-actor-usecase.puml}. Participant actor at
+from \texttt{plantuml/\pfb fig-\pfb 08-\pfb patient-\pfb actor-\pfb usecase.puml}. Participant actor at
 $(-6.4,-4.2)$, left of the boundary; three secondary actors right of it. Twelve
 \texttt{umlusecase} ellipses in three columns and four rows. The two long
 associations to the far column route with looseness 0.85 so they pass between
@@ -168,14 +168,14 @@ rows rather than through an ellipse.}
 \draftinstr{Roughly 700 characters introducing Figure 9. A concern with no
 physical address is unanswerable; a concern that resolves to a named cabinet, a
 named console, or a named cable can be inspected. Source from
-\texttt{diagrams-python/fig\_09\_concern\_locations.py} and its
+\texttt{diagrams-\pfb python/\pfb fig\_\pfb 09\_\pfb concern\_\pfb locations.py} and its
 \texttt{CONCERN\_ADDRESS} mapping.}
 
 \begin{pafig}[diagrams (python)-type: Cluster + Node]
 \node[dgtiled] (a) at (0,0) {};
 \glyphai{a}{protowhite}
 \node[dglabel,anchor=north] at ([yshift=-5.4mm]a.center) {Figure 9 slot, concern addresses};
-\node[dglabel,anchor=north] at (0,-1.6) {Source: diagrams-python/fig\_09\_concern\_locations.py};
+\node[dglabel,anchor=north] at (0,-1.6) {\ttfamily\tiny Source\\ diagrams-python/\\ fig\_\pfb 09\_\pfb concern\_\pfb locations.py};
 \end{pafig}
 \vspace{-0.7cm}
 \figcaption{Figure 9. Each documented concern resolved to the physical component that
@@ -183,7 +183,7 @@ answers it, grouped into the operating room, the on-premises cabinet, the govern
 bodies, and everything outside the building, with the intra-procedural route absent.}
 
 \draftinstr{Replace the Figure 9 slot with the full Diagrams (Python)-type
-clustered map from \texttt{diagrams-python/fig\_09\_concern\_locations.py}. Four
+clustered map from \texttt{diagrams-\pfb python/\pfb fig\_\pfb 09\_\pfb concern\_\pfb locations.py}. Four
 \texttt{dgcluster} containers, thirteen concern badges anchored north east on
 their tiles with a 1 mm outset, and the single cut edge terminated by a
 \texttt{\textbackslash pxmark} cross labelled "no route exists during a

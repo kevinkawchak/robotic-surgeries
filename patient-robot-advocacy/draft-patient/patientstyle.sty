@@ -620,7 +620,7 @@
 % \pabanner{line 1}{line 2} - full-width blue banner carrying the title.
 \newcommand{\pabanner}[2]{%
   \noindent\begin{tikzpicture}
-    \node[rectangle,fill=protoblue,text=protowhite,text width=\dimexpr\textwidth-16pt\relax,
+    \node[rectangle,fill=protoblue,text=protowhite,text width=\dimexpr\textwidth-20pt\relax,
           inner sep=8pt,align=center,rounded corners=2pt] (bn) {%
       {\LARGE\bfseries #1}\\[0.34em]{\normalsize #2}};
     \draw[pablue1,line width=1.6pt] ([yshift=-2.6pt]bn.south west) -- ([yshift=-2.6pt]bn.south east);
@@ -638,16 +638,25 @@
   \par\addvspace{0.5em}%
   \noindent\begin{tikzpicture}
     \node[rectangle,draw=pablue1,line width=0.8pt,fill=pablue2,rounded corners=3pt,
-          text width=0.295\textwidth,inner sep=6pt,align=left,font=\footnotesize] (p1) at (0,0) {#1};
+          text width=0.288\textwidth,inner sep=6pt,align=left,font=\footnotesize] (p1) at (0,0) {#1};
     \node[rectangle,draw=pablue1,line width=0.8pt,fill=protowhite,rounded corners=3pt,
-          text width=0.295\textwidth,inner sep=6pt,align=left,font=\footnotesize,
-          anchor=west] (p2) at ([xshift=0.014\textwidth]p1.east) {#2};
+          text width=0.288\textwidth,inner sep=6pt,align=left,font=\footnotesize,
+          anchor=west] (p2) at ([xshift=0.013\textwidth]p1.east) {#2};
     \node[rectangle,draw=protogray,line width=0.8pt,fill=pagrayl,rounded corners=3pt,
-          text width=0.295\textwidth,inner sep=6pt,align=left,font=\footnotesize,
-          anchor=west] (p3) at ([xshift=0.014\textwidth]p2.east) {#3};
+          text width=0.288\textwidth,inner sep=6pt,align=left,font=\footnotesize,
+          anchor=west] (p3) at ([xshift=0.013\textwidth]p2.east) {#3};
   \end{tikzpicture}\par\addvspace{0.5em}}
 % \parule{width} - the thin accent rule used between cover blocks.
 \newcommand{\parule}[1]{{\color{protoblue}\rule{\linewidth}{#1}}}
+% \pfb - a zero-width break opportunity, for use inside \texttt paths and
+% inside TikZ labels. A long repository path written as
+% \texttt{a/\pfb b/\pfb c} can break at any \pfb and therefore can never
+% overflow the measure the way a bare \texttt{a/b/c} does. Works in horizontal
+% mode and inside a TikZ node.
+\newcommand{\pfb}{\discretionary{}{}{}}
+% \pafile{path} - a repository path in monospace at the surrounding size, with
+% the caller's \pfb break points honoured and no hyphenation added.
+\newcommand{\pafile}[1]{{\ttfamily\hyphenchar\font=-1\relax #1}}
 
 % ---------- PNG-free ORCID iD mark. ----------
 \newcommand{\orcidicon}[1]{%

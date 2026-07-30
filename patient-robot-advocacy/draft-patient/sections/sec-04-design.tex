@@ -15,12 +15,12 @@ the general framing and \texttt{onpremwhippl} for the design.}
 \draftinstr{Roughly 900 characters introducing Figure 12 and the idea of a
 guard. Every transition in the figure carries a named condition that must
 evaluate true, and the protections live in the guards rather than in the states.
-Adapt from \texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-04-design.tex}.}
+Adapt from \texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 04-\pfb design.tex}.}
 
 \begin{pafig}[plantuml-type: state machine, @startuml]
 \node[umlkey] (a) at (0,0) {Figure 12 slot\\participant state machine};
-\node[umlbox] (b) at (0,-1.9) {Source:\\plantuml/fig-12-participant-state-machine.puml};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 12-\pfb participant-\pfb state-\pfb machine.puml};
 \draw[umlarrow] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -29,7 +29,7 @@ Adapt from \texttt{inputs/phase-1-trial-protocol.zip},
 it is the clearest evidence that the design accepts delay in exchange for safety.}
 
 \draftinstr{Replace the Figure 12 slot with the PlantUML-type state machine from
-\texttt{plantuml/fig-12-participant-state-machine.puml}. Single column of
+\texttt{plantuml/\pfb fig-\pfb 12-\pfb participant-\pfb state-\pfb machine.puml}. Single column of
 \texttt{umlstate} boxes at 2.4 cm pitch; the two off-path states at $x = 6.8$
 and $x = -6.8$ aligned with the state they branch from; guards in white-filled
 \texttt{umlguard} nodes at the transition midpoint; the self-transition on
@@ -47,7 +47,7 @@ that this costs the study time and is not there for the study's benefit.}
 
 \begin{pafig}[graphviz-type: decision tree, record leaves]
 \node[gvkey] (a) at (0,0) {Figure 13 slot\\3+3 decision tree};
-\node[gvbox] (b) at (0,-2.0) {Source:\\graphviz/fig-13-escalation-decision-tree.dot};
+\node[gvbox] (b) at (0,-2.0) {\ttfamily\tiny Source\\ graphviz/\\ fig-\pfb 13-\pfb escalation-\pfb decision-\pfb tree.dot};
 \draw[gvedge] (a) -- (b);
 \end{pafig}
 \vspace{-0.7cm}
@@ -56,7 +56,7 @@ one path from the root to each leaf, including the two stopping leaves and the s
 pause that convenes the Data and Safety Monitoring Board and is reported to you.}
 
 \draftinstr{Replace the Figure 13 slot with the graphviz-type decision tree from
-\texttt{graphviz/fig-13-escalation-decision-tree.dot}. Four ranks at
+\texttt{graphviz/\pfb fig-\pfb 13-\pfb escalation-\pfb decision-\pfb tree.dot}. Four ranks at
 $y = 0, -3.0, -6.4, -9.8$; branch labels placed on the upper third of each edge,
 not the midpoint, so sibling labels cannot collide; the sentinel-wait annotation
 as a \texttt{gvcluster} dashed box behind rank 1; record leaves built from
@@ -65,8 +65,8 @@ stacked \texttt{gvcell} rows.}
 \subsection{The dose levels}
 
 \draftinstr{Populate the dose levels and the cohort sizes from
-\texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-04-design.tex} and \texttt{sections/sec-06-intervention.tex}.
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 04-\pfb design.tex} and \texttt{sections/\pfb sec-\pfb 06-\pfb intervention.tex}.
 Keep the final column patient-facing.}
 
 \vspace{0.30em}
@@ -100,8 +100,8 @@ simulated worst case is not a human worst case.}
 \subsection{Stopping rules, stated before they are needed}
 
 \draftinstr{Roughly 900 characters listing the prespecified pause and stopping
-triggers from \texttt{inputs/phase-1-trial-protocol.zip},
-\texttt{sections/sec-04-design.tex} \S4.6. Include the device-specific triggers,
+triggers from \texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 04-\pfb design.tex} \S4.6. Include the device-specific triggers,
 because these are the ones a participant worried about the robot will look for:
 any breach of a force cap, any entry into a vascular no-fly corridor, any
 emergency-stop latency above budget, and any loss of the heartbeat bus.}

@@ -1,0 +1,123 @@
+# =====================================================================
+# Figure 26. Ten robot instruction cards, re-scoped from general oncology to
+#            this PDAC Whipple protocol
+# Type            : D2-type, grid of cards (full page)
+# Paper section   : § 9, Your Visits, Your Data, Your Robot Instructions
+# Concern answered: ChatGPT concern 2 (who is controlling), concern 16
+#                   (practical burdens), and the whole of Gemini family 1. A
+#                   participant does not meet "Physical AI". They meet a
+#                   specific machine, in a specific room, on a specific day,
+#                   and they need to know what to do with their body while it
+#                   is running.
+# Source          : ../inputs/patient-robot-instructions.tex, ten instructional
+#                   sheets. That document is mixed-oncology and illustrates
+#                   each robot with a raster image. Both are changed here: the
+#                   clinical content is re-scoped to this PDAC protocol, and no
+#                   raster image is carried across.
+# Why this type   : Ten parallel items with identical internal structure. A
+#                   declared grid is the only layout that keeps them visually
+#                   parallel; a flow would imply an order they do not have.
+#
+# TikZ: draw with the d2* vocabulary of patientstyle.sty. Full-page figure.
+# TikZ: 2 columns x 5 rows of card containers, card 7.0cm x 3.2cm, column
+# TikZ:   centres x = -3.8 and 3.8, row centres y = 0, -3.6, -7.2, -10.8,
+# TikZ:   -14.4; 0.6cm of clear space between card borders in both axes.
+# TikZ: Each card is a d2cont with: a d2key title band across the top carrying
+# TikZ:   the robot type; a \tiny\sffamily body of exactly three numbered
+# TikZ:   instruction lines; and a d2gray foot strip carrying the PDAC
+# TikZ:   re-scoping note.
+# TikZ: The card for the robot the participant will certainly meet, the
+# TikZ:   eight-arm surgical system, is drawn with a 1.2pt protoblue border
+# TikZ:   instead of 0.8pt; every other card keeps 0.8pt.
+# TikZ: No arrows in this figure, therefore no looseness declaration.
+# =====================================================================
+
+vars: {
+  d2-config: {
+    theme-overrides: {
+      B1: "#00417A"
+      B2: "#3C7DB2"
+      B3: "#DCE8F1"
+      B4: "#E9ECEF"
+      B5: "#CED4DA"
+      AA2: "#6C757D"
+      N7: "#FFFFFF"
+    }
+    layout-engine: elk
+  }
+}
+
+cards: {
+  grid-rows: 5
+  grid-columns: 2
+
+  c01: "1. Eight-arm surgical system - you will meet this one" {
+    style: { fill: "#FFFFFF"; stroke: "#00417A"; stroke-width: 3; border-radius: 6 }
+    body: "1. Lie face up, arms secured, and stay still for about two minutes while anaesthesia begins.\n2. You are asleep for the whole 240 to 420 minute Whipple; eight arms work through 8 to 12 mm ports while your surgeon approves every motion from the console.\n3. You wake in recovery 30 to 60 minutes after the arms retract; keep your abdomen relaxed and follow the nurse's breathing checks." { style: { fill: "#DCE8F1" } }
+    scope: "Re-scoped from the mediastinal thymectomy sheet: PDAC pancreaticoduodenectomy, far longer, three anastomoses, drain placed." { style: { fill: "#E9ECEF" } }
+  }
+
+  c02: "2. Bedside cobot - likely, days 1 to 7" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 6 }
+    body: "1. The cobot works beside you at reduced speed and stops on contact; you may touch it without harm.\n2. Keep your drain line on the side the nurse indicates so the arm's path stays clear.\n3. Say stop at any time; the arm halts and a nurse takes over the task." { style: { fill: "#DCE8F1" } }
+    scope: "Re-scoped: the acute-window tasks here are drain handling and mobilisation after a Whipple, not chemotherapy compounding." { style: { fill: "#E9ECEF" } }
+  }
+
+  c03: "3. Imaging robot - screening, day 90, and every 12 weeks" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 6 }
+    body: "1. Lie still on the table; the gantry moves around you and never touches you.\n2. Hold your breath when asked, for 10 to 20 seconds at a time.\n3. Tell the technologist immediately if you feel unwell; the sequence pauses without losing the study." { style: { fill: "#DCE8F1" } }
+    scope: "Re-scoped: pancreatic-protocol CT and RECIST assessment, plus CA 19-9 on the same visit." { style: { fill: "#E9ECEF" } }
+  }
+
+  c04: "4. Needle-placement robot - only if a collection needs drainage" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 6 }
+    body: "1. You are awake with local anaesthetic; tell the team if you feel sharp pain rather than pressure.\n2. Stay still and breathe shallowly while the needle advances, about 60 seconds.\n3. The robot holds the trajectory; the radiologist advances it and can withdraw instantly." { style: { fill: "#DCE8F1" } }
+    scope: "Re-scoped: used for a post-operative fluid collection or a suspected ISGPS grade B fistula, not for a lung nodule biopsy." { style: { fill: "#E9ECEF" } }
+  }
+
+  c05: "5. Companion robot - optional, inpatient stay" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 6 }
+    body: "1. It reminds, records, and calls a human; it performs no clinical task and touches nothing.\n2. Ask it to fetch a nurse; it will, and it logs that it did.\n3. You may switch it off, and switching it off changes nothing about your care." { style: { fill: "#DCE8F1" } }
+    scope: "Re-scoped: the reminders are Whipple-specific, drain output, early mobilisation, and diet advancement." { style: { fill: "#E9ECEF" } }
+  }
+
+  c06: "6. Humanoid transport assistant - possible, ward transfers" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 6 }
+    body: "1. It moves at walking pace with a human escort at all times; it never transports you alone.\n2. Keep your hands inside the chair rails while it is moving.\n3. Any staff member can halt it with the panel stop within one second." { style: { fill: "#DCE8F1" } }
+    scope: "Re-scoped: post-Whipple transfers with a drain and an epidural line in place, which constrains the route and the speed." { style: { fill: "#E9ECEF" } }
+  }
+
+  c07: "7. Rehabilitation exoskeleton - optional, week 2 onward" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 6 }
+    body: "1. A physiotherapist fits and starts it; it will not move until they release the brake.\n2. Walk at your own pace; the device assists and does not lead.\n3. Stop when your abdomen aches, not when the session timer ends." { style: { fill: "#DCE8F1" } }
+    scope: "Re-scoped: abdominal-incision recovery after a Whipple, so the gait programme is low load and short duration." { style: { fill: "#E9ECEF" } }
+  }
+
+  c08: "8. Radiotherapy positioning robot - only if adjuvant RT is added" {
+    style: { fill: "#FFFFFF"; stroke: "#CED4DA"; stroke-width: 2; border-radius: 6 }
+    body: "1. The couch moves in six axes; it will pause if you move.\n2. Breathe normally unless a breath hold is requested.\n3. The intercom is always open; speaking pauses the beam." { style: { fill: "#E9ECEF" } }
+    scope: "Not part of this protocol. Included because a participant may receive radiotherapy outside the study, and the sheet should be to hand." { style: { fill: "#CED4DA" } }
+  }
+
+  c09: "9. Radiotherapy motion-tracking robot - only if adjuvant RT is added" {
+    style: { fill: "#FFFFFF"; stroke: "#CED4DA"; stroke-width: 2; border-radius: 6 }
+    body: "1. Markers on your skin or an implanted fiducial let the system follow your breathing.\n2. Do not adjust the markers between fractions.\n3. Coughing interrupts the beam automatically; it does not spoil the treatment." { style: { fill: "#E9ECEF" } }
+    scope: "Not part of this protocol. Retained for completeness of the ten-sheet set the source document defines." { style: { fill: "#CED4DA" } }
+  }
+
+  c10: "10. Steerable needle robot - not used in this protocol" {
+    style: { fill: "#FFFFFF"; stroke: "#CED4DA"; stroke-width: 2; border-radius: 6 }
+    body: "1. Not used in this study at any timepoint.\n2. If offered outside this study, ask which steps are autonomous and who approves each one.\n3. The same three questions in § 3 of this paper apply unchanged." { style: { fill: "#E9ECEF" } }
+    scope: "Explicitly excluded here. Listed so the participant can tell what this protocol does not involve, which is as useful as knowing what it does." { style: { fill: "#CED4DA" } }
+  }
+}
+
+footer: |md
+  Of the ten robot types in the source instruction set, **two** are certain in
+  this protocol (the eight-arm surgical system and the imaging robot), **four**
+  are possible depending on your recovery, and **four** are not used. Knowing
+  which is which is itself an answer to the question of what you are agreeing to.
+| {
+  near: bottom-center
+  style: { fill: "#DCE8F1"; stroke: "#00417A"; border-radius: 6 }
+}

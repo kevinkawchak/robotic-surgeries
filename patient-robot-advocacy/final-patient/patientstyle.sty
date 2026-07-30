@@ -176,7 +176,7 @@
 \renewcommand*\l@section[2]{%
   \ifnum \c@tocdepth >\z@
     \addpenalty\@secpenalty
-    \addvspace{0.42em \@plus\p@}%
+    \addvspace{0.18em \@plus\p@}%
     \setlength\@tempdima{1.5em}%
     \begingroup
       \parindent \z@ \rightskip \@pnumwidth
@@ -250,6 +250,10 @@
 \setlength{\textfloatsep}{20pt plus 2pt minus 4pt}
 \setlength{\floatsep}{18pt plus 2pt minus 4pt}
 \setlength{\intextsep}{18pt plus 2pt minus 4pt}
+% A float page LaTeX builds at a \clearpage keeps the default centred glue:
+% \@fptop and \@fpbot both 0pt plus 1fil. Top-aligning it was tried and
+% rejected, because a figure centred on an otherwise empty page reads as
+% deliberate while the same figure pushed to the top reads as a broken page.
 \newif\ifpafloating \pafloatingfalse
 \newenvironment{pafloat}[1][!tb]{%
   \begin{figure}[#1]\pafloatingtrue\centering}{\end{figure}}

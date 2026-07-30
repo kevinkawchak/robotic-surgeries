@@ -37,8 +37,8 @@ There is **no `publication/` subdirectory** at this stage, as the master prompt 
 
 | | full-patient | final-patient |
 |:--|:--|:--|
-| Pages with a trailing gap over 3 cm | 41 of 83 | 16 of 88 |
-| Worst trailing gap | 21.6 cm | 20.3 cm, all but five on a section's last page |
+| Pages with a trailing gap over 3 cm | 41 of 83 | 15 of 88 |
+| Worst trailing gap | 21.6 cm | 20.3 cm, all but four on a section's last page |
 | Overfull boxes | 0 reported, 2 vertical | 0 |
 | Content running past the foot of a page | 2 tables | none |
 | Figure numbers in ascending order | no, two pairs inverted | yes, 1 to 30 |

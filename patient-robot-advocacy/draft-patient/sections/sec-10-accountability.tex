@@ -1,0 +1,112 @@
+\section{Accountability, Oversight, and Who Answers}
+
+\subsection{The question, stated as patients state it}
+
+\draftinstr{Roughly 1,000 characters. The concern in the surveyed literature is
+not that nobody is responsible; it is that everybody is, which amounts to the
+same thing \cite{Jauniaux2025, WuSemiAI2026}. When a human surgeon errs the
+chain of liability is clear. When a semi-autonomous movement or a model-generated
+suggestion contributes to harm, the participant is told that the surgeon, the
+hospital, the developer, and the manufacturer are all involved, and learns
+nothing. Answer with the one-accountable-party rule and forward to Figure 29.}
+
+\subsection{One accountable party per failure class}
+
+\draftinstr{Roughly 1,100 characters introducing Figure 29 and its invariant:
+exactly one accountable party per row, verified across nine rows. Explain why
+the invariant matters: two accountable parties in one cell is the same as none.
+Populate the oversight bodies from
+\texttt{inputs/phase-1-trial-protocol.zip},
+\texttt{sections/sec-10-oversight.tex}, and cite \texttt{paisitedocpk}.}
+
+\begin{pafig}[d2-type: grid matrix]
+\node[d2key] (a) at (0,0) {Figure 29 slot\\responsibility matrix};
+\node[d2box] (b) at (0,-1.8) {Source:\\d2/fig-29-responsibility-matrix.d2};
+\draw[d2edge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 29. The responsibility matrix with exactly one accountable party in every
+row and a final column, the only black fill in the figure, naming the person the\\
+participant should actually call when that particular thing goes wrong.}
+
+\draftinstr{Replace the Figure 29 slot with the D2-type matrix from
+\texttt{d2/fig-29-responsibility-matrix.d2}. Seven columns by ten rows of
+\texttt{d2cell} rectangles sharing rules; header row \texttt{d2cellh}; label
+column \texttt{d2celll}; an A cell \texttt{protoblue} with white bold text, R
+\texttt{pablue1}, C \texttt{pablue2}, I \texttt{pagrayl}; the "you call" column
+in \texttt{padark} with white text; a four-key legend strip beneath.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.6cm} L{3.7cm} Y}
+\toprule
+\textbf{If this goes wrong} & \textbf{Accountable party} & \textbf{Who you call} \\
+\midrule
+A motion during your operation & Operating surgeon & The surgeon, by name, recorded in your consent \\
+A device malfunction or a halt & Sponsor-Investigator & The Sponsor-Investigator \\
+A drug dose or a restart decision & Sponsor-Investigator & The Site PI first, then the Sponsor \\
+A serious adverse event & Sponsor-Investigator & The Site PI, on the 24-hour line \\
+A decision to pause the study & DSMB & You do not need to call; you are told \\
+Your data being mishandled & Site PI & The Site PI, then the IRB directly \\
+A software version change & Sponsor-Investigator & You are re-consented before anything proceeds \\
+A bill you did not expect & Sponsor-Investigator & The study coordinator, then the Sponsor \\
+A complaint about how you were treated & IRB & The IRB directly, without going through the site \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{The oversight bodies, and what each may actually do}
+
+\draftinstr{Roughly 1,200 characters. Distinguish authority from advice. The
+DSMB may halt the study; the Physical AI Safety Review Committee may reassess
+the Unified Safety Level and require a re-gate; the IRB may suspend approval and
+receives complaints directly from participants; the CRO monitor may raise a
+finding but cannot stop a procedure; the independent safety monitor in the room
+may stop a procedure and cannot change the protocol. Source from
+\texttt{sections/sec-10-oversight.tex} of the parent protocol.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.1cm} L{4.2cm} Y}
+\toprule
+\textbf{Body} & \textbf{Independent of the sponsor} & \textbf{Strongest action it may take} \\
+\midrule
+Data and Safety Monitoring Board & Yes & Halt the study at a cohort boundary or immediately \\
+Physical AI Safety Review Committee & Yes & Require re-gating and a Unified Safety Level reassessment \\
+Institutional Review Board & Yes & Suspend or withdraw approval; receives your complaints directly \\
+Contract Research Organisation monitor & Contracted by the sponsor & Raise a finding to closure; cannot stop a procedure \\
+Independent safety monitor, in the room & Yes, per procedure & Stop the procedure; cannot change the protocol \\
+Operating surgeon & No & Stop, convert, or decline any model-proposed motion \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Team experience, disclosed rather than implied}
+
+\draftinstr{Roughly 900 characters answering ChatGPT concern 5 directly. The
+concern is not general surgical experience; it is experience with this exact
+platform, this software version, this autonomy level, and this operation. State
+what the protocol publishes to the participant: the operating surgeon's robotic
+pancreatoduodenectomy case count, the site's position on the learning curve, the
+proctoring arrangement, and whether trainees participate. Cite
+\texttt{DutchCohort2025} for why case count is the right question.}
+
+\subsection{The audit trail, and your right to read it}
+
+\draftinstr{Roughly 1,000 characters. Every model advisory, every gate decision,
+every surgeon approval, and every safety-limit event is written to a
+hash-chained record bound to a deterministic seed and a repository commit, under
+21 CFR part 11 \cite{ecfr2026part11}. The participant may request their own
+extract. State plainly what that extract will and will not contain, and state
+that the chain cannot be edited after the fact, which is the property that makes
+the record worth requesting. Cite \texttt{cfr312paiuni}.}
+
+\subsection{What happens if a rule in this section is broken}
+
+\draftinstr{Roughly 700 characters. Name the escalation route for each of the
+three most likely breaches: an unreported adverse event, an unauthorised data
+access, and a procedure performed under a software version the participant did
+not consent to. Each route ends at a body independent of the sponsor, and each
+is available to the participant without going through the site.}

@@ -1,0 +1,267 @@
+\section{Statement of Patient Commitment}
+
+The parent clinical protocol opens with a Statement of Compliance addressed to
+the Food and Drug Administration, the Institutional Review Board, and the
+sponsor \cite{onpremwhippl}. That statement is necessary, it is correct, and it
+is not addressed to the person whose abdomen will be opened. It tells the
+regulator which parts of Title 21 the study satisfies. It does not tell the
+participant what the study owes them.
+
+This paper opens instead with the seven things the same protocol commits to the
+participant. Each one is tied to a clause that makes it enforceable rather than
+aspirational, and each one names something the participant can check. The
+distinction matters, because the surveyed literature on patient attitudes to
+robotic and artificial-intelligence-assisted surgery reports again and again
+that reassurance without a checkable referent is heard as marketing
+\cite{Jauniaux2025, BrarRAS2024X}.
+
+The premise is taken from the author's earlier analysis of proposed United
+States legislation for Physical AI oncology trials: the cancer patient, not the
+doctor, not the nurse, not the trial sponsor, not the Institutional Review
+Board, and not the regulator, is the priority participant
+\cite{paibillprior, hr9510billv5}. That premise is not a sentiment. It has a
+structural consequence, which the whole of this paper works out: if the
+participant is the priority, then every safeguard written as a sponsor
+obligation can also be written as a participant capability, and the two
+readings should agree. Where they do not agree, this paper says so.
+
+This is an advocacy document assembled from the protocol's own record. It is not
+the consent form and it is not a substitute for one. It is designed to be read
+before the consent conversation, so that the conversation can be spent on the
+questions this document cannot answer.
+
+\subsection{The seven commitments}
+
+\textbf{One. Nothing starts without you.} No study procedure occurs before
+informed consent is documented under 21 CFR \S 50.20 \cite{ecfr2026part50}.
+That includes the staging imaging repeated for study purposes, the tissue
+re-review, and every laboratory draw the protocol adds beyond routine care. The
+check is simple: the consent form carries a date, and no study record may
+predate it.
+
+\textbf{Two. The robot is proven before you.} A Phase 0 simulation-validation
+gate precedes any patient-facing robotic activity: at least 1000 simulated
+procedures across at least two independent simulation frameworks, reproducing
+motion within a 2 mm positional and 0.5 N force tolerance, with a documented
+Unified Safety Level of at least 7.0 \cite{cfr312paiuni, pdac060s2030}. The
+check is that the gate sign-off is a dated document, and the participant is
+shown it at the baseline visit.
+
+\textbf{Three. You are never the untested dose.} Daraxonrasib is escalated by a
+standard 3+3 rule with staggered sentinel enrollment. A dose level opens only
+after the level below has been cleared, and the second participant at a new
+level is not dosed until the first participant's safety window has closed. The
+check is the dose level printed on the participant's own assignment, and the
+cohort record that shows what happened at the level below.
+
+\textbf{Four. A human approves every motion.} The system is classified as a
+Class II collaborative device under continuous human oversight. The on-premises
+language model proposes; a deterministic safety gate tests the proposal; the
+operating surgeon approves, modifies, or declines. No message travels from the
+model to the arms. The check is the audit trail, in which every executed motion
+carries a surgeon signature and no motion carries none.
+
+\textbf{Five. Stopping is faster than harm.} The emergency-stop budget is at
+most 3 ms across arms and at most 500 ms system-wide, on a 10 kHz heartbeat
+broadcast bus \cite{ieee7009, iec8060127}. A human blink takes roughly 100 to
+150 ms. Every arm is held before a blink completes. The check is that the
+latency is measured on every procedure and reported, not assumed.
+
+\textbf{Six. Your record cannot be edited.} Every model advisory, every gate
+decision, every surgeon approval, and every safety-limit event is written to a
+hash-chained audit trail bound to a deterministic seed and a specific repository
+commit, under 21 CFR part 11 \cite{ecfr2026part11}. The check is that the
+participant may request their own extract, and the chain either verifies or it
+does not.
+
+\textbf{Seven. Leaving costs you nothing.} Withdrawal is available at any visit,
+without a reason, and standard-of-care oncology continues unchanged. The check
+is in \S 8: four routes out are enumerated, and the data consequence of each is
+stated, including the two consequences that are unwelcome.
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{0.7cm} L{4.6cm} Y}
+\toprule
+\textbf{\#} & \textbf{Commitment} & \textbf{The clause that makes it enforceable} \\
+\midrule
+1 & Nothing starts without you & Consent under 21 CFR \S 50.20 precedes every study procedure \\
+2 & The robot is proven before you & Phase 0 gate: at least 1000 simulations across at least two independent frameworks, Unified Safety Level at least 7.0 \\
+3 & You are never the untested dose & 3+3 escalation with sentinel staggering; a dose level opens only after the level below is cleared \\
+4 & A human approves every motion & Class II collaborative device under continuous human oversight; no model-to-actuator path exists \\
+5 & Stopping is faster than harm & Emergency stop at most 3 ms across arms and at most 500 ms system-wide \\
+6 & Your record cannot be edited & Hash-chained audit trail under 21 CFR part 11, bound to a deterministic seed and a repository commit \\
+7 & Leaving costs you nothing & Withdrawal at any visit without reason; standard care continues unchanged \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{What this paper is, and what it is not}
+
+It is an independent research paper and a practical adoption guide, built
+entirely from the author's repository sources. It is not medical advice, not
+regulatory advice, and not endorsed by the FDA, the NIH, HHS, an Institutional
+Review Board, the International Council for Harmonisation, or any sponsor,
+contract research organisation, site, regulator, or medical society.
+
+It is also not the informed consent form. A consent form has a required content
+list, a required reading level, and a required signature block, and the National
+Cancer Institute publishes a plain-language guide to what that document must
+contain \cite{NCIConsent24}. This paper does none of that work. What it does is
+prior: it sets out the twenty-one concerns people actually raise about surgical
+robots, and it says, for each one, which clause of this specific protocol
+answers it and how completely. A participant who has read this paper arrives at
+the consent conversation with better questions.
+
+Every figure in this paper derives from the author's repository sources and is
+illustrative unless it is tied to a cited reference. Where a number is
+simulated rather than measured in humans, \S 10 says so on the same line as the
+number, and Figure 28 traces it to the source that produced it.
+
+\subsection{How to read the thirty figures}
+
+The paper carries thirty figures across five diagram types, and the type is not
+decoration. Each type answers a different shape of question, and the choice of
+type for a given figure is itself an argument about what kind of question is
+being asked.
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{3.7cm} C{1.3cm} Y}
+\toprule
+\textbf{Diagram type} & \textbf{Count} & \textbf{The question it answers} \\
+\midrule
+Mermaid-type & 9 & What happens, in what order, and who decides? Decisions in time \\
+D2-type & 7 & How much of this is there, and how does it group? Containment and true grids \\
+PlantUML-type & 5 & What exactly do you guarantee? Formal notation with a defined semantics \\
+Graphviz-type & 5 & What depends on what, and can you prove it? Pure graph structure \\
+Diagrams (Python)-type & 4 & Where does this physically live? Rooms, cabinets, cables \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent The monospace tag at the top left of every frame names the native
+construct the figure reproduces, for example \texttt{flowchart TD} or
+\texttt{digraph}, so a reader can carry any figure back to the platform it came
+from. Every figure is vector line art drawn in the document itself. There is no
+raster image anywhere in this paper.
+
+\begin{pafig}[mermaid-type: flowchart TD]
+\node[mmgoal,text width=34mm] (p)  at (0,0)      {\textbf{You}, the participant};
+\node[mmin,text width=52mm]  (c1) at (0,-2.1)    {\textbf{1. Nothing starts without you}\\[1pt]{\scriptsize Consent signed before any study procedure, 21 CFR \S 50.20}};
+\node[mmin,text width=52mm]  (c2) at (0,-4.5)    {\textbf{2. The robot is proven before you}\\[1pt]{\scriptsize Phase 0 gate: $\geq 1000$ simulations, $\geq 2$ frameworks, USL $\geq 7.0$}};
+\node[mmin,text width=52mm]  (c3) at (0,-6.9)    {\textbf{3. You are never the untested dose}\\[1pt]{\scriptsize 3+3 escalation, sentinel stagger, DL1 cleared before DL2 opens}};
+\node[mmin,text width=52mm]  (c4) at (0,-9.3)    {\textbf{4. A human approves every motion}\\[1pt]{\scriptsize Class II collaborative device, continuous oversight, no free running}};
+\node[mmin,text width=52mm]  (c5) at (0,-11.7)   {\textbf{5. Stopping is faster than harm}\\[1pt]{\scriptsize $\leq 3$ ms cross-arm, $\leq 500$ ms system-wide guarantee}};
+\node[mmin,text width=52mm]  (c6) at (0,-14.1)   {\textbf{6. Your record cannot be edited}\\[1pt]{\scriptsize Hash-chained audit trail, 21 CFR part 11, seed and commit bound}};
+\node[mmin,text width=52mm]  (c7) at (0,-16.5)   {\textbf{7. Leaving costs you nothing}\\[1pt]{\scriptsize Withdraw at any time, standard care continues, \S 8 governs data}};
+\node[mmdec,text width=15mm] (g1) at (6.6,-2.1)  {consent?};
+\node[mmdec,text width=15mm] (g2) at (6.6,-4.5)  {gate?};
+\node[mmdec,text width=15mm] (g3) at (6.6,-6.9)  {cohort?};
+\node[mmdark,text width=28mm](st) at (12.4,-4.5) {No study activity occurs at all};
+\node[mmstep,text width=52mm](d30)at (0,-18.9)   {Day 30, primary safety window\\Clavien-Dindo grading complete};
+\node[mmgoal,text width=52mm](d90)at (0,-21.1)   {Day 90, R0 pathology and 90-day mortality reported to you directly};
+\draw[mmedge] (p)  -- (c1);
+\draw[mmedge] (c1) -- (c2);
+\draw[mmedge] (c2) -- (c3);
+\draw[mmedge] (c3) -- (c4);
+\draw[mmedge] (c4) -- (c5);
+\draw[mmedge] (c5) -- (c6);
+\draw[mmedge] (c6) -- (c7);
+\draw[mmedge] (c7) -- (d30);
+\draw[mmedge] (d30) -- (d90);
+\draw[mmedgeb] (c1) -- node[mmlabel,above]{\scriptsize consent on file} (g1);
+\draw[mmedgeb] (c2) -- node[mmlabel,above]{\scriptsize gate signed} (g2);
+\draw[mmedgeb] (c3) -- node[mmlabel,above]{\scriptsize level cleared} (g3);
+\draw[mmedged] (g1) to[out=0,in=150,looseness=0.9] node[mmlabel,above,pos=0.55]{no} (st.north west);
+\draw[mmedged] (g2) -- node[mmlabel,above]{no} (st);
+\draw[mmedged] (g3) to[out=0,in=210,looseness=0.9] node[mmlabel,below,pos=0.55]{no} (st.south west);
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-3.0,-22.6) {Each gate closes behind the commitment above it. A ``no'' at any gate stops every downstream activity,\\which is what makes the commitment enforceable rather than aspirational.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 1. The seven commitments made to the participant, from the first
+conversation through consent, the Phase 0 gate, and dose assignment, to the day-30\\
+safety window and the day-90 pathology result that is reported back to them directly.}
+
+\subsection{Accountability, stated once, at the front}
+
+The single most common accountability question in the surveyed literature is
+the plainest one: if something goes wrong, who is to blame
+\cite{Jauniaux2025, BrarRAS2024X, WuSemiAI2026}. When a human surgeon errs, the
+chain of liability is familiar. When a semi-autonomous movement or a
+model-generated suggestion contributes to harm, participants report being told
+that the surgeon, the hospital, the software developer, and the device
+manufacturer are all involved, which is not an answer.
+
+This protocol answers it with a rule rather than a list: exactly one accountable
+party per failure class, named in advance. Section 11 sets out the full
+responsibility matrix, and Figure 29 renders it with a final column giving the
+person the participant should actually call. The rule is checkable, because a
+matrix with two accountable parties in one row would fail it, and the matrix is
+published.
+
+Figure 2 states the same structure as a graph. The chart is rooted at the
+participant rather than at the sponsor, and it is acyclic, which means that no
+body in it reviews itself. Three edges point back at the root, and only three,
+because three is what the protocol actually owes the participant as an
+affirmative obligation to inform.
+
+\begin{pafig}[graphviz-type: digraph, rooted DAG]
+\node[gvkey,text width=24mm] (you) at (0,0) {\textbf{YOU}\\the participant};
+\node[gvsoft,text width=22mm] (sur) at (-6.9,-3.4) {Operating surgeon\\approves every motion};
+\node[gvnode,text width=22mm] (ana) at (-2.3,-3.4) {Anaesthetist};
+\node[gvsoft,text width=22mm] (ism) at (2.3,-3.4) {Independent safety monitor, may stop};
+\node[gvnode,text width=22mm] (scr) at (6.9,-3.4) {Scrub and circulating team};
+\node[gvsoft,text width=22mm] (spi) at (-2.5,-7.0) {Site principal investigator};
+\node[gvmid,text width=22mm]  (spo) at (2.5,-7.0)  {Sponsor-Investigator ChemicalQDevice};
+\node[gvgray2,text width=22mm](dsm) at (-5.0,-10.6) {DSMB, may halt the study};
+\node[gvgray2,text width=22mm](pai) at (0,-10.6) {Physical AI Safety Review Committee};
+\node[gvgray2,text width=22mm](irb) at (5.0,-10.6)  {IRB, you may write directly};
+\node[gvbox,fill=pagrayd,text width=26mm] (fda) at (0,-13.4) {FDA, IND and IDE};
+\node[gvboxd,text width=54mm] (duty) at (0,-15.4) {The obligation every path above is discharging: your safety first, then the evidence};
+\begin{scope}[on background layer]
+\node[gvcluster,fit=(sur)(ana)(ism)(scr)] (Croom) {};
+\node[gvcluster,fit=(spi)(spo)] (Cstudy) {};
+\node[gvcluster2,fit=(dsm)(pai)(irb)] (Cind) {};
+\end{scope}
+\node[gvctitle,anchor=south west] at (Croom.north west) {in the room on the day};
+\node[gvctitle,anchor=south west] at (Cstudy.north west) {accountable for the study};
+\node[gvctitle,anchor=south west] at (Cind.north west) {independent of the sponsor};
+\draw[gvedge] (you) to[out=-150,in=75,looseness=0.9] node[mmlabel,pos=0.62]{consents to} (sur);
+\draw[gvedge] (you) to[out=-60,in=105,looseness=0.9] (ism);
+\draw[gvedge] (sur) to[out=-75,in=160,looseness=0.9] node[mmlabel,pos=0.55]{reports} (spi);
+\draw[gvedge] (ana) -- (spi);
+\draw[gvedge] (scr) to[out=-105,in=20,looseness=0.9] (spi);
+\draw[gvedge] (ism) to[out=-105,in=30,looseness=0.9] node[mmlabel,pos=0.5]{escalates} (spi);
+\draw[gvedged] (ism) to[out=-75,in=80,looseness=0.9] node[mmlabel,pos=0.55]{may escalate past the site} (pai);
+\draw[gvedge] (spi) -- node[mmlabel,above]{reports} (spo);
+\draw[gvedge] (spo) to[out=-135,in=45,looseness=0.9] (dsm);
+\draw[gvedge] (spo) to[out=-105,in=60,looseness=0.9] (pai);
+\draw[gvedge] (spo) to[out=-60,in=105,looseness=0.9] (irb);
+\draw[gvedged] (dsm) to[out=-60,in=170,looseness=0.9] (fda);
+\draw[gvedged] (pai) -- (fda);
+\draw[gvedged] (irb) to[out=-120,in=10,looseness=0.9] (fda);
+\draw[gvedgeb] (fda) -- (duty);
+% The three affirmative obligations returning to the root, routed in clear
+% channels outside every cluster so no edge crosses a node or a cluster border.
+\draw[gvedgeb] (spo.east) -- (11.4,-7.0) -- (11.4,0)
+  node[mmlabel,midway,align=left,anchor=west,xshift=2pt]{must tell you:\\version change,\\new risk, and\\your own results} -- (you.east);
+\draw[gvedgeb] (dsm.west) -- (-11.4,-10.6) -- (-11.4,-0.6)
+  node[mmlabel,pos=0.62,align=right,anchor=east,xshift=-2pt]{must tell you:\\a study pause} -- (you.west);
+\draw[gvedgeb] (spi.west) -- (-8.9,-7.0) -- (-8.9,-1.1)
+  node[mmlabel,pos=0.55,align=right,anchor=east,xshift=-2pt]{must tell you:\\any adverse event\\affecting you} -| (you.south);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 2. The accountability chain drawn as a rooted directed acyclic graph
+with the participant at the root, showing the people in the room, the bodies accountable\\
+for the study, the independent reviewers, and the three obligations that point back.}
+
+\noindent The graph is acyclic by construction, and the property is load-bearing
+rather than aesthetic: a cycle would mean that some body in the chart reviews
+its own work, which is precisely the failure the accountability concern
+describes. The three blue edges returning to the root are the affirmative
+obligations to inform. They are not courtesies, and \S 11.5 names the escalation
+route that applies if one of them is not met.

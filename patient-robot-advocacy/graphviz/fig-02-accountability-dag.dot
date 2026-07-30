@@ -1,0 +1,124 @@
+// =====================================================================
+// Figure 2. The accountability chain, rooted at you rather than ending at you
+// Type            : Graphviz-type, rooted directed acyclic graph
+// Paper section   : § 1, Statement of Patient Commitment
+// Concern answered: Gemini family 5, the "who is to blame?" dilemma, and
+//                   ChatGPT concern 4 (responsibility if something goes wrong).
+//                   Every organisation chart in a clinical trial puts the
+//                   sponsor at the root and the participant at a leaf, or off
+//                   the chart entirely. Inverting the root is not a graphic
+//                   trick: it changes which node every path is answerable to.
+// Why this type   : A DAG is the only structure that can assert "no cycles" -
+//                   that is, no body in this chart can be its own reviewer.
+//                   That property is the whole content of the figure, and
+//                   Graphviz is the notation whose semantics carry it.
+// Invariant       : acyclic. Verified by topological sort; if any body were its
+//                   own reviewer the sort would fail, which is exactly the
+//                   accountability failure the concern describes.
+//
+// TikZ: draw with the gv* vocabulary of patientstyle.sty.
+// TikZ: gvkey ellipse for the root at (0,0); gvnode ellipses for ordinary
+// TikZ:   bodies; gvbox rectangles for documents; gvdark for the single
+// TikZ:   terminal obligation node.
+// TikZ: Five ranks at y = 0, -2.6, -5.2, -7.8, -10.4; within a rank, node
+// TikZ:   centres are 4.2 cm apart, which leaves at least 12 mm of clear space
+// TikZ:   between ellipse edges at text width 22mm.
+// TikZ: Cluster subgraphs are gvcluster dashed rectangles with a gvctitle
+// TikZ:   anchored north west, fitted with inner sep 6pt.
+// TikZ: Edge labels sit in white-filled mmlabel nodes at the edge midpoint.
+// TikZ: The three back-reference edges to the root use
+// TikZ:   to[out=180,in=180,looseness=1.1] on the left margin, so none crosses
+// TikZ:   a rank; all other edges are straight.
+// =====================================================================
+
+digraph accountability {
+  rankdir = TB;
+  bgcolor = "#FFFFFF";
+  fontname = "Times";
+  fontsize = 12;
+  nodesep = 0.55;
+  ranksep = 0.85;
+  splines = true;
+
+  node [fontname="Times", fontsize=10, shape=ellipse, style=filled,
+        fillcolor="#FFFFFF", color="#000000", penwidth=0.7];
+  edge [fontname="Times", fontsize=9, color="#000000", penwidth=0.6,
+        arrowsize=0.7];
+
+  // ---- rank 0: the root ----
+  you [label="YOU\nthe participant", shape=ellipse, fillcolor="#00417A",
+       fontcolor="#FFFFFF", color="#00417A", penwidth=1.4];
+
+  // ---- rank 1: the people in the room ----
+  subgraph cluster_room {
+    label = "in the room on the day";
+    fontname = "Times"; fontsize = 9; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#F1F6FA";
+    surgeon [label="Operating surgeon\napproves every motion", fillcolor="#DCE8F1"];
+    anaesth [label="Anaesthetist"];
+    ism     [label="Independent safety\nmonitor, may stop", fillcolor="#DCE8F1"];
+    scrub   [label="Scrub and circulating\nteam"];
+  }
+
+  // ---- rank 2: the people accountable for the study ----
+  subgraph cluster_study {
+    label = "accountable for the study";
+    fontname = "Times"; fontsize = 9; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#F1F6FA";
+    sitepi  [label="Site principal\ninvestigator", fillcolor="#DCE8F1"];
+    sponsor [label="Sponsor-Investigator\nChemicalQDevice", fillcolor="#3C7DB2",
+             fontcolor="#FFFFFF"];
+  }
+
+  // ---- rank 3: independent review ----
+  subgraph cluster_indep {
+    label = "independent of the sponsor";
+    fontname = "Times"; fontsize = 9; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#E9ECEF";
+    dsmb   [label="DSMB\nmay halt the study", fillcolor="#CED4DA"];
+    paisrc [label="Physical AI Safety\nReview Committee", fillcolor="#CED4DA"];
+    irb    [label="IRB\nyou may write directly", fillcolor="#CED4DA"];
+  }
+
+  // ---- rank 4: the regulator ----
+  fda [label="FDA\nIND and IDE", shape=box, fillcolor="#9AA1A8"];
+
+  // ---- rank 5: the terminal obligation ----
+  duty [label="The obligation every path\nabove is discharging:\nyour safety, then the evidence",
+        shape=box, fillcolor="#222222", fontcolor="#FFFFFF", penwidth=1.1];
+
+  // ---- edges: who answers to whom, reading downward ----
+  you -> surgeon  [label="consents to"];
+  you -> ism      [label="may address"];
+  you -> irb      [label="may write to, without the site", color="#00417A", penwidth=0.9];
+
+  surgeon -> sitepi  [label="reports"];
+  anaesth -> sitepi;
+  scrub   -> sitepi;
+  ism     -> sitepi  [label="escalates"];
+  ism     -> dsmb    [label="may escalate past the site", style=dashed, color="#6C757D"];
+
+  sitepi  -> sponsor [label="reports"];
+  sponsor -> dsmb    [label="submits to"];
+  sponsor -> paisrc  [label="submits to"];
+  sponsor -> irb     [label="submits to"];
+  sponsor -> fda     [label="reports to"];
+
+  dsmb   -> fda [style=dashed, color="#6C757D"];
+  paisrc -> fda [style=dashed, color="#6C757D"];
+  irb    -> fda [style=dashed, color="#6C757D"];
+
+  fda -> duty [color="#00417A", penwidth=0.9];
+
+  // ---- the three obligations that point back at the root ----
+  sponsor -> you [label="must tell you: version change,\nnew risk, your own results",
+                  color="#00417A", penwidth=0.9, constraint=false];
+  dsmb    -> you [label="must tell you: a study pause",
+                  color="#00417A", penwidth=0.9, constraint=false];
+  sitepi  -> you [label="must tell you: any adverse event\naffecting you",
+                  color="#00417A", penwidth=0.9, constraint=false];
+
+  { rank = same; surgeon; anaesth; ism; scrub; }
+  { rank = same; sitepi; sponsor; }
+  { rank = same; dsmb; paisrc; irb; }
+}

@@ -1,0 +1,195 @@
+# =====================================================================
+# Figure 4. The Schedule of Activities, redrawn from the chair you sit in
+# Type            : D2-type, true grid (grid-rows / grid-columns)
+# Paper section   : § 2, Plain-Language Protocol Summary
+# Concern answered: ChatGPT concern 16 (practical burdens) and concern 7
+#                   (unknown and experimental risks). The parent protocol's
+#                   Schedule of Activities is a matrix of crosses that tells the
+#                   coordinator what to collect. The same information, laid out
+#                   as a grid whose cells say what the participant does and
+#                   feels rather than what is collected, is a different
+#                   document with the same content.
+# Why this type   : The Schedule of Activities is genuinely two-dimensional:
+#                   activity by visit. D2 is the only permitted type with a
+#                   declared grid layout, so the two dimensions stay two
+#                   dimensions instead of collapsing into a flow.
+#
+# TikZ: draw with the d2* vocabulary of patientstyle.sty.
+# TikZ: One d2cont container fitted over the whole grid, titled top left.
+# TikZ: 8 columns x 12 rows of d2cell rectangles, cell 17mm x 7mm, no gap
+# TikZ:   between cells (a true grid shares its rules), header row filled
+# TikZ:   protoblue with white text, row-label column filled pablue2.
+# TikZ: A cell that carries an activity is filled pablue1 with a white check
+# TikZ:   glyph; an empty cell is white. A cell that carries a participant
+# TikZ:   DECISION is filled protoblue with a white dot glyph.
+# TikZ: The three summary rows at the foot are filled pagrayl and carry
+# TikZ:   \tiny\sffamily numerals, right aligned inside the cell.
+# TikZ: No arrows in this figure, therefore no looseness declaration.
+# =====================================================================
+
+vars: {
+  d2-config: {
+    theme-overrides: {
+      B1: "#00417A"
+      B2: "#3C7DB2"
+      B3: "#DCE8F1"
+      B4: "#E9ECEF"
+      B5: "#CED4DA"
+      AA2: "#6C757D"
+      N1: "#000000"
+      N7: "#FFFFFF"
+    }
+    layout-engine: elk
+  }
+}
+
+soa: "Your schedule, activity by visit" {
+  style: {
+    fill: "#FFFFFF"
+    stroke: "#3C7DB2"
+    stroke-width: 2
+    border-radius: 8
+  }
+
+  grid-rows: 13
+  grid-columns: 8
+
+  # ---- header row ----
+  h0: "What you do"      { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h1: "Screen\n-28 to -1" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h2: "Base\nday -1"      { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h3: "Surgery\nday 0"    { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h4: "Acute\nday 1-7"    { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h5: "Day 30"            { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h6: "Day 90"            { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h7: "q12wk\nto 24 mo"   { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+
+  # ---- row 1: consent ----
+  r1c0: "Sign consent, or decline" { style: { fill: "#DCE8F1" } }
+  r1c1: "you decide"  { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  r1c2: ""            { style: { fill: "#FFFFFF" } }
+  r1c3: ""            { style: { fill: "#FFFFFF" } }
+  r1c4: ""            { style: { fill: "#FFFFFF" } }
+  r1c5: ""            { style: { fill: "#FFFFFF" } }
+  r1c6: ""            { style: { fill: "#FFFFFF" } }
+  r1c7: ""            { style: { fill: "#FFFFFF" } }
+
+  # ---- row 2: imaging ----
+  r2c0: "Lie still for a scan, 30 min" { style: { fill: "#DCE8F1" } }
+  r2c1: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r2c2: ""  { style: { fill: "#FFFFFF" } }
+  r2c3: ""  { style: { fill: "#FFFFFF" } }
+  r2c4: ""  { style: { fill: "#FFFFFF" } }
+  r2c5: ""  { style: { fill: "#FFFFFF" } }
+  r2c6: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r2c7: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+
+  # ---- row 3: bloods ----
+  r3c0: "Give blood, CA 19-9 and safety panel" { style: { fill: "#DCE8F1" } }
+  r3c1: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r3c2: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r3c3: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r3c4: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r3c5: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r3c6: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r3c7: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+
+  # ---- row 4: performance status ----
+  r4c0: "Answer questions about daily activity" { style: { fill: "#DCE8F1" } }
+  r4c1: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r4c2: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r4c3: ""  { style: { fill: "#FFFFFF" } }
+  r4c4: ""  { style: { fill: "#FFFFFF" } }
+  r4c5: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r4c6: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r4c7: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+
+  # ---- row 5: Phase 0 evidence shown to you ----
+  r5c0: "Be shown the simulation sign-off" { style: { fill: "#DCE8F1" } }
+  r5c1: ""  { style: { fill: "#FFFFFF" } }
+  r5c2: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r5c3: ""  { style: { fill: "#FFFFFF" } }
+  r5c4: ""  { style: { fill: "#FFFFFF" } }
+  r5c5: ""  { style: { fill: "#FFFFFF" } }
+  r5c6: ""  { style: { fill: "#FFFFFF" } }
+  r5c7: ""  { style: { fill: "#FFFFFF" } }
+
+  # ---- row 6: opt-out still open ----
+  r6c0: "Confirm or withdraw the Physical AI opt-out" { style: { fill: "#DCE8F1" } }
+  r6c1: "you decide" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  r6c2: "you decide" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  r6c3: ""  { style: { fill: "#FFFFFF" } }
+  r6c4: ""  { style: { fill: "#FFFFFF" } }
+  r6c5: ""  { style: { fill: "#FFFFFF" } }
+  r6c6: ""  { style: { fill: "#FFFFFF" } }
+  r6c7: ""  { style: { fill: "#FFFFFF" } }
+
+  # ---- row 7: the operation ----
+  r7c0: "Be asleep under general anaesthesia" { style: { fill: "#DCE8F1" } }
+  r7c1: ""  { style: { fill: "#FFFFFF" } }
+  r7c2: ""  { style: { fill: "#FFFFFF" } }
+  r7c3: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r7c4: ""  { style: { fill: "#FFFFFF" } }
+  r7c5: ""  { style: { fill: "#FFFFFF" } }
+  r7c6: ""  { style: { fill: "#FFFFFF" } }
+  r7c7: ""  { style: { fill: "#FFFFFF" } }
+
+  # ---- row 8: fistula grading ----
+  r8c0: "Have the drain fluid checked" { style: { fill: "#DCE8F1" } }
+  r8c1: ""  { style: { fill: "#FFFFFF" } }
+  r8c2: ""  { style: { fill: "#FFFFFF" } }
+  r8c3: ""  { style: { fill: "#FFFFFF" } }
+  r8c4: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r8c5: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r8c6: ""  { style: { fill: "#FFFFFF" } }
+  r8c7: ""  { style: { fill: "#FFFFFF" } }
+
+  # ---- row 9: restart advisory ----
+  r9c0: "Accept or decline the drug restart" { style: { fill: "#DCE8F1" } }
+  r9c1: ""  { style: { fill: "#FFFFFF" } }
+  r9c2: ""  { style: { fill: "#FFFFFF" } }
+  r9c3: ""  { style: { fill: "#FFFFFF" } }
+  r9c4: "you decide" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  r9c5: ""  { style: { fill: "#FFFFFF" } }
+  r9c6: ""  { style: { fill: "#FFFFFF" } }
+  r9c7: ""  { style: { fill: "#FFFFFF" } }
+
+  # ---- row 10: side-effect reporting ----
+  r10c0: "Report anything that feels wrong" { style: { fill: "#DCE8F1" } }
+  r10c1: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r10c2: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r10c3: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r10c4: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r10c5: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r10c6: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r10c7: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+
+  # ---- row 11: results returned to you ----
+  r11c0: "Receive your own results" { style: { fill: "#DCE8F1" } }
+  r11c1: ""  { style: { fill: "#FFFFFF" } }
+  r11c2: ""  { style: { fill: "#FFFFFF" } }
+  r11c3: ""  { style: { fill: "#FFFFFF" } }
+  r11c4: ""  { style: { fill: "#FFFFFF" } }
+  r11c5: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r11c6: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r11c7: "x" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+
+  # ---- row 12: totals ----
+  r12c0: "Hours of your time, approximate" { style: { fill: "#E9ECEF"; bold: true } }
+  r12c1: "9 h"  { style: { fill: "#E9ECEF" } }
+  r12c2: "3 h"  { style: { fill: "#E9ECEF" } }
+  r12c3: "6 h"  { style: { fill: "#E9ECEF" } }
+  r12c4: "in-pt" { style: { fill: "#E9ECEF" } }
+  r12c5: "2 h"  { style: { fill: "#E9ECEF" } }
+  r12c6: "3 h"  { style: { fill: "#E9ECEF" } }
+  r12c7: "12 h" { style: { fill: "#E9ECEF" } }
+}
+
+legend: "Cell key" {
+  near: bottom-center
+  style: { fill: "#FFFFFF"; stroke: "#6C757D"; stroke-dash: 3 }
+  k1: "Corporate Blue: a point where you decide" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+  k2: "Lighter blue: something is done, with you present" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  k3: "White: nothing happens at this visit" { style: { fill: "#FFFFFF" } }
+  k4: "Light gray: your time cost for the visit" { style: { fill: "#E9ECEF" } }
+}

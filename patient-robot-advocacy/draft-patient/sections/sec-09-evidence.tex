@@ -1,0 +1,128 @@
+\section{The Numbers Behind the Reassurance}
+
+\subsection{The provenance rule this section obeys}
+
+\draftinstr{Roughly 900 characters. Every quantitative claim in this section
+carries one of four class letters, and the letter appears on the same line as
+the number. M means measured in a cited human series; C means a contemporaneous
+nationwide comparator; S means an author simulation and not human data; P means
+a protocol-specified limit and not a result. State that two of the nine headline
+values are class S and name them. Cite \texttt{Jauniaux2025} for why this
+discipline matters: expectation and experience diverge systematically in robotic
+surgery, and expectation is usually set by marketing.}
+
+\subsection{The reassurance dashboard}
+
+\draftinstr{Roughly 1,200 characters introducing Figure 27 panel by panel, and
+do not skip the unfavourable panels. Panel A: fistula and mortality falling with
+institutional volume, cite \texttt{DutchCohort2025}. Panel B: 8.2 percent of the
+1000 Phase 0 simulated procedures halted by a safety mechanism, cite
+\texttt{pdac060s2030}. Panel C: every observed worst case inside its cap. Panel
+D: the survival context with the honest denominator, cite \texttt{Siegel2025}
+and \texttt{Conroy2018}. Panel E: how many concerns get which class of answer.}
+
+\begin{pafig}[mermaid-type: xychart + pie + CI strip, full page]
+\node[mmgoal] (a) at (0,0) {Figure 27 slot\\five-panel dashboard};
+\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-27-reassurance-dashboard.md};
+\draw[mmedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 27. Five panels of quantitative reassurance on one page, learning-curve
+outcomes, Phase 0 simulation endings, safety-limit headroom, the survival context with\\
+its honest denominator, and the class of answer each documented concern receives.}
+
+\draftinstr{Replace the Figure 27 slot with the full-page mermaid-type dashboard
+from \texttt{mermaid/fig-27-reassurance-dashboard.md}. Five stacked panels
+inside one frame separated by 0.4pt \texttt{pagraym} hairlines; Panel A with
+\texttt{\textbackslash vbarcol} plus a 0.8pt polyline; Panel B with
+\texttt{\textbackslash donutseg} and leader lines to labels outside the ring;
+Panel C with \texttt{\textbackslash vbarpair}; Panels D and E as
+\texttt{tabularx} tables at the panel measure.}
+
+\subsection{Robotic pancreatoduodenectomy, by learning-curve phase}
+
+\draftinstr{Populate from \texttt{DutchCohort2025}. Add the class letter to
+every numeric column heading. State the protocol's response in the final column:
+enrollment is restricted to a site already past phase 3, so the learning curve
+is not paid for by the participant.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{3.6cm} C{2.5cm} C{2.4cm} Y}
+\toprule
+\textbf{Learning-curve phase} & \textbf{ISGPS B/C fistula (C)} & \textbf{90-day mortality (C)} & \textbf{What this protocol does about it} \\
+\midrule
+Phase 1, cases 1 to 80 & 24.0 percent & 8.0 percent & Not eligible to enrol; the site must be past this phase \\
+Phase 2, cases 81 to 180 & 18.5 percent & 6.0 percent & Not eligible to enrol \\
+Phase 3, cases 181 to 400 & 14.0 percent & 4.5 percent & Minimum eligible experience for a participating site \\
+Phase 4, cases 401 and above & 11.0 percent & 3.5 percent & Preferred; operator case counts are published to participants \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Safety-limit headroom}
+
+\draftinstr{Populate from \texttt{onpremwhippl} for the caps and
+\texttt{pdac060s2030} for the observed values. Mark the cap column P and the
+observed column S, and repeat in the caption that a simulated worst case is not
+a human worst case.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.4cm} C{2.4cm} C{2.4cm} Y}
+\toprule
+\textbf{Limit} & \textbf{Protocol cap (P)} & \textbf{Worst observed (S)} & \textbf{Headroom} \\
+\midrule
+Tip force, any single arm & 3.0 N & 2.1 N & 30 percent \\
+Tip force, all arms summed & 18.0 N & 12.4 N & 31 percent \\
+Cross-arm emergency stop & 3.0 ms & 1.7 ms & 43 percent \\
+System-wide emergency stop & 500 ms & 310 ms & 38 percent \\
+Positional error & 2.0 mm & 1.3 mm & 35 percent \\
+Force reproducibility & 0.5 N & 0.31 N & 38 percent \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{The survival context, with the honest denominator}
+
+\draftinstr{Roughly 1,000 characters and the most important honest passage in
+the paper. Pancreatic cancer five-year overall survival across all stages is
+13 percent \cite{Siegel2025}. Resected PDAC after adjuvant FOLFIRINOX is
+materially better \cite{Conroy2018}. An R0 margin is materially better than R1.
+A Phase 1 study of at most eighteen participants cannot move a survival curve
+and this paper does not claim it will. What it can establish is whether the
+combination is safe enough to be tested in a study that could.}
+
+\subsection{Where the numbers come from}
+
+\draftinstr{Roughly 800 characters introducing Figure 28. Nine quoted values,
+six sources, four evidence classes, and one rule: a value with no incoming edge
+does not appear in this paper.}
+
+\begin{pafig}[graphviz-type: provenance DAG, record nodes]
+\node[gvkey] (a) at (0,0) {Figure 28 slot\\evidence provenance};
+\node[gvbox] (b) at (0,-2.0) {Source:\\graphviz/fig-28-evidence-provenance.dot};
+\draw[gvedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 28. Every quantitative claim in this paper traced through its source to
+its class of evidence, with the two class-S values, which are simulated rather than\\
+measured, marked by dashed edges so a reader can separate them at a glance.}
+
+\draftinstr{Replace the Figure 28 slot with the graphviz-type provenance DAG
+from \texttt{graphviz/fig-28-evidence-provenance.dot}. Three ranks at
+$x = 0, 6.4, 12.4$; nine \texttt{gvrec} record nodes on rank 1 at 1.9 cm pitch;
+six \texttt{gvbox} sources on rank 2; four \texttt{gvnode} class ellipses on
+rank 3; class-S edges dashed \texttt{pagrayd}; where three or more values share
+a source, fan the outer edges at looseness 0.8.}
+
+\subsection{What would change the conclusion}
+
+\draftinstr{Roughly 700 characters. Name the findings that would make this paper
+wrong: a device-related serious adverse event rate above the prespecified halt
+threshold, an R0 rate below the comparator range, a fistula rate above phase-1
+learning-curve levels at an experienced site, or any emergency-stop latency
+measured above budget in a human procedure. State that each has a prespecified
+stopping rule attached, and forward to \S5.6.}

@@ -436,3 +436,55 @@ concern 17 more completely than any paragraph in this section.
 \figcaption{Figure 9. Each documented concern resolved to the physical component that
 answers it, grouped into the operating room, the on-premises cabinet, the governance
 bodies, and everything outside, with the intra-procedural route drawn and struck through.}
+
+\subsection{The twenty-one, one row each}
+
+The table below is the paper's index. It states each concern in the form
+participants state it, the question they are most likely to ask, the answer this
+protocol gives, and the class of that answer. A reader who wants only one thing
+from \S 3 should take this table.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{C{0.7cm} L{3.4cm} L{4.2cm} Y}
+\toprule
+\textbf{\#} & \textbf{Concern} & \textbf{The question asked} & \textbf{The answer, and its class} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{\#} & \textbf{Concern} & \textbf{The question asked} & \textbf{The answer, and its class} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+1 & Who is driving the robot & Is my surgeon controlling every movement, or approving a plan, or supervising an automated task? & Approving. Every motion is surgeon-signed; the model has no actuator path. Hard architectural limit. \\
+2 & Can the surgeon stop it, and how fast & Can the surgeon stop the system immediately, and how quickly is human control restored? & At most 3 ms across arms, at most 500 ms system-wide, measured on every procedure. Hard numeric limit. \\
+3 & Will the surgeon defer to the model & Will my surgeon follow the model even when their own judgement differs? & Overrides are logged with a reason and the override rate is a published endpoint. Procedural guarantee. \\
+4 & Will I still have a doctor who knows me & Will I still have a surgeon who knows me and is personally responsible? & The operating surgeon is named in your consent and is accountable for every intra-operative motion. Procedural guarantee. \\
+5 & Less time with my care team & Will relying on the system reduce my face-to-face time? & The direct sponsor channel is additional; every branch notifies your own oncologist. Procedural guarantee. \\
+6 & Malfunction or unintended motion & Could the system move unexpectedly and injure something? & Tip force capped at 3 N per arm and 18 N summed, enforced in hardware. Hard numeric limit. \\
+7 & Misreading tissue or a margin & Could it misidentify a structure or a tumour boundary? & Positional tolerance 2 mm, force reproducibility 0.5 N, both gate-enforced. Hard numeric limit. \\
+8 & Injury to a major vessel & Could an autonomous movement cause severe bleeding? & A 4 mm no-fly corridor around the SMV and portal vein; a plan entering it is rejected before it is executable. Hard numeric limit. \\
+9 & Instrument failure mid-procedure & What if an instrument breaks while I am open? & Backup instruments and an open tray in the room for every procedure; conversion rehearsed in the checklist. Procedural guarantee. \\
+10 & Conversion to open surgery & What happens if the robotic approach has to be abandoned? & A recorded outcome, not a failure; participation continues; you are told before discharge. Procedural guarantee. \\
+11 & Cancer control & Will this remove my cancer as completely as standard surgery? & R0 rate, fistula rate, and 90-day mortality reported against a 1000-case nationwide comparator. Comparator, not a result. \\
+12 & Being among the first & Am I one of the first people to receive this? & Phase 0 gate of 1000 simulations across two frameworks precedes any patient; sentinel stagger precedes any second dose. Hard gate. \\
+13 & Newer described as better & Is this actually better, or just newer? & No superlative appears in this paper; the FDA's own caution is reproduced verbatim. Disclosure. \\
+14 & Team experience & How many of these has my surgeon done, on this exact platform? & Case count, platform count, autonomy level, and trainee participation published before consent. Procedural guarantee. \\
+15 & Who sees the recording & Who will see the video of my operation? & A published read list per store; operating surgeon, Site PI, and you. Procedural guarantee. \\
+16 & Training other models & Will my data be used to train other systems? & Not without a separate consent; drawn in Figure 24 as an absent edge. Procedural guarantee. \\
+17 & Could it be attacked & Could someone interfere with the system during my operation? & No network route out of the building during a procedure. Hard architectural limit. \\
+18 & People like me & Was it tested on people with my anatomy, age, and history? & Composition reported per FDA guidance; subgroup performance not estimable at $n \leq 18$. Disclosure. \\
+19 & Software change after consent & Could the software change after I agree? & Version frozen at consent; any change forces a re-consent before any procedure. Procedural guarantee. \\
+20 & Who is accountable & Who answers if I am harmed? & Exactly one accountable party per failure class, named in \S 11 and published before consent. Governance. \\
+21 & What will it cost & What will I pay, during and after? & Line by line in \S 12; two items, lost income and post-closure drug access, remain unsettled. Governance. \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent Seven of the twenty-one are answered by a hard numeric or
+architectural limit, nine by a procedural guarantee, and five by governance or
+disclosure alone. Those proportions are the honest shape of the answer, and they
+are the same proportions Figure 5 colours and Figure 7 plots.

@@ -134,11 +134,18 @@ de-identified to identified.
 \draw[dgedge] (s3) to[out=0,in=200,looseness=0.85] (t2);
 \draw[dgedge] (t2) to[out=-90,in=90,looseness=0.85] (t3);
 \draw[dgedge] (t3) to[out=-90,in=90,looseness=0.85] (t4);
-\draw[dgedgeb] (u1) to[out=90,in=-135,looseness=0.85] (s1);
-\draw[dgedged] (u2) to[out=90,in=-140,looseness=0.85] (s1);
-\draw[dgedged] (u3) to[out=90,in=-120,looseness=0.85] (s3);
-\draw[dgedged] (u4) to[out=90,in=-60,looseness=0.85] (s3);
-\draw[dgedged] (u5) to[out=120,in=-60,looseness=0.85] (q1);
+% Access edges attach to the cluster each principal may read, with the store
+% named on the edge, so no access line crosses a pipeline node or another edge.
+\draw[dgedgeb] (u1.north) to[out=90,in=200,looseness=0.9]
+  node[font=\tiny\sffamily,anchor=east,pos=0.72]{every store} (G3.south west);
+\draw[dgedged] (u2.north) to[out=90,in=225,looseness=0.9]
+  node[font=\tiny\sffamily,anchor=north east,pos=0.62]{identified and de-identified} (G3.south);
+\draw[dgedged] (u3.north) to[out=90,in=250,looseness=0.9]
+  node[font=\tiny\sffamily,anchor=north,pos=0.55]{de-identified} (G3.south east);
+\draw[dgedged] (u4.north) to[out=90,in=-70,looseness=0.9]
+  node[font=\tiny\sffamily,anchor=north west,pos=0.55]{de-identified only} (s3.south east);
+\draw[dgedged] (u5.north) to[out=120,in=-45,looseness=0.9]
+  node[font=\tiny\sffamily,anchor=north west,pos=0.6]{chain and CRF} (G2.south east);
 \draw[dgedgek] (s3) to[out=-30,in=-150,looseness=0.9] (t4);
 \pxmark{5.1}{-7.6}
 \node[font=\tiny\sffamily\bfseries,fill=protowhite,inner sep=1.6pt,anchor=east] at (4.85,-7.6) {no commercial model training without a separate consent};

@@ -1,0 +1,126 @@
+// =====================================================================
+// Figure 28. Every number in this paper, traced to the thing that produced it
+// Type            : Graphviz-type, provenance DAG with record nodes
+// Paper section   : § 10, The Numbers Behind the Reassurance
+// Concern answered: ChatGPT concern 15 (marketing, hype, and unrealistic
+//                   expectations) and concern 6 (cancer-control
+//                   effectiveness); Gemini family 3. The surveyed literature is
+//                   consistent that patients distrust superlatives and trust
+//                   provenance. This figure gives up the superlatives entirely
+//                   and shows, for every quantitative claim in § 10, the class
+//                   of evidence it came from and the citation behind it.
+// Why this type   : Provenance is a DAG: a value derives from a source, a
+//                   source derives from a study, and nothing derives from
+//                   itself. Graphviz record nodes let each value carry its
+//                   class letter and its citation key in ruled compartments,
+//                   which is what makes the figure checkable rather than
+//                   decorative.
+// Invariant       : acyclic, and every value node has at least one incoming
+//                   edge from a source node. A value with no incoming edge
+//                   would be an unsourced number, and there are none.
+//
+// Class legend    : M measured in a cited human series; C contemporaneous
+//                   nationwide comparator; S author simulation, not human
+//                   data; P protocol-specified limit, not a result.
+//
+// TikZ: draw with the gv* vocabulary of patientstyle.sty.
+// TikZ: Three ranks left to right. Rank 1 at x = 0: eight gvrec record nodes,
+// TikZ:   each a two-row stack of gvcell with a gvcellh header carrying the
+// TikZ:   value; y from 0 stepping by -1.9.
+// TikZ: Rank 2 at x = 6.4: five gvbox source nodes, text width 34mm.
+// TikZ: Rank 3 at x = 12.4: four gvnode class ellipses, one per class letter,
+// TikZ:   text width 22mm.
+// TikZ: Column pitch 6.0 to 6.4 cm; row pitch 1.9 cm at rank 1 keeps at least
+// TikZ:   8 mm of clear space between record boxes.
+// TikZ: Edges are gvedge; where three or more values share a source, fan the
+// TikZ:   outer edges with to[out=0,in=180,looseness=0.8] so the bundle does
+// TikZ:   not overlap an intervening record box.
+// TikZ: A class-S edge is drawn dashed pagrayd, so a reader can see at a glance
+// TikZ:   which numbers are simulated rather than measured.
+// =====================================================================
+
+digraph provenance {
+  rankdir = LR;
+  bgcolor = "#FFFFFF";
+  fontname = "Times";
+  fontsize = 12;
+  nodesep = 0.38;
+  ranksep = 2.0;
+  splines = true;
+
+  node [fontname="Times", fontsize=9, style=filled, fillcolor="#FFFFFF",
+        color="#000000", penwidth=0.55];
+  edge [fontname="Times", fontsize=8, color="#6C757D", penwidth=0.5,
+        arrowsize=0.6];
+
+  // ================= rank 1: the values quoted in § 10 =================
+  subgraph cluster_values {
+    label = "every quantitative claim in the paper";
+    fontname = "Times"; fontsize = 10; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#F1F6FA";
+    node [shape=record];
+
+    v1 [label="{ 13 percent | five-year overall survival, all stages | class M }"];
+    v2 [label="{ 24.0 to 11.0 percent | ISGPS grade B/C fistula, by learning-curve phase | class C }"];
+    v3 [label="{ 8.0 to 3.5 percent | 90-day mortality, by learning-curve phase | class C }"];
+    v4 [label="{ 918 of 1000 | Phase 0 simulated procedures completing in envelope | class S }"];
+    v5 [label="{ 2.1 N and 12.4 N | worst observed tip force, per arm and summed | class S }"];
+    v6 [label="{ 3 ms and 500 ms | emergency-stop budgets, cross-arm and system | class P }"];
+    v7 [label="{ 56 percent of 50 | patients who would consider semi-autonomous surgery | class M }"];
+    v8 [label="{ about half of 330 | oncology patients concerned about AI in cancer care | class M }"];
+    v9 [label="{ n up to 18 | planned enrollment across DL1 to DL3 | class P }"];
+  }
+
+  // ================= rank 2: the sources =================
+  subgraph cluster_sources {
+    label = "the source that produced it";
+    fontname = "Times"; fontsize = 10; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#E9ECEF";
+    node [shape=box];
+
+    s1 [label="Cancer statistics, 2025\nSiegel2025", fillcolor="#DCE8F1"];
+    s2 [label="Nationwide outcomes of 1000 robotic\npancreatoduodenectomies\nDutchCohort2025", fillcolor="#DCE8F1"];
+    s3 [label="2030: 60 second PDAC robotic Whipple\nand daraxonrasib simulation\npdac060s2030", fillcolor="#CED4DA"];
+    s4 [label="This protocol, § 6\nonpremwhippl", fillcolor="#DCE8F1"];
+    s5 [label="Patient perceptions of semi-autonomous\nrobot-assisted surgery\nWuSemiAI2026", fillcolor="#DCE8F1"];
+    s6 [label="Patients' attitudes toward AI use in\ncancer care, 330-patient survey\nTelesAI2026A", fillcolor="#DCE8F1"];
+  }
+
+  // ================= rank 3: the evidence classes =================
+  subgraph cluster_classes {
+    label = "class of evidence";
+    fontname = "Times"; fontsize = 10; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#FFFFFF";
+    node [shape=ellipse];
+
+    cM [label="M\nmeasured in a\ncited human series", fillcolor="#00417A", fontcolor="#FFFFFF"];
+    cC [label="C\ncontemporaneous\nnationwide comparator", fillcolor="#3C7DB2", fontcolor="#FFFFFF"];
+    cS [label="S\nauthor simulation,\nnot human data", fillcolor="#9AA1A8"];
+    cP [label="P\nprotocol limit,\nnot a result", fillcolor="#CED4DA"];
+  }
+
+  // ================= value to source =================
+  v1 -> s1;
+  v2 -> s2;
+  v3 -> s2;
+  v4 -> s3 [style=dashed, color="#9AA1A8"];
+  v5 -> s3 [style=dashed, color="#9AA1A8"];
+  v6 -> s4;
+  v7 -> s5;
+  v8 -> s6;
+  v9 -> s4;
+
+  // ================= source to class =================
+  s1 -> cM;
+  s2 -> cC;
+  s3 -> cS [style=dashed, color="#9AA1A8"];
+  s4 -> cP;
+  s5 -> cM;
+  s6 -> cM;
+
+  // ================= the rule the figure enforces =================
+  rule [shape=box, fillcolor="#222222", fontcolor="#FFFFFF", penwidth=1.1,
+        label="Rule: a value with no incoming edge does not appear in this paper.\nTwo of the nine values above are class S. They are simulated, not measured,\nand every place they are quoted says so on the same line."];
+  cS -> rule [color="#000000", penwidth=0.7];
+  cP -> rule [color="#000000", penwidth=0.7];
+}

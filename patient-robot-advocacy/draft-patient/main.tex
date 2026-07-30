@@ -1,0 +1,148 @@
+% main.tex - DRAFT stage of "Patient Robot Advocacy: A Phase 1, First-in-Human,
+% PDAC Clinical Trial Protocol of a LLM-Directed Robotic Whipple with
+% Daraxonrasib (RMC-6236)".  Draft 1.0, repository v1.0.0.
+%
+% Stage 6 of the eight-stage build (mermaid, plantuml, d2, diagrams-python,
+% graphviz, draft, full, final).  This stage is the compilable scaffold: every
+% section, every figure slot, and every table is present, and every remaining
+% decision is marked with a \draftinstr{...} that names the exact repository
+% file supplying it.
+%
+% Compile on Overleaf with pdfLaTeX:
+%   pdflatex main -> bibtex main -> pdflatex main -> pdflatex main
+\documentclass[11pt]{article}
+\usepackage{patientstyle}
+
+\title{Patient Robot Advocacy: A Phase 1, First-in-Human, PDAC Clinical Trial
+Protocol of a LLM-Directed Robotic Whipple with Daraxonrasib (RMC-6236)}
+\author{Kevin Kawchak}
+\date{July 31, 2026}
+
+\begin{document}
+\thispagestyle{plain}
+
+% =====================================================================
+% COVER PAGE.  Patient-advocacy variant of the parent protocol cover: the
+% colour scheme is unchanged, the furniture is not.  A full-width Corporate
+% Blue banner replaces the centred title block, a draft badge line replaces the
+% version line, and a three-panel strip states what the paper answers for the
+% reader before any regulatory text appears.
+% =====================================================================
+
+\pabanner{Patient Robot Advocacy}{A Phase 1, First-in-Human, PDAC Clinical Trial
+Protocol of a LLM-Directed\\ Robotic Whipple with Daraxonrasib (RMC-6236)}
+
+\vspace{0.55em}
+
+\begin{center}
+\pabadge{Draft 1.0} \quad \pabadgel{Repository v1.0.0} \quad
+\pabadgel{30 figures} \quad \pabadgel{21 documented concerns answered}
+\end{center}
+
+\vspace{0.35em}
+
+\begin{center}\small
+CEO Kevin Kawchak\,\orcidicon{0009-0007-5457-8667}, ChemicalQDevice \;|\;
+\href{mailto:kevink@chemicalqdevice.com}{kevink@chemicalqdevice.com} \\[0.25em]
+\href{https://doi.org/10.5281/zenodo.xxxxxxxx}{10.5281/zenodo.xxxxxxxx} \;|\;
+\href{https://orcid.org/0009-0007-5457-8667}{0009-0007-5457-8667}
+\end{center}
+
+\vspace{0.15em}
+\parule{0.9pt}
+
+% ---- The three-panel strip: what this paper answers for the reader. ----
+\papanels{%
+  \textbf{\color{protoblue}Who is in control?}\\[0.15em]
+  A named human surgeon approves every motion. The model has no path to the
+  arms. Stopping is bounded at 3 ms across the arms and 500 ms system-wide.
+  \S7, Figures 18 and 19.}{%
+  \textbf{\color{protoblue}What could go wrong?}\\[0.15em]
+  Twenty-one documented concerns, each wired to the clause, limit, or number
+  that answers it, including the five that are answered only by governance.
+  \S3, Figures 5, 6, and 7.}{%
+  \textbf{\color{protoblue}What is this costing me?}\\[0.15em]
+  Roughly 27 days of contact over 24 months, 18 visits, one inpatient stay.
+  The sponsor pays study-only items; two items remain unsettled.
+  \S9 and \S12, Figures 25 and 30.}
+
+\parule{0.5pt}
+
+\vspace{0.2em}
+
+\noindent\footnotesize\textit{Independent research paper and practical adoption
+guide. It is not medical or regulatory advice and is not endorsed by the FDA,
+NIH, HHS, an IRB, ICH, or any sponsor. All figures derive from the author's
+repository sources and are illustrative unless tied to a cited reference.}
+\normalsize\par
+
+\vspace{0.2em}
+
+\noindent\footnotesize\textbf{Disclaimer:} \textit{This work is independent and
+is not endorsed or sponsored by any trial sponsor, CRO, site, IRB, regulator, or
+medical society; and was adapted using Claude Code Opus 5.}\normalsize\par
+
+\vspace{0.3em}
+
+\begin{center}\small
+San Diego \\ July 31, 2026
+\end{center}
+
+\vspace{0.2em}
+
+\noindent\footnotesize The paper (v1.0) is at
+\href{https://doi.org/10.5281/zenodo.xxxxxxxx}{https://doi.org/10.5281/zenodo.xxxxxxxx}
+and the repository (v1.0.0) is at
+\href{https://github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy}{https://github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy}.
+The parent clinical protocol this paper advocates for is
+\href{https://doi.org/10.5281/zenodo.20780121}{10.5281/zenodo.20780121}
+\cite{onpremwhippl}; bill citations use H. R. 9510 v5,
+\href{https://doi.org/10.5281/zenodo.20619762}{10.5281/zenodo.20619762}
+\cite{hr9510billv5}.\normalsize\par
+
+\renewcommand{\keywordname}{\textbf{Keywords}}
+\keywords{Patient advocacy; Informed consent; Pancreatic Ductal Adenocarcinoma;
+Robotic Whipple; Daraxonrasib; Physical AI; On-premises LLM; Surgical autonomy;
+Patient concerns; Phase 1 Trial Protocol; H. R. 9510}
+
+\vspace{0.4em}
+\parule{0.6pt}
+
+% ---------- Clickable table of contents ----------
+\renewcommand{\contentsname}{\color{accentcol}Table of Contents}
+{\setlength{\parskip}{0pt}\small\tableofcontents}
+
+\vspace{0.6em}
+\parule{0.6pt}
+\vspace{0.3em}
+
+\draftinstr{This is the draft stage. Every bracketed instruction below names the
+exact file in \texttt{patient-\pfb robot-\pfb advocacy/} that the \texttt{full-\pfb patient}
+stage must read to replace it. No instruction may survive into
+\texttt{full-\pfb patient/}. The figure sources are in \texttt{mermaid/},
+\texttt{plantuml/}, \texttt{d2/}, \texttt{diagrams-\pfb python/}, and
+\texttt{graphviz/}; the concern evidence is in \texttt{research/\pfb research-\pfb a.md}
+and \texttt{research/\pfb research-\pfb b.md}; the clinical facts are in
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip}; the bill citation is
+\texttt{references/\pfb references.bib} key \texttt{hr9510billv5}.}
+
+\clearpage
+
+% ---------- Body: one \input per section (Rule 6) ----------
+% Each major section starts on a fresh page so no section's opening paragraph
+% is stranded at the foot of the previous section's last page.
+\input{sections/sec-00-front}\clearpage
+\input{sections/sec-01-summary}\clearpage
+\input{sections/sec-02-concerns}\clearpage
+\input{sections/sec-03-objectives}\clearpage
+\input{sections/sec-04-design}\clearpage
+\input{sections/sec-05-population}\clearpage
+\input{sections/sec-06-intervention}\clearpage
+\input{sections/sec-07-discontinuation}\clearpage
+\input{sections/sec-08-assessments}\clearpage
+\input{sections/sec-09-evidence}\clearpage
+\input{sections/sec-10-accountability}\clearpage
+\input{sections/sec-11-rights}\clearpage
+\input{sections/sec-12-references-backmatter}
+
+\end{document}

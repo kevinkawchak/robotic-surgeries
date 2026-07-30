@@ -1,0 +1,287 @@
+\section{Who Can Join, and Who Decides}
+
+\subsection{Eligibility as a two-way gate}
+
+An eligibility flowchart normally runs in one direction. The protocol tests the
+patient against a list and returns one of two results: eligible, or screen
+failure. The patient is the object of the process.
+
+Under the author's proposed legislation the process runs in both directions. The
+participant is also doing the selecting, and their decisions leave a record.
+H. R. 9510 v5 \cite{hr9510billv5}, which supersedes the earlier H. R. 9501 to
+H. R. 9507 numbering used in the antecedent analysis \cite{paibillprior}, would
+establish participant self-selection, participant choice of autonomy level, and
+participant data self-custody as recorded rights rather than as informal
+courtesies. This protocol adopts all three voluntarily, in advance of any
+enactment.
+
+Figure 14 draws both directions as facing columns of decisions converging on a
+single enrollment node that requires both to be satisfied. The asymmetry that
+remains is real and is stated in the table below it: a protocol criterion can
+only be changed by amendment, while a participant's answer can be revisited at
+any visit without a reason.
+
+\begin{pafig}[mermaid-type: flowchart TD, two decision columns]
+\node[mmgoal,text width=32mm] (st) at (0.6,1.6) {Referral or self-referral to the study};
+\node[mmdec,text width=24mm] (p1) at (-4.4,-1.4)  {Adult, ECOG 0 or 1?};
+\node[mmdec,text width=24mm] (p2) at (-4.4,-4.0)  {KRAS G12 PDAC on tissue?};
+\node[mmdec,text width=24mm] (p3) at (-4.4,-6.6)  {Resectable or borderline?};
+\node[mmdec,text width=24mm] (p4) at (-4.4,-9.2)  {Organ function adequate?};
+\node[mmsoft,text width=26mm] (q1) at (5.6,-1.4)  {Do I accept a Physical AI procedure at all?};
+\node[mmsoft,text width=26mm] (q2) at (5.6,-4.0)  {Do I accept this autonomy level for each step?};
+\node[mmsoft,text width=26mm] (q3) at (5.6,-6.6)  {Do I accept my data being retained and re-used?};
+\node[mmsoft,text width=26mm] (q4) at (5.6,-9.2)  {Do I accept the daraxonrasib restart advisory?};
+\begin{scope}[on background layer]
+\node[mmlane,fit=(p1)(p2)(p3)(p4)] (LL) {};
+\node[mmlane,fit=(q1)(q2)(q3)(q4)] (LR) {};
+\end{scope}
+\node[mmlanetitle,anchor=south west] at (LL.north west) {What the protocol asks of you, \S 5.1 and \S 5.2};
+\node[mmlanetitle,anchor=south west] at (LR.north west) {What you may ask of the protocol, H. R. 9510 v5};
+\node[mmgray,text width=30mm] (sf)  at (-9.4,-12.0) {Screen failure; minimal data set only, \S 5.4};
+\node[mmgray,text width=32mm] (opt) at (10.6,-12.0) {Opt-out recorded; standard-of-care Whipple remains fully available};
+\node[mmmid,text width=34mm]  (enr) at (0.6,-12.8)  {\textbf{Enrollment}\\both columns satisfied, consent on file};
+\node[mmstep,text width=44mm] (sub) at (0.6,-15.2)  {Subgroup record: age, sex, race, ethnicity, BMI, prior therapy, reported per FDA guidance};
+\draw[mmedge] (st) to[out=-160,in=90,looseness=0.75] (p1);
+\draw[mmedgeb] (st) to[out=-20,in=90,looseness=0.75] (q1);
+\draw[mmedge] (p1) -- (p2); \draw[mmedge] (p2) -- (p3); \draw[mmedge] (p3) -- (p4);
+\draw[mmedgeb] (q1) -- (q2); \draw[mmedgeb] (q2) -- (q3); \draw[mmedgeb] (q3) -- (q4);
+\draw[mmedged] (p4) to[out=-135,in=60,looseness=0.85] node[mmlabel,pos=0.45]{any no} (sf);
+\draw[mmedge] (p4) to[out=-90,in=150,looseness=0.8] node[mmlabel,pos=0.5]{all yes} (enr);
+\draw[mmedged] (q4) to[out=-45,in=120,looseness=0.85] node[mmlabel,pos=0.45]{any no} (opt);
+\draw[mmedgeb] (q4) to[out=-90,in=30,looseness=0.8] node[mmlabel,pos=0.5]{all yes} (enr);
+\draw[mmedge] (enr) -- (sub);
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-10.4,-16.8) {The right-hand column is the contribution of the proposed legislation. Without it, the participant's four questions are asked\\informally, answered informally, and leave no trace in the record that a monitor or a regulator could later inspect.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 14. Eligibility drawn as two decision columns running against each other, what\\
+the protocol asks of the participant and what the participant may ask of the protocol,\\
+converging on a single enrollment node that requires both columns to be satisfied.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{3.5cm} L{5.0cm} Y}
+\toprule
+\textbf{} & \textbf{Protocol column} & \textbf{Participant column} \\
+\midrule
+Who authors the criteria & Sponsor-Investigator, reviewed by the IRB & The participant, informed by \S 3 of this paper \\
+What a ``no'' produces & Screen failure; minimal data set retained under \S 5.4 & Opt-out recorded; standard-of-care pathway unchanged \\
+Can it be revisited & Only by protocol amendment & At any visit, without giving a reason \\
+Is it recorded & Yes, in the screening log & Yes, in the consent record, per H. R. 9510 v5 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Inclusion and exclusion, in plain terms}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.4cm} Y}
+\toprule
+\textbf{You may join if} & \textbf{Why this criterion exists} \\
+\midrule
+You are 18 or older & The study has no paediatric safety data and does not enrol children \\
+Your tumour is confirmed PDAC on tissue & The drug and the operation are both specific to this disease \\
+Your tumour carries a KRAS G12 mutation & Daraxonrasib acts on RAS(ON); without the mutation there is no rationale \\
+Your tumour is resectable or borderline resectable & The operation must be able to achieve a clear margin \\
+Your performance status is ECOG 0 or 1 & A Whipple is a major operation and the study will not expose a frailer participant to it \\
+Your organ function is adequate & Both the drug and the operation load the liver, kidneys, and marrow \\
+You can attend the day-30 and day-90 visits & The primary and confirmatory endpoints are measured at those two visits \\
+You are able to give informed consent yourself & Consent under 21 CFR \S 50.20 is personal to you \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.4cm} Y}
+\toprule
+\textbf{You may not join if} & \textbf{Why this criterion exists} \\
+\midrule
+Your disease is metastatic & A curative-intent resection is not the right operation for you \\
+You have had a prior pancreatic resection & The anatomy the platform is validated against is not present \\
+You have an uncontrolled intercurrent illness & Perioperative risk could not be attributed cleanly to the intervention \\
+You are pregnant or breastfeeding & The drug has no safety data in pregnancy \\
+You have had prior upper abdominal radiation to the field & Tissue planes are altered in a way the no-fly geometry does not model \\
+You cannot attend the follow-up schedule & The safety endpoints depend on the day-30 and day-90 visits \\
+You are receiving another investigational agent & Attribution of an adverse event would not be possible \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Was this tested on people like me?}
+
+This is the concern where an advocacy paper is most tempted to reassure and
+least able to. A first-in-human study of at most eighteen participants cannot
+establish subgroup performance for any subgroup, and any claim that it could
+would be false. The honest answer has three parts.
+
+First, what is reported. The protocol reports the composition of the enrolled
+population by age, sex, race, ethnicity, body mass index, prior therapy, tumour
+location, vessel contact, and comorbidity burden, consistent with FDA guidance
+on evaluating and reporting age, race, and ethnicity data in device clinical
+studies \cite{FDADiver2017}. Composition is reported even though performance by
+subgroup is not estimable, because a reader can then judge for themselves how
+close the enrolled population is to them.
+
+Second, what is not claimed. No subgroup analysis is prespecified, no subgroup
+finding will be reported as a result, and any post hoc subgroup observation will
+be labelled as hypothesis-generating.
+
+Third, what happens afterwards. Real-world performance monitoring for
+AI-enabled devices is an active area of FDA attention \cite{FDARealW2025}, and
+the protocol commits the sponsor to contributing this study's device performance
+data to any such monitoring programme in a form that preserves the
+de-identification described in \S 9.3.
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.7cm} L{3.4cm} Y}
+\toprule
+\textbf{Characteristic} & \textbf{Reported} & \textbf{What the study can and cannot say} \\
+\midrule
+Age, sex, race, ethnicity & Yes, per participant & Composition is reported; subgroup performance is not estimable at $n \leq 18$ \\
+Body mass index & Yes, per participant & Relevant to port placement and to force at the tip \\
+Prior therapy & Yes, per participant & Prior radiation changes tissue planes and is an exclusion in this study \\
+Tumour location and vessel contact & Yes, per participant & Determines how much of the no-fly corridor is in play \\
+Comorbidity burden & Yes, per participant & Feeds the Clavien-Dindo interpretation at day 30 \\
+Operator case count & Yes, per procedure & Published to participants before consent, per \S 11.3 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Booking a slot yourself, and getting an answer from a person}
+
+Under current practice a patient learns that a trial exists from a clinician who
+happens to know about it, and every subsequent question routes back through that
+clinician. That works when the clinician has time and fails when they do not.
+The direct channel proposed in H. R. 9510 v5 \cite{hr9510billv5} and modelled in
+the author's automated sponsor platform \cite{paiautospons} adds a second route
+with a stated service level: a screening slot may be requested at any hour
+without a referral, a provisional hold is held for 72 hours so that nobody is
+rushed into confirming, and a named human at the sponsor answers a direct
+question within one business day with the answer logged verbatim in the
+participant's record. The target from first request to a confirmed screening
+visit is five business days.
+
+The protection that makes this acceptable rather than threatening is drawn on
+every branch of Figure 15: the participant's own treating oncologist is notified
+whichever way the eligibility pre-check resolves, including the branch where the
+participant turns out to be ineligible. The channel is additional. It is never a
+replacement, and the surveyed literature is clear that displacement of the
+existing clinician relationship is the fear attached to exactly this kind of
+mechanism \cite{WuSemiAI2026, TelesAI2026A}.
+
+\begin{pafig}[plantuml-type: sequence with activation bars, @startuml]
+\node[mmactor,text width=22mm] (A) at (0,0)    {You};
+\node[mmactor,text width=22mm] (B) at (3.9,0)  {Trial booking portal};
+\node[mmactor,text width=22mm] (C) at (7.8,0)  {Sponsor-Investigator on call};
+\node[mmactor,text width=22mm] (D) at (11.7,0) {Site screening coordinator};
+\node[mmactor,text width=22mm] (E) at (15.6,0) {Your treating oncologist};
+\foreach \n in {A,B,C,D,E}{\draw[mmlife] (\n.south) -- ++(0,-13.4);}
+\fill[pablue1,draw=protoblack,line width=0.4pt] (3.77,-1.0) rectangle (4.03,-2.6);
+\fill[pablue1,draw=protoblack,line width=0.4pt] (7.67,-3.4) rectangle (7.93,-5.0);
+\fill[pablue1,draw=protoblack,line width=0.4pt] (11.57,-5.8) rectangle (11.83,-12.6);
+\fill[pablue1,draw=protoblack,line width=0.4pt] (15.47,-6.6) rectangle (15.73,-7.8);
+\draw[mmmsg] (A|-0,-1.0) -- node[above,pos=0.5]{1: request a screening slot, 24/7, no referral required} (B|-0,-1.0);
+\draw[mmret] (B|-0,-2.6) -- node[above,pos=0.5]{2: provisional slot held for 72 hours} (A|-0,-2.6);
+\draw[mmmsg] (A|-0,-3.4) -- node[above,pos=0.5]{3: ask a direct question about the device} (C|-0,-3.4);
+\draw[mmret] (C|-0,-5.0) -- node[above,pos=0.5]{4: answer within one business day, recorded verbatim} (A|-0,-5.0);
+\draw[mmmsg] (A|-0,-5.8) -- node[above,pos=0.5]{5: confirm the slot} (D|-0,-5.8);
+\draw[mmmsg] (D|-0,-6.6) -- node[above,pos=0.5]{6: request records, with your authorisation} (E|-0,-6.6);
+\draw[mmret] (E|-0,-7.8) -- node[above,pos=0.5]{7: imaging, pathology, KRAS G12 status} (D|-0,-7.8);
+\draw[protogray,line width=0.5pt] (2.0,-8.6) rectangle (17.0,-12.4);
+\node[font=\tiny\sffamily\bfseries,text=protogray,anchor=north west] at (2.1,-8.6) {alt};
+\draw[protogray,line width=0.4pt,dashed] (2.0,-10.5) -- (17.0,-10.5);
+\node[font=\tiny\sffamily\itshape,anchor=north west] at (2.6,-8.65) {[eligible on paper]};
+\node[font=\tiny\sffamily\itshape,anchor=north west] at (2.6,-10.55) {[not eligible on paper]};
+\draw[mmret] (D|-0,-9.5) -- node[above,pos=0.5]{8: screening visit confirmed, itinerary and cost sheet attached} (A|-0,-9.5);
+\draw[mmmsg] (D|-0,-10.1) -- node[above,pos=0.5]{9: notify, so your care team is never bypassed} (E|-0,-10.1);
+\draw[mmret] (D|-0,-11.4) -- node[above,pos=0.5]{10: reason stated plainly, no record beyond the screening log} (A|-0,-11.4);
+\draw[mmmsg] (D|-0,-12.0) -- node[above,pos=0.5]{11: notify, so your care team can act on the reason} (E|-0,-12.0);
+\node[umlnote,text width=76mm,anchor=north west] at (0,-13.8)
+  {You never lose your treating oncologist. Every branch above notifies them. The channel is additional, not a replacement, which is the distinction the surveyed patients cared about most.};
+\node[umlnote,text width=76mm,anchor=north west] at (8.6,-13.8)
+  {Elapsed time from first request to a confirmed screening visit, target five business days. The 72-hour hold exists so that you are not rushed into confirming.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 15. Booking a screening slot directly and receiving an answer from a named\\
+human at the sponsor, with activation bars showing who is blocked at each step and\\
+every branch of the eligibility fragment notifying the participant's own oncologist.}
+
+\subsection{The five choices you keep}
+
+A consent form presents every choice at once, at the moment of greatest stress,
+and the predictable result is that most participants recall almost none of them
+\cite{NCIConsent24, cfr050paiuni}. The same five choices, revealed as layers that
+accumulate rather than replace, are each live at a different point in the study.
+
+Figure 16 draws them in order, with the interval each is live in and what
+happens if the answer is no. The conclusion the layout makes visible is stated
+at its foot: not one of the five is exercised on the day of surgery. Every one
+is live before the operating room, and three of the five are still live
+afterwards. No decision that matters is taken at the moment of least capacity to
+take it.
+
+\begin{pafig}[d2-type: layers and steps]
+\foreach \i/\y in {1/0,2/-3.5,3/-7.0,4/-10.5,5/-14.0}{
+  \node[d2ghost,minimum width=152mm,minimum height=26mm] at (0,\y) {};}
+\foreach \i/\y/\ch/\wh/\no in {%
+  1/0/{\textbf{Choice 1}\\Join the study at all}/{Live from the first conversation until you sign, and never expires}/{Standard-of-care Whipple proceeds on the normal pathway. Nothing about your care changes. No record beyond the screening log.},
+  2/-3.5/{\textbf{Choice 2}\\Accept the Physical AI component, or opt out}/{Live from consent until the baseline day, day $-1$, and re-asked at baseline}/{You remain a trial participant for the drug arm. The operation is performed by the same surgeon without the robotic platform.},
+  3/-7.0/{\textbf{Choice 3}\\Set the autonomy level you accept per step}/{Live at the pre-operative briefing, recorded step by step in the consent}/{Any step you exclude is performed manually by the surgeon. The exclusion is logged in the audit chain and reported with your outcome.},
+  4/-10.5/{\textbf{Choice 4}\\Accept or decline the daraxonrasib restart}/{Live in the acute window, days 1 to 7, at the T+7, T+14, and T+21 decisions}/{The drug is not restarted. Surgical follow-up and every safety assessment continue exactly as scheduled. You may change your mind.},
+  5/-14.0/{\textbf{Choice 5}\\Decide what happens to your data and specimens}/{Live for the whole study, and still live after your last visit}/{Specimens destroyed on request. Identifiable data segregated from new analysis. Aggregate safety data already filed cannot be recalled.}}{
+  \node[d2key,text width=34mm,minimum height=17mm] (ch\i) at (-5.4,\y) {\ch};
+  \node[d2soft,text width=30mm,minimum height=17mm] (wh\i) at (-0.4,\y) {\wh};
+  \node[d2gray,text width=44mm,minimum height=17mm] (no\i) at (5.4,\y) {\no};
+  \draw[d2edgeb] (ch\i) -- (wh\i);
+  \draw[d2edge] (wh\i) -- (no\i);
+  \node[d2title,anchor=south west] at (-7.65,{\y+1.32}) {Layer \i\ of 5};}
+\foreach \i/\j in {1/2,2/3,3/4,4/5}{
+  \draw[d2edged] (ch\i.south west) to[out=-90,in=90,looseness=0.7] (ch\j.north west);}
+\node[d2gray,text width=140mm,anchor=north west] at (-7.65,-16.2)
+  {Five choices, and not one of them is exercised on the day of surgery. Every one is live before the operating room, and three of the five are still live afterwards. That is the design intent: no decision that matters is taken at the moment of least capacity to take it.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 16. The five choices the participant keeps, revealed as accumulating
+layers with the choice, the interval in which it is live, and what happens if the answer
+is no, so that no decision that matters is taken at the moment of least capacity.}
+
+\subsection{What the consent conversation should cover}
+
+The surveyed literature converges on ten items that a consent process for a
+Physical AI surgical trial should address, and this paper is designed to be read
+before that conversation so it can be spent on the items a document cannot
+settle. The ten are set out below with the section of this paper that prepares
+each one.
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{C{0.8cm} L{4.9cm} Y}
+\toprule
+\textbf{\#} & \textbf{Item the consent process should cover} & \textbf{Where this paper prepares you for it} \\
+\midrule
+1 & The exact role of the robot and the model, step by step & \S 7.3 and Figure 19: the model proposes, the gate tests, the surgeon signs \\
+2 & The division of control between the system and the team & \S 7.3 and \S 7.4: who initiates, who approves, who may interrupt \\
+3 & The evidence supporting the procedure & \S 10.2 and \S 10.5: the comparator, and what this study cannot establish \\
+4 & Known, anticipated, and unknown risks & \S 4.5 and \S 7.6: the risk balance and the fault tree with its one gap \\
+5 & The failure and conversion plan & \S 7.4 and \S 7.7: the stop budget, the backup tray, and conversion as a recorded outcome \\
+6 & The experience of the surgeon and the team & \S 11.4: case count, platform count, autonomy level, trainee participation \\
+7 & Data governance and cybersecurity & \S 9.3 and \S 9.4: read lists, retention in years, and the closed boundary \\
+8 & Population representativeness & \S 6.3: composition reported, subgroup performance not estimable \\
+9 & Software lifecycle management & \S 8.2 and \S 8.4: version frozen at consent, change forces re-consent \\
+10 & Trial mechanics and alternatives & \S 5.1 and \S 8.1: single arm, no allocation, four routes out \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent The items are drawn from the minimum-information list in the surveyed
+concern set \cite{WuSemiAI2026, NCIConsent24, FDATrans2024} and reordered to
+match the order this paper takes them in. A participant who arrives having read
+\S 3 and \S 7 will spend the conversation on item 6, the experience of the
+particular team in front of them, which is the one item no document can answer
+in advance.

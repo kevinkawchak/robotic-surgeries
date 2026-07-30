@@ -3,7 +3,7 @@
 Physical AI Oncology Trial Robotic Surgeries simulation repository.
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18445179-blue)](https://doi.org/10.5281/zenodo.18445179)
-[![Release](https://img.shields.io/badge/Release-v0.9.0-brightgreen.svg)](releases.md)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-brightgreen.svg)](releases.md)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Python%203.10%2F3.11%2F3.12-3776ab.svg)](.github/workflows/ci.yml)
 [![Variant GBM](https://img.shields.io/badge/Variant-GBM%201%20Minute-orange.svg)](2030-gbm-1min)
@@ -18,10 +18,93 @@ Physical AI Oncology Trial Robotic Surgeries simulation repository.
 [![PDAC Full Paper](https://img.shields.io/badge/PDAC%20Full%20Paper-v0.9.0-success.svg)](2030-pdac-1min/paper/full-paper)
 [![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.20196639-blue)](https://doi.org/10.5281/zenodo.20196639)
 [![Adjuvant](https://img.shields.io/badge/Adjuvant-Daraxonrasib-yellow.svg)](https://doi.org/10.5281/zenodo.18099351)
+[![Patient Advocacy](https://img.shields.io/badge/Patient%20Advocacy-v1.0.0-success.svg)](patient-robot-advocacy)
+[![Advocacy Figures](https://img.shields.io/badge/Figures-30%20across%205%20diagram%20types-00417A.svg)](patient-robot-advocacy#the-thirty-figures)
+[![Advocacy DOI](https://img.shields.io/badge/Advocacy%20DOI-10.5281%2Fzenodo.xxxxxxxx-blue)](https://doi.org/10.5281/zenodo.xxxxxxxx)
 
 ## Thesis
 
 On-premises repository based LLMs provide commands to standard oncology surgical robots based on real-time sensor data and controlled via x, y, z coordinates to administer patient treatment. This workflow minimizes single robot error potential.
+
+## v1.0.0 Patient Robot Advocacy Paper (ASCII)
+
+The v1.0.0 release lands patient-robot-advocacy/, a Phase 1 PDAC patient advocacy paper built in eight stages by Claude Code Opus 5 from one prompt. It answers twenty-one documented patient concerns about surgical robots with the clause, limit, or number in the protocol that settles each, across thirteen sections, thirty vector figures in five machine-readable diagram types, and forty-three tables. No raster images exist.
+
+```
++============================================================================+
+|   PATIENT-ROBOT-ADVOCACY (v1.0.0, one prompt, eight stages, 122 commits)   |
++============================================================================+
+
+   prompts/                 prompt-patient.md    master prompt, verbatim
+                            output-patient.md    the complete Claude output
+   sub-prompts/             prompt-1 .. prompt-8 generated, then executed
+
+   +--------------------- Stages 1 to 5, diagram sources ------------------+
+   |  mermaid/          9 sources   .md with fenced mermaid                |
+   |  d2/               7 sources   .d2                                    |
+   |  plantuml/         5 sources   .puml                                  |
+   |  graphviz/         5 sources   .dot                                   |
+   |  diagrams-python/  4 sources   .py                                    |
+   |                   30 total, no Excalidraw, none rendered to a raster  |
+   +-----------------------------------------------------------------------+
+                                     |
+                                     v  redrawn natively in TikZ, per idiom
+   +--------------------- Stages 6 to 8, the paper -----------------------+
+   |  draft-patient/    42 pp   scaffold, 78 bracketed instructions        |
+   |  full-patient/     83 pp   instructions executed, 30 figures drawn    |
+   |  final-patient/    88 pp   proof-read: floats, breakable tables,      |
+   |                            ascending figure order, length parity      |
+   |                            (no publication/ subdirectory)             |
+   +-----------------------------------------------------------------------+
+
+   inputs/      5 author source documents, incl. the parent trial protocol
+   references/  the author's up-to-date references.bib
+   research/    2 dated 2026 patient-concern passes, Gemini and ChatGPT
+   template/    the trial-protocol-template workflow this build adapts
+
+   PAPER   Patient Robot Advocacy: A Phase 1, First-in-Human, PDAC Clinical
+           Trial Protocol of a LLM-Directed Robotic Whipple with
+           Daraxonrasib (RMC-6236).  Draft 1.0, San Diego, July 31, 2026.
+   AUTHOR  Kevin Kawchak, CEO ChemicalQDevice, ORCID 0009-0007-5457-8667
+   DOI     10.5281/zenodo.xxxxxxxx          BILL  10.5281/zenodo.20619762
++============================================================================+
+```
+
+The paper does not restate the parent protocol. It re-presents the same trial to the
+person on the table: every concern people actually raise about surgical robots, the
+specific clause, limit, gate, or number in this protocol that answers it, and where that
+number came from. Where a concern is answered only by governance rather than by a hard
+limit, the paper says so and names the five.
+
+| Measure | Value |
+|:--|:--|
+| Pages | 88 |
+| Sections | 13 |
+| Figures | 30, five diagram types, ascending order of appearance |
+| Tables | 43, all at body text width, all breakable |
+| Visible text characters | 168,275, against the parent protocol's 155,222 |
+| Bibliography | 51 entries, every DOI printed and hyperlinked |
+| Documented concerns answered | 21, each with its answer class |
+| Raster images | none, every figure is TikZ vector art |
+| pdfLaTeX | 0 errors, 0 overfull boxes, 0 undefined citations or references |
+
+The eight stages, and what each landed:
+
+| Stage | Directory | Output | Commits |
+|:--|:--|:--|:--|
+| 1 | `mermaid/` | 9 machine-readable sources, flowchart, sequence, state, gantt, quadrant | 11 |
+| 2 | `plantuml/` | 5 sources, use case, state machine, timing, sequence with activation | 7 |
+| 3 | `d2/` | 7 sources, containers, grids, sql tables, layers | 9 |
+| 4 | `diagrams-python/` | 4 sources, clustered infrastructure with vector pictograms | 6 |
+| 5 | `graphviz/` | 5 sources, rooted DAG, bipartite, decision tree, fault tree | 7 |
+| 6 | `draft-patient/` | 13-section scaffold, 78 bracketed instructions, Overleaf zip | 19 |
+| 7 | `full-patient/` | every instruction executed, 30 figures drawn, 2 verification passes | 26 |
+| 8 | `final-patient/` | proof-reading pass, 3rd figure verification, Overleaf zip | 20 |
+
+The twenty-one concerns come from two dated research passes of July 28, 2026, one by
+Gemini 3.1 Pro returning six families and one by ChatGPT 5.6 Thinking Extended returning
+sixteen numbered concerns, overlapping on five and de-duplicated to twenty-one. Both are
+filed at `patient-robot-advocacy/research/`.
 
 ## v0.9.0 PDAC Full Paper (ASCII)
 
@@ -362,11 +445,13 @@ On-premises repository based LLMs provide commands to standard oncology surgical
 
 ## Overview
 
-This repository hosts the v0.9.0 release of the multi-arm robotic oncology resection simulation suite. The new v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/` expanded by Claude Code Opus 4.7 1M Max from the v0.8.0 bracketed draft template at `2030-pdac-1min/paper/draft-paper/` across fourteen sequential commits within a single PR. Every bracketed instruction in the upstream draft has been resolved into running prose, anchored tables, and ASCII diagrams in the corresponding `sections/*.tex` file. The Overleaf ready `LaTeX Source Files.zip` bundle ships next to `main.tex`, `new_paper.sty`, `references.bib`, and `README.md`.
+This repository hosts the v1.0.0 release of the multi-arm robotic oncology resection simulation suite. The new v1.0.0 release lands the Patient Robot Advocacy paper at `patient-robot-advocacy/`, built in eight stages by Claude Code Opus 5 from a single prompt: five diagram-source stages producing thirty machine-readable diagrams across Mermaid, PlantUML, D2, Diagrams (Python), and Graphviz, then a bracketed draft, a populated full paper, and a proof-read final source set at `patient-robot-advocacy/final-patient/`. The paper takes the Phase 1 PDAC trial protocol and re-presents it to the participant, answering twenty-one documented patient concerns about surgical robots with the clause, limit, gate, or number that answers each. Every figure is TikZ vector art; there are no raster images.
+
+The v0.9.0 release remains the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/` expanded by Claude Code Opus 4.7 1M Max from the v0.8.0 bracketed draft template at `2030-pdac-1min/paper/draft-paper/` across fourteen sequential commits within a single PR. Every bracketed instruction in the upstream draft has been resolved into running prose, anchored tables, and ASCII diagrams in the corresponding `sections/*.tex` file. The Overleaf ready `LaTeX Source Files.zip` bundle ships next to `main.tex`, `new_paper.sty`, `references.bib`, and `README.md`.
 
 The first variant is the 4-arm 1-minute glioblastoma trial in `2030-gbm-1min/`, built around a hypothetical 2030 Medtronic NeuroSpeed 1.0 multi-arm parallel stereotactic neurosurgical robot. The v0.5.0 release landed the 8-arm 1-minute PDAC Whipple variant instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the PDAC 1-minute codegen tree at `2030-pdac-1min/paper/codegen/` produced by Claude Code Opus 4.7 1M Max from the v0.5.0 instructions. The v0.7.0 release landed the PDAC 1-minute execution tree at `2030-pdac-1min/paper/execution/` produced by running every executable codegen module against the deterministic seed contract (root seed 20260513). The v0.8.0 release landed the PDAC 1-minute draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/` populated by Claude Code Opus 4.7 1M Max from the v0.5.0 instruction tree, the v0.6.0 codegen tree, the v0.7.0 execution tree, and the four prior author PDAC papers plus the Daraxonrasib summary plus the two research chunks under `2030-pdac-1min/paper/inputs/`. The draft template shipped with bracketed downstream processing instructions in each section file, which the v0.9.0 full paper has now resolved.
 
-The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release landed the 26 file PDAC instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the generated PDAC simulation tree at `2030-pdac-1min/paper/codegen/`. The v0.7.0 release landed the executed PDAC simulation outputs at `2030-pdac-1min/paper/execution/`. The v0.8.0 release landed the bracketed draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/`. The v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/`.
+The v0.2.0 release published the runnable end-to-end outputs of the GBM v3.9.1 pipeline under `2030-gbm-1min/outputs/`. The v0.3.0 release added the LaTeX paper template under `2030-gbm-1min/paper/`. The v0.4.0 release landed the populated full LaTeX paper at `2030-gbm-1min/paper/full-paper/`. The v0.5.0 release landed the 26 file PDAC instruction set at `2030-pdac-1min/paper/instructions/`. The v0.6.0 release landed the generated PDAC simulation tree at `2030-pdac-1min/paper/codegen/`. The v0.7.0 release landed the executed PDAC simulation outputs at `2030-pdac-1min/paper/execution/`. The v0.8.0 release landed the bracketed draft LaTeX paper template at `2030-pdac-1min/paper/draft-paper/`. The v0.9.0 release lands the populated PDAC 1-minute full LaTeX paper at `2030-pdac-1min/paper/full-paper/`. The v1.0.0 release lands the Patient Robot Advocacy paper at `patient-robot-advocacy/`.
 
 The PDAC variant addresses 7 of the 10 approximations cataloged in the v0.4.0 GBM full paper limitations: doubled iterations (16 to 32), multi vendor tournament (single vendor to 3 robots plus 1 human), force time integral cap (added), 100 kHz force sampling (vs 10 kHz), Daraxonrasib precision oncology integration (new), per vessel safety zones (new), and anastomosis ring tension control (new). The remaining 3 approximations (synthetic patient, non deterministic Claude generation, hypothetical 2030 robot) are inherited with explicit cross simulation caveats.
 
@@ -477,7 +562,95 @@ robotic-surgeries/
           conclusions.tex  # 4 thematic blocks + Table 1 themes
           back_matter.tex  # acknowledgments, ethics, rights, cite, data availability
       templates/           # LaTeX templates carried into v0.8.0 draft + v0.9.0 full paper
+  patient-robot-advocacy/  # v1.0.0 Patient Robot Advocacy paper (this release)
+    README.md            # build hub: pipeline, milestones, figure map, palette
+    prompts/             # prompt-patient.md (master, verbatim), output-patient.md
+    sub-prompts/         # prompt-1-mermaid .. prompt-8-final-patient, generated first
+    mermaid/             # 9 mermaid-type sources: figures 1, 3, 7, 10, 14, 19, 23, 24, 27
+    plantuml/            # 5 PlantUML-type sources: figures 8, 12, 15, 18, 22
+    d2/                  # 7 D2-type sources: figures 4, 5, 11, 16, 20, 26, 29
+    diagrams-python/     # 4 Diagrams (Python)-type sources: figures 9, 17, 25, 30
+    graphviz/            # 5 Graphviz-type sources: figures 2, 6, 13, 21, 28
+    draft-patient/       # Stage 6 scaffold, 78 bracketed instructions, 42 pp, zip
+    full-patient/        # Stage 7 populated paper, 30 figures drawn, 83 pp, zip
+    final-patient/       # Stage 8 proof-read source set, 88 pp, zip (no publication/)
+      main.tex           # cover page, keywords, 3-page contents, 13 \input lines
+      patientstyle.sty   # 11 colour tokens, 5 TikZ diagram vocabularies, pafloat
+      references.bib     # 51 entries, every DOI printed and hyperlinked
+      sections/          # 13 populated section .tex files, 30 figures, 43 tables
+    inputs/              # 5 author source documents incl. the parent trial protocol
+    references/          # the author's up-to-date references.bib
+    research/            # 2 dated 2026 patient-concern passes, Gemini and ChatGPT
+    template/            # the trial-protocol-template workflow this build adapts
 ```
+
+## Patient Robot Advocacy Figure Index and Contents (v1.0.0)
+
+Every figure in the v1.0.0 paper has a machine-readable source in one of the five diagram
+directories, in that platform's own syntax, and is redrawn natively in TikZ inside the
+paper so the PDF rebuilds from its own LaTeX with no external tool and no raster image.
+The table below is the index: figure number, type, the source file, and the section it
+serves.
+
+| Fig | Type | Source file | § |
+|:--|:--|:--|:--|
+| 1 | Mermaid | `mermaid/fig-01-seven-commitments.md` | 1 |
+| 2 | Graphviz | `graphviz/fig-02-accountability-dag.dot` | 1 |
+| 3 | Mermaid | `mermaid/fig-03-journey-schema.md` | 2 |
+| 4 | D2 | `d2/fig-04-soa-patient-grid.d2` | 2 |
+| 5 | D2 | `d2/fig-05-concern-families.d2` | 3 |
+| 6 | Graphviz | `graphviz/fig-06-concern-to-clause.dot` | 3 |
+| 7 | Mermaid | `mermaid/fig-07-concern-quadrant.md` | 3 |
+| 8 | PlantUML | `plantuml/fig-08-patient-actor-usecase.puml` | 3 |
+| 9 | Diagrams | `diagrams-python/fig_09_concern_locations.py` | 3 |
+| 10 | Mermaid | `mermaid/fig-10-endpoint-meaning.md` | 4 |
+| 11 | D2 | `d2/fig-11-endpoint-registry.d2` | 4 |
+| 12 | PlantUML | `plantuml/fig-12-participant-state-machine.puml` | 5 |
+| 13 | Graphviz | `graphviz/fig-13-escalation-decision-tree.dot` | 5 |
+| 14 | Mermaid | `mermaid/fig-14-eligibility-self-selection.md` | 6 |
+| 15 | PlantUML | `plantuml/fig-15-booking-sponsor-response.puml` | 6 |
+| 16 | D2 | `d2/fig-16-five-choices-layers.d2` | 6 |
+| 17 | Diagrams | `diagrams-python/fig_17_operating_room_stack.py` | 7 |
+| 18 | PlantUML | `plantuml/fig-18-estop-timing-budget.puml` | 7 |
+| 19 | Mermaid | `mermaid/fig-19-advise-approve-execute.md` | 7 |
+| 20 | D2 | `d2/fig-20-force-nofly-envelope.d2` | 7 |
+| 21 | Graphviz | `graphviz/fig-21-hazard-barrier-fault-tree.dot` | 7 |
+| 22 | PlantUML | `plantuml/fig-22-withdrawal-activity.puml` | 8 |
+| 23 | Mermaid | `mermaid/fig-23-consent-lifecycle.md` | 8 |
+| 24 | Mermaid | `mermaid/fig-24-visit-timeline.md` | 9 |
+| 25 | Diagrams | `diagrams-python/fig_25_data_pipeline.py` | 9 |
+| 26 | D2 | `d2/fig-26-robot-instruction-cards.d2` | 9 |
+| 27 | Mermaid | `mermaid/fig-27-reassurance-dashboard.md` | 10 |
+| 28 | Graphviz | `graphviz/fig-28-evidence-provenance.dot` | 10 |
+| 29 | D2 | `d2/fig-29-responsibility-matrix.d2` | 11 |
+| 30 | Diagrams | `diagrams-python/fig_30_post_trial_continuity.py` | 12 |
+
+The counts follow the purpose each idiom serves rather than an equal quota: Mermaid 9 for
+what happens and in what order, D2 7 for how much there is and how it groups, PlantUML 5
+for what exactly is guaranteed, Graphviz 5 for what depends on what, and Diagrams (Python)
+4 for where something physically lives.
+
+The paper's thirteen sections, and the figures in each:
+
+| § | Section | File | Figures |
+|:--|:--|:--|:--|
+| 1 | Statement of Patient Commitment | `sec-00-front.tex` | 1, 2 |
+| 2 | Plain-Language Protocol Summary | `sec-01-summary.tex` | 3, 4 |
+| 3 | The Documented Patient Concerns | `sec-02-concerns.tex` | 5, 6, 7, 8, 9 |
+| 4 | Objectives and Patient-Facing Endpoints | `sec-03-objectives.tex` | 10, 11 |
+| 5 | Study Design Explained | `sec-04-design.tex` | 12, 13 |
+| 6 | Who Can Join, and Who Decides | `sec-05-population.tex` | 14, 15, 16 |
+| 7 | What Happens in the Operating Room | `sec-06-intervention.tex` | 17, 18, 19, 20, 21 |
+| 8 | Stopping, Withdrawing, Changing Your Mind | `sec-07-discontinuation.tex` | 22, 23 |
+| 9 | Your Visits, Your Data, Your Robot Instructions | `sec-08-assessments.tex` | 24, 25, 26 |
+| 10 | The Numbers Behind the Reassurance | `sec-09-evidence.tex` | 27, 28 |
+| 11 | Accountability, Oversight, and Who Answers | `sec-10-accountability.tex` | 29 |
+| 12 | Patient Rights, Costs, and H. R. 9510 v5 | `sec-11-rights.tex` | 30 |
+| 13 | References and Back Matter | `sec-12-references-backmatter.tex` | none |
+
+Every figure sits in a rigid frame with a monospace tag naming the native construct it
+reproduces, and every caption is three balanced lines set exactly 6.1 pt below the frame
+rule, the same distance for all thirty regardless of what follows on the page.
 
 ## High-Level Architecture (ASCII)
 
@@ -625,9 +798,9 @@ The resulting `LaTeX Source Files.zip` uploads to Overleaf via **New Project -> 
 If you use this repository in academic work, please cite:
 
 ```
-@software{kawchak_robotic_surgeries_v0_9_0_2026,
+@software{kawchak_robotic_surgeries_v1_0_0_2026,
   author    = {Kawchak, Kevin},
-  title     = {robotic-surgeries: 4-arm GBM v3.9.1 + 8-arm PDAC v0.5.0/v0.6.0/v0.7.0/v0.8.0/v0.9.0 multi-variant},
+  title     = {robotic-surgeries: 4-arm GBM v3.9.1 + 8-arm PDAC v0.5.0/v0.6.0/v0.7.0/v0.8.0/v0.9.0 + Patient Robot Advocacy v1.0.0 multi-variant},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18445179},

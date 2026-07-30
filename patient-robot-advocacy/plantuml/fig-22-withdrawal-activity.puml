@@ -1,0 +1,123 @@
+@startuml fig-22-withdrawal-activity
+' =====================================================================
+' Figure 22. Withdrawing: four routes out, and what happens to your data on each
+' Type            : PlantUML-type, activity diagram with swimlanes
+' Paper section   : § 8, Stopping, Withdrawing, Changing Your Mind
+' Concern answered: ChatGPT concern 10 (privacy, recording, and secondary data
+'                   use) and concern 16 (post-trial burdens); Gemini family 4.
+'                   Patients are routinely told they may withdraw at any time
+'                   and are almost never told what withdrawal does to the data
+'                   already collected. The honest answer is that it depends on
+'                   which route out is taken, and there are four. This figure
+'                   draws all four and their data consequences side by side.
+' Why this type   : Swimlanes assign responsibility for each action, and an
+'                   activity diagram carries decision nodes, fork and join, and
+'                   terminal nodes in one notation. Nothing else shows both
+'                   "who does this" and "what happens to the record" at once.
+'
+' TikZ: draw with the uml* vocabulary of patientstyle.sty.
+' TikZ: Three vertical swimlanes as umlpkg rectangles, x centres at
+' TikZ:   -5.0, 0.6, 6.6, widths 4.4cm, 5.0cm, 4.8cm, each titled at the top in
+' TikZ:   umlpkgtab; lanes share one top and one bottom edge.
+' TikZ: Actions are umlstate rounded boxes, text width 26mm, stacked with 2.2cm
+' TikZ:   pitch so at least 9mm of clear space separates ranks.
+' TikZ: The single decision is an mmdec diamond at (0.6,-3.0), text width 24mm.
+' TikZ: The fork and the join are umlbar filled rectangles 26mm wide, 1.2mm
+' TikZ:   tall, at y = -6.0 and y = -12.4.
+' TikZ: Four terminal nodes are umlfinal ringed discs on one rank at y = -14.2.
+' TikZ: Cross-lane edges leave a lane at its boundary and enter the next at the
+' TikZ:   same y, using -| right-angle routing; the two that must change rank
+' TikZ:   use to[out=0,in=180,looseness=0.85].
+' TikZ: Data-consequence notes are umlnote boxes anchored to the right of their
+' TikZ:   branch, connected by a 0.5pt dashed leader, never overlapping a box.
+' =====================================================================
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam ArrowColor #6C757D
+skinparam ActivityBorderColor #00417A
+skinparam ActivityBackgroundColor #FFFFFF
+skinparam ActivityDiamondBorderColor #000000
+skinparam ActivityDiamondBackgroundColor #CED4DA
+skinparam ActivityBarColor #000000
+skinparam ActivityStartColor #00417A
+skinparam ActivityEndColor #00417A
+skinparam SwimlaneBorderColor #6C757D
+skinparam SwimlaneTitleBackgroundColor #DCE8F1
+skinparam NoteBackgroundColor #E9ECEF
+skinparam NoteBorderColor #6C757D
+
+|#FFFFFF|You|
+start
+:Decide to stop;
+note right #E9ECEF
+  No reason is required at any
+  point below, and none is
+  recorded unless you give one.
+end note
+:Tell any member of the study
+team, in any form, at any visit;
+
+|#FFFFFF|Site study team|
+:Log the request with a timestamp
+in the hash-chained record;
+if (Which route out?) then (A: stop the drug only)
+  |You|
+  :Daraxonrasib discontinued;
+  |Site study team|
+  :Surgery, follow-up visits,
+  and safety reporting continue;
+  |#FFFFFF|Data and specimens|
+  :Everything already collected stays
+  in the safety analysis. New data
+  continues to be collected;
+  stop
+elseif (B: stop study procedures,
+keep follow-up) then
+  |You|
+  :No further study procedures;
+  |Site study team|
+  :Follow-up contact continues by
+  telephone or record review only;
+  |Data and specimens|
+  :Existing data retained. New data
+  limited to survival status.
+  Specimens retained unless you
+  ask for destruction;
+  stop
+elseif (C: full withdrawal) then
+  |You|
+  :All study participation ends;
+  |Site study team|
+  :Standard-of-care oncology
+  continues, unchanged and
+  without penalty;
+  |Data and specimens|
+  :Data already collected cannot be
+  removed from the safety analysis,
+  because removing it would bias the
+  record for everyone else. Nothing
+  new is collected. Specimens
+  destroyed on request;
+  stop
+else (D: withdraw consent for
+data use as well)
+  |You|
+  :Participation and future data
+  use both end;
+  |Site study team|
+  :Request forwarded to the IRB
+  and recorded in the audit chain;
+  |Data and specimens|
+  :Identifiable data segregated and
+  no longer used for any new
+  analysis. Aggregate safety data
+  already reported to the FDA
+  cannot be recalled;
+  stop
+endif
+
+@enduml

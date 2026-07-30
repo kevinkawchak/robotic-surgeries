@@ -1,0 +1,190 @@
+\section{The Documented Patient Concerns}
+
+\subsection{Where the twenty-one come from}
+
+\draftinstr{Roughly 1,000 characters. Two dated research passes on July 28,
+2026, one by Gemini 3.1 Pro and one by ChatGPT 5.6 Thinking Extended, filed at
+\texttt{research/\pfb research-\pfb a.md} and \texttt{research/\pfb research-\pfb b.md}. Six concern
+families and sixteen numbered concerns, overlapping on five items,
+de-duplicating to twenty-one. Cite the underlying human evidence:
+\texttt{WuSemiAI2026}, \texttt{TelesAI2026A}, \texttt{Jauniaux2025}, and
+\texttt{BrarRAS2024X}. State the two headline numbers: 56 percent of 50
+previously operated patients would consider semi-autonomous robot-assisted
+surgery, conditional on which steps the robot controls; and approximately half
+of 330 oncology patients expressed concern about artificial intelligence in
+cancer care.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.2cm} C{1.9cm} Y}
+\toprule
+\textbf{Concern family} & \textbf{Concerns} & \textbf{Where this paper answers it} \\
+\midrule
+Control and the human element & 5 & \S7.3, \S7.4; Figures 8, 18, 19 \\
+Safety and technical failure & 5 & \S7.4, \S7.5, \S7.6; Figures 20, 21 \\
+Evidence and effectiveness & 4 & \S4.2, \S5.1, \S10; Figures 13, 27, 28 \\
+Data, privacy, and security & 3 & \S9.3, \S9.4; Figures 17, 24 \\
+Fairness and applicability & 2 & \S6.3, \S8.3; Figures 14, 23 \\
+Accountability and burden & 2 & \S11, \S12; Figures 29, 30 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\draftinstr{Verify the concern count sums to 21 and that every family row names
+at least one section and one figure. Source the mapping from
+\texttt{research/README.md}, which carries both concern-to-section tables.}
+
+\begin{pafig}[d2-type: nested containers]
+\node[d2key] (a) at (0,0) {Figure 5 slot\\six concern containers};
+\node[d2box] (b) at (0,-1.8) {\ttfamily\tiny Source\\ d2/\\ fig-\pfb 05-\pfb concern-\pfb families.d2};
+\draw[d2edge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 5. The twenty-one documented concerns grouped into six disjoint
+families, with the answering section and figure printed inside each item, and a fill\\
+key stating how many are answered by a limit, a guarantee, or governance alone.}
+
+\draftinstr{Replace the Figure 5 slot with the full D2-type nested-container
+figure from \texttt{d2/\pfb fig-\pfb 05-\pfb concern-\pfb families.d2}. Six \texttt{d2cont}
+containers in a 3 by 2 arrangement at the coordinates given in that file's TikZ
+notes. Fill key: seven items Corporate Blue for a hard numeric limit, nine white
+for a procedural guarantee, five \texttt{pagraym} for governance or disclosure
+only.}
+
+\subsection{The five families, one subsection each}
+
+\subsubsection{Control and the human element}
+
+\draftinstr{Roughly 1,400 characters. Concerns 1 to 5: who is driving, can the
+surgeon stop it, will the surgeon defer to the model, will I still have a doctor
+who knows me, less time with my care team. Cite \texttt{WuSemiAI2026} and
+\texttt{BrarRAS2024X}; the latter reports that the most common public
+misconception is that the robot operates by itself. Answer with the Class II
+collaborative classification and the absence of a model-to-actuator path, and
+forward to Figures 8 and 19.}
+
+\subsubsection{Safety and technical failure}
+
+\draftinstr{Roughly 1,400 characters. Concerns 6 to 10: malfunction or
+unintended motion, misreading tissue or a margin, injury to a major vessel,
+instrument failure mid-procedure, conversion to open surgery. Answer with the
+force caps, the vascular no-fly corridor, and the fault tree, and state plainly
+that conversion to open surgery is a recorded outcome rather than a failure.
+Cite \texttt{iec8060127} and \texttt{ieee7009} for the standards the safety
+architecture is built against.}
+
+\subsubsection{Evidence and effectiveness}
+
+\draftinstr{Roughly 1,400 characters. Concerns 11 to 14: cancer control,
+being among the first, newer described as better, and team experience. Cite
+\texttt{DutchCohort2025} for the learning-curve comparator, \texttt{Jauniaux2025}
+for the systematic divergence between expectation and experience, and
+\texttt{FDARobot2022} for the FDA's own caution. This is the family the paper
+answers least completely, and \S3.4 must say so.}
+
+\subsubsection{Data, privacy, and security}
+
+\draftinstr{Roughly 1,200 characters. Concerns 15 to 17: who sees the recording,
+will my data train other systems, could the system be attacked. Answer with the
+on-premises boundary, the per-store read lists, and the retention periods. Cite
+\texttt{FDACyber2026} and \texttt{FDATrans2024}, and forward to Figures 17
+and 24.}
+
+\subsubsection{Fairness, applicability, accountability, and burden}
+
+\draftinstr{Roughly 1,200 characters. Concerns 18 to 21: tested on people like
+me, software change after consent, who is accountable, and what it costs. Cite
+\texttt{FDADiver2017} for subgroup reporting and \texttt{FDARealW2025} for
+real-world performance monitoring. Forward to Figures 14, 23, 29, and 30.}
+
+\begin{pafig}[graphviz-type: bipartite graph, full page]
+\node[gvkey] (a) at (0,0) {Figure 6 slot\\concern to clause map};
+\node[gvbox] (b) at (0,-2.0) {\ttfamily\tiny Source\\ graphviz/\\ fig-\pfb 06-\pfb concern-\pfb to-\pfb clause.dot};
+\draw[gvedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 6. Every documented concern wired to the clause, limit, or number that
+answers it, drawn as a strictly bipartite graph so that no concern is answered with\\
+another concern, and dashed where the answer is governance or disclosure alone.}
+
+\draftinstr{Replace the Figure 6 slot with the full-page graphviz-type bipartite
+map from \texttt{graphviz/\pfb fig-\pfb 06-\pfb concern-\pfb to-\pfb clause.dot}. Twenty-one concern
+ellipses on the left, nineteen clause boxes on the right, twenty-four edges
+between them and none within a partition. Fourteen edges solid Corporate Blue,
+seven solid gray, three dashed. This is the load-bearing figure of the paper.}
+
+\subsection{How completely each concern is answered}
+
+\draftinstr{Roughly 900 characters introducing Figure 7 and its two axes:
+prevalence in the surveyed sources, and completeness of the protocol answer
+scored 1.0 for a numeric limit, 0.7 for a procedural guarantee, 0.5 for a
+governance commitment, and 0.3 for disclosure only. Name the four concerns in
+quadrant 4 and do not argue them away.}
+
+\begin{pafig}[mermaid-type: quadrantChart]
+\node[mmgoal] (a) at (0,0) {Figure 7 slot\\concern quadrant};
+\node[mmin] (b) at (0,-2.0) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 07-\pfb concern-\pfb quadrant.md};
+\draw[mmedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 7. Sixteen documented concerns positioned by how often they are
+raised in the surveyed literature against how completely this protocol answers them,\\
+with the lower-right quadrant collecting the concerns answered by governance alone.}
+
+\draftinstr{Replace the Figure 7 slot with the mermaid-type quadrant from
+\texttt{mermaid/\pfb fig-\pfb 07-\pfb concern-\pfb quadrant.md}. Fill the four quadrant fields
+first, then the dividing cross, then the sixteen points as 1.6 mm Corporate Blue
+discs. Where two points fall within 8 mm, alternate the label anchor and add a
+0.4pt leader so no label overlaps another.}
+
+\subsection{The same safeguards, read as capabilities you hold}
+
+\draftinstr{Roughly 800 characters introducing Figure 8. Every safeguard in the
+parent protocol is written with the sponsor as the actor. Reassigning the
+primary actor is the intervention. Ten of the twelve capabilities are exercised
+by the participant; the two that are not require someone physically present or
+inside the build system, and neither can be exercised against the participant.}
+
+\begin{pafig}[plantuml-type: use case, @startuml]
+\node[umlkey] (a) at (0,0) {Figure 8 slot\\patient as primary actor};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 08-\pfb patient-\pfb actor-\pfb usecase.puml};
+\draw[umlarrow] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 8. The twelve safeguards of the protocol redrawn as a use case diagram
+with the participant as the primary actor, so that each one reads as a capability they\\
+hold rather than as an obligation the sponsor has undertaken on their behalf.}
+
+\draftinstr{Replace the Figure 8 slot with the PlantUML-type use case diagram
+from \texttt{plantuml/\pfb fig-\pfb 08-\pfb patient-\pfb actor-\pfb usecase.puml}. Participant actor at
+$(-6.4,-4.2)$, left of the boundary; three secondary actors right of it. Twelve
+\texttt{umlusecase} ellipses in three columns and four rows. The two long
+associations to the far column route with looseness 0.85 so they pass between
+rows rather than through an ellipse.}
+
+\subsection{Where each concern physically lives}
+
+\draftinstr{Roughly 700 characters introducing Figure 9. A concern with no
+physical address is unanswerable; a concern that resolves to a named cabinet, a
+named console, or a named cable can be inspected. Source from
+\texttt{diagrams-\pfb python/\pfb fig\_\pfb 09\_\pfb concern\_\pfb locations.py} and its
+\texttt{CONCERN\_ADDRESS} mapping.}
+
+\begin{pafig}[diagrams (python)-type: Cluster + Node]
+\node[dgtiled] (a) at (0,0) {};
+\glyphai{a}{protowhite}
+\node[dglabel,anchor=north] at ([yshift=-5.4mm]a.center) {Figure 9 slot, concern addresses};
+\node[dglabel,anchor=north] at (0,-1.6) {\ttfamily\tiny Source\\ diagrams-python/\\ fig\_\pfb 09\_\pfb concern\_\pfb locations.py};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 9. Each documented concern resolved to the physical component that
+answers it, grouped into the operating room, the on-premises cabinet, the governance\\
+bodies, and everything outside the building, with the intra-procedural route absent.}
+
+\draftinstr{Replace the Figure 9 slot with the full Diagrams (Python)-type
+clustered map from \texttt{diagrams-\pfb python/\pfb fig\_\pfb 09\_\pfb concern\_\pfb locations.py}. Four
+\texttt{dgcluster} containers, thirteen concern badges anchored north east on
+their tiles with a 1 mm outset, and the single cut edge terminated by a
+\texttt{\textbackslash pxmark} cross labelled "no route exists during a
+procedure".}

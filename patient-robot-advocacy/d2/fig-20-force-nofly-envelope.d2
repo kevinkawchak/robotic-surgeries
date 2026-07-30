@@ -1,0 +1,107 @@
+# =====================================================================
+# Figure 20. The envelope the arms cannot leave: force caps and no-fly zones
+# Type            : D2-type, container with an embedded measurement grid
+# Paper section   : § 7, What Happens in the Operating Room
+# Concern answered: ChatGPT concern 1 (safety, malfunction, unintended actions)
+#                   and Gemini family 2, specifically the fear of an
+#                   unexpected autonomous movement causing severe bleeding.
+#                   The parent protocol states the limits as numbers in prose.
+#                   Drawn as a bounded envelope with the anatomy that each
+#                   bound protects, the same numbers become a picture of what
+#                   cannot happen.
+# Why this type   : The content is a bounded region with named sub-regions and
+#                   a numeric table attached to each. D2 containment plus an
+#                   embedded grid holds both without forcing the anatomy into a
+#                   flow it does not have.
+#
+# TikZ: draw with the d2* vocabulary of patientstyle.sty.
+# TikZ: One outer d2cont container, 15cm x 9cm, titled "operative.envelope".
+# TikZ: Inside, two side-by-side d2cont2 sub-containers: "force" at
+# TikZ:   x centre -3.8 and "geometry" at x centre 4.2, each 6.6cm wide, so
+# TikZ:   1.6cm of clear space separates them.
+# TikZ: The force sub-container holds a 5-row measurement grid: each row is a
+# TikZ:   \hbarrow with the cap drawn as a 0.6pt protoblue dashed vertical and
+# TikZ:   the worst observed value as a filled pablue1 bar, so the headroom is
+# TikZ:   the visible gap.
+# TikZ: The geometry sub-container holds a schematic of the operative field:
+# TikZ:   the SMV and portal vein as two 1.4mm-wide pablue1 bands, the no-fly
+# TikZ:   corridor as a pagraym hatched region 4mm either side, and the eight
+# TikZ:   arm tips as 1.2mm protoblue discs, none inside the corridor.
+# TikZ: A d2dark strip along the container foot carries the one-line invariant.
+# TikZ: The two cross-container annotations use
+# TikZ:   to[out=0,in=180,looseness=0.9] and are the only curves present.
+# =====================================================================
+
+vars: {
+  d2-config: {
+    theme-overrides: {
+      B1: "#00417A"
+      B2: "#3C7DB2"
+      B3: "#DCE8F1"
+      B4: "#E9ECEF"
+      B5: "#CED4DA"
+      AA2: "#6C757D"
+      N1: "#000000"
+      N7: "#FFFFFF"
+    }
+    layout-engine: elk
+  }
+}
+
+envelope: "operative.envelope" {
+  style: { fill: "#F1F6FA"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+
+  force: "envelope.force_limits" {
+    style: { fill: "#E9ECEF"; stroke: "#6C757D"; stroke-width: 2; border-radius: 6 }
+    grid-rows: 6
+    grid-columns: 3
+
+    fh0: "Limit"                  { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+    fh1: "Protocol cap"           { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+    fh2: "Worst observed (sim)"   { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+
+    f1a: "Tip force, any single arm"  { style: { fill: "#FFFFFF" } }
+    f1b: "3.0 N"                      { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+    f1c: "2.1 N"                      { style: { fill: "#DCE8F1" } }
+
+    f2a: "Tip force, all arms summed" { style: { fill: "#FFFFFF" } }
+    f2b: "18.0 N"                     { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+    f2c: "12.4 N"                     { style: { fill: "#DCE8F1" } }
+
+    f3a: "Positional error"           { style: { fill: "#FFFFFF" } }
+    f3b: "2.0 mm"                     { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+    f3c: "1.3 mm"                     { style: { fill: "#DCE8F1" } }
+
+    f4a: "Force reproducibility"      { style: { fill: "#FFFFFF" } }
+    f4b: "0.5 N"                      { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+    f4c: "0.31 N"                     { style: { fill: "#DCE8F1" } }
+
+    f5a: "Heartbeat period"           { style: { fill: "#FFFFFF" } }
+    f5b: "0.1 ms"                     { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+    f5c: "0.1 ms, held"               { style: { fill: "#DCE8F1" } }
+  }
+
+  geometry: "envelope.no_fly_geometry" {
+    style: { fill: "#E9ECEF"; stroke: "#6C757D"; stroke-width: 2; border-radius: 6 }
+
+    smv: "Superior mesenteric vein\nhard exclusion corridor" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+    pv: "Portal vein\nhard exclusion corridor" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+    sma: "Superior mesenteric artery\napproach angle constrained" { style: { fill: "#CED4DA" } }
+    margin: "Corridor width\n4 mm either side of the vessel" { style: { fill: "#FFFFFF" } }
+    arms: "Eight arm tips\nnone may enter a corridor" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+    gate: "Deterministic gate\nrejects the plan before approval" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+
+    arms -> gate: "proximity test at 10 kHz"
+    gate -> smv: "reject if inside"
+    gate -> pv: "reject if inside"
+    gate -> sma: "reject if angle out of range"
+    margin -> gate: "defines the test"
+  }
+
+  invariant: "Invariant: a motion plan that would violate any row on the left, or enter any corridor on the right, is rejected by a deterministic gate before it is shown to the surgeon as executable." {
+    style: { fill: "#222222"; font-color: "#FFFFFF"; border-radius: 4 }
+  }
+}
+
+envelope.force.f1b -> envelope.geometry.gate: "enforced by" { style: { stroke: "#00417A"; stroke-dash: 3 } }
+envelope.force.f3b -> envelope.geometry.margin: "sets the margin" { style: { stroke: "#00417A"; stroke-dash: 3 } }

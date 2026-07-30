@@ -1,0 +1,334 @@
+\section{Objectives and Patient-Facing Endpoints}
+
+\subsection{What the study is trying to find out}
+
+An objective in a protocol is written as a noun phrase, and a noun phrase is
+hard to argue with because it does not commit to anything. Restated as
+questions, the objectives of this study are these.
+
+\textbf{Primary.} Is the combination of perioperative daraxonrasib and an
+on-premises LLM-directed eight-arm robotic Whipple safe enough, and practical
+enough, to be carried forward? Safety is measured three ways: the rate of
+dose-limiting toxicity across the three dose levels, the rate of device-related
+and procedure-related serious adverse events through day 30, and the rate of
+Clavien-Dindo grade III or higher complications through day 30.
+
+\textbf{Secondary.} How did the operation and the drug perform on the outcomes
+that matter to the disease? Four measures: the R0 resection rate at day-90
+pathology, the ISGPS grade B/C postoperative pancreatic fistula rate
+\cite{Bassi2017}, 90-day mortality, and progression-free and overall survival to
+24 months.
+
+\textbf{Exploratory.} What did the advisory layer actually contribute? Three
+measures: how often the surgeon accepted the model's proposed step, how often
+they declined it, and how often the deterministic gate rejected a proposal
+before the surgeon saw it. These are reported whether or not they are
+favourable, because a system whose override rate is never published cannot be
+audited for automation bias \cite{FDATrans2024}.
+
+\subsection{Every endpoint, and the sentence it will let someone say}
+
+The parent protocol stops at the endpoint definition \cite{onpremwhippl}. A
+participant who reads only that definition learns that the study measures an
+ISGPS grade B/C postoperative pancreatic fistula rate, and is no better informed
+than before. Figure 10 carries each endpoint one rank further, to the plain
+sentence that endpoint will authorise a clinician to say to the participant or
+their family once it reads out.
+
+Three of those sentences are marked apart in the figure, because they are the
+three that patients in the surveyed literature ranked highest: the margins came
+back clear, you were alive at three months, and the cancer had not returned by
+this visit \cite{WuSemiAI2026, TelesAI2026A}. The others matter, but those three
+are what people actually asked to be told.
+
+\begin{pafloat}
+\begin{pafig}[mermaid-type: flowchart TD, three ranks]
+\node[mmgoal,text width=34mm] (o1) at (-6.4,0)  {\textbf{Primary objective}\\characterise safety and feasibility of the combination};
+\node[mmgoal,text width=34mm] (o2) at (1.4,0)   {\textbf{Secondary objective}\\estimate oncologic and survival performance};
+\node[mmstep,text width=34mm] (o3) at (9.2,0)   {\textbf{Exploratory objective}\\quantify what the advisory layer contributed};
+\node[mmin,text width=25mm] (p1) at (-9.0,-3.4) {DLT rate across DL1 to DL3};
+\node[mmin,text width=25mm] (p2) at (-6.4,-3.4) {Device and procedure SAE rate to day 30};
+\node[mmin,text width=25mm] (p3) at (-3.8,-3.4) {Clavien-Dindo grade III or higher};
+\node[mmin,text width=25mm] (p4) at (-1.2,-3.4) {R0 resection rate at day-90 pathology};
+\node[mmin,text width=25mm] (p5) at (1.4,-3.4)  {ISGPS grade B/C fistula rate};
+\node[mmin,text width=25mm] (p6) at (4.0,-3.4)  {90-day mortality};
+\node[mmin,text width=25mm] (p7) at (6.6,-3.4)  {PFS and OS to 24 months};
+\node[mmgray,text width=25mm](p8) at (9.2,-3.4) {Advisory concordance and override rate};
+\node[mmsoft,text width=25mm](m1) at (-9.0,-6.8){``The dose you were given was tolerated at your level.''};
+\node[mmsoft,text width=25mm](m2) at (-6.4,-6.8){``Nothing the device did caused you serious harm.''};
+\node[mmsoft,text width=25mm](m3) at (-3.8,-6.8){``Your recovery needed no unplanned major intervention.''};
+\node[mmmid,text width=25mm] (m4) at (-1.2,-6.8){``The margins came back clear.''};
+\node[mmsoft,text width=25mm](m5) at (1.4,-6.8) {``Your pancreas join healed without a draining leak.''};
+\node[mmmid,text width=25mm] (m6) at (4.0,-6.8) {``You were alive at three months.''};
+\node[mmmid,text width=25mm] (m7) at (6.6,-6.8) {``The cancer had not returned by this visit.''};
+\node[mmsoft,text width=25mm](m8) at (9.2,-6.8) {``Your surgeon disagreed with the model here, and was free to.''};
+\draw[mmedge] (o1) to[out=-90,in=90,looseness=0.7] (p1);
+\draw[mmedge] (o1) -- (p2);
+\draw[mmedge] (o1) to[out=-90,in=90,looseness=0.7] (p3);
+\draw[mmedge] (o2) to[out=-90,in=90,looseness=0.7] (p4);
+\draw[mmedge] (o2) -- (p5);
+\draw[mmedge] (o2) to[out=-90,in=90,looseness=0.7] (p6);
+\draw[mmedge] (o2) to[out=-90,in=90,looseness=0.7] (p7);
+\draw[mmedge] (o3) -- (p8);
+\foreach \i in {1,...,8}{\draw[mmedgeb] (p\i) -- (m\i);}
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-10.6,-9.6) {Rank three exists in no clinical protocol. It is this paper's contribution: an endpoint that cannot be restated as a sentence about\\the participant has not yet been explained to them. The three lighter-blue sentences are the three the surveyed patients ranked highest.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 10. Each objective carried through its endpoints to the plain sentence that the\\
+endpoint will authorise, with the three sentences patients in the surveyed literature\\
+ranked highest, clear margins, being alive, and no return, marked apart from the rest.}
+\end{pafloat}
+
+\subsection{The endpoint table, with a column the protocol does not carry}
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{2.4cm} L{4.1cm} C{2.0cm} Y}
+\toprule
+\textbf{Class} & \textbf{Endpoint} & \textbf{Timepoint} & \textbf{What it means for you} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Class} & \textbf{Endpoint} & \textbf{Timepoint} & \textbf{What it means for you} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Primary & Dose-limiting toxicity rate, DL1 to DL3 & Day 30 & The dose you were given was tolerated at your level \\
+Primary & Device- and procedure-related serious adverse event rate & Day 30 & Nothing the device did caused you serious harm \\
+Primary & Clavien-Dindo grade III or higher rate & Day 30 & Your recovery needed no unplanned major intervention \\
+Secondary & R0 resection rate & Day 90 & The margins came back clear \\
+Secondary & ISGPS grade B/C fistula rate & Day 30 & Your pancreas join healed without a draining leak \\
+Secondary & 90-day mortality & Day 90 & You were alive at three months \\
+Secondary & Progression-free and overall survival & 24 months & The cancer had not returned by this visit \\
+Exploratory & Advisory concordance and override rate & Per procedure & Your surgeon disagreed with the model here, and was free to \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\subsection{The endpoint registry as a typed record}
+
+An endpoint is not a sentence, it is a record. It has a definition, a timepoint,
+an analysis population it is computed over, a class of evidence, and, in this
+paper, a plain meaning. Drawing the registry as a schema rather than a list
+forces every one of those fields to be filled for every endpoint, and exposes
+any endpoint where one is empty. Figure 11 does that, with foreign keys to the
+analysis populations and to the four provenance classes that \S 10 uses.
+
+The `plain meaning' row is the one field no clinical protocol carries. Treating
+it as a required field of the record, rather than as a nice addition, is the
+editorial position of this paper expressed as a schema constraint.
+
+\begin{pafloat}
+\begin{pafig}[d2-type: sql\_table]
+\node[d2sql,text width=48mm] (t1) at (0,0) {%
+  \textbf{primary\_safety}\nodepart{two}%
+  \textit{endpoint\_id} \hfill varchar PK\\
+  dlt\_rate \hfill proportion, DL1 to DL3\\
+  device\_sae\_rate \hfill proportion to day 30\\
+  clavien\_dindo\_ge3 \hfill proportion to day 30\\
+  timepoint \hfill day 30\\
+  population \hfill DLT-evaluable FK\\
+  \colorbox{pablue2}{plain\_meaning} \hfill the dose was tolerated\\
+  provenance\_class \hfill P, protocol-specified};
+\node[d2sql,text width=48mm] (t2) at (0,-6.6) {%
+  \textbf{secondary\_oncology}\nodepart{two}%
+  \textit{endpoint\_id} \hfill varchar PK\\
+  r0\_rate \hfill proportion at day 90\\
+  isgps\_bc\_fistula \hfill ISGPS 2016 grade\\
+  mortality\_90d \hfill proportion at day 90\\
+  pfs, os\_24mo \hfill time to event, months\\
+  population \hfill safety analysis set FK\\
+  \colorbox{pablue2}{plain\_meaning} \hfill margins clear, join held\\
+  provenance\_class \hfill M measured, C comparator};
+\node[d2sql,text width=48mm] (t3) at (0,-13.0) {%
+  \textbf{exploratory\_advisory}\nodepart{two}%
+  \textit{endpoint\_id} \hfill varchar PK\\
+  advisory\_concordance \hfill proportion accepted\\
+  override\_rate \hfill proportion declined\\
+  gate\_rejection\_rate \hfill blocked pre-approval\\
+  restart\_window\_hit \hfill T+7 / T+14 / T+21\\
+  population \hfill per-procedure FK\\
+  \colorbox{pablue2}{plain\_meaning} \hfill the surgeon disagreed\\
+  provenance\_class \hfill S, simulation anchor};
+\node[d2sql,text width=48mm] (t4) at (9.6,-2.6) {%
+  \textbf{analysis\_population}\nodepart{two}%
+  \textit{population\_id} \hfill varchar PK\\
+  safety\_analysis\_set \hfill any intervention received\\
+  dlt\_evaluable \hfill completed the DLT window\\
+  per\_protocol \hfill no major deviation\\
+  itt\_equivalent \hfill all enrolled\\
+  \colorbox{pablue2}{who\_you\_are\_in} \hfill the safety set, from your first study procedure onward};
+\node[d2sql,text width=48mm] (t5) at (9.6,-9.6) {%
+  \textbf{provenance\_class}\nodepart{two}%
+  \textit{class\_id} \hfill char PK\\
+  M \hfill measured in a cited human series\\
+  C \hfill contemporaneous nationwide comparator\\
+  S \hfill author simulation, not human data\\
+  P \hfill protocol-specified limit, not a result\\
+  \colorbox{pablue2}{rule} \hfill every number in \S 10 carries one of these four letters};
+\draw[d2edgeb] (t1.east) to[out=0,in=180,looseness=0.85] node[font=\tiny\sffamily,above,pos=0.45]{one to many} (t4.west);
+\draw[d2edgeb] (t2.east) to[out=0,in=180,looseness=0.85] (t4.west);
+\draw[d2edgeb] (t3.east) to[out=0,in=180,looseness=0.85] (t4.west);
+\draw[d2edge] (t1.east) to[out=-25,in=170,looseness=0.9] node[font=\tiny\sffamily,above,pos=0.6]{typed} (t5.west);
+\draw[d2edge] (t2.east) to[out=-15,in=175,looseness=0.9] (t5.west);
+\draw[d2edge] (t3.east) to[out=15,in=185,looseness=0.9] (t5.west);
+\node[d2gray,text width=88mm,anchor=north west,align=left] at (-3.2,-17.4)
+  {The \texttt{plain\_meaning} row exists in no clinical protocol. It is the contribution of this paper: an endpoint that cannot be restated as a sentence about the participant has not yet been explained to them.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 11. The endpoint registry drawn as typed records with foreign keys to the analysis\\
+populations and to the provenance classes, and with a plain-meaning row that no clinical\\
+protocol carries but that this paper treats as a required field of the record.}
+\end{pafloat}
+
+\subsection{What a positive result would and would not establish}
+
+Suppose the study completes all three dose levels with no more than one
+dose-limiting toxicity in six at any level, no device-related serious adverse
+event through day 30, an R0 rate consistent with the nationwide robotic
+comparator, and an ISGPS grade B/C fistula rate at or below the phase-4 figure
+from that comparator \cite{DutchCohort2025}. That is the best realistic outcome.
+
+It would establish that the combination can proceed to a study that could test
+survival. It would not establish that the combination improves survival, and it
+would not establish that the robotic approach is superior to an open operation
+for cancer control. Eighteen participants cannot support either claim, the FDA's
+own information page states that long-term cancer outcomes have not been
+established for every use of robotically assisted surgical devices
+\cite{FDARobot2022}, and the National Cancer Institute's guidance says the same
+thing about early-phase studies in general \cite{NCITrial2024}.
+
+The reason to say this plainly, in a paper whose purpose is to argue for the
+trial, is that the surveyed literature shows patients discount claims that
+outrun their evidence and trust the sources that mark their own limits
+\cite{Jauniaux2025}. An advocacy document that overstated the primary endpoint
+would undermine the twenty-one specific answers the rest of the paper gives.
+
+\subsection{Risk and benefit, stated as a balance rather than a list}
+
+A risk-benefit section in a protocol lists risks and then lists benefits. The
+list format hides the only question that matters to the person deciding, which
+is how the two compare for them specifically.
+
+\textbf{The risks that are new.} Three risks in this study do not exist in a
+standard Whipple. An unintended robotic motion, bounded by the force caps and
+the no-fly corridor. A model-proposed step that is wrong and is nonetheless
+approved, bounded by the surgeon's obligation to review confidence and rationale
+and by the published override rate. And a systemic agent given across the
+perioperative window, bounded by the dose-escalation rule and by the pause
+across the healing period.
+
+\textbf{The risks that are not new.} Everything else. Pancreatic fistula,
+delayed gastric emptying, bleeding, infection, and the mortality of a major
+upper abdominal operation are risks of the operation, not of the study, and they
+are the reason the comparator in \S 10.2 is a series of the same operation
+performed conventionally with a robot rather than a series of open surgery.
+
+\textbf{The benefits that are plausible.} Precision at the tip within a 2 mm
+tolerance, force bounded below the level at which pancreatic tissue tears, a
+recorded rationale for every operative decision, and a perioperative drug
+schedule optimised to a measured fistula grade rather than a fixed calendar.
+
+\textbf{The benefit that is not claimed.} Longer survival. This study is not
+powered for it, will not test it, and this paper does not assert it.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.4cm} L{2.6cm} Y}
+\toprule
+\textbf{Risk} & \textbf{New to this study} & \textbf{What bounds it} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Risk} & \textbf{New to this study} & \textbf{What bounds it} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Unintended robotic motion & Yes & 3 N per arm, 18 N summed, 4 mm no-fly corridor, 3 ms cross-arm halt \\
+An incorrect model proposal approved & Yes & Confidence and rationale shown; override rate published; declining needs no justification \\
+Perioperative systemic agent & Yes & 3+3 escalation, sentinel stagger, pause across the healing window \\
+Pancreatic fistula & No & ISGPS grading, drain surveillance, restart advisory keyed to the grade \\
+Delayed gastric emptying & No & Standard management; the commonest cause of a longer inpatient stay \\
+Bleeding and infection & No & Standard of care at a phase-3-or-better site \\
+Operative mortality & No & Site restricted past learning-curve phase 3; 90-day mortality is a reported endpoint \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\subsection{What each endpoint costs you to measure}
+
+Every endpoint has a price, paid by the participant in time, in blood, or in
+discomfort, and a protocol that lists endpoints without their price is
+describing only half of what it is asking for. The table below prices them.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.5cm} L{3.1cm} Y}
+\toprule
+\textbf{Endpoint} & \textbf{What it costs you} & \textbf{Whether the cost is avoidable} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Endpoint} & \textbf{What it costs you} & \textbf{Whether the cost is avoidable} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Dose-limiting toxicity rate & Safety laboratory draws at seven timepoints & No. It is the primary endpoint and the reason the study exists \\
+Device-related serious adverse events to day 30 & The day-30 visit, and a symptom diary & No, but the diary is short and may be completed by telephone \\
+Emergency-stop latency & Nothing. It is measured from the machine & Not applicable. No participant burden at all \\
+Force-envelope compliance & Nothing. It is measured from the machine & Not applicable. No participant burden at all \\
+Surgeon override rate & Nothing. It is read from the audit trail & Not applicable. No participant burden at all \\
+R0 margin rate & The day-90 pathology review, already part of care & No, and the result is reported back to you directly \\
+ISGPS fistula grade & Drain surveillance during the inpatient stay & No. Drain management is standard care after a Whipple \\
+Progression-free and overall survival & Imaging every 12 weeks to 24 months & Partly. Imaging may be done at your own centre and read centrally \\
+Patient-reported experience & Four questionnaires, about 20 minutes each & Yes. Declining a questionnaire has no consequence for your participation \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent Three of the nine endpoints cost the participant nothing at all,
+because they are read from the machine and from the audit trail rather than from
+the person. That is a design property worth stating: the endpoints that carry
+the most weight in answering the robot-specific concerns are precisely the ones
+that require nothing from the participant. The endpoints that do carry a cost
+are, with one exception, endpoints that a standard Whipple would generate
+anyway. The exception is the patient-reported experience set, and it is
+optional.
+
+\subsection{Which endpoints are reported back to you, and when}
+
+An endpoint that only ever appears in a sponsor's summary table is invisible to
+the person who supplied it. Four of the nine are reported back to the individual
+participant, on a stated schedule, and the rest are reported to the cohort.
+
+The day-90 pathology result, including the R0 determination, is reported to the
+participant directly and to their own oncologist, because it is the result that
+changes what happens next in their care. The ISGPS fistula grade is reported
+during the inpatient stay, as it is assigned. Any device-related adverse event
+affecting the participant is reported to them as an affirmative obligation,
+which is one of the three edges pointing back to the root in Figure 2. Any study
+pause or halt is reported to every enrolled participant, whether or not it arose
+from their own case.
+
+The remaining five are cohort-level and are reported in aggregate at study
+closure, with the individual participant's own rows available on request through
+the audit extract in \S 11.5. The distinction is not about secrecy. A single
+participant's emergency-stop latency distribution means very little on its own,
+and reporting it individually would invite exactly the over-reading this paper
+argues against elsewhere.

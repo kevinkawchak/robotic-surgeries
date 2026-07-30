@@ -1,0 +1,129 @@
+// =====================================================================
+// Figure 21. Every hazard, and the specific barrier that has to fail first
+// Type            : Graphviz-type, fault tree with AND and OR gates
+// Paper section   : § 7, What Happens in the Operating Room
+// Concern answered: ChatGPT concern 1 (safety, malfunction, unintended
+//                   actions) and Gemini family 2. A patient asking "what if it
+//                   goes wrong" is not asking for reassurance; they are asking
+//                   what stands between a failure and them. A fault tree
+//                   answers that question in its native form, and it also
+//                   shows honestly which hazards have only one barrier.
+// Why this type   : Fault trees distinguish AND gates from OR gates, and that
+//                   distinction is the entire safety argument. A top event
+//                   behind an AND gate needs every input to fail together; a
+//                   top event behind an OR gate needs only one. Nothing else in
+//                   the permitted set carries that semantics.
+// Invariant       : every path terminates in a basic event drawn as a circle;
+//                   no intermediate event is left dangling; gate type is
+//                   explicit on every gate node.
+//
+// TikZ: draw with the gv* vocabulary of patientstyle.sty.
+// TikZ: The top event is a gvdark box at the apex (0,0). Intermediate events
+// TikZ:   are gvbox rectangles; basic events are gvnode circles at 9mm
+// TikZ:   diameter, text width 20mm, on the lowest rank.
+// TikZ: Gate glyphs are drawn explicitly: an AND gate is a 6 mm flat-bottomed
+// TikZ:   rounded shape, an OR gate a 6 mm curved-bottom shape, both
+// TikZ:   0.6pt protoblack on white, placed on the edge between an event and
+// TikZ:   its inputs, labelled AND or OR in \tiny beneath.
+// TikZ: Five ranks at y = 0, -2.8, -5.6, -8.4, -11.2; sibling separation
+// TikZ:   3.4 cm, giving at least 10 mm of clear space between boxes.
+// TikZ: Barrier annotations are gvbox nodes filled pablue2, attached to their
+// TikZ:   gate by a 0.5pt dashed leader, placed in the right margin so they
+// TikZ:   never sit between two events.
+// TikZ: The two cross-branch edges use to[out=0,in=180,looseness=0.9].
+// =====================================================================
+
+digraph fault_tree {
+  rankdir = TB;
+  bgcolor = "#FFFFFF";
+  fontname = "Times";
+  fontsize = 12;
+  nodesep = 0.45;
+  ranksep = 0.95;
+  splines = true;
+
+  node [fontname="Times", fontsize=9, shape=box, style=filled,
+        fillcolor="#FFFFFF", color="#000000", penwidth=0.6];
+  edge [color="#000000", penwidth=0.55, arrowsize=0.6, dir=back];
+
+  // ---- top event ----
+  top [label="TOP EVENT\nharm reaches the patient",
+       fillcolor="#222222", fontcolor="#FFFFFF", penwidth=1.2];
+
+  // ---- gates ----
+  g_top [label="AND", shape=house, orientation=180, fillcolor="#CED4DA",
+         width=0.55, height=0.35, fontsize=8];
+  g_mech [label="OR", shape=invhouse, fillcolor="#E9ECEF",
+          width=0.55, height=0.35, fontsize=8];
+  g_gate [label="AND", shape=house, orientation=180, fillcolor="#CED4DA",
+          width=0.55, height=0.35, fontsize=8];
+  g_human [label="AND", shape=house, orientation=180, fillcolor="#CED4DA",
+           width=0.55, height=0.35, fontsize=8];
+  g_data [label="OR", shape=invhouse, fillcolor="#E9ECEF",
+          width=0.55, height=0.35, fontsize=8];
+
+  // ---- intermediate events ----
+  e_mech  [label="A mechanical or control\nfault occurs", fillcolor="#DCE8F1"];
+  e_gate  [label="The deterministic safety\ngate fails to reject it", fillcolor="#DCE8F1"];
+  e_human [label="No human intervenes\nin time", fillcolor="#DCE8F1"];
+  e_data  [label="The fault is not visible\nin the telemetry", fillcolor="#E9ECEF"];
+
+  // ---- basic events ----
+  b_arm    [label="arm servo\nover-travel", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_inst   [label="instrument\nfracture", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_vision [label="vision loss\nor occlusion", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_plan   [label="model proposes\nan unsafe plan", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_force  [label="force sensor\nout of calibration", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_geom   [label="registration\ndrift > 2 mm", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_surg   [label="surgeon does not\nsee the alert", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_ism    [label="safety monitor\nabsent", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+  b_estop  [label="stop path\nunavailable", shape=circle, width=0.85, fillcolor="#9AA1A8"];
+  b_beat   [label="heartbeat loss\nundetected", shape=circle, width=0.85, fillcolor="#FFFFFF"];
+
+  // ---- barriers, annotated on the gate they defend ----
+  bar1 [label="BARRIER: tip force <= 3 N per arm,\n<= 18 N summed; hardware limited",
+        fillcolor="#DCE8F1", penwidth=0.5];
+  bar2 [label="BARRIER: no-fly corridor 4 mm around\nthe SMV and portal vein; gate rejects",
+        fillcolor="#DCE8F1", penwidth=0.5];
+  bar3 [label="BARRIER: surgeon approval required for\nevery motion; second station and ISM",
+        fillcolor="#DCE8F1", penwidth=0.5];
+  bar4 [label="BARRIER: 10 kHz heartbeat; loss halts\nall arms in <= 3 ms without a human",
+        fillcolor="#DCE8F1", penwidth=0.5];
+  bar5 [label="SINGLE BARRIER ONLY: registration drift\nis caught by the gate alone; stated as a gap",
+        fillcolor="#9AA1A8", penwidth=0.7];
+
+  // ---- structure: top event needs ALL FOUR intermediates ----
+  top    -> g_top;
+  g_top  -> e_mech;
+  g_top  -> e_gate;
+  g_top  -> e_human;
+  g_top  -> e_data;
+
+  e_mech  -> g_mech;
+  g_mech  -> b_arm;
+  g_mech  -> b_inst;
+  g_mech  -> b_vision;
+
+  e_gate  -> g_gate;
+  g_gate  -> b_plan;
+  g_gate  -> b_force;
+  g_gate  -> b_geom;
+
+  e_human -> g_human;
+  g_human -> b_surg;
+  g_human -> b_ism;
+  g_human -> b_estop;
+
+  e_data  -> g_data;
+  g_data  -> b_beat;
+
+  // ---- barrier attachments ----
+  bar1 -> g_mech  [style=dashed, color="#00417A", penwidth=0.5, dir=none];
+  bar2 -> g_gate  [style=dashed, color="#00417A", penwidth=0.5, dir=none];
+  bar3 -> g_human [style=dashed, color="#00417A", penwidth=0.5, dir=none];
+  bar4 -> g_data  [style=dashed, color="#00417A", penwidth=0.5, dir=none];
+  bar5 -> b_geom  [style=dashed, color="#000000", penwidth=0.6, dir=none];
+
+  { rank = same; e_mech; e_gate; e_human; e_data; }
+  { rank = same; b_arm; b_inst; b_vision; b_plan; b_force; b_geom; b_surg; b_ism; b_estop; b_beat; }
+}

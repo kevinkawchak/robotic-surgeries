@@ -1,0 +1,98 @@
+@startuml fig-12-participant-state-machine
+' =====================================================================
+' Figure 12. Your status in the study, and every way it can legally change
+' Type            : PlantUML-type, state machine with guarded transitions
+' Paper section   : § 5, Study Design Explained
+' Concern answered: ChatGPT concern 7 (unknown and experimental risks) and
+'                   concern 8 (randomization and treatment choice). A patient
+'                   who is told the study is "open-label, single-arm, 3+3" has
+'                   been given three technical terms and no information. A
+'                   guarded state machine says the same thing operationally:
+'                   there is one arm, so no allocation can go against you; the
+'                   dose level you receive is determined by what happened to
+'                   the people before you; and every transition has a named
+'                   guard that must evaluate true.
+' Why this type   : Guards are the point. A Mermaid state diagram shows the
+'                   states; PlantUML notation shows the guard condition on each
+'                   transition, which is where the protection actually lives.
+'
+' TikZ: draw with the uml* vocabulary of patientstyle.sty.
+' TikZ: umlinit filled disc at (0,1.6); umlfinal ringed disc at (0,-15.4).
+' TikZ: umlstate rounded boxes, text width 34mm, single column at x = 0,
+' TikZ:   y = 0, -2.4, -4.8, -7.2, -9.6, -12.0, -14.0; 2.4 cm pitch leaves
+' TikZ:   at least 9 mm of clear space between ranks.
+' TikZ: The two off-path states, Cohort hold and Not enrolled, sit at
+' TikZ:   x = 6.8 and x = -6.8 respectively, vertically aligned with the state
+' TikZ:   they branch from, so no transition crosses the main column.
+' TikZ: Guards are set in a white-filled mmlabel node at the transition
+' TikZ:   midpoint, in \tiny\sffamily, bracketed, never on the line.
+' TikZ: Return transitions from Cohort hold use
+' TikZ:   to[out=180,in=0,looseness=0.9]; the self-transition on Dose assigned
+' TikZ:   uses to[out=35,in=-35,looseness=5] on a 5 mm right-hand loop.
+' TikZ: umlstateon (Corporate Blue fill) marks the two states in which the
+' TikZ:   participant is receiving the investigational intervention.
+' =====================================================================
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam ArrowColor #6C757D
+skinparam ArrowFontColor #111111
+skinparam ArrowFontSize 10
+skinparam StateBorderColor #00417A
+skinparam StateBackgroundColor #FFFFFF
+skinparam StateFontColor #111111
+skinparam NoteBackgroundColor #E9ECEF
+skinparam NoteBorderColor #6C757D
+
+[*] --> Screened
+
+state Screened #FFFFFF : Screening, day -28 to -1\nKRAS G12 confirmed, staging done
+state "Not enrolled" as NotEnr #E9ECEF : Screen failure or declined\nMinimal data set only, § 5.4\nStandard care unchanged
+state Enrolled #DCE8F1 : Consent on file\nSoftware version frozen and recorded
+state "Cohort hold" as Hold #CED4DA : Sentinel window open\nNo further participant dosed\nuntil the window closes
+state DoseAssigned #DCE8F1 : Dose level assigned\nDL1, DL2, or DL3 by 3+3 rule\nNever above a level not yet cleared
+state Operative #00417A : Day 0, robotic Whipple\nContinuous human oversight
+state Recovering #00417A : Days 1 to 30\nDaraxonrasib restart advisory
+state Confirmed #DCE8F1 : Day 90\nR0 pathology, 90-day mortality
+state LongTerm #FFFFFF : Every 12 weeks to 24 months\nPFS and OS
+
+Screened --> NotEnr : [ineligible OR declined]
+Screened --> Enrolled : [all § 5.1 met]\n[no § 5.2 exclusion]\n[consent signed]
+Enrolled --> Hold : [prior participant\nstill inside the\nsentinel window]
+Hold --> DoseAssigned : [sentinel window closed]\n[no DLT declared]
+Enrolled --> DoseAssigned : [no sentinel window open]
+DoseAssigned --> DoseAssigned : [DLT observed in cohort]\n/ expand 3 to 6, do not escalate
+DoseAssigned --> Operative : [Phase 0 gate signed]\n[USL >= 7.0 verified]\n[pre-procedure matrix clear]
+Operative --> Recovering : [procedure complete\nOR converted to open]
+Recovering --> Confirmed : [day-30 window closed]
+Confirmed --> LongTerm : [day-90 assessments done]
+LongTerm --> [*] : [24-month endpoint\nOR withdrawal\nOR death]
+
+NotEnr --> [*]
+
+note right of Hold
+  This state exists so that you are never
+  the second person at a new dose level
+  before the first person's safety window
+  has closed. It costs the study time.
+  It is not there for the study's benefit.
+end note
+
+note left of DoseAssigned
+  Single arm, open label. There is no
+  allocation that could assign you to a
+  comparator, and nothing about your
+  treatment is concealed from you.
+end note
+
+note bottom of Operative
+  Conversion to open surgery is a normal
+  outcome of this state, not a failure of it.
+  It is recorded, reported, and does not end
+  your participation.
+end note
+
+@enduml

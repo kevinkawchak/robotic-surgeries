@@ -1,0 +1,611 @@
+\section{What Happens in the Operating Room}
+
+\subsection{The room, the cabinet, and the cable that is not connected}
+
+Three things cross the network boundary of the operating suite before a
+procedure: a cryptographically signed model build, the protocol version, and the
+pinned registry entry that binds the two. Two things cross afterwards: the
+required reports to the FDA and to the reviewing Institutional Review Board.
+During the procedure itself nothing crosses, because during the procedure no
+route exists.
+
+That is the whole answer to the cybersecurity concern, and it is architectural
+rather than reassuring. If there is no path out of the building while the
+operation is running, the attack surface during the operation is the building.
+The relevant FDA guidance frames the expectation for premarket cybersecurity
+documentation \cite{FDACyber2026}; the design that satisfies it here is
+on-premises inference with the external interface closed for the duration
+\cite{onpremwhippl}.
+
+Figure 17 draws the stack. The topology is adapted from the author's autonomous
+single-patient journey simulation \cite{paipatientjr}, which was non-small cell
+lung cancer, and it is re-scoped here to PDAC. Four differences matter: eight
+arms rather than four, three anastomoses rather than one bronchial closure, a
+vascular exclusion envelope around the superior mesenteric and portal veins that
+the thoracic configuration has no equivalent of, and a drain that stays in for
+days rather than hours.
+
+\begin{pafloat}
+\begin{pafig}[diagrams (python)-type: deployment, full page]
+\dgnodew{dgtiled}{-6.4}{0}{\glyphrobot}{8 robotic arms, $\leq 3$ N each, $\leq 18$ N summed}{r1}
+\dgnode{dgtile}{-3.6}{0}{\glyphsignal}{Sensor stack, 640 channels, 10 kHz}{r2}
+\dgnodew{dgtiled}{-0.8}{0}{\glyphstop}{Emergency stop, $\leq 3$ ms, $\leq 500$ ms}{r3}
+\dgnode{dgtile}{-6.4}{-3.0}{\glyphmon}{Surgeon console, sole approval authority}{r4}
+\dgnode{dgtile}{-3.6}{-3.0}{\glyphmon}{Second operator station, independent stop}{r5}
+\dgnode{dgtile}{-0.8}{-3.0}{\glyphuser}{Independent safety monitor, every case}{r6}
+\dgnode{dgtile}{4.6}{0}{\glyphai}{On-premises LLM, advisory only, no actuator path}{c1}
+\dgnodew{dgtiled}{7.4}{0}{\glyphshield}{Deterministic gate, $\leq 2$ mm, $\leq 0.5$ N}{c2}
+\dgnode{dgtile}{10.2}{0}{\glyphdb}{Version registry, frozen at your consent}{c3}
+\dgnode{dgtile}{4.6}{-3.0}{\glyphlock}{Hash-chained audit trail, 21 CFR part 11}{c4}
+\dgnode{dgtile}{7.4}{-3.0}{\glyphdb}{Data vault, access list published}{c5}
+\dgnode{dgtile}{10.2}{-3.0}{\glyphdoc}{Your day-30 and day-90 results}{c6}
+\dgnodeg{dgtilek}{1.0}{-6.6}{\glyphnet}{Network boundary, closed for the whole procedure}{b1}
+\dgnodeg{dgtileg}{4.4}{-6.6}{\glyphcloud}{Hospital network}{b2}
+\dgnodeg{dgtileg}{7.8}{-6.6}{\glyphlink}{Vendor support and remote assistance}{b3}
+\begin{scope}[on background layer]
+\node[dgcluster,fit=(r1)(r1l)(r2)(r2l)(r3)(r3l)] (K1) {};
+\node[dgcluster2,fit=(r4)(r4l)(r5)(r5l)(r6)(r6l)] (K2) {};
+\node[dgcluster,fit=(c1)(c1l)(c2)(c2l)(c3)(c3l)] (K3) {};
+\node[dgcluster2,fit=(c4)(c4l)(c5)(c5l)(c6)(c6l)] (K4) {};
+\node[dgcluster2,fit=(b1)(b1l)(b2)(b2l)(b3)(b3l)] (K5) {};
+\end{scope}
+\node[dgctitle,anchor=south west]  at (K1.north west) {sterile field, the table you are on};
+\node[dgctitle2,anchor=south west] at (K2.north west) {operating room, non-sterile side};
+\node[dgctitle,anchor=south west]  at (K3.north west) {on-premises cabinet, same building};
+\node[dgctitle2,anchor=south west] at (K4.north west) {evidence, written once and never edited};
+\node[dgctitle2,anchor=south west] at (K5.north west) {outside the building};
+\draw[dgedge]  (r2) -- node[font=\tiny\sffamily,above]{field state} (r1);
+\draw[dgedgek] (r3) to[out=180,in=-20,looseness=0.85] node[font=\tiny\sffamily,below,pos=0.4]{halt, unconditional} (r1);
+\draw[dgedgeb] (r4) -- node[font=\tiny\sffamily,left,pos=0.5]{signed motion} (r1);
+\draw[dgedgek] (r5) to[out=60,in=-120,looseness=0.85] node[font=\tiny\sffamily,left,pos=0.5]{may stop} (r3);
+\draw[dgedgek] (r6) -- node[font=\tiny\sffamily,right,pos=0.5]{may stop} (r3);
+\draw[dgedge]  (r2) to[out=20,in=160,looseness=0.85] (c1);
+\draw[dgedged] (c1) -- node[font=\tiny\sffamily,above]{candidate plan} (c2);
+\draw[dgedgeb] (c2) to[out=-160,in=20,looseness=0.85] node[font=\tiny\sffamily,above,pos=0.45]{only passed plans} (r4);
+\draw[dgedge]  (c3) to[out=-160,in=20,looseness=0.85] node[font=\tiny\sffamily,above,pos=0.4]{pinned build} (c1);
+\draw[dgedge]  (c2) -- (c4);
+\draw[dgedge]  (c4) -- (c5);
+\draw[dgedgeb] (c5) -- (c6);
+\draw[dgedged] (b1) -- node[font=\tiny\sffamily,above]{no route} (b2);
+\draw[dgedged] (b2) -- (b3);
+\draw[dgedged] (b1) to[out=90,in=-135,looseness=0.85] node[font=\tiny\sffamily,left,pos=0.55]{before: signed model build} (c1.south west);
+\draw[dgedged] (b1) to[out=45,in=-100,looseness=0.85] node[font=\tiny\sffamily,right,pos=0.6]{before: protocol version} (c2.south);
+\draw[dgedged] (c4) to[out=-135,in=60,looseness=0.85] node[font=\tiny\sffamily,left,pos=0.4]{after: reports to FDA and IRB} (b1.north east);
+\draw[dgedgek] (c1) to[out=-110,in=110,looseness=0.9] (b1.north);
+\pxmark{2.5}{-4.5}
+\node[font=\tiny\sffamily\bfseries,fill=protowhite,inner sep=1.6pt,anchor=west] at (2.75,-4.5) {DURING the procedure: no route exists};
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-8.2,-8.6) {Three things cross the boundary before a procedure and two cross afterwards. Nothing crosses during it. The struck line is the\\claim: on-premises inference with the external interface closed means the attack surface during the operation is the building.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 17. The operating room and the on-premises stack drawn as a deployment architecture,\\
+with the sterile field, the non-sterile side, the cabinet, the evidence store, and the\\
+network boundary that carries no intra-procedural route out of the building at all.}
+\end{pafloat}
+
+\subsection{The eight arms, and what limits them}
+
+The limits below are enforced beneath the level of the software that makes the
+decision. A model that proposed an out-of-envelope motion would have that
+proposal rejected by a deterministic gate; a controller that commanded an
+out-of-envelope force would have the arm halted by the force sensing itself. The
+distinction matters, because a limit implemented in the same layer as the
+decision is not a limit, it is a preference.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.4cm} C{2.3cm} C{2.4cm} Y}
+\toprule
+\textbf{Limit} & \textbf{Protocol cap} & \textbf{Worst observed in simulation} & \textbf{What it protects} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Limit} & \textbf{Protocol cap} & \textbf{Worst observed in simulation} & \textbf{What it protects} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Tip force, any single arm & 3.0 N & 2.1 N & Tissue crush injury at a single instrument \\
+Tip force, all arms summed & 18.0 N & 12.4 N & Cumulative traction on the mesentery and the vessels \\
+Positional tolerance & 2.0 mm & 1.3 mm & Margin accuracy and corridor integrity \\
+Force reproducibility & 0.5 N & 0.31 N & Consistency of the anastomotic suture line \\
+Heartbeat period & 0.1 ms & 0.1 ms, held & Detection of any loss of control before motion continues \\
+Cross-arm emergency stop & 3.0 ms & 1.7 ms & Time from the surgeon pressing stop to all arms held \\
+System-wide emergency stop & 500 ms & 310 ms & Time to a fully quiescent, safe-pose system \\
+No-fly corridor & 4 mm either side & no entries & Superior mesenteric vein and portal vein \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent The observed column is class S: it comes from the author's simulation
+set \cite{pdac060s2030} and not from human procedures. A simulated worst case is
+not a human worst case, and \S 10 repeats that on the same line as the numbers.
+The standard the architecture is built against is the international standard for
+robotically assisted surgical equipment \cite{iec8060127}.
+
+\subsection{Who is controlling the operation}
+
+This is the most frequently raised of the twenty-one concerns and the one a
+paragraph answers worst. The chain has four links and one absence.
+
+The sensor stack streams the current field state: force vectors, vessel
+proximity, instrument pose, across 640 channels at 10 kHz. The on-premises model
+reads that stream and emits a candidate motion plan with a confidence value and
+a stated rationale. The deterministic gate tests the candidate against every
+limit in the table above; if any limit would be violated, the plan is rejected,
+the rejection is logged with the violated limit named, and the plan is never
+presented to the surgeon as executable. If every limit is satisfied, the plan is
+presented for approval, with its confidence and rationale attached. The
+operating surgeon accepts, modifies, or declines it. Declining requires no
+justification. Only an approved, surgeon-signed command reaches the arms.
+
+The absence is that there is no message from the model to the arms. Not a
+throttled one, not a supervised one, not a fallback one. Figure 19 draws five
+lifelines and the arrow that would be needed is not there. That is what a
+systematic review of FDA-cleared surgical robots describes as task-level
+autonomy under supervision, the highest level any cleared system reaches
+\cite{LeeAuto2024X}, and it is what the FDA's own description of
+computer-assisted surgical systems assumes \cite{FDARobot2022}.
+
+Deference is handled separately, because the architecture does not address it.
+If a surgeon always accepts, the human in the loop is a formality. The protocol
+therefore records every override with its reason and publishes the override rate
+as an exploratory endpoint, so automation bias is a measured quantity rather
+than an assumed absence \cite{FDATrans2024}.
+
+\subsection{How fast stopping actually is}
+
+Three budgets are specified, and Figure 18 puts all three on one logarithmic
+millisecond axis because they span four orders of magnitude and a linear axis
+would render the first two invisible.
+
+The heartbeat bus broadcasts at 10 kHz, a 0.1 ms period. Loss of the heartbeat
+halts every arm without any human involvement. When a human does press stop, the
+cross-arm budget is 3 ms from assertion to all arms held, and the system-wide
+budget is 500 ms to a fully quiescent state. The gap between the two is
+deliberate margin, not unaccounted latency.
+
+For scale: a human blink takes roughly 100 to 150 ms. Every arm is held before a
+blink completes, and the system-wide guarantee is under four blinks. Three
+parties may press stop: the operating surgeon at the console, the second
+operator at an independent station, and the independent safety monitor who is
+present for every procedure. The fail-safe design standard for autonomous and
+semi-autonomous systems frames what such a guarantee has to demonstrate
+\cite{ieee7009}.
+
+\begin{pafloat}
+\begin{pafig}[plantuml-type: timing diagram, @startuml]
+\foreach \r/\lab in {0/{Surgeon intent},1/{Heartbeat bus, 10 kHz},2/{Arm 1 to 8 motion},3/{Force at the tip},4/{Protocol budget line}}{
+  \node[font=\tiny\sffamily,anchor=east,text width=30mm,align=right] at (-0.3,{-\r*1.55}) {\lab};
+  \draw[protogray,line width=0.3pt] (0,{-\r*1.55}) -- (14.0,{-\r*1.55});}
+\foreach \x/\lab in {0/{0.1},3.5/{1},7.0/{10},10.5/{100},14.0/{1000}}{
+  \draw[protogray,line width=0.4pt] (\x,-6.5) -- (\x,-6.3);
+  \node[font=\tiny\sffamily,anchor=north] at (\x,-6.5) {\lab};}
+\draw[protogray,line width=0.4pt] (0,-6.3) -- (14.0,-6.3);
+\node[font=\tiny\sffamily,anchor=north] at (7.0,-7.0) {elapsed time, milliseconds, logarithmic};
+\fill[pagraym,draw=protoblack,line width=0.3pt] (0,-0.2) rectangle (3.5,0.2);
+\node[font=\tiny\sffamily] at (1.75,0) {Operating};
+\fill[protoblue,draw=protoblack,line width=0.3pt] (3.5,-0.2) rectangle (12.6,0.2);
+\node[font=\tiny\sffamily,text=protowhite] at (8.0,0) {Stop pressed};
+\fill[pagraym,draw=protoblack,line width=0.3pt] (12.6,-0.2) rectangle (14.0,0.2);
+\node[font=\tiny\sffamily] at (13.3,0) {Operating};
+\fill[pagraym,draw=protoblack,line width=0.3pt] (0,-1.75) rectangle (3.9,-1.35);
+\node[font=\tiny\sffamily] at (1.95,-1.55) {Nominal};
+\fill[protoblue,draw=protoblack,line width=0.3pt] (3.9,-1.75) rectangle (6.8,-1.35);
+\node[font=\tiny\sffamily,text=protowhite] at (5.35,-1.55) {Halt broadcast};
+\fill[pablue2,draw=protoblack,line width=0.3pt] (6.8,-1.75) rectangle (14.0,-1.35);
+\node[font=\tiny\sffamily] at (10.4,-1.55) {Quiescent};
+\fill[pagraym,draw=protoblack,line width=0.3pt] (0,-3.30) rectangle (5.9,-2.90);
+\node[font=\tiny\sffamily] at (2.95,-3.10) {Commanded};
+\fill[protoblue,draw=protoblack,line width=0.3pt] (5.9,-3.30) rectangle (6.8,-2.90);
+\node[font=\tiny\sffamily,text=protowhite,anchor=west] at (6.95,-3.55) {Decelerating};
+\fill[pablue2,draw=protoblack,line width=0.3pt] (6.8,-3.30) rectangle (14.0,-2.90);
+\node[font=\tiny\sffamily] at (10.4,-3.10) {Held};
+\fill[pagraym,draw=protoblack,line width=0.3pt] (0,-4.85) rectangle (6.6,-4.45);
+\node[font=\tiny\sffamily] at (3.3,-4.65) {Within cap};
+\fill[protoblue,draw=protoblack,line width=0.3pt] (6.6,-4.85) rectangle (7.6,-4.45);
+\fill[pablue2,draw=protoblack,line width=0.3pt] (7.6,-4.85) rectangle (14.0,-4.45);
+\node[font=\tiny\sffamily] at (10.8,-4.65) {Zero};
+\foreach \x/\lab in {3.5/{t = 0, stop asserted},3.9/{one bus tick, 0.1 ms},6.8/{cross-arm budget: 3 ms},12.6/{system-wide budget: 500 ms}}{
+  \draw[protoblue,line width=0.8pt,dashed] (\x,0.6) -- (\x,-5.2);}
+\node[mmlabel,anchor=south,font=\tiny\sffamily\bfseries] at (3.5,0.65)  {t = 0};
+\node[mmlabel,anchor=south,font=\tiny\sffamily\bfseries] at (4.9,1.25)  {one bus tick, 0.1 ms};
+\node[mmlabel,anchor=south,font=\tiny\sffamily\bfseries] at (6.8,0.65)  {cross-arm budget, 3 ms};
+\node[mmlabel,anchor=south,font=\tiny\sffamily\bfseries] at (12.6,0.65) {system-wide budget, 500 ms};
+\fill[pablue2,opacity=0.45] (3.5,-6.1) rectangle (6.8,-5.6);
+\node[font=\tiny\sffamily,anchor=west] at (3.6,-5.85) {cross-arm halt};
+\fill[pagrayl,opacity=0.75] (6.8,-6.1) rectangle (12.6,-5.6);
+\node[font=\tiny\sffamily,anchor=west] at (6.9,-5.85) {remaining system-wide margin};
+\node[umlnote,text width=64mm,anchor=north west] at (-3.6,-7.6)
+  {Three budget lines, all protocol-specified, none aspirational: heartbeat period 0.1 ms, cross-arm emergency stop at most 3 ms, system-wide at most 500 ms. The gap between the cross-arm halt and the system-wide budget is deliberate margin.};
+\node[umlnote,text width=64mm,anchor=north west] at (5.2,-7.6)
+  {For scale, a human blink is roughly 100 to 150 ms. Every arm is held before a blink completes, and the system-wide guarantee is under four blinks. Three parties may press stop, and any one of them is sufficient.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 18. The emergency-stop chain on a logarithmic millisecond axis, from the instant the\\
+surgeon presses stop through the bus broadcast and arm deceleration to zero tip force, with\\
+all three protocol budget lines marked across every one of the timelines.}
+\end{pafloat}
+
+\begin{pafloat}
+\begin{pafig}[mermaid-type: sequenceDiagram]
+\node[mmactor,text width=24mm] (S) at (0,0)    {Sensor stack\\640 ch, 10 kHz};
+\node[mmactor,text width=24mm] (L) at (4.1,0)  {On-premises LLM\\advisory only};
+\node[mmactor,text width=24mm] (G) at (8.2,0)  {Safety gate\\deterministic};
+\node[mmactor,text width=24mm] (H) at (12.3,0) {Operating surgeon\\sole authority};
+\node[mmactor,text width=24mm] (R) at (16.4,0) {Robot arms\\8, force-capped};
+\foreach \n in {S,L,G,H,R}{\draw[mmlife] (\n.south) -- ++(0,-15.4);}
+\fill[pablue1,draw=protoblack,line width=0.4pt] (3.97,-1.0) rectangle (4.23,-3.4);
+\fill[pablue1,draw=protoblack,line width=0.4pt] (8.07,-3.4) rectangle (8.33,-9.0);
+\fill[pablue1,draw=protoblack,line width=0.4pt] (12.17,-9.0) rectangle (12.43,-11.4);
+\fill[pablue1,draw=protoblack,line width=0.4pt] (16.27,-11.4) rectangle (16.53,-13.4);
+\draw[mmmsg] (S|-0,-1.0) -- node[above]{1: current field state, force vector, vessel proximity} (L|-0,-1.0);
+\draw[mmmsg] (4.23,-1.8) to[out=25,in=-25,looseness=6] node[right,pos=0.5,xshift=2pt]{2: propose next step, no actuation path exists} (4.23,-2.6);
+\draw[mmret] (L|-0,-3.4) -- node[above]{3: candidate plan, confidence, rationale} (G|-0,-3.4);
+\draw[mmmsg] (8.33,-4.2) to[out=25,in=-25,looseness=6] node[right,pos=0.5,xshift=2pt]{4: check tip force $\leq 3$ N per arm, $\leq 18$ N summed} (8.33,-5.0);
+\draw[mmmsg] (8.33,-5.4) to[out=25,in=-25,looseness=6] node[right,pos=0.5,xshift=2pt]{5: check no-fly envelope, SMV and portal vein} (8.33,-6.2);
+\draw[protogray,line width=0.5pt] (2.4,-6.5) rectangle (18.2,-9.4);
+\node[font=\tiny\sffamily\bfseries,text=protogray,anchor=north west] at (2.5,-6.5) {alt};
+\draw[protogray,line width=0.4pt,dashed] (2.4,-8.0) -- (18.2,-8.0);
+\node[font=\tiny\sffamily\itshape,anchor=north west] at (3.3,-6.52) {[any limit violated]};
+\node[font=\tiny\sffamily\itshape,anchor=north west] at (3.3,-8.02) {[all limits satisfied]};
+\draw[mmret] (G|-0,-7.5) -- node[above]{6: rejected, reason logged, never shown as executable} (L|-0,-7.5);
+\draw[mmmsg] (G|-0,-9.0) -- node[above]{7: presented for approval, with confidence and rationale} (H|-0,-9.0);
+\draw[mmmsg] (12.43,-9.9) to[out=25,in=-25,looseness=6] node[right,pos=0.5,xshift=2pt]{8: accept, modify, or decline; declining needs no justification} (12.43,-10.7);
+\draw[mmmsg] (H|-0,-11.4) -- node[above]{9: approved motion command, signed by the surgeon} (R|-0,-11.4);
+\draw[mmmsg] (16.53,-12.0) to[out=25,in=-25,looseness=6] node[right,pos=0.5,xshift=2pt]{10: execute inside the envelope, heartbeat maintained} (16.53,-12.8);
+\draw[mmret] (R|-0,-13.4) -- node[above]{11: resulting state} (S|-0,-13.4);
+\node[umlnote,text width=70mm,anchor=north west] at (0,-16.0)
+  {The surgeon may press stop at any instant. A cross-arm halt completes in at most 3 ms and a system-wide halt in at most 500 ms, which is Figure 18.};
+\node[umlnote,text width=70mm,anchor=north west] at (9.4,-16.0)
+  {There is no arrow from the model to the arms. Not a throttled one, not a supervised one, not a fallback one. That absence is the safety argument.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 19. One operative step message by message across five lifelines, with the deterministic\\
+gate sitting between advice and approval, and no arrow at all from the model to the arms,\\
+which is the safety argument this figure makes by an absence rather than words.}
+\end{pafloat}
+
+\subsection{The vascular no-fly corridor and the force envelope}
+
+A force cap does not prevent an arm entering a vascular corridor, and a corridor
+does not cap the force applied inside permitted tissue. Neither limit is
+sufficient alone, and the pairing is the safety property. Figure 20 draws them
+as sibling containers inside one envelope for that reason, with the
+deterministic gate as the single element that reads both.
+
+The corridor is 4 mm either side of the superior mesenteric and portal veins,
+and the approach angle to the superior mesenteric artery is constrained
+separately. Proximity is tested at the heartbeat rate, so a drifting instrument
+is caught within one tick rather than at the end of a motion.
+
+\begin{pafloat}
+\begin{pafig}[d2-type: container with an embedded measurement grid]
+\node[d2title,anchor=south west] at (-7.6,3.15) {operative.envelope};
+\node[d2title2,anchor=south west] at (-7.2,2.55) {envelope.force\_limits};
+\node[d2title2,anchor=south west] at (0.9,2.55) {envelope.no\_fly\_geometry};
+\begin{scope}[shift={(-7.0,0)}]
+  \foreach \i/\lab/\cap/\obs/\capl/\obsl in {%
+    0/{Tip force, one arm}/{3.00}/{2.10}/{3.0 N}/{2.1 N},
+    1/{Tip force, summed}/{3.00}/{2.07}/{18.0 N}/{12.4 N},
+    2/{Positional error}/{3.00}/{1.95}/{2.0 mm}/{1.3 mm},
+    3/{Force reproducibility}/{3.00}/{1.86}/{0.5 N}/{0.31 N},
+    4/{Heartbeat period}/{3.00}/{3.00}/{0.1 ms}/{0.1 ms}}{
+    \node[font=\tiny\sffamily,anchor=east] at (-0.15,{1.7-\i*0.82}) {\lab};
+    \fill[pablue1] (0,{1.55-\i*0.82}) rectangle (\obs,{1.85-\i*0.82});
+    \draw[protoblack,line width=0.3pt] (0,{1.55-\i*0.82}) rectangle (\obs,{1.85-\i*0.82});
+    \draw[protoblue,line width=0.9pt,dashed] (\cap,{1.48-\i*0.82}) -- (\cap,{1.92-\i*0.82});
+    \node[font=\tiny\sffamily,anchor=west] at (3.15,{1.7-\i*0.82}) {cap \capl, worst \obsl};}
+  \node[font=\tiny\sffamily\itshape,text=protogray,anchor=north west] at (-2.9,-2.6)
+    {Bar: worst value observed across the Phase 0 simulation set.\\Dashed rule: the protocol cap. The gap is the headroom.};
+\end{scope}
+\begin{scope}[shift={(4.6,0)}]
+  \fill[pagraym,opacity=0.55] (-0.45,-2.1) rectangle (0.45,2.1);
+  \fill[pagraym,opacity=0.55] (1.55,-2.1) rectangle (2.45,2.1);
+  \fill[pablue1] (-0.07,-2.1) rectangle (0.07,2.1);
+  \fill[pablue1] (1.93,-2.1) rectangle (2.07,2.1);
+  \node[font=\tiny\sffamily,anchor=south,text=protoblue] at (0,2.15) {SMV};
+  \node[font=\tiny\sffamily,anchor=south,text=protoblue] at (2.0,2.15) {portal vein};
+  \node[font=\tiny\sffamily,anchor=north,text=protogray,align=center] at (1.0,-2.2) {hatched band: 4 mm no-fly\\corridor either side};
+  \foreach \x/\y in {-1.2/1.5,-1.0/0.4,-1.3/-0.8,-0.9/-1.7,3.2/1.4,3.0/0.3,3.4/-0.9,3.1/-1.8}{
+    \fill[protoblue] (\x,\y) circle (0.075);}
+  \node[font=\tiny\sffamily,anchor=east,align=right] at (-1.5,0.0) {eight arm tips,\\none inside a corridor};
+  \node[font=\tiny\sffamily,anchor=west,align=left] at (3.6,0.0) {approach angle to the SMA\\constrained separately};
+\end{scope}
+\node[d2dark,text width=140mm,minimum height=9mm] at (0.3,-4.2)
+  {Invariant: a motion plan that would violate any row on the left, or enter any corridor on the right, is rejected by a deterministic gate before it is shown to the surgeon as executable.};
+\begin{scope}[on background layer]
+\node[d2cont2,fit={(-7.4,2.4) (-2.6,-3.4)}] {};
+\node[d2cont2,fit={(2.0,2.4) (9.4,-3.4)}] {};
+\node[d2cont,fit={(-7.8,2.9) (9.8,-4.9)}] {};
+\end{scope}
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 20. The operative envelope drawn as two sibling containers, the force limits with\\
+their observed headroom on the left and the vascular no-fly geometry on the right, joined\\
+by the deterministic gate that rejects any plan violating either of them.}
+\end{pafloat}
+
+\subsection{What could fail, and what catches it}
+
+Figure 21 is a fault tree, and the gate at its apex is an AND gate. Harm reaches
+the participant only if all four intermediate events occur together: a
+mechanical or control fault, a failure of the deterministic gate to reject it,
+no human intervening in time, and the fault not being visible in the telemetry.
+Each of those four is itself decomposed, and each has a named barrier.
+
+Four barriers are intact. The force caps are hardware-limited. The no-fly
+corridor is enforced by the gate. Surgeon approval is required for every motion,
+with a second station and an independent safety monitor able to stop. The 10 kHz
+heartbeat halts all arms within 3 ms without a human if it is lost.
+
+One is not, and the figure says so in medium-dark gray: registration drift
+beyond 2 mm is caught by the deterministic gate and by nothing else. It is a
+single point of failure in the barrier set. Naming it is what a fault tree is
+for, and suppressing it would have made the other four less credible.
+
+\begin{pafloat}
+\begin{pafig}[graphviz-type: digraph, fault tree with AND and OR gates]
+\node[gvboxd,text width=40mm,minimum height=9mm] (top) at (0,0) {\textbf{TOP EVENT}\\harm reaches the participant};
+\umlgateand{0}{-1.5}
+\node[gvboxs,text width=26mm] (e1) at (-6.6,-3.4) {A mechanical or control fault occurs};
+\node[gvboxs,text width=26mm] (e2) at (-2.2,-3.4) {The deterministic gate fails to reject it};
+\node[gvboxs,text width=26mm] (e3) at (2.2,-3.4)  {No human intervenes in time};
+\node[gvboxg,text width=26mm] (e4) at (6.6,-3.4)  {The fault is not visible in the telemetry};
+\umlgateor{-6.6}{-4.8}
+\umlgateand{-2.2}{-4.8}
+\umlgateand{2.2}{-4.8}
+\umlgateor{6.6}{-4.8}
+\node[gvcircle] (b1) at (-8.4,-7.0) {arm servo over-travel};
+\node[gvcircle] (b2) at (-6.6,-7.0) {instrument fracture};
+\node[gvcircle] (b3) at (-4.8,-7.0) {vision loss or occlusion};
+\node[gvcircle] (b4) at (-3.1,-7.0) {model proposes an unsafe plan};
+\node[gvcircle] (b5) at (-1.3,-7.0) {force sensor out of calibration};
+\node[gvcircle,fill=pagrayd] (b6) at (0.5,-7.0) {registration drift $> 2$ mm};
+\node[gvcircle] (b7) at (2.4,-7.0) {surgeon does not see the alert};
+\node[gvcircle] (b8) at (4.2,-7.0) {safety monitor absent};
+\node[gvcircle,fill=pagraym] (b9) at (6.0,-7.0) {stop path unavailable};
+\node[gvcircle] (b10) at (7.8,-7.0) {heartbeat loss undetected};
+\draw[gvedge] (top) -- (0,-1.25);
+\foreach \n in {e1,e2,e3,e4}{\draw[gvedge] (0,-1.78) -- (\n.north);}
+\foreach \p/\c in {-6.6/b1,-6.6/b2,-6.6/b3,-2.2/b4,-2.2/b5,-2.2/b6,2.2/b7,2.2/b8,2.2/b9,6.6/b10}{
+  \draw[gvedge] (\p,-5.08) -- (\c.north);}
+\foreach \p in {-6.6,-2.2,2.2,6.6}{\draw[gvedge] (\p,-3.72) -- (\p,-4.54);}
+\node[gvboxs,text width=44mm,anchor=north west] (r1) at (-10.4,-8.6) {\textbf{BARRIER} tip force $\leq 3$ N per arm and $\leq 18$ N summed, hardware limited};
+\node[gvboxs,text width=44mm,anchor=north west] (r2) at (-4.6,-8.6) {\textbf{BARRIER} no-fly corridor 4 mm around the SMV and portal vein, gate rejects};
+\node[gvboxs,text width=44mm,anchor=north west] (r3) at (1.2,-8.6)  {\textbf{BARRIER} surgeon approval required for every motion, plus a second station and the ISM};
+\node[gvboxs,text width=44mm,anchor=north west] (r4) at (7.0,-8.6)  {\textbf{BARRIER} 10 kHz heartbeat; loss halts all arms in $\leq 3$ ms without a human};
+\node[gvbox,fill=pagrayd,text width=52mm,anchor=north west] (r5) at (-2.4,-10.9) {\textbf{SINGLE BARRIER ONLY} registration drift is caught by the deterministic gate alone; stated here as a gap rather than omitted};
+\draw[gvedged] (r1.north) -- (-6.6,-5.3);
+\draw[gvedged] (r2.north) -- (-2.2,-5.3);
+\draw[gvedged] (r3.north) -- (2.2,-5.3);
+\draw[gvedged] (r4.north) -- (6.6,-5.3);
+\draw[gvedge] (r5.north west) to[out=120,in=-90,looseness=0.9] (b6.south);
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-10.4,-12.2) {The apex is an AND gate: all four intermediate events must occur together for harm to reach the participant. Four barriers are\\intact and one is not, and the one that is not is drawn in medium-dark gray rather than left out of the figure.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 21. The hazard fault tree with the top event behind an AND gate, so that harm requires\\
+all four intermediate events together, and with the single-barrier gap at registration\\
+drift marked in medium-dark gray rather than being quietly left out of it.}
+\end{pafloat}
+
+\subsection{Conversion to open surgery}
+
+Conversion from the robotic approach to an open operation is a recorded outcome
+of the procedure, not a failure of the study, of the device, or of the
+participant. It does not end participation, it does not remove the participant
+from any analysis population, and the decision belongs to the operating surgeon
+alone and is not subject to review during the procedure by anyone else.
+
+An open tray and backup instruments are in the room for every procedure, and the
+conversion sequence is rehearsed as part of the pre-procedure checklist. In the
+contemporaneous nationwide series of 1000 robotic pancreatoduodenectomies,
+conversion was most frequent in the earliest learning-curve phase and fell with
+institutional experience \cite{DutchCohort2025}; this study enrols only at sites
+already past the third phase of that curve, which is stated in \S 10.2 with the
+numbers attached.
+
+If a conversion occurs, the participant is told before they leave hospital, the
+reason is recorded in the audit chain, and the event is reported to the DSMB at
+the next cohort boundary. None of those three is discretionary.
+
+\subsection{The drug, paused and restarted around the operation}
+
+Daraxonrasib is given before the operation, paused across it, and restarted
+afterwards on an advised schedule. Each of those three phases exists for a
+reason a participant can check.
+
+\textbf{Before.} The preoperative course runs through the screening and baseline
+window at the assigned dose level. Its purpose in this study is not to shrink
+the tumour to resectability; that is not what a Phase 1 safety study can claim.
+Its purpose is to establish tolerance at the assigned level in the individual
+participant before the operation adds its own physiological load.
+
+\textbf{The pause.} The drug is held before surgery for a protocol-specified
+interval. The reason is anastomotic healing: three new connections are made
+during a Whipple, a pancreaticojejunostomy, a hepaticojejunostomy, and a
+gastrojejunostomy or duodenojejunostomy, and the first of those three is the one
+whose failure defines the dominant early complication of the operation
+\cite{Bassi2017}. Holding a systemic agent across the healing window is the
+conservative choice, and this protocol takes it.
+
+\textbf{The restart.} The drug is restarted at T+7, T+14, or T+21 days. Which of
+the three is advised depends on two measured quantities: the ISGPS fistula grade
+at the time of assessment, and the drug trough. The advisory is produced by the
+same on-premises model that advises intra-operatively, it is reviewed by the Site
+Principal Investigator, and it is presented to the participant as an advisory
+rather than an instruction. The participant may decline it, and declining does
+not end participation or change any other part of the schedule.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{2.2cm} L{4.2cm} L{3.0cm} Y}
+\toprule
+\textbf{Restart window} & \textbf{Advised when} & \textbf{Who decides} & \textbf{What you are told} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Restart window} & \textbf{Advised when} & \textbf{Who decides} & \textbf{What you are told} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+T+7 days & No fistula, or ISGPS biochemical leak only, and trough in range & Advisory from the model, review by the Site PI, decision by you & The grade, the trough, and why the earliest window was advised \\
+T+14 days & ISGPS grade B fistula resolving, or trough below range at T+7 & Same & What changed since T+7, and what would move it to T+21 \\
+T+21 days & ISGPS grade B fistula not yet resolving, or any grade C & Same & Why the drug is being held longer and what the plan is if it does not resolve \\
+Not restarted & Grade C fistula unresolved at T+21, or a dose-limiting toxicity & Site PI, with DSMB notification & That surgical follow-up and every safety assessment continue unchanged \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\subsection{The three connections, and why the first one matters most}
+
+A pancreaticoduodenectomy removes the head of the pancreas, the duodenum, the
+gallbladder, the distal bile duct, and, in the classical form, the gastric
+antrum. Reconstruction then rebuilds three connections in sequence.
+
+The pancreaticojejunostomy joins the remnant pancreas to the small bowel. It is
+the connection whose leak produces a postoperative pancreatic fistula, and the
+ISGPS grading of that leak, biochemical, grade B, or grade C, is the secondary
+endpoint that carries the most weight in the early window \cite{Bassi2017}. It is
+also the connection the force caps most directly protect: soft, friable
+pancreatic tissue is the tissue least tolerant of traction, and the 3 N per-arm
+cap exists for it.
+
+The hepaticojejunostomy joins the bile duct to the bowel. Its leak rate is far
+lower and its consequences are usually manageable with drainage.
+
+The gastrojejunostomy or duodenojejunostomy restores gastric outflow. Delayed
+gastric emptying after it is common, uncomfortable, and rarely dangerous, and
+participants should expect to be told about it because it is the complication
+most likely to lengthen their inpatient stay without being serious.
+
+The order matters to the participant for one practical reason: the drain that
+stays in for days after the operation is there to detect a leak from the first
+of the three connections, and the drain fluid check described in \S 9.1 is what
+converts that drain into the ISGPS grade.
+
+\subsection{The day of the operation, hour by hour}
+
+The protocol describes the operation as a procedure. The participant
+experiences it as a day, and the two descriptions do not overlap much. What
+follows is the day, with the study-specific steps marked, so that a participant
+can tell which parts are the operation they would have had anyway and which
+parts exist because this is a study.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{2.5cm} C{1.5cm} Y}
+\toprule
+\textbf{Roughly when} & \textbf{Study-specific} & \textbf{What is happening, and where you are} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Roughly when} & \textbf{Study-specific} & \textbf{What is happening, and where you are} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Day -1, afternoon & Partly & Baseline visit. Bloods, performance status, and the Phase 0 gate sign-off is shown to you. Daraxonrasib is held from this point \\
+Day 0, before dawn & No & Admission, marking, and the anaesthetic conversation. Nothing about the platform changes this \\
+About 60 min before & Yes & Room readiness check: heartbeat bus verified at 10 kHz, emergency-stop latency measured and logged for your case, no-fly geometry loaded from your own imaging \\
+Induction & No & General anaesthesia, lines, and positioning. You are asleep before the arms are brought to the table \\
+First 30 to 60 min & No & Access, staging laparoscopy, and the decision that the tumour is still resectable. If it is not, the operation stops here and no platform step occurs \\
+The resection & Yes & Docking of the eight arms, then the resection itself, step by step. Every motion is proposed, gated, and signed before it executes \\
+The reconstruction & Partly & The three reconnections. The pancreatic anastomosis is the one \S 7.9 discusses; the surgeon may complete any of the three by hand \\
+Closure & No & Drains placed, closure, and the count. Standard care \\
+Recovery, hours 0 to 4 & No & Post-anaesthesia care unit. Your family is told when you arrive there \\
+Ward, day 0 evening & Yes & The audit trail for your case is sealed and hashed. Your emergency-stop and force-envelope numbers exist from this point and may be requested \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent Two things in that table are worth pulling out. The room readiness
+check is the only study-specific step before induction, and it happens whether
+or not it finds a problem; if it finds one, the operation proceeds without the
+platform. And the audit trail is sealed the same evening, which is why the
+extract in \S 11.5 can be requested from the following day rather than at study
+closure.
+
+\subsection{Who is in the room, and what each of them does}
+
+A participant asked to consent to an eight-arm platform reasonably wants to know
+whether the room is more crowded than it would otherwise be, and whether the
+additional people are clinical or technical.
+
+The clinical team is unchanged from a conventional robotic Whipple: the
+operating surgeon at the console, an assistant surgeon at the table, the
+anaesthetist, the scrub practitioner, and the circulating practitioner. Those
+five make every clinical decision, and the operating surgeon is the one named in
+the participant's consent form.
+
+Two roles are added by the study. An independent safety monitor watches the gate
+decisions and the force telemetry and holds an unconditional authority to halt,
+which they may exercise without agreeing it with the surgeon first. A platform
+engineer maintains the stack and has no clinical role, no console access, and no
+authority over any motion. The distinction is deliberate and is visible in the
+audit trail: no motion in the record can carry an engineer's identity, and a
+record that did would be a protocol violation rather than an unusual event.
+
+The safety monitor is the role most often misread, so it is worth being exact.
+They are not a second surgeon and they do not offer an opinion on the operative
+plan. Their entire function is to stop the platform when a limit is approached
+or a gate behaves unexpectedly, and their stop does not require the surgeon's
+agreement. A participant who wants to know whether anyone in the room can
+override enthusiasm has a specific answer: yes, and that person's only job is
+to be willing to.
+
+\subsection{What is different from a conventional robotic Whipple}
+
+Most of what happens is not new. The comparison below separates what the
+platform changes from what it does not, because a participant weighing the study
+is weighing the difference and not the whole operation.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.3cm} Y}
+\toprule
+\textbf{Aspect} & \textbf{Conventional robotic Whipple, and what this study changes} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Aspect} & \textbf{Conventional robotic Whipple, and what this study changes} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+The operation performed & Identical. Same resection, same specimen, same three reconnections \\
+Who moves the instruments & Identical. The surgeon moves them from a console; no motion is autonomous in either case \\
+Number of arms & Eight rather than four. The additional arms hold retraction and camera positions a human assistant would otherwise hold \\
+Force at the tip & New. A hardware cap at 3 N per arm and 18 N summed, which a conventional platform does not enforce \\
+Vascular protection & New. A 4 mm no-fly corridor computed from your own imaging, enforced by the gate rather than by vigilance alone \\
+Step planning & New. The model proposes the next step with a rationale; the surgeon accepts, edits, or declines it \\
+Stopping & Stronger. A measured 3 ms cross-arm and 500 ms system-wide budget, verified for your case before induction \\
+Record & New. Every advisory, gate decision, and approval is hash-chained and available to you \\
+Operative time & Longer during a learning phase, and \S 10.2 gives the learning-curve figures that make the difference material \\
+Anaesthesia and recovery & Identical. Nothing in the platform changes the anaesthetic or the ward pathway \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent Read down the table, the platform adds four constraints, one record,
+and one advisory layer, and changes nothing about what is cut or how it is
+sewn. That is a narrower claim than the phrase Physical AI usually suggests, and
+it is the accurate one.

@@ -1,0 +1,262 @@
+\section{Accountability, Oversight, and Who Answers}
+
+\subsection{The question, stated as patients state it}
+
+The accountability concern in the surveyed literature is not that nobody is
+responsible. It is that everybody is, which amounts to the same thing
+\cite{Jauniaux2025, WuSemiAI2026}. When a human surgeon errs, the chain of
+liability is familiar to the person harmed and to their family. When a
+semi-autonomous movement or a model-generated suggestion contributes to harm,
+participants report being told that the surgeon, the hospital, the software
+developer, the device manufacturer, and the sponsor are all involved, which
+answers nothing and leaves them with no one to call.
+
+This protocol answers with a rule rather than a list: exactly one accountable
+party per failure class, named in advance, published before consent. The rule is
+checkable, because a matrix with two accountable parties in a single row would
+fail it and the matrix is published. The oversight package this is drawn from is
+the author's site documentation set \cite{paisitedocpk}.
+
+\subsection{One accountable party per failure class}
+
+Figure 29 renders the matrix. Nine failure classes, nine single accountable
+assignments, and a final column giving the person the participant should
+actually call. That last column is the only black fill in the figure, because it
+is the only part of the matrix that is an instruction rather than a description.
+
+Two accountable parties in one cell would be the same as none. The invariant is
+stated in the source and verified: nine rows, nine A assignments, no row with
+two and no row with zero.
+
+\begin{pafloat}
+\begin{pafig}[d2-type: grid matrix, responsibility assignment]
+\node[d2cellh,minimum height=9mm,text width=44mm,align=left] (h0) at (0,0) {If this goes wrong};
+\foreach \i/\lab in {1/{Operating\\surgeon},2/{Sponsor-\\Investigator},3/{Site PI},4/{DSMB},5/{IRB and\\FDA}}{
+  \node[d2cellh,minimum height=9mm,text width=17mm] at ({3.16+(\i-1)*1.83},0) {\lab};}
+\node[d2cell,fill=padark,text=protowhite,font=\tiny\sffamily\bfseries,minimum height=9mm,text width=44mm]
+  (h6) at (13.64,0) {You call};
+% racell{column index}{row index}{letter}{style} - one matrix cell. The style
+% token is supplied explicitly rather than derived, so the fill is unambiguous.
+\newcommand{\racell}[4]{%
+  \node[#4,minimum height=7mm,text width=17mm] at ({3.16+(#1-1)*1.83},{-0.86-(#2-1)*0.715}) {#3};}
+\foreach \r/\lab/\who in {%
+  1/{A motion during your operation}/{the surgeon, by name, recorded in your consent},
+  2/{A device malfunction or a halt}/{the Sponsor-Investigator},
+  3/{A drug dose or a restart decision}/{the Site PI first, then the Sponsor},
+  4/{A serious adverse event}/{the Site PI, on the 24-hour line},
+  5/{A decision to pause the study}/{you do not need to call; you are told},
+  6/{Your data being mishandled}/{the Site PI, then the IRB directly},
+  7/{A software version change}/{you are re-consented before anything proceeds},
+  8/{A bill you did not expect}/{the study coordinator, then the Sponsor},
+  9/{A complaint about how you were treated}/{the IRB directly, without going through the site}}{
+  \node[d2celll,minimum height=7mm,text width=44mm] at (0,{-0.86-(\r-1)*0.715}) {\lab};
+  \node[d2cell,fill=padark,text=protowhite,minimum height=7mm,text width=44mm,align=left]
+    at (13.64,{-0.86-(\r-1)*0.715}) {\who};}
+\tikzset{
+  raA/.style={d2cell,fill=protoblue,text=protowhite,font=\tiny\sffamily\bfseries},
+  raR/.style={d2cell,fill=pablue1,text=protowhite},
+  raC/.style={d2cell,fill=pablue2},
+  raI/.style={d2cell,fill=pagrayl}}
+\racell{1}{1}{A}{raA}\racell{2}{1}{C}{raC}\racell{3}{1}{R}{raR}\racell{4}{1}{I}{raI}\racell{5}{1}{I}{raI}
+\racell{1}{2}{R}{raR}\racell{2}{2}{A}{raA}\racell{3}{2}{R}{raR}\racell{4}{2}{C}{raC}\racell{5}{2}{I}{raI}
+\racell{1}{3}{C}{raC}\racell{2}{3}{A}{raA}\racell{3}{3}{R}{raR}\racell{4}{3}{C}{raC}\racell{5}{3}{I}{raI}
+\racell{1}{4}{R}{raR}\racell{2}{4}{A}{raA}\racell{3}{4}{R}{raR}\racell{4}{4}{C}{raC}\racell{5}{4}{I}{raI}
+\racell{1}{5}{I}{raI}\racell{2}{5}{R}{raR}\racell{3}{5}{I}{raI}\racell{4}{5}{A}{raA}\racell{5}{5}{C}{raC}
+\racell{1}{6}{I}{raI}\racell{2}{6}{R}{raR}\racell{3}{6}{A}{raA}\racell{4}{6}{I}{raI}\racell{5}{6}{C}{raC}
+\racell{1}{7}{I}{raI}\racell{2}{7}{A}{raA}\racell{3}{7}{R}{raR}\racell{4}{7}{C}{raC}\racell{5}{7}{C}{raC}
+\racell{1}{8}{I}{raI}\racell{2}{8}{A}{raA}\racell{3}{8}{R}{raR}\racell{4}{8}{I}{raI}\racell{5}{8}{I}{raI}
+\racell{1}{9}{I}{raI}\racell{2}{9}{C}{raC}\racell{3}{9}{R}{raR}\racell{4}{9}{I}{raI}\racell{5}{9}{A}{raA}
+\begin{scope}[on background layer]
+\node[d2cont,fit={(-2.45,0.62) (16.05,-7.05)}] (M) {};
+\end{scope}
+\node[d2title,anchor=south west] at (M.north west) {accountability.matrix};
+\legkey{-2.3}{-7.7}{protoblue}{A, accountable, exactly one per row}
+\legkey{2.4}{-7.7}{pablue1}{R, responsible}
+\legkey{5.6}{-7.7}{pablue2}{C, consulted}
+\legkey{8.6}{-7.7}{pagrayl}{I, informed}
+\legkey{11.4}{-7.7}{padark}{the call you make}
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-2.3,-8.3) {Nine failure classes, nine single accountable assignments. Two accountable parties in one cell would be the same as none, which is\\the failure the concern describes. The far-right column is the only black fill in the figure, because it is the only instruction in it.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 29. The responsibility matrix with exactly one accountable party in every row\\
+and a final column, the only black fill in the figure, naming the person the participant\\
+should actually call when that particular thing goes wrong for them.}
+\end{pafloat}
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.6cm} L{3.7cm} Y}
+\toprule
+\textbf{If this goes wrong} & \textbf{Accountable party} & \textbf{Who you call} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{If this goes wrong} & \textbf{Accountable party} & \textbf{Who you call} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+A motion during your operation & Operating surgeon & The surgeon, by name, recorded in your consent \\
+A device malfunction or a halt & Sponsor-Investigator & The Sponsor-Investigator \\
+A drug dose or a restart decision & Sponsor-Investigator & The Site PI first, then the Sponsor \\
+A serious adverse event & Sponsor-Investigator & The Site PI, on the 24-hour line \\
+A decision to pause the study & DSMB & You do not need to call; you are told \\
+Your data being mishandled & Site PI & The Site PI, then the IRB directly \\
+A software version change & Sponsor-Investigator & You are re-consented before anything proceeds \\
+A bill you did not expect & Sponsor-Investigator & The study coordinator, then the Sponsor \\
+A complaint about how you were treated & IRB & The IRB directly, without going through the site \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\subsection{The oversight bodies, and what each may actually do}
+
+Authority and advice are different things, and a governance section that lists
+bodies without distinguishing them is not informative. The strongest action each
+body may take is stated below.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.1cm} L{4.2cm} Y}
+\toprule
+\textbf{Body} & \textbf{Independent of the sponsor} & \textbf{Strongest action it may take} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Body} & \textbf{Independent of the sponsor} & \textbf{Strongest action it may take} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Data and Safety Monitoring Board & Yes & Halt the study at a cohort boundary, or immediately \\
+Physical AI Safety Review Committee & Yes & Require re-gating and a Unified Safety Level reassessment \\
+Institutional Review Board & Yes & Suspend or withdraw approval; receives your complaints directly \\
+Contract research organisation monitor & Contracted by the sponsor & Raise a finding to closure; cannot stop a procedure \\
+Independent safety monitor, in the room & Yes, per procedure & Stop the procedure; cannot change the protocol \\
+Operating surgeon & No & Stop, convert, or decline any model-proposed motion \\
+Sponsor-Investigator & No & Pause enrollment; cannot overrule a DSMB halt \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent The two rows a participant should note are the last two. The
+Sponsor-Investigator, who is accountable for six of the nine failure classes,
+cannot overrule a halt by the Data and Safety Monitoring Board. And the
+independent safety monitor, who can stop any procedure, cannot change the
+protocol. Neither of those constraints would be visible in a list of bodies.
+
+\subsection{Team experience, disclosed rather than implied}
+
+The concern reported in the literature is not general surgical experience; it is
+experience with this exact platform, this software version, this autonomy level,
+and this operation \cite{WuSemiAI2026, Jauniaux2025}. General experience is what
+gets offered, and it is not the same thing.
+
+Four figures are published to the participant before consent. The operating
+surgeon's total robotic pancreatoduodenectomy case count. The site's position on
+the learning curve defined by the nationwide comparator \cite{DutchCohort2025}.
+The number of procedures the operating surgeon has performed on this specific
+platform at this specific autonomy level. And whether a trainee will participate
+in any part of the procedure, and if so which part.
+
+Case count is the right question because the comparator series shows outcome
+varying with it, which \S 10.2 quantifies. A participant who is told only that
+their surgeon is experienced has been given an adjective; a participant who is
+told a number can compare it to the phase boundaries in that table.
+
+\subsection{The audit trail, and your right to read it}
+
+Every model advisory, every gate decision, every surgeon approval, and every
+safety-limit event is written to a hash-chained record bound to a deterministic
+seed and a specific repository commit, under 21 CFR part 11
+\cite{ecfr2026part11, cfr312paiuni}. The chain is append-only: an entry cannot
+be altered after it is written without breaking the hash of every entry after
+it, which is the property that makes requesting an extract worth doing.
+
+A participant may request their own extract at any time. The extract contains
+every advisory issued during their procedure with its confidence value, every
+gate decision including every rejection and the limit that caused it, every
+surgeon approval with its timestamp and signature, and every safety-limit event
+with the measured value. It does not contain any other participant's data, the
+model weights, or the source code, and it is provided in a form a
+non-specialist can read alongside a plain-language key.
+
+The chain either verifies or it does not, and the verification tool is provided
+with the extract. That is a stronger commitment than a promise of accuracy,
+because it can be checked by someone who does not trust the person making it.
+
+\subsection{What happens if a rule in this section is broken}
+
+Three breaches are the most likely, and each has a route that ends at a body
+independent of the sponsor and is available to the participant without going
+through the site.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.5cm} L{4.0cm} Y}
+\toprule
+\textbf{Breach} & \textbf{First route} & \textbf{Independent route, always available to you} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Breach} & \textbf{First route} & \textbf{Independent route, always available to you} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+An adverse event affecting you is not reported to you & Site PI, on the 24-hour line & The IRB directly; the IRB may suspend approval \\
+Your data is accessed by someone not on the read list & Site PI, who must log the request & The IRB directly, and the access is visible in the hash chain \\
+A procedure proceeds under a software version you did not consent to & Sponsor-Investigator & The IRB and the Physical AI Safety Review Committee; the version registry is the evidence \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent In each case the evidence needed to establish the breach is already in
+the participant's own extract. That is the practical reason the audit trail is
+worth having: it converts a dispute about what happened into a question about
+what the record says.
+
+\subsection{What accountability does not mean here}
+
+The word accountability is used in this section in a narrow sense, and the
+narrowness is deliberate, because the broad sense promises something no protocol
+can deliver.
+
+It does not mean that someone will be punished. A named accountable party is a
+person who must answer for a failure class, explain what happened, and carry the
+decision about what changes. Whether anyone is disciplined is a matter for the
+institution's own processes and for the law, and this protocol has no authority
+over either. A participant told that a protocol makes someone accountable, who
+then discovers that accountable meant only that a name appears in a matrix, has
+been oversold.
+
+It does not mean compensation. \S 12.3 states what the sponsor pays and what
+remains unsettled, and no clause in the responsibility matrix creates a right to
+payment. Injury compensation in a trial is governed by the site's own agreement
+and by the consent form, and a participant should read that paragraph of the
+consent form specifically rather than infer it from this section.
+
+It does not mean that the accountable party was at fault. The matrix assigns
+answerability in advance, before anyone knows what will happen, precisely so
+that the assignment is not made afterwards by whoever is least able to object.
+The party accountable for a device failure class answers for it whether the
+failure was foreseeable or not.
+
+What it does mean is that for every failure class there is exactly one party who
+must answer, that the party is named before the study opens rather than found
+afterwards, that no party reviews its own work, and that the participant has a
+route to that party which does not run through the person who recruited them.
+Those four properties are checkable, and Figure 29 is the check.

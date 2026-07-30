@@ -1,0 +1,95 @@
+\section{Objectives and Patient-Facing Endpoints}
+
+\subsection{What the study is trying to find out}
+
+\draftinstr{Roughly 1,100 characters. Adapt the objectives from
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 03-\pfb objectives.tex}, and restate each as a question rather
+than a noun phrase. The primary objective asks whether the combination is safe
+and feasible; the secondary objectives ask how the operation and the drug
+performed; the exploratory objective asks what the advisory layer contributed.
+Cite \texttt{onpremwhippl}.}
+
+\subsection{Every endpoint, and the sentence it will let someone say}
+
+\draftinstr{Roughly 900 characters introducing Figure 10 and the third rank it
+adds. The parent protocol stops at the endpoint. A participant who reads only
+the endpoint learns that the study measures an ISGPS grade B/C postoperative
+pancreatic fistula rate and is no better informed. Rank three restates the
+endpoint as the sentence it authorises. Cite \texttt{Bassi2017} for the fistula
+grading and \texttt{Conroy2018} for the adjuvant survival context.}
+
+\begin{pafig}[mermaid-type: flowchart TD, three ranks]
+\node[mmgoal] (a) at (0,0) {Figure 10 slot\\objective to plain meaning};
+\node[mmin] (b) at (0,-2.0) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 10-\pfb endpoint-\pfb meaning.md};
+\draw[mmedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 10. Each objective carried through its endpoints to the plain sentence
+the endpoint will authorise, with the three sentences that patients in the surveyed\\
+literature ranked highest, clear margins, being alive, and no return, marked apart.}
+
+\draftinstr{Replace the Figure 10 slot with the mermaid-type three-rank
+flowchart from \texttt{mermaid/\pfb fig-\pfb 10-\pfb endpoint-\pfb meaning.md}. Ranks at
+$y = 0, -3.0, -6.4$; rank 2 text width 26 mm and rank 3 text width 30 mm; fan
+the objective-to-endpoint edges with looseness 0.7 rather than drawing straight
+diagonals through sibling boxes.}
+
+\subsection{The endpoint table, with a column the protocol does not carry}
+
+\draftinstr{Populate every row from
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip}, \texttt{sections/\pfb sec-\pfb 03-\pfb objectives.tex}.
+The final column is the contribution of this paper and must be written for the
+participant, not for the statistician. Verify the widths sum to the body
+measure.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{2.4cm} L{4.1cm} C{2.0cm} Y}
+\toprule
+\textbf{Class} & \textbf{Endpoint} & \textbf{Timepoint} & \textbf{What it means for you} \\
+\midrule
+Primary & Dose-limiting toxicity rate, DL1 to DL3 & Day 30 & The dose you were given was tolerated at your level \\
+Primary & Device- and procedure-related serious adverse event rate & Day 30 & Nothing the device did caused you serious harm \\
+Primary & Clavien-Dindo grade III or higher rate & Day 30 & Your recovery needed no unplanned major intervention \\
+Secondary & R0 resection rate & Day 90 & The margins came back clear \\
+Secondary & ISGPS grade B/C fistula rate & Day 30 & Your pancreas join healed without a draining leak \\
+Secondary & 90-day mortality & Day 90 & You were alive at three months \\
+Secondary & Progression-free and overall survival & 24 months & The cancer had not returned by this visit \\
+Exploratory & Advisory concordance and override rate & Per procedure & Your surgeon disagreed with the model here, and was free to \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{The endpoint registry as a typed record}
+
+\draftinstr{Roughly 700 characters introducing Figure 11. An endpoint is a typed
+record with a definition, a timepoint, an analysis population, a provenance
+class, and, in this paper, a plain meaning. Drawing it as a schema forces every
+field to be filled and exposes any endpoint where one is empty.}
+
+\begin{pafig}[d2-type: sql\_table]
+\node[d2key] (a) at (0,0) {Figure 11 slot\\endpoint registry};
+\node[d2box] (b) at (0,-1.8) {\ttfamily\tiny Source\\ d2/\\ fig-\pfb 11-\pfb endpoint-\pfb registry.d2};
+\draw[d2edge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 11. The endpoint registry drawn as typed records with foreign keys to
+the analysis populations and to the provenance classes, and with a plain-meaning row\\
+that no clinical protocol carries but that this paper treats as a required field.}
+
+\draftinstr{Replace the Figure 11 slot with the D2-type SQL-table figure from
+\texttt{d2/\pfb fig-\pfb 11-\pfb endpoint-\pfb registry.d2}. Five \texttt{d2sql} nodes at the
+coordinates given in that file; each row a 4.4 mm ruled band; the plain-meaning
+row filled \texttt{pablue2} to mark it as the added field; relations drawn with
+crow-foot ends, the two cross-rank relations at looseness 0.85.}
+
+\subsection{What a positive result would and would not establish}
+
+\draftinstr{Roughly 900 characters, and write it as a proponent who intends to
+be believed. A clean safety readout at day 30 and an R0 rate consistent with the
+nationwide comparator would establish that the combination can proceed to a
+study that could test survival. It would not establish that the combination
+improves survival, and this paper does not claim otherwise. Cite
+\texttt{DutchCohort2025}, \texttt{FDARobot2022}, and \texttt{NCITrial2024}.}

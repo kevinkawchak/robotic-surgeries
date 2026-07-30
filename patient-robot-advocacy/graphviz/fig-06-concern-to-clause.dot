@@ -1,0 +1,151 @@
+// =====================================================================
+// Figure 6. Every documented concern, wired to the clause that answers it
+// Type            : Graphviz-type, bipartite map (full page)
+// Paper section   : § 3, The Documented Patient Concerns
+// Concern answered: all twenty-one at once. This is the load-bearing figure of
+//                   the paper. Figure 5 says the concern set is finite;
+//                   Figure 7 says how completely each is answered; this figure
+//                   names the specific clause, limit, gate, or number on the
+//                   other end of each wire. A concern with no wire would be an
+//                   unanswered concern, and the figure would show it as such.
+// Why this type   : A bipartite graph is the exact formal object here: two
+//                   disjoint vertex sets, edges only between them, never
+//                   within. Graphviz is the notation whose semantics enforce
+//                   that, and the enforcement is the argument.
+// Invariant       : bipartite. No edge joins two concerns, and no edge joins
+//                   two clauses. Verified by two-colouring; a failure would
+//                   mean a concern had been answered with another concern.
+//
+// TikZ: draw with the gv* vocabulary of patientstyle.sty. Full-page figure.
+// TikZ: Two columns. Left, twenty-one gvnode ellipses at x = 0, text width
+// TikZ:   34mm, y from 0 stepping by -1.15, so 21 nodes span 23 cm before
+// TikZ:   scaling; the pafig frame scales the whole picture to the measure.
+// TikZ: Right, seventeen gvbox rectangles at x = 11.5, text width 40mm, y
+// TikZ:   placed so each clause box sits at the mean y of the concerns it
+// TikZ:   answers, then nudged to keep 7mm of clear space between boxes.
+// TikZ: Edges are gvedge straight lines from the concern's east anchor to the
+// TikZ:   clause's west anchor. Where three or more concerns share a clause,
+// TikZ:   route the outer two with to[out=0,in=180,looseness=0.75] so the
+// TikZ:   bundle fans instead of overlapping.
+// TikZ: An edge whose clause is a hard numeric limit is drawn gvedgeb, 0.75pt
+// TikZ:   protoblue; a governance-only answer is drawn gvedged dashed pagrayd.
+// TikZ: A five-key legend strip sits at the foot via \legkey.
+// =====================================================================
+
+graph concern_to_clause {
+  layout = dot;
+  rankdir = LR;
+  bgcolor = "#FFFFFF";
+  fontname = "Times";
+  fontsize = 12;
+  nodesep = 0.28;
+  ranksep = 3.2;
+  splines = true;
+
+  node [fontname="Times", fontsize=9, style=filled, color="#000000",
+        penwidth=0.55];
+  edge [color="#6C757D", penwidth=0.5];
+
+  // ================= partition A: the twenty-one concerns =================
+  subgraph cluster_concerns {
+    label = "the twenty-one documented concerns";
+    fontname = "Times"; fontsize = 10; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#F1F6FA";
+    node [shape=ellipse, fillcolor="#FFFFFF"];
+
+    k01 [label="1. Who is actually driving"];
+    k02 [label="2. Can the surgeon stop it"];
+    k03 [label="3. Will the surgeon defer to it"];
+    k04 [label="4. Will I still have a doctor"];
+    k05 [label="5. Less time with my team"];
+    k06 [label="6. Malfunction or stray motion"];
+    k07 [label="7. Misreading tissue or margin"];
+    k08 [label="8. Injury to a major vessel"];
+    k09 [label="9. Instrument failure mid-case"];
+    k10 [label="10. Conversion to open surgery"];
+    k11 [label="11. Cancer control as good"];
+    k12 [label="12. Am I among the first"];
+    k13 [label="13. Newer described as better"];
+    k14 [label="14. How experienced is this team"];
+    k15 [label="15. Who sees the recording"];
+    k16 [label="16. Will my data train models"];
+    k17 [label="17. Could it be attacked"];
+    k18 [label="18. Tested on people like me"];
+    k19 [label="19. Software change after consent"];
+    k20 [label="20. Who is accountable"];
+    k21 [label="21. What will this cost me"];
+  }
+
+  // ================= partition B: the answering clauses ===================
+  subgraph cluster_clauses {
+    label = "the clause, limit, or number that answers it";
+    fontname = "Times"; fontsize = 10; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#E9ECEF";
+    node [shape=box, fillcolor="#FFFFFF"];
+
+    a01 [label="Class II collaborative device,\ncontinuous human oversight;\nno model-to-actuator path",
+         fillcolor="#00417A", fontcolor="#FFFFFF"];
+    a02 [label="Emergency stop:\n<= 3 ms cross-arm,\n<= 500 ms system-wide",
+         fillcolor="#00417A", fontcolor="#FFFFFF"];
+    a03 [label="Override logged with reason;\ndeclining needs no justification"];
+    a04 [label="Treating oncologist notified\non every branch of every route"];
+    a05 [label="Tip force <= 3 N per arm,\n<= 18 N summed across arms",
+         fillcolor="#00417A", fontcolor="#FFFFFF"];
+    a06 [label="Vascular no-fly gating,\nSMV and portal vein,\n4 mm corridor",
+         fillcolor="#00417A", fontcolor="#FFFFFF"];
+    a07 [label="Positional tolerance <= 2 mm,\nforce reproducibility <= 0.5 N",
+         fillcolor="#00417A", fontcolor="#FFFFFF"];
+    a08 [label="Conversion to open is a\nrecorded outcome, not a failure;\nbackup instruments in room"];
+    a09 [label="R0 rate, ISGPS B/C rate,\n90-day mortality, all against\na nationwide comparator"];
+    a10 [label="Phase 0 gate: >= 1000 sims,\n>= 2 frameworks, USL >= 7.0",
+         fillcolor="#00417A", fontcolor="#FFFFFF"];
+    a11 [label="Sentinel stagger: no second\nparticipant at a new dose until\nthe first window closes"];
+    a12 [label="Site restricted to past\nlearning-curve phase 3;\noperator counts published"];
+    a13 [label="Recording read list published\nper store; retention in years"];
+    a14 [label="No commercial model training\nwithout a separate consent"];
+    a15 [label="No network route out of the\nbuilding during a procedure",
+         fillcolor="#00417A", fontcolor="#FFFFFF"];
+    a16 [label="Subgroup composition reported\nper FDA guidance; exclusions named",
+         fillcolor="#CED4DA"];
+    a17 [label="Version frozen at consent;\nany change forces re-consent"];
+    a18 [label="One accountable party per\nfailure class, named in § 11",
+         fillcolor="#CED4DA"];
+    a19 [label="Sponsor pays study-only items;\ntwo items remain unsettled",
+         fillcolor="#CED4DA"];
+  }
+
+  // ============ edges: concern -- clause, never concern -- concern ========
+  k01 -- a01 [color="#00417A", penwidth=0.75];
+  k02 -- a02 [color="#00417A", penwidth=0.75];
+  k03 -- a03;
+  k03 -- a01 [color="#00417A", penwidth=0.75];
+  k04 -- a04;
+  k05 -- a04;
+  k06 -- a05 [color="#00417A", penwidth=0.75];
+  k06 -- a02 [color="#00417A", penwidth=0.75];
+  k07 -- a07 [color="#00417A", penwidth=0.75];
+  k08 -- a06 [color="#00417A", penwidth=0.75];
+  k09 -- a08;
+  k10 -- a08;
+  k11 -- a09;
+  k12 -- a10 [color="#00417A", penwidth=0.75];
+  k12 -- a11;
+  k13 -- a09;
+  k14 -- a12;
+  k15 -- a13;
+  k16 -- a14;
+  k17 -- a15 [color="#00417A", penwidth=0.75];
+  k18 -- a16 [style=dashed, color="#9AA1A8"];
+  k19 -- a17;
+  k20 -- a18 [style=dashed, color="#9AA1A8"];
+  k21 -- a19 [style=dashed, color="#9AA1A8"];
+
+  // ============================== legend ==================================
+  subgraph cluster_legend {
+    label = "edge key";
+    fontname = "Times"; fontsize = 9; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#FFFFFF";
+    node [shape=plaintext, fillcolor="#FFFFFF"];
+    lg [label="solid blue: answered by a hard numeric limit  |  solid gray: answered by a procedural guarantee  |  dashed: governance or disclosure only"];
+  }
+}

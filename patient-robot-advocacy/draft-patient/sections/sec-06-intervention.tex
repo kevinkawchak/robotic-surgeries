@@ -1,0 +1,158 @@
+\section{What Happens in the Operating Room}
+
+\subsection{The room, the cabinet, and the cable that is not connected}
+
+\draftinstr{Roughly 1,200 characters introducing Figure 17. State the three
+things that cross the network boundary before a procedure, a signed model build,
+a protocol version, and the pinned registry entry; state the two that cross
+after it, reports to the FDA and the IRB; and state that nothing crosses during
+it. Cite \texttt{FDACyber2026} for the cybersecurity expectation and
+\texttt{onpremwhippl} for the on-premises design. Note that the stack topology
+is adapted from the author's NSCLC single-patient journey \cite{paipatientjr}
+and re-scoped to PDAC: eight arms rather than four, three anastomoses rather
+than one bronchial closure, and a vascular exclusion envelope the thoracic
+configuration has no equivalent of.}
+
+\begin{pafig}[diagrams (python)-type: deployment, full page]
+\node[dgtiled] (a) at (0,0) {};
+\glyphserver{a}{protowhite}
+\node[dglabel,anchor=north] at ([yshift=-5.4mm]a.center) {Figure 17 slot, OR and on-prem stack};
+\node[dglabel,anchor=north] at (0,-1.6) {\ttfamily\tiny Source\\ diagrams-python/\\ fig\_\pfb 17\_\pfb operating\_\pfb room\_\pfb stack.py};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 17. The operating room and the on-premises stack drawn as a deployment
+architecture, with the sterile field, the non-sterile side, the cabinet, the evidence\\
+store, and the network boundary that carries no intra-procedural route at all.}
+
+\draftinstr{Replace the Figure 17 slot with the full-page Diagrams
+(Python)-type deployment from
+\texttt{diagrams-\pfb python/\pfb fig\_\pfb 17\_\pfb operating\_\pfb room\_\pfb stack.py}. Five
+\texttt{dgcluster} containers in the two-column arrangement given in that file;
+every tile a \texttt{\textbackslash dgnode} with the named pictogram; the absent
+cable interrupted by a \texttt{\textbackslash pxmark} with its label in a
+white-filled node above the cross.}
+
+\subsection{The eight arms, and what limits them}
+
+\draftinstr{Roughly 1,300 characters. Per-arm tip force at most 3 N, cumulative
+across arms at most 18 N, positional tolerance 2 mm, force reproducibility
+0.5 N, a 10 kHz heartbeat broadcast bus, and a vascular no-fly corridor 4 mm
+either side of the superior mesenteric and portal veins. State the worst
+observed value from the Phase 0 simulation set beside each cap, and state that a
+simulated worst case is not a human worst case. Cite \texttt{pdac060s2030} and
+\texttt{iec8060127}.}
+
+\subsection{Who is controlling the operation}
+
+\draftinstr{Roughly 1,400 characters, and treat this as the most important
+subsection in the paper. This is the single most frequently raised concern in
+every surveyed source \cite{WuSemiAI2026, BrarRAS2024X, Jauniaux2025}. The model
+proposes; a deterministic gate tests the proposal against the force caps and the
+no-fly corridor; the surgeon approves, modifies, or declines, and declining
+requires no justification; the signed command reaches the arms. There is no
+message from the model to the arms. Cite \texttt{LeeAuto2024X} for the published
+finding that no FDA-cleared surgical robot exceeds task-level autonomy under
+supervision, and \texttt{FDARobot2022}.}
+
+\begin{pafig}[mermaid-type: sequenceDiagram]
+\node[mmactor] (a) at (0,0) {Figure 19 slot};
+\node[mmin] (b) at (0,-2.0) {\ttfamily\tiny Source\\ mermaid/\\ fig-\pfb 19-\pfb advise-\pfb approve-\pfb execute.md};
+\draw[mmedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 19. One operative step message by message across five lifelines, with the
+deterministic gate between advice and approval, and no arrow at all from the model\\
+to the arms, which is the safety argument this figure makes by an absence.}
+
+\draftinstr{Replace the Figure 19 slot with the mermaid-type sequence from
+\texttt{mermaid/\pfb fig-\pfb 19-\pfb advise-\pfb approve-\pfb execute.md}. Five \texttt{mmactor} headers
+at 3.6 cm pitch; \texttt{mmlife} lifelines from $-0.6$ to $-12.6$;
+\texttt{mmact} activation bars; self-messages as 4 mm right-hand loops at
+looseness 6; the \texttt{alt} fragment with a corner tab; the two closing notes
+at $y = -11.2$ and $-12.2$ so they do not collide with the last message. Figure
+18 precedes this figure in reading order and is placed above it.}
+
+\subsection{How fast stopping actually is}
+
+\draftinstr{Roughly 1,100 characters introducing Figure 18. Three budgets: a
+0.1 ms heartbeat period, a 3 ms cross-arm halt, and a 500 ms system-wide
+guarantee. Give the human referent: a blink is roughly 100 to 150 ms, so every
+arm is held before a blink completes. Name the three parties who may press stop:
+the operating surgeon, the second operator station, and the independent safety
+monitor. Cite \texttt{ieee7009}.}
+
+\begin{pafig}[plantuml-type: timing, @startuml]
+\node[umlkey] (a) at (0,0) {Figure 18 slot\\e-stop timing budget};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 18-\pfb estop-\pfb timing-\pfb budget.puml};
+\draw[umlarrow] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 18. The emergency-stop chain on a logarithmic millisecond axis, from the
+instant the surgeon presses stop through the bus broadcast and arm deceleration to\\
+zero tip force, with all three protocol budget lines marked across every timeline.}
+
+\draftinstr{Replace the Figure 18 slot with the PlantUML-type timing diagram
+from \texttt{plantuml/\pfb fig-\pfb 18-\pfb estop-\pfb timing-\pfb budget.puml}. Five stacked 14 cm
+bands at 1.6 cm pitch; a logarithmic axis from 0.1 to 1000 ms with decade ticks;
+state segments as 4 mm rectangles filled \texttt{protoblue} while asserted,
+\texttt{pablue2} while armed, \texttt{pagraym} while idle; budget markers as
+0.8pt dashed verticals spanning all five bands with the label in a white-filled
+node. Place this figure before Figure 19 on the page.}
+
+\subsection{The vascular no-fly corridor and the force envelope}
+
+\draftinstr{Roughly 900 characters introducing Figure 21. A force cap does not
+prevent an arm entering a vascular corridor, and a corridor does not cap the
+force applied inside permitted tissue. The pairing is the safety property, and
+the figure draws them as sibling containers inside one envelope for that reason.}
+
+\begin{pafig}[d2-type: container with measurement grid]
+\node[d2key] (a) at (0,0) {Figure 21 slot\\force and no-fly envelope};
+\node[d2box] (b) at (0,-1.8) {\ttfamily\tiny Source\\ d2/\\ fig-\pfb 21-\pfb force-\pfb nofly-\pfb envelope.d2};
+\draw[d2edge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 21. The operative envelope drawn as two sibling containers, the force
+limits with their observed headroom on the left and the vascular no-fly geometry on\\
+the right, joined by the deterministic gate that rejects any plan violating either.}
+
+\draftinstr{Replace the Figure 21 slot with the D2-type envelope figure from
+\texttt{d2/\pfb fig-\pfb 21-\pfb force-\pfb nofly-\pfb envelope.d2}. One outer \texttt{d2cont}, two
+\texttt{d2cont2} sub-containers 1.6 cm apart; the force sub-container as a
+5-row measurement grid using \texttt{\textbackslash hbarrow} with the cap as a
+dashed vertical and the observed value as a filled bar; the geometry
+sub-container as a schematic with two 1.4 mm vessel bands, a hatched
+\texttt{pagraym} corridor, and eight arm-tip discs, none inside the corridor;
+the invariant strip in \texttt{d2dark} along the foot.}
+
+\subsection{What could fail, and what catches it}
+
+\draftinstr{Roughly 1,200 characters introducing Figure 20. Four intermediate
+events must all occur for harm to reach the participant, which is what the AND
+gate at the apex means. Name the four barriers, and name the one gap: registration
+drift beyond 2 mm is caught by the deterministic gate alone. Do not omit the gap.}
+
+\begin{pafig}[graphviz-type: fault tree, AND and OR gates]
+\node[gvboxd] (a) at (0,0) {Figure 20 slot\\hazard and barrier fault tree};
+\node[gvbox] (b) at (0,-2.0) {\ttfamily\tiny Source\\ graphviz/\\ fig-\pfb 20-\pfb hazard-\pfb barrier-\pfb fault-\pfb tree.dot};
+\draw[gvedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 20. The hazard fault tree with the top event behind an AND gate, so that
+harm requires all four intermediate events together, and with the single-barrier gap\\
+at registration drift marked in medium-dark gray rather than quietly omitted.}
+
+\draftinstr{Replace the Figure 20 slot with the graphviz-type fault tree from
+\texttt{graphviz/\pfb fig-\pfb 20-\pfb hazard-\pfb barrier-\pfb fault-\pfb tree.dot}. Use
+\texttt{\textbackslash umlgateand} and \texttt{\textbackslash umlgateor} for the
+five gates; ten basic events as 9 mm \texttt{gvcircle} nodes on the lowest rank;
+barrier annotations in the right margin attached by 0.5pt dashed leaders so they
+never sit between two events; the two cross-branch edges at looseness 0.9.}
+
+\subsection{Conversion to open surgery}
+
+\draftinstr{Roughly 800 characters. Conversion is a recorded outcome, not a
+failure of the study or of the participant, it does not end participation, and
+the decision belongs to the operating surgeon alone. Give the comparator
+conversion rate context from \texttt{DutchCohort2025} and state that backup
+instruments and an open tray are in the room for every procedure.}

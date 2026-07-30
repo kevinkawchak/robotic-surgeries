@@ -15,7 +15,103 @@ The v0.7.0 release lands the PDAC 1-minute execution outputs at
 PDAC 1-minute draft LaTeX paper template at
 `2030-pdac-1min/paper/draft-paper/`. The v0.9.0 release lands the
 populated PDAC 1-minute full LaTeX paper at
-`2030-pdac-1min/paper/full-paper/`.
+`2030-pdac-1min/paper/full-paper/`. The v1.0.0 release lands the
+Patient Robot Advocacy paper at `patient-robot-advocacy/`.
+
+## Release title
+
+v1.0.0 - Patient Robot Advocacy Paper (Phase 1 PDAC Trial Answered To The Participant, Eight Stages From One Prompt)
+
+## Summary
+
+This release lands the Patient Robot Advocacy paper at
+`patient-robot-advocacy/`, built by Claude Code Opus 5 from the
+single master prompt filed verbatim at
+`patient-robot-advocacy/prompts/prompt-patient.md` across 122
+commits in eight sequential stages within a single PR. The paper is
+`Patient Robot Advocacy: A Phase 1, First-in-Human, PDAC Clinical
+Trial Protocol of a LLM-Directed Robotic Whipple with Daraxonrasib
+(RMC-6236)`, Draft 1.0, Kevin Kawchak, CEO ChemicalQDevice, San
+Diego, July 31, 2026. It takes the parent Phase 1 trial protocol at
+`patient-robot-advocacy/inputs/phase-1-trial-protocol.zip`, which is
+written for the FDA, the IRB, the sponsor, and the site, and
+re-presents the same trial to the person whose abdomen is being
+opened. Twenty-one documented patient concerns about surgical
+robots, de-duplicated from two dated July 28, 2026 research passes
+by Gemini 3.1 Pro and ChatGPT 5.6 Thinking Extended at
+`patient-robot-advocacy/research/`, are each answered with the
+specific clause, limit, gate, or number in this protocol that
+settles them, and the five that are answered by governance rather
+than by a hard limit are named as such rather than dressed as
+guarantees. Stages 1 to 5 produce thirty machine-readable diagram
+sources across the five permitted platforms and no others: nine
+Mermaid, seven D2, five PlantUML, five Graphviz, and four Diagrams
+(Python), with counts following the purpose each idiom serves rather
+than an equal quota, and with no Excalidraw output anywhere. Stage 6
+lands the bracketed scaffold at `patient-robot-advocacy/draft-patient/`
+carrying 78 drafting instructions that name the exact repository file
+each later stage must read. Stage 7 at
+`patient-robot-advocacy/full-patient/` executes every one of them,
+draws all thirty figures natively in TikZ so the PDF rebuilds from
+its own LaTeX with no external tool and no raster image, and runs two
+independent figure verification passes that between them found and
+fixed eleven defects including three figures whose fills were
+selected by a conditional inside a `\foreach`, which TeX never
+evaluates as the source implies. Stage 8 at
+`patient-robot-advocacy/final-patient/` is the senior author's
+proof-reading pass: it lists eight defects before fixing any of them,
+wraps every figure in a float so a tall figure no longer strands the
+page it will not fit on, converts all forty-three tables to breakable
+`xltabular` so none can run off the foot of a page, renumbers two
+pairs of figures into ascending order, retargets eleven
+cross-references, rebalances all thirty captions, compresses the
+contents to three pages, and adds fifteen subsections to bring the
+paper to length parity with the parent protocol. Pages carrying a
+trailing gap over 3 cm fall from 41 of 83 to 15 of 88, and eleven of
+the fifteen that remain are a section's last page, which follows
+directly from the `\clearpage` between sections. The finished paper
+is 88 pages, thirteen sections, thirty figures in ascending order,
+forty-three tables all at body text width, 51 bibliography entries
+with every DOI printed and hyperlinked, and 168,275 visible text
+characters against the parent protocol's 155,222. The CI lint and
+format gates on Python 3.10, 3.11, and 3.12 pass because every file
+added is LaTeX, Markdown, or a diagram source outside the CI matrix
+working directory (`2030-gbm-1min/`), and the four Python diagram
+sources are `ruff format --check` and `ruff check` clean regardless.
+
+## Features
+
+- Complete paper source at `patient-robot-advocacy/final-patient/`: `main.tex` (patient-advocacy cover page keeping the parent protocol's colour scheme while replacing its furniture with a full-width Corporate Blue banner, four badges, the ORCID and DOI line, and a three-panel strip answering who is in control, what could go wrong, and what is this costing me; keywords; a three-page clickable contents; thirteen `\input` lines with `\clearpage` between them), `patientstyle.sty` (eleven colour tokens and no twelfth, five TikZ diagram vocabularies, the rigid `pafig` frame, the `pafloat` carrier, twenty vector pictogram macros, six quantitative primitives), `references.bib` (51 entries, every DOI printed as text and hyperlinked), `sections/` (thirteen populated section files), and `final-patient-LaTeX.zip` (Overleaf-ready bundle).
+- Thirty machine-readable diagram sources in five directories, each in its platform's own syntax and each carrying a header naming the figure, the section it serves, and the concern it answers: `patient-robot-advocacy/mermaid/` (9 `.md` with fenced mermaid: flowchart, sequence, state, gantt, quadrant), `patient-robot-advocacy/d2/` (7 `.d2`: containers, grids, sql tables, layers), `patient-robot-advocacy/plantuml/` (5 `.puml`: use case, state machine, timing, sequence with activation), `patient-robot-advocacy/graphviz/` (5 `.dot`: rooted DAG, bipartite, decision tree, fault tree), `patient-robot-advocacy/diagrams-python/` (4 `.py`: clustered infrastructure with vector pictograms).
+- The figure spacing rule made provable rather than eyeballed: `pafig` closes with a rigid `\vskip 26pt`, the source applies `\vspace{-0.7cm}` which is `-19.9pt`, and `\figcaption` opens with `\nointerlineskip`, so the frame-to-caption distance is exactly 6.1 pt for all thirty figures, floating or inline, whatever precedes or follows them on the page.
+- All thirty captions on three lines of near-equal character count, balanced by a dynamic-programming split over word boundaries and, where no split of the existing wording could reach the band, by rewording the caption: line lengths 62 to 112 characters, maximum within-caption spread 12.
+- Forty-three tables, every one at `\textwidth`, every fixed column `>{\raggedright\arraybackslash}p{...}`, `\tabcolsep` 5 pt, `\arraystretch` 1.18, and every table of more than two rows breakable with a repeated header and an italic continuation line.
+- The twenty-one documented concerns enumerated in section 3 with an answer class for each, wired to their answering clause in Figure 6, plotted against prevalence in Figure 7, and indexed one row each in a twenty-one-row breakable table.
+- Provenance discipline: four class letters, M measured, C comparator, S simulation, P protocol limit, carried on every number in section 10, with section 10.8 stating in four steps how to read one, including the fact that no M number from a human procedure on this platform exists yet.
+- Bill citations throughout use H. R. 9510 v5 at DOI 10.5281/zenodo.20619762, superseding the earlier H. R. 9501 to H. R. 9507 numbering.
+- The NSCLC journey input at `patient-robot-advocacy/inputs/cancer-patient-journey.zip` used for topology and explicitly distinguished from PDAC on four named differences: three anastomoses rather than one bronchial closure, a RAS(ON) inhibitor rather than a checkpoint inhibitor, pancreatic fistula rather than prolonged air leak, and a far lower survival baseline.
+- The ten robot instruction sheets from `patient-robot-advocacy/inputs/patient-robot-instructions.tex` re-scoped from general oncology to this PDAC protocol, reproduced in full in section 9.7 and drawn as a card grid in Figure 26, with the four unused robot types left visibly unused.
+- Fifteen directory READMEs, each with badges and each stating which files from which other directories it used and where.
+- Three preserved paper stages rather than one overwritten directory, each with its own sub-prompt filed verbatim, its own narrative, and its own Overleaf archive, so the build is auditable end to end.
+- Top level `README.md` extended by exactly two new sections: the v1.0.0 ASCII snapshot with the 425-character summary and two tables, and the thirty-row figure index with the thirteen-section contents.
+- `patient-robot-advocacy/prompts/output-patient.md` carrying the complete Claude markdown output for the run, including the nine decisions taken before the first sub-prompt was written and a table of every rule in the master prompt against where it is satisfied.
+
+## Contributors
+
+@kevinkawchak
+@claude
+@google-gemini
+@openai
+
+## Notes
+
+- The CI lint and format matrix at `.github/workflows/ci.yml` runs `ruff format --check`, `ruff check`, `yamllint`, and the file size cap against `2030-gbm-1min/` only. Every file added by this release is LaTeX, Markdown, or a diagram source under `patient-robot-advocacy/`, so this PR cannot regress `CI / lint-and-format (3.10)`, `(3.11)`, or `(3.12)`. The four Python diagram sources were kept `ruff format --check` and `ruff check` clean anyway.
+- No PNG or JPG file exists anywhere in `patient-robot-advocacy/`. Every figure is TikZ vector art, including the twenty pictograms that stand in for the raster node icons the Diagrams (Python) platform would normally emit.
+- The paper DOI is left in the form `10.5281/zenodo.xxxxxxxx`, hyperlinked to `https://doi.org/10.5281/zenodo.xxxxxxxx`, pending the live Zenodo deposition.
+- The paper carries 168,275 visible text characters against the parent protocol's 155,222, which is 108 percent. The comparison strips comments, diagram sources, and LaTeX control sequences from both documents so it measures what a reader reads. Stage 7 had reported 93 percent on a raw source-line count; that measurement flattered the paper and is corrected in `patient-robot-advocacy/final-patient/output-final-patient.md`.
+- `patient-robot-advocacy/full-patient/` keeps the pre-renumber figure numbering deliberately, because its PDF and archive were built under it and are internally consistent. Its README records the four swaps and points at `final-patient/`.
+- Eleven of the fifteen pages carrying a trailing gap over 3 cm are the last page of a section, which follows from the `\clearpage` between sections that the build is required to apply. They are not closable without removing that `\clearpage` or writing text to fill space.
+- There is no `publication/` subdirectory under `patient-robot-advocacy/final-patient/`, per the master prompt.
 
 ## Release title
 

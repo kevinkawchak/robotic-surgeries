@@ -1,0 +1,107 @@
+\section{Study Design Explained}
+
+\subsection{Open-label, single-arm, and what that means for you}
+
+\draftinstr{Roughly 1,000 characters. Three terms, each with a consequence.
+Open-label means nothing about your treatment is concealed from you. Single-arm
+means there is no allocation that could assign you to a comparator, so the
+common fear of being randomised to a treatment you would not have chosen does
+not arise here. Dose-finding means the study is looking for the highest dose
+that is tolerated, not for the largest effect. Cite \texttt{NCITrial2024} for
+the general framing and \texttt{onpremwhippl} for the design.}
+
+\subsection{Your status in the study, and how it can change}
+
+\draftinstr{Roughly 900 characters introducing Figure 12 and the idea of a
+guard. Every transition in the figure carries a named condition that must
+evaluate true, and the protections live in the guards rather than in the states.
+Adapt from \texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 04-\pfb design.tex}.}
+
+\begin{pafig}[plantuml-type: state machine, @startuml]
+\node[umlkey] (a) at (0,0) {Figure 12 slot\\participant state machine};
+\node[umlbox] (b) at (0,-1.9) {\ttfamily\tiny Source\\ plantuml/\\ fig-\pfb 12-\pfb participant-\pfb state-\pfb machine.puml};
+\draw[umlarrow] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 12. Participant status as a guarded state machine, screening through the
+24-month endpoint, with the sentinel cohort hold drawn as an explicit state because\\
+it is the clearest evidence that the design accepts delay in exchange for safety.}
+
+\draftinstr{Replace the Figure 12 slot with the PlantUML-type state machine from
+\texttt{plantuml/\pfb fig-\pfb 12-\pfb participant-\pfb state-\pfb machine.puml}. Single column of
+\texttt{umlstate} boxes at 2.4 cm pitch; the two off-path states at $x = 6.8$
+and $x = -6.8$ aligned with the state they branch from; guards in white-filled
+\texttt{umlguard} nodes at the transition midpoint; the self-transition on
+\texttt{DoseAssigned} as a 5 mm right-hand loop at looseness 5.}
+
+\subsection{The 3+3 rule, and why you are never the untested dose}
+
+\draftinstr{Roughly 1,300 characters. Explain the rule operationally rather than
+statistically. Three participants at a dose level; if none has a dose-limiting
+toxicity, the next level opens; if one does, the level expands to six rather
+than escalating; if two or more do, escalation stops and the level below becomes
+the recommended dose. Add the sentinel stagger: the second participant at a new
+level is not dosed until the first participant's safety window has closed. State
+that this costs the study time and is not there for the study's benefit.}
+
+\begin{pafig}[graphviz-type: decision tree, record leaves]
+\node[gvkey] (a) at (0,0) {Figure 13 slot\\3+3 decision tree};
+\node[gvbox] (b) at (0,-2.0) {\ttfamily\tiny Source\\ graphviz/\\ fig-\pfb 13-\pfb escalation-\pfb decision-\pfb tree.dot};
+\draw[gvedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 13. The 3+3 dose-escalation rule drawn as a decision tree with exactly
+one path from the root to each leaf, including the two stopping leaves and the study\\
+pause that convenes the Data and Safety Monitoring Board and is reported to you.}
+
+\draftinstr{Replace the Figure 13 slot with the graphviz-type decision tree from
+\texttt{graphviz/\pfb fig-\pfb 13-\pfb escalation-\pfb decision-\pfb tree.dot}. Four ranks at
+$y = 0, -3.0, -6.4, -9.8$; branch labels placed on the upper third of each edge,
+not the midpoint, so sibling labels cannot collide; the sentinel-wait annotation
+as a \texttt{gvcluster} dashed box behind rank 1; record leaves built from
+stacked \texttt{gvcell} rows.}
+
+\subsection{The dose levels}
+
+\draftinstr{Populate the dose levels and the cohort sizes from
+\texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 04-\pfb design.tex} and \texttt{sections/\pfb sec-\pfb 06-\pfb intervention.tex}.
+Keep the final column patient-facing.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{1.9cm} L{3.1cm} C{1.9cm} Y}
+\toprule
+\textbf{Level} & \textbf{Daraxonrasib dose} & \textbf{Cohort size} & \textbf{What has to be true before this level opens} \\
+\midrule
+DL1 & Starting dose level & 3, expandable to 6 & Phase 0 gate signed, USL at least 7.0, IND in effect, IDE approved \\
+DL2 & One step above DL1 & 3, expandable to 6 & DL1 cleared: 0 of 3, or 1 of 6, dose-limiting toxicities \\
+DL3 & Two steps above DL1 & 3, expandable to 6 & DL2 cleared on the same rule, and DSMB review at the cohort boundary \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent Planned enrollment is up to 18 participants across the three levels.
+Enrollment is staggered: no participant enters a level while a sentinel window
+at that level remains open.
+
+\subsection{The Phase 0 gate that runs before any patient}
+
+\draftinstr{Roughly 1,100 characters. At least 1000 simulated procedures across
+at least two independent simulation frameworks, reproducing motion within a 2 mm
+positional and 0.5 N force tolerance, with a documented Unified Safety Level of
+at least 7.0. Cite \texttt{asmevv40} and \texttt{nasastd7009} for the credibility
+standards this is built against, \texttt{cfr312paiuni} for the Subpart J overlay,
+and \texttt{pdac060s2030} for the simulation source. State clearly that a
+simulated worst case is not a human worst case.}
+
+\subsection{Stopping rules, stated before they are needed}
+
+\draftinstr{Roughly 900 characters listing the prespecified pause and stopping
+triggers from \texttt{inputs/\pfb phase-\pfb 1-\pfb trial-\pfb protocol.zip},
+\texttt{sections/\pfb sec-\pfb 04-\pfb design.tex} \S4.6. Include the device-specific triggers,
+because these are the ones a participant worried about the robot will look for:
+any breach of a force cap, any entry into a vascular no-fly corridor, any
+emergency-stop latency above budget, and any loss of the heartbeat bus.}

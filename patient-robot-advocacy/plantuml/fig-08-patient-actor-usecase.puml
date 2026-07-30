@@ -1,0 +1,111 @@
+@startuml fig-08-patient-actor-usecase
+' =====================================================================
+' Figure 8. The patient is the primary actor of every safeguard
+' Type            : PlantUML-type, use case diagram
+' Paper section   : § 3, The Documented Patient Concerns
+' Concern answered: Gemini family 1 (loss of the human element and surgeon
+'                   control) and ChatGPT concern 14 (loss of personal care and
+'                   surgeon-patient trust). Every safeguard in the parent
+'                   protocol is written with the sponsor as the actor: the
+'                   sponsor verifies, the sponsor reports, the sponsor halts.
+'                   Redrawn as a use case diagram with the patient as the
+'                   primary actor, the same safeguards read as capabilities the
+'                   patient holds, which is what a use case diagram is for.
+' Why this type   : A use case diagram is the only formal notation whose whole
+'                   premise is "who can do what". Reassigning the primary actor
+'                   is therefore not a cosmetic change; it changes what the
+'                   diagram asserts.
+'
+' TikZ: draw with the uml* vocabulary of patientstyle.sty.
+' TikZ: \umlactor for the four human actors; umlusecase ellipses, text width
+' TikZ:   26mm, for the twelve use cases; umlpkg boundary rectangle titled
+' TikZ:   "Phase 1 PDAC Physical AI trial" fitted over the use cases only.
+' TikZ: Patient actor at (-6.4,-4.2), left of the boundary. Surgeon at
+' TikZ:   (9.2,-1.6), DSMB at (9.2,-4.6), Sponsor-Investigator at (9.2,-7.6),
+' TikZ:   all right of the boundary, so no secondary actor sits on the
+' TikZ:   patient's side.
+' TikZ: Use cases in three columns at x = -2.2, 1.6, 5.4 and four rows at
+' TikZ:   y = -0.8, -3.2, -5.6, -8.0; 2.4 cm row pitch and 3.8 cm column pitch
+' TikZ:   leave at least 8 mm of clear space between ellipse edges.
+' TikZ: Associations are umlassoc plain lines; <<include>> and <<extend>> are
+' TikZ:   umldash with the stereotype set in a white-filled mmlabel node at the
+' TikZ:   midpoint so no label sits on a line.
+' TikZ: The two long associations from the Patient to the far column route with
+' TikZ:   to[out=0,in=180,looseness=0.85] so they pass between rows rather than
+' TikZ:   through an ellipse.
+' =====================================================================
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam ArrowColor #6C757D
+skinparam ActorBorderColor #00417A
+skinparam ActorBackgroundColor #FFFFFF
+skinparam ActorFontColor #111111
+skinparam UsecaseBorderColor #00417A
+skinparam UsecaseBackgroundColor #DCE8F1
+skinparam UsecaseFontColor #111111
+skinparam RectangleBorderColor #6C757D
+skinparam RectangleBackgroundColor #FFFFFF
+skinparam NoteBackgroundColor #E9ECEF
+skinparam NoteBorderColor #6C757D
+
+left to right direction
+
+actor "Participant\n(primary actor)" as PT #DCE8F1
+actor "Operating surgeon" as SG
+actor "DSMB" as DS
+actor "Sponsor-Investigator" as SI
+
+rectangle "Phase 1 PDAC Physical AI trial" as SYS {
+  usecase "Consent, or decline\nwith no consequence" as U1 #00417A
+  usecase "Opt out of the\nPhysical AI component" as U2 #00417A
+  usecase "Set the autonomy level\naccepted per operative step" as U3 #00417A
+  usecase "Inspect the Phase 0\nsimulation result" as U4
+  usecase "Require a named human\nto approve every motion" as U5 #00417A
+  usecase "Trigger a stop\nthrough the surgeon" as U6
+  usecase "Accept or decline the\ndaraxonrasib restart" as U7 #00417A
+  usecase "Read my own\naudit trail" as U8
+  usecase "Withdraw at any visit,\nno reason required" as U9 #00417A
+  usecase "Choose the fate of\nbanked specimens" as U10
+  usecase "Be told when the software\nversion changes" as U11
+  usecase "Receive my day-30 and\nday-90 results directly" as U12
+}
+
+PT --> U1
+PT --> U2
+PT --> U3
+PT --> U4
+PT --> U5
+PT --> U7
+PT --> U9
+PT --> U10
+PT --> U11
+PT --> U12
+
+U6 <|-- U5 : <<extend>>\nstop is the\nlimiting case
+U8 ..> U4 : <<include>>
+U11 ..> U1 : <<include>>\nforces re-consent
+
+SG --> U5
+SG --> U6
+DS --> U6
+SI --> U11
+SI --> U12
+
+note bottom of SYS
+  Ten of the twelve capabilities are exercised by the participant.
+  The two that are not, stopping the device and issuing a version
+  notice, are the two that require someone in the room or in the
+  build system. Neither can be exercised against the participant.
+end note
+
+note right of PT
+  In the parent protocol these twelve appear as
+  sponsor obligations. Nothing in the protocol
+  changed here. Only the actor did.
+end note
+
+@enduml

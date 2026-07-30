@@ -1,0 +1,98 @@
+# =====================================================================
+# Figure 16. The five choices you keep, revealed one layer at a time
+# Type            : D2-type, layers and steps
+# Paper section   : § 6, Who Can Join, and Who Decides
+# Concern answered: ChatGPT concern 8 (randomization and treatment choice) and
+#                   concern 2 (who is controlling); Gemini family 1. A consent
+#                   form presents every choice at once, at the moment of
+#                   greatest stress, and the result is that most participants
+#                   recall almost none of them. Revealing the same five choices
+#                   as ordered layers, each one live at a different point in
+#                   the study, is a different pedagogy for the same content.
+# Why this type   : D2 layers and steps are built for exactly one thing:
+#                   telling a single story across several panels where each
+#                   panel adds to the last. No other permitted type has a
+#                   progressive-reveal construct.
+#
+# TikZ: draw with the d2* vocabulary of patientstyle.sty.
+# TikZ: Five d2step panels stacked vertically, panel outer size 15cm x 3.0cm,
+# TikZ:   centres at y = 0, -3.6, -7.2, -10.8, -14.4; 3.6cm pitch leaves 6mm of
+# TikZ:   clear space between panel borders.
+# TikZ: Inside each panel: a d2key node at the left carrying the choice, text
+# TikZ:   width 34mm; a d2soft node in the middle carrying when it is live,
+# TikZ:   text width 30mm; and a d2gray node at the right carrying what happens
+# TikZ:   if you say no, text width 42mm.
+# TikZ: Panels accumulate: panel n redraws panels 1..n-1 at 45 percent opacity
+# TikZ:   as 0.4pt pagraym outlines only, with no text, so the reveal reads as
+# TikZ:   accumulation rather than replacement.
+# TikZ: The single connector inside each panel is a d2edge straight arrow; the
+# TikZ:   panel-to-panel connector on the left margin uses
+# TikZ:   to[out=-90,in=90,looseness=0.7].
+# =====================================================================
+
+vars: {
+  d2-config: {
+    theme-overrides: {
+      B1: "#00417A"
+      B2: "#3C7DB2"
+      B3: "#DCE8F1"
+      B4: "#E9ECEF"
+      B5: "#CED4DA"
+      AA2: "#6C757D"
+      N7: "#FFFFFF"
+    }
+    layout-engine: elk
+  }
+}
+
+layers: {
+  step1: "Layer 1 of 5, live from the first conversation" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+    choice: "Choice 1\nJoin the study at all" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+    when: "Live from the first\nconversation until you\nsign, and never expires" { style: { fill: "#DCE8F1" } }
+    ifno: "Standard-of-care Whipple proceeds on the\nnormal pathway. Nothing about your care\nchanges. No record beyond the screening log." { style: { fill: "#E9ECEF" } }
+    choice -> when -> ifno
+  }
+
+  step2: "Layer 2 of 5, live until the baseline day" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+    choice: "Choice 2\nAccept the Physical AI\ncomponent, or opt out" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+    when: "Live from consent until\nthe baseline day, day -1,\nand re-asked at baseline" { style: { fill: "#DCE8F1" } }
+    ifno: "You remain a trial participant for the drug\narm. The operation is performed by the same\nsurgeon without the robotic platform." { style: { fill: "#E9ECEF" } }
+    choice -> when -> ifno
+  }
+
+  step3: "Layer 3 of 5, live at the pre-operative briefing" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+    choice: "Choice 3\nSet the autonomy level\nyou accept per step" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+    when: "Live at the pre-operative\nbriefing, recorded step\nby step in the consent" { style: { fill: "#DCE8F1" } }
+    ifno: "Any step you exclude is performed manually by\nthe surgeon. The exclusion is logged in the\naudit chain and reported with your outcome." { style: { fill: "#E9ECEF" } }
+    choice -> when -> ifno
+  }
+
+  step4: "Layer 4 of 5, live in the acute window" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+    choice: "Choice 4\nAccept or decline the\ndaraxonrasib restart" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+    when: "Live in the acute window,\ndays 1 to 7, at the T+7,\nT+14, and T+21 decisions" { style: { fill: "#DCE8F1" } }
+    ifno: "The drug is not restarted. Surgical follow-up\nand every safety assessment continue exactly\nas scheduled. You may change your mind." { style: { fill: "#E9ECEF" } }
+    choice -> when -> ifno
+  }
+
+  step5: "Layer 5 of 5, live for the whole study and after it" {
+    style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+    choice: "Choice 5\nDecide what happens to\nyour data and specimens" { style: { fill: "#00417A"; font-color: "#FFFFFF" } }
+    when: "Live for the whole study,\nand still live after your\nlast visit" { style: { fill: "#DCE8F1" } }
+    ifno: "Specimens destroyed on request. Identifiable\ndata segregated from new analysis. Aggregate\nsafety data already filed cannot be recalled." { style: { fill: "#E9ECEF" } }
+    choice -> when -> ifno
+  }
+}
+
+closing: |md
+  Five choices, and not one of them is exercised on the day of surgery.
+  Every one is live before the operating room, and three of the five are
+  still live afterwards. That is the design intent: no decision that
+  matters is taken at the moment of least capacity to take it.
+| {
+  near: bottom-center
+  style: { fill: "#E9ECEF"; stroke: "#6C757D"; border-radius: 6 }
+}

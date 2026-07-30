@@ -1,0 +1,115 @@
+\section{Patient Rights, Costs, and H. R. 9510 v5}
+
+\subsection{The premise, stated as legislation would state it}
+
+\draftinstr{Roughly 1,200 characters. The cancer patient, not the doctor, the
+nurse, the trial sponsor, the Institutional Review Board, or the regulator, is
+the priority participant in a United States oncology clinical trial. That
+premise is the subject of the author's proposed legislation, cited throughout
+this paper as H. R. 9510 v5 \cite{hr9510billv5}, which supersedes the earlier
+H. R. 9501 to H. R. 9507 numbering in
+\texttt{inputs/\pfb patient-\pfb priority-\pfb physical-\pfb ai.zip} \cite{paibillprior}. Cite
+\texttt{congress9510} and \texttt{fedlawhr9510} for the enactment argument.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.3cm} Y}
+\toprule
+\textbf{What the bill would establish} & \textbf{What this protocol already does voluntarily} \\
+\midrule
+Participant self-selection of trials, with 24/7 booking & Direct booking channel with a 72-hour provisional hold and a five-business-day target, Figure 15 \\
+Participant choice of robot and autonomy level & Autonomy level set per operative step and recorded in the consent, Figure 16 \\
+Participant procedural modification authority & Any excluded step is performed manually and the exclusion is logged and reported \\
+Verification before generation, with published gates & Phase 0 gate at 1000 simulations across two frameworks, USL at least 7.0, Figure 13 \\
+Real-time participant to sponsor communication & Named human at the sponsor answers within one business day, logged verbatim \\
+Participant health data self-custody & Per-store read lists published; your own copy available at any time, Figure 24 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\draftinstr{Verify every row in this table against
+\texttt{inputs/\pfb patient-\pfb priority-\pfb physical-\pfb ai.zip} and restate each bill provision
+in the numbering of H. R. 9510 v5 rather than the superseded H. R. 9501 to 9507
+range.}
+
+\subsection{Your rights during the study, enumerated}
+
+\draftinstr{Roughly 1,300 characters. Enumerate the rights that the regulations
+already give, and mark which ones this protocol extends beyond the minimum.
+Ground each in 21 CFR part 50 \cite{ecfr2026part50} and the NCI's own consent
+guidance \cite{NCIConsent24}, and mark the extensions clearly, because a paper
+that presented a legal minimum as a favour would deserve the distrust the
+surveyed literature reports.}
+
+\subsection{What this costs you}
+
+\draftinstr{Roughly 1,300 characters introducing Figure 30 and this table. Be
+specific and do not round the uncomfortable parts away. The sponsor pays the
+drug, the platform, study-only imaging and laboratory work, protocol-required
+visits, research-related injury care, and travel to a stated cap. Your usual
+arrangement covers standard surgical care and the inpatient stay exactly as it
+would outside the study. Two items are not settled by this protocol: lost income,
+and continued drug access after study closure. Cite \texttt{NCICosts2024}.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.0cm} L{3.0cm} Y}
+\toprule
+\textbf{Item} & \textbf{Who pays} & \textbf{Note} \\
+\midrule
+Daraxonrasib & Sponsor & Supplied for the whole study period \\
+Robotic platform use & Sponsor & No charge reaches you \\
+Study-only imaging and laboratory work & Sponsor & Anything the protocol adds beyond routine care \\
+Protocol-required visits & Sponsor & The 18 visits of Figure 25 \\
+Research-related injury care & Sponsor & Stated in the consent form, not only here \\
+Travel and lodging & Sponsor, to a cap & The cap is stated in your consent form \\
+Standard surgical care & Your usual arrangement & Exactly as it would be outside the study \\
+Standard inpatient stay & Your usual arrangement & The 8 to 10 day stay is standard care \\
+Long-term survivorship care & Your usual arrangement & On the routine pathway after handback \\
+Lost income & \textbf{Not settled} & This protocol does not compensate it; H. R. 9510 v5 would address it \\
+Continued drug access after closure & \textbf{Not settled} & Not guaranteed by this protocol \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{After your last visit}
+
+\draftinstr{Roughly 1,000 characters introducing Figure 30. Care is handed back
+to the participant's own oncology team in writing; a full record copy goes to
+both the participant and that team; the device support obligation ends at study
+closure; survivorship follow-up returns to the routine pathway; the data vault
+remains retrievable for fifteen years; and study results are sent to the
+participant whether or not they completed. Cite \texttt{natlpaiplatf} for the
+post-trial platform proposal.}
+
+\begin{pafig}[diagrams (python)-type: lifecycle, three time zones]
+\node[dgtiled] (a) at (0,0) {};
+\glyphclock{a}{protowhite}
+\node[dglabel,anchor=north] at ([yshift=-5.4mm]a.center) {Figure 30 slot, post-trial continuity};
+\node[dglabel,anchor=north] at (0,-1.6) {\ttfamily\tiny Source\\ diagrams-python/\\ fig\_\pfb 30\_\pfb post\_\pfb trial\_\pfb continuity.py};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 30. Post-trial continuity across three time zones, during the study, the
+12 months after the last visit, and beyond, with the payer attached to every item and\\
+the two unsettled items drawn as unsettled rather than quietly left out.}
+
+\draftinstr{Replace the Figure 30 slot with the Diagrams (Python)-type lifecycle
+from \texttt{diagrams-\pfb python/\pfb fig\_\pfb 30\_\pfb post\_\pfb trial\_\pfb continuity.py}. Three
+\texttt{dgcluster} time zones plus one \texttt{dgcluster2} payer container;
+obligations that end drawn with a 3 mm \texttt{protoblack} terminator bar at
+their time-zone boundary; the legislative proposal drawn as a dotted edge, not a
+solid one, because it is a proposal.}
+
+\subsection{Closing argument}
+
+\draftinstr{Roughly 1,400 characters, and write it as an advocate who has just
+spent twelve sections earning the right to make it. The argument is not that
+this trial is safe because it is new. It is that a participant who has read this
+paper knows more about what will happen to them than a participant undergoing a
+standard Whipple outside a trial: they know the force limits, the stopping
+budget, the read list on their own data, the name of the person accountable for
+each failure class, and the two costs the protocol does not cover. Restate the
+honest gaps rather than closing over them. Cite \texttt{hr9510billv5},
+\texttt{clintrustpai}, and \texttt{onpremwhippl}.}

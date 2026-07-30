@@ -1,0 +1,145 @@
+\section{References and Back Matter}
+
+\draftinstr{Back matter is adapted from
+\texttt{inputs/phase-1-trial-protocol.zip},
+\texttt{sections/sec-12-references-backmatter.tex}, and re-scoped to an advocacy
+paper: the abbreviation list keeps only terms this paper actually uses, the
+amendment history becomes a version history, and a figure inventory is added
+because thirty figures need an index.}
+
+\subsection{Abbreviations}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{2.3cm} Y L{2.3cm} Y}
+\toprule
+\textbf{Term} & \textbf{Meaning} & \textbf{Term} & \textbf{Meaning} \\
+\midrule
+AE & Adverse event & IRB & Institutional Review Board \\
+CA 19-9 & Carbohydrate antigen 19-9 & ISGPS & International Study Group on Pancreatic Surgery \\
+CRO & Contract research organisation & LLM & Large language model \\
+DL1 to DL3 & Dose levels 1 to 3 & OS & Overall survival \\
+DLT & Dose-limiting toxicity & PDAC & Pancreatic ductal adenocarcinoma \\
+DSMB & Data and Safety Monitoring Board & PFS & Progression-free survival \\
+ECOG & Eastern Cooperative Oncology Group & R0 & Microscopically clear resection margin \\
+e-stop & Emergency stop & RECIST & Response Evaluation Criteria in Solid Tumors \\
+FDA & Food and Drug Administration & SAE & Serious adverse event \\
+IDE & Investigational Device Exemption & SMV & Superior mesenteric vein \\
+IND & Investigational New Drug & USL & Unified Safety Level \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\draftinstr{Add any abbreviation introduced by \texttt{full-patient} that is not
+in this list, and remove any listed term that the finished paper never uses.}
+
+\subsection{Figure inventory}
+
+\draftinstr{Populate all thirty rows from the five stage READMEs. Verify the
+numbering is continuous from 1 to 30 with no gaps and no duplicates, and that
+the type counts are Mermaid 9, D2 7, PlantUML 5, Graphviz 5, and Diagrams
+(Python) 4.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{C{1.0cm} L{3.6cm} C{1.2cm} Y}
+\toprule
+\textbf{Fig} & \textbf{Type} & \textbf{\S} & \textbf{Subject} \\
+\midrule
+1 & Mermaid-type & 1 & The seven commitments made to the participant \\
+2 & Graphviz-type & 1 & Accountability chain rooted at the participant \\
+3 & Mermaid-type & 2 & Journey schema with every decision point marked \\
+4 & D2-type & 2 & Schedule of Activities from the participant's chair \\
+5 & D2-type & 3 & Twenty-one concerns in six disjoint families \\
+6 & Graphviz-type & 3 & Every concern wired to its answering clause \\
+7 & Mermaid-type & 3 & Concern prevalence against answer completeness \\
+8 & PlantUML-type & 3 & Safeguards as capabilities the participant holds \\
+9 & Diagrams (Python) & 3 & Where each concern physically lives \\
+10 & Mermaid-type & 4 & Objective, endpoint, and the sentence it authorises \\
+11 & D2-type & 4 & Endpoint registry with a plain-meaning field \\
+12 & PlantUML-type & 5 & Participant status as a guarded state machine \\
+13 & Graphviz-type & 5 & The 3+3 rule as an auditable decision tree \\
+14 & Mermaid-type & 6 & Eligibility as a two-way gate \\
+15 & PlantUML-type & 6 & Direct booking and sponsor response \\
+16 & D2-type & 6 & The five choices the participant keeps \\
+17 & Diagrams (Python) & 7 & Operating room and on-premises stack \\
+18 & PlantUML-type & 7 & Emergency-stop timing budget \\
+19 & Mermaid-type & 7 & Advise, approve, execute, and log \\
+20 & Graphviz-type & 7 & Hazard fault tree with named barriers \\
+21 & D2-type & 7 & Force caps and vascular no-fly envelope \\
+22 & PlantUML-type & 8 & Four withdrawal routes and their data outcomes \\
+23 & Mermaid-type & 8 & Consent lifecycle with forced re-consent \\
+24 & Diagrams (Python) & 9 & Data pipeline with per-store read lists \\
+25 & Mermaid-type & 9 & Participant visit calendar with totals \\
+26 & D2-type & 9 & Ten robot instruction cards, PDAC-scoped \\
+27 & Mermaid-type & 10 & Five-panel quantitative reassurance dashboard \\
+28 & Graphviz-type & 10 & Evidence provenance for every quoted number \\
+29 & D2-type & 11 & Responsibility matrix, one accountable per row \\
+30 & Diagrams (Python) & 12 & Post-trial continuity and the payer per item \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Version history}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{2.0cm} L{2.6cm} Y}
+\toprule
+\textbf{Version} & \textbf{Date} & \textbf{Change} \\
+\midrule
+Draft 1.0 & July 31, 2026 & First release. Thirteen sections, thirty figures, twenty-one documented concerns answered, three-stage build from diagram sources through draft and full to final. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\bmhead{Data and code availability}
+
+\draftinstr{Roughly 500 characters. Every figure source, every LaTeX source, and
+every stage narrative is in the public repository at
+\texttt{github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy}.
+No participant data exists, because no participant exists: this is an
+independent advocacy paper about a protocol, not a report of a conducted study.}
+
+\bmhead{Acknowledgments}
+
+\draftinstr{Roughly 400 characters. Acknowledge the two dated research passes at
+\texttt{research/research-a.md} (Gemini 3.1 Pro) and
+\texttt{research/research-b.md} (ChatGPT 5.6 Thinking Extended), and state that
+the LaTeX build was adapted using Claude Code Opus 5.}
+
+\bmhead{Ethical disclosures}
+
+\draftinstr{Roughly 500 characters. No human participants, no animals, no
+identifiable data. This is an independent research paper and practical adoption
+guide, not an active IND or IDE, not an approved protocol, and not medical or
+regulatory advice. Not endorsed by the FDA, NIH, HHS, an IRB, ICH, or any
+sponsor, CRO, site, regulator, or medical society.}
+
+\bmhead{Rights and permissions}
+
+\draftinstr{Roughly 300 characters. Released under CC BY 4.0. Reproduced United
+States Government regulatory text is used under 17 U.S.C. \S 105.}
+
+\bmhead{Cite this article}
+
+\draftinstr{Give the citation in the author's usual form, with the DOI as text
+and as a clickable link, and with the repository URL. Both the paper (v1.0) and
+the repository (v1.0.0) are named.}
+
+\vspace{0.30em}
+
+\noindent Kawchak K. \textit{Patient Robot Advocacy: A Phase 1, First-in-Human,
+PDAC Clinical Trial Protocol of a LLM-Directed Robotic Whipple with Daraxonrasib
+(RMC-6236)}. Draft 1.0. Zenodo; 2026.
+\href{https://doi.org/10.5281/zenodo.xxxxxxxx}{10.5281/zenodo.xxxxxxxx}.
+Repository v1.0.0:
+\href{https://github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy}{github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy}.
+
+\bmhead{References}
+
+\bibliographystyle{ieeetr}
+\bibliography{references}

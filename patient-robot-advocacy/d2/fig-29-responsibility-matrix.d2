@@ -1,0 +1,139 @@
+# =====================================================================
+# Figure 29. Who answers for what, at every phase, with one name per cell
+# Type            : D2-type, grid matrix (responsibility assignment)
+# Paper section   : § 11, Accountability, Oversight, and Who Answers
+# Concern answered: ChatGPT concern 4 (responsibility if something goes wrong)
+#                   and concern 5 (surgeon and operating-team experience);
+#                   Gemini family 5, the "who is to blame?" dilemma. This is
+#                   the concern that a governance paragraph answers worst,
+#                   because a paragraph can name four bodies without saying
+#                   which one a participant should call.
+# Why this type   : A responsibility assignment is a matrix by definition:
+#                   activity by role. D2's declared grid is the only permitted
+#                   construct that renders one without turning it into a flow.
+#
+# Invariant       : every cell has exactly one A (accountable). If a cell had
+#                   two, no one would be accountable, which is precisely the
+#                   failure mode the concern describes.
+#
+# TikZ: draw with the d2* vocabulary of patientstyle.sty.
+# TikZ: One d2cont container fitted over a 7-column x 10-row grid of d2cell
+# TikZ:   rectangles, cell 19mm x 7.5mm, sharing rules, no inter-cell gap.
+# TikZ: Header row filled protoblue, white bold text; row-label column filled
+# TikZ:   pablue2, left aligned, text width 34mm.
+# TikZ: An A cell is filled protoblue with white bold text; an R cell pablue1
+# TikZ:   with white text; a C cell pablue2 with black text; an I cell pagrayl
+# TikZ:   with black text; an inapplicable cell is white and empty.
+# TikZ: The "who you call" column at the far right is filled padark with white
+# TikZ:   text: this is the one place a black fill is justified, because it is
+# TikZ:   the single most actionable column in the figure.
+# TikZ: A one-line legend strip sits beneath the grid, 4 keys via \legkey.
+# TikZ: No arrows in this figure, therefore no looseness declaration.
+# =====================================================================
+
+vars: {
+  d2-config: {
+    theme-overrides: {
+      B1: "#00417A"
+      B2: "#3C7DB2"
+      B3: "#DCE8F1"
+      B4: "#E9ECEF"
+      B5: "#CED4DA"
+      AA2: "#6C757D"
+      N1: "#000000"
+      N7: "#FFFFFF"
+    }
+    layout-engine: elk
+  }
+}
+
+raci: "accountability.matrix" {
+  style: { fill: "#FFFFFF"; stroke: "#3C7DB2"; stroke-width: 2; border-radius: 8 }
+  grid-rows: 10
+  grid-columns: 7
+
+  h0: "If this goes wrong"      { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h1: "Operating\nsurgeon"      { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h2: "Sponsor-\nInvestigator"  { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h3: "Site PI"                 { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h4: "DSMB"                    { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h5: "IRB / FDA"               { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  h6: "You call"                { style: { fill: "#222222"; font-color: "#FFFFFF"; bold: true } }
+
+  r1a: "A motion during your operation" { style: { fill: "#DCE8F1" } }
+  r1b: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r1c: "C" { style: { fill: "#DCE8F1" } }
+  r1d: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r1e: "I" { style: { fill: "#E9ECEF" } }
+  r1f: "I" { style: { fill: "#E9ECEF" } }
+  r1g: "the surgeon, by name, in your record" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r2a: "A device malfunction or a halt" { style: { fill: "#DCE8F1" } }
+  r2b: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r2c: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r2d: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r2e: "C" { style: { fill: "#DCE8F1" } }
+  r2f: "I" { style: { fill: "#E9ECEF" } }
+  r2g: "the Sponsor-Investigator" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r3a: "A drug dose or a restart decision" { style: { fill: "#DCE8F1" } }
+  r3b: "C" { style: { fill: "#DCE8F1" } }
+  r3c: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r3d: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r3e: "C" { style: { fill: "#DCE8F1" } }
+  r3f: "I" { style: { fill: "#E9ECEF" } }
+  r3g: "the Site PI first, then the Sponsor" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r4a: "A serious adverse event" { style: { fill: "#DCE8F1" } }
+  r4b: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r4c: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r4d: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r4e: "C" { style: { fill: "#DCE8F1" } }
+  r4f: "I" { style: { fill: "#E9ECEF" } }
+  r4g: "the Site PI, 24-hour line" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r5a: "A decision to pause the study" { style: { fill: "#DCE8F1" } }
+  r5b: "I" { style: { fill: "#E9ECEF" } }
+  r5c: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r5d: "I" { style: { fill: "#E9ECEF" } }
+  r5e: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r5f: "C" { style: { fill: "#DCE8F1" } }
+  r5g: "you do not need to; you are told" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r6a: "Your data being mishandled" { style: { fill: "#DCE8F1" } }
+  r6b: "I" { style: { fill: "#E9ECEF" } }
+  r6c: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r6d: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r6e: "I" { style: { fill: "#E9ECEF" } }
+  r6f: "C" { style: { fill: "#DCE8F1" } }
+  r6g: "the Site PI, then the IRB directly" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r7a: "A software version change" { style: { fill: "#DCE8F1" } }
+  r7b: "I" { style: { fill: "#E9ECEF" } }
+  r7c: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r7d: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r7e: "C" { style: { fill: "#DCE8F1" } }
+  r7f: "C" { style: { fill: "#DCE8F1" } }
+  r7g: "you are re-consented before anything" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r8a: "A bill you did not expect" { style: { fill: "#DCE8F1" } }
+  r8b: "I" { style: { fill: "#E9ECEF" } }
+  r8c: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r8d: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r8e: "I" { style: { fill: "#E9ECEF" } }
+  r8f: "I" { style: { fill: "#E9ECEF" } }
+  r8g: "the study coordinator, then the Sponsor" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+
+  r9a: "A complaint about how you were treated" { style: { fill: "#DCE8F1" } }
+  r9b: "I" { style: { fill: "#E9ECEF" } }
+  r9c: "C" { style: { fill: "#DCE8F1" } }
+  r9d: "R" { style: { fill: "#3C7DB2"; font-color: "#FFFFFF" } }
+  r9e: "I" { style: { fill: "#E9ECEF" } }
+  r9f: "A" { style: { fill: "#00417A"; font-color: "#FFFFFF"; bold: true } }
+  r9g: "the IRB directly, without the site" { style: { fill: "#222222"; font-color: "#FFFFFF" } }
+}
+
+legend: "A accountable, one per row - R responsible - C consulted - I informed" {
+  near: bottom-center
+  style: { fill: "#E9ECEF"; stroke: "#6C757D"; border-radius: 6 }
+}

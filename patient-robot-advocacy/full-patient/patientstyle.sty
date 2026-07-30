@@ -193,9 +193,14 @@
     every node/.append style={align=center}}
 }
 
+% RIGID SPACING.  Every skip below is rigid (no plus, no minus) and \figcaption
+% opens with \nointerlineskip, so the distance from the frame rule to the first
+% caption line is exactly 26pt - 0.7cm = 6.1pt for every one of the thirty
+% figures, whatever precedes or follows them on the page.  A \begin{center}
+% would have contributed shrinkable \topsep glue and broken that guarantee.
 \newenvironment{pafig}[1][]{%
   \def\patagtext{#1}%
-  \par\addvspace{0.60\baselineskip}%
+  \par\penalty-60\vskip 14pt\relax
   \begin{lrbox}{\pabox}%
   \begin{tikzpicture}[paevery]%
 }{%
@@ -209,26 +214,31 @@
   \sbox{\patagbox}{\scriptsize\ttfamily\color{protogray}\patagtext}%
   \setlength{\paw}{\wd\pafitted}%
   \ifdim\wd\patagbox>\paw\setlength{\paw}{\wd\patagbox}\fi
-  \needspace{\dimexpr\ht\pafitted+\dp\pafitted+5\baselineskip\relax}%
-  \begin{center}%
-  \setlength{\fboxrule}{0.4pt}\setlength{\fboxsep}{8pt}%
-  \fcolorbox{protoblack}{protowhite}{%
-    \begin{minipage}{\paw}%
-      \raggedright\usebox{\patagbox}\par\vspace{1.5pt}%
-      {\color{pagraym}\hrule height 0.4pt}\vspace{5pt}%
-      \noindent\usebox{\pafitted}%
-    \end{minipage}}%
-  \end{center}%
-  \par\addvspace{0.10\baselineskip}}
+  \needspace{\dimexpr\ht\pafitted+\dp\pafitted+6\baselineskip\relax}%
+  {\setlength{\parskip}{0pt}\setlength{\parindent}{0pt}%
+   \setlength{\fboxrule}{0.4pt}\setlength{\fboxsep}{8pt}%
+   \noindent\hfil
+   \fcolorbox{protoblack}{protowhite}{%
+     \begin{minipage}{\paw}%
+       \raggedright\usebox{\patagbox}\par\vspace{1.5pt}%
+       {\color{pagraym}\hrule height 0.4pt}\vspace{5pt}%
+       \noindent\usebox{\pafitted}%
+     \end{minipage}}%
+   \hfil\par}%
+  \nobreak\vskip 26pt\relax}
 
 % ---------- Caption: small centred italic block on at most three manually
-% ---------- balanced lines.  Fixed trailing space, identical for all figures.
+% ---------- balanced lines.  Rigid leading and trailing space, so the whole
+% ---------- figure-plus-caption whitespace signature is identical everywhere.
 \newcommand{\figcaption}[1]{%
-  \par\nopagebreak
-  \begin{center}\begin{minipage}{0.94\linewidth}%
-  \centering\footnotesize\itshape #1%
-  \end{minipage}\end{center}%
-  \addvspace{0.80\baselineskip}}
+  \nointerlineskip\nopagebreak
+  {\setlength{\parskip}{0pt}\setlength{\parindent}{0pt}%
+   \noindent\hfil
+   \begin{minipage}{0.94\linewidth}%
+   \centering\footnotesize\itshape #1%
+   \end{minipage}%
+   \hfil\par}%
+  \vskip 13pt\relax}
 
 % ---------- Bracketed drafting instruction, draft stage only. ----------
 \newcommand{\draftinstr}[1]{\par\addvspace{2pt}%

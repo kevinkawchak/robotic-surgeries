@@ -1,0 +1,107 @@
+\section{Stopping, Withdrawing, and Changing Your Mind}
+
+\subsection{Four routes out, and what each does to your record}
+
+\draftinstr{Roughly 1,200 characters introducing Figure 22. Participants are
+routinely told they may withdraw at any time and are almost never told what
+withdrawal does to the data already collected. The honest answer depends on
+which route out is taken, and there are four: stop the drug only; stop study
+procedures but keep follow-up; full withdrawal; and withdrawal of consent for
+data use as well. Adapt from \texttt{inputs/phase-1-trial-protocol.zip},
+\texttt{sections/sec-07-discontinuation.tex}, and cite \texttt{ecfr2026part50}
+and \texttt{NCIConsent24}.}
+
+\begin{pafig}[plantuml-type: activity with swimlanes, @startuml]
+\node[umlkey] (a) at (0,0) {Figure 22 slot\\withdrawal activity};
+\node[umlbox] (b) at (0,-1.9) {Source:\\plantuml/fig-22-withdrawal-activity.puml};
+\draw[umlarrow] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 22. The four routes out of the study drawn as a swimlaned activity, with
+one lane for the participant, one for the site team, and one for the data and specimens,\\
+so each route's consequence for the record is visible beside the route itself.}
+
+\draftinstr{Replace the Figure 22 slot with the PlantUML-type activity from
+\texttt{plantuml/fig-22-withdrawal-activity.puml}. Three vertical
+\texttt{umlpkg} swimlanes at $x = -5.0, 0.6, 6.6$ sharing one top and one bottom
+edge; actions as \texttt{umlstate} boxes at 2.2 cm pitch; one \texttt{mmdec}
+decision at $(0.6,-3.0)$; fork and join as \texttt{umlbar} rectangles; four
+\texttt{umlfinal} terminals on one rank; cross-lane edges with right-angle
+routing, the two that change rank at looseness 0.85.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{2.1cm} L{4.0cm} Y}
+\toprule
+\textbf{Route} & \textbf{What stops} & \textbf{What happens to data and specimens} \\
+\midrule
+A & Daraxonrasib only & Everything already collected stays in the safety analysis; new data continues to be collected \\
+B & Study procedures, follow-up continues & Existing data retained; new data limited to survival status; specimens retained unless you ask for destruction \\
+C & All study participation & Data already collected cannot be removed from the safety analysis; nothing new is collected; specimens destroyed on request \\
+D & Participation and future data use & Identifiable data segregated from new analysis; aggregate safety data already filed with the FDA cannot be recalled \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\draftinstr{Do not soften routes C and D. Both statements are true and
+unwelcome, and omitting them would make routes A and B less believable.}
+
+\subsection{Consent as a state, not a signature}
+
+\draftinstr{Roughly 1,100 characters introducing Figure 23. A consent form
+implies a one-time act. In a Physical AI trial the thing consented to can change
+while the participant is still enrolled, because an AI-enabled device can be
+updated. This protocol freezes the software version at consent and forces a
+re-consent on any change, so the participant is never operated on by software
+they have not been told about. Cite \texttt{FDATrans2024} and
+\texttt{FDARealW2025}.}
+
+\begin{pafig}[mermaid-type: stateDiagram-v2, composite]
+\node[mmgoal] (a) at (0,0) {Figure 23 slot\\consent lifecycle};
+\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-23-consent-lifecycle.md};
+\draw[mmedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 23. Consent drawn as a state machine with a nested enrolled composite,
+withdrawal reachable from every state, and a re-consent transition the participant did\\
+not cause, triggered by a software version change, a new risk, or a protocol amendment.}
+
+\draftinstr{Replace the Figure 23 slot with the mermaid-type state diagram from
+\texttt{mermaid/fig-23-consent-lifecycle.md}. \texttt{umlinit} at $(0,1.4)$,
+two \texttt{umlfinal} discs at $y=-13.0$; the enrolled composite as a
+\texttt{umlpkg} fitted over five \texttt{umlstate} substates at 1.4 cm pitch;
+transitions out of the composite leave the composite border rather than a
+substate, at looseness 0.9; the two notes as \texttt{umlnote} boxes with 0.5pt
+dashed leaders.}
+
+\subsection{Discontinuation the study may initiate}
+
+\draftinstr{Roughly 900 characters. Distinguish clearly between the participant
+stopping and the study stopping the participant. Populate the triggers from
+\texttt{inputs/phase-1-trial-protocol.zip},
+\texttt{sections/sec-07-discontinuation.tex} \S7.2, and state that in every case
+the participant is told the reason, in writing, and returns to standard care.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.0cm} Y}
+\toprule
+\textbf{Trigger} & \textbf{What follows for you} \\
+\midrule
+Dose-limiting toxicity at your level & Drug held or discontinued; surgical follow-up and every safety assessment continue \\
+Disease progression before surgery & Curative-intent resection is no longer the right operation; you are referred back for systemic therapy \\
+Intercurrent illness precluding surgery & Participation ends; standard-of-care pathway resumes without penalty \\
+Study-wide pause or halt & You are told, in writing, within the timeframe the protocol specifies; follow-up continues \\
+Withdrawal of the IND or the IDE & Participation ends; the sponsor's obligation for research-related injury care continues \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Lost to follow-up}
+
+\draftinstr{Roughly 600 characters. Define what counts as lost to follow-up,
+state the contact attempts the protocol requires before that determination, and
+state that a participant who reappears is resumed rather than excluded. Source
+from \S7.3 of the parent protocol.}

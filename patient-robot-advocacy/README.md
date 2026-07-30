@@ -91,16 +91,20 @@ flowchart TB
 
 | Milestone | Stage | Output directory | Commits | Status |
 |:--|:--|:--|:--|:--|
-| M1 | Bootstrap (Process A) | [`prompts/`](prompts), [`sub-prompts/`](sub-prompts), directory READMEs | 15 | complete |
+| M1 | Bootstrap (Process A) | [`prompts/`](prompts), [`sub-prompts/`](sub-prompts), directory READMEs | 16 | complete |
 | M2 | Stage 1 mermaid | [`mermaid/`](mermaid) | 11 | complete |
 | M3 | Stage 2 plantuml | [`plantuml/`](plantuml) | 7 | complete |
 | M4 | Stage 3 d2 | [`d2/`](d2) | 9 | complete |
 | M5 | Stage 4 diagrams-python | [`diagrams-python/`](diagrams-python) | 6 | complete |
 | M6 | Stage 5 graphviz | [`graphviz/`](graphviz) | 7 | complete |
-| M7 | Stage 6 draft-patient | [`draft-patient/`](draft-patient) | 20 | complete |
-| M8 | Stage 7 full-patient | [`full-patient/`](full-patient) | 20 | complete |
+| M7 | Stage 6 draft-patient | [`draft-patient/`](draft-patient) | 19 | complete |
+| M8 | Stage 7 full-patient | [`full-patient/`](full-patient) | 26 | complete |
 | M9 | Stage 8 final-patient | [`final-patient/`](final-patient) | 20 | complete |
 | M10 | Release (v1.0.0) | root `README.md`, `CHANGELOG.md`, `releases.md`, `prompts/output-patient.md` | 5 | complete |
+
+Counts are the commits whose subject carries that stage's prefix, read from the git log
+rather than planned in advance. Stage 7 ran six commits over its plan because five figures
+had to be rebuilt after the second verification pass.
 
 ## Directory map
 
@@ -122,6 +126,29 @@ patient-robot-advocacy/
   research/               the two dated 2026 patient-concern markdowns
   template/               the trial-protocol-template workflow this build adapts
 ```
+
+## The finished paper, in numbers
+
+The build ends at [`final-patient/`](final-patient). Everything below is measured from the
+committed source, not planned.
+
+| | Value |
+|:--|:--|
+| Pages | 88 |
+| Sections | 13 |
+| Figures | 30, across five diagram types, in ascending order of appearance |
+| Tables | 43, every one at body text width and every one breakable |
+| Visible text characters | 168,275, against the parent protocol's 155,222 |
+| Bibliography | 51 entries, every DOI printed and hyperlinked |
+| pdfLaTeX | 0 errors, 0 overfull boxes, 0 undefined citations, 0 undefined references |
+| Raster images | none, every figure is TikZ vector art |
+| Pages with a trailing gap over 3 cm | 15, of which 11 are a section's last page |
+
+The three paper stages are kept rather than overwritten, so the build is auditable:
+[`draft-patient/`](draft-patient) is the scaffold with 78 bracketed instructions,
+[`full-patient/`](full-patient) executes them and draws all thirty figures, and
+[`final-patient/`](final-patient) is the proof-reading pass over that. Each carries its own
+`prompt-*.md`, `output-*.md`, and Overleaf archive.
 
 ## The paper's thirteen sections
 

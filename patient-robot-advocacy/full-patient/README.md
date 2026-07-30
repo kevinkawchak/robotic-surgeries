@@ -38,7 +38,7 @@ filled from the author's quantitative sources.
 | Figures drawn in full | 0 of 30 (slots only) | 30 of 30 |
 | Prose and tables, characters | about 46,000 | about 137,000 |
 | Tables filled | column specs only | 37 tables, every cell filled |
-| Pages | 41 | 83 |
+| Pages | 42 | 83 |
 | Figure spacing | `\addvspace`, shrinkable | rigid `\vskip`, identical for all 30 |
 | Captions | 2 unbalanced lines | 3 balanced lines, all 30 inside the band |
 

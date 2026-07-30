@@ -50,7 +50,7 @@ The v1.0.0 release lands patient-robot-advocacy/, a Phase 1 PDAC patient advocac
                                      |
                                      v  redrawn natively in TikZ, per idiom
    +--------------------- Stages 6 to 8, the paper -----------------------+
-   |  draft-patient/    41 pp   scaffold, 78 bracketed instructions        |
+   |  draft-patient/    42 pp   scaffold, 78 bracketed instructions        |
    |  full-patient/     83 pp   instructions executed, 30 figures drawn    |
    |  final-patient/    88 pp   proof-read: floats, breakable tables,      |
    |                            ascending figure order, length parity      |
@@ -571,7 +571,7 @@ robotic-surgeries/
     d2/                  # 7 D2-type sources: figures 4, 5, 11, 16, 20, 26, 29
     diagrams-python/     # 4 Diagrams (Python)-type sources: figures 9, 17, 25, 30
     graphviz/            # 5 Graphviz-type sources: figures 2, 6, 13, 21, 28
-    draft-patient/       # Stage 6 scaffold, 78 bracketed instructions, 41 pp, zip
+    draft-patient/       # Stage 6 scaffold, 78 bracketed instructions, 42 pp, zip
     full-patient/        # Stage 7 populated paper, 30 figures drawn, 83 pp, zip
     final-patient/       # Stage 8 proof-read source set, 88 pp, zip (no publication/)
       main.tex           # cover page, keywords, 3-page contents, 13 \input lines

@@ -116,7 +116,7 @@ banner instead of a centred title block, four badges instead of a version line, 
 three-panel strip stating what the paper answers before any regulatory text appears: who is
 in control, what could go wrong, what is this costing me.
 
-The stage compiled clean at 41 pages with every figure slot empty, which was the point: a
+The stage compiled clean at 42 pages with every figure slot empty, which was the point: a
 scaffold that does not compile is not a scaffold.
 
 ## Stage 7, full-patient

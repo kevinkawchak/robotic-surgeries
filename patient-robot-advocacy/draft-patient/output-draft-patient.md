@@ -17,7 +17,7 @@ write.
 
 ```
 pdflatex main -> bibtex main -> pdflatex main -> pdflatex main
-Output written on main.pdf (41 pages, 273361 bytes).
+Output written on main.pdf (42 pages, 274224 bytes).
 0 errors   0 overfull boxes   0 undefined citations   0 undefined references
 ```
 
@@ -44,7 +44,7 @@ Output written on main.pdf (41 pages, 273361 bytes).
 
 4. **The figure slots are real, not placeholders.** All thirty are live `pafig`
    environments containing a titled node and the source-file label, so the scaffold
-   paginates realistically at 41 pages and the `\vspace{-0.7cm}` invariant is exercised
+   paginates realistically at 42 pages and the `\vspace{-0.7cm}` invariant is exercised
    from this stage forward rather than introduced later.
 
 5. **Tables are final in structure at the draft stage.** Every table already carries its
@@ -89,7 +89,7 @@ been used.
 | No em dash, en dash pair, or triple dash | pass |
 | Every codified reference uses `§` | pass |
 | No PNG, no JPG, no `\includegraphics` | pass |
-| Compiles clean through the four-pass sequence | pass, 41 pages |
+| Compiles clean through the four-pass sequence | pass, 42 pages |
 
 ### Commits in this stage
 

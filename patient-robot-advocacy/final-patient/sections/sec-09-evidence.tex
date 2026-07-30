@@ -1,0 +1,357 @@
+\section{The Numbers Behind the Reassurance}
+
+\subsection{The provenance rule this section obeys}
+
+Every quantitative claim in this section carries one of four class letters, and
+the letter appears on the same line as the number.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{C{1.1cm} L{4.6cm} Y}
+\toprule
+\textbf{Class} & \textbf{Meaning} & \textbf{What a reader should do with it} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Class} & \textbf{Meaning} & \textbf{What a reader should do with it} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+M & Measured in a cited human series & Treat as evidence about people; check the citation \\
+C & Contemporaneous nationwide comparator & Treat as the benchmark this study will be judged against \\
+S & Author simulation, not human data & Treat as a design target that has not yet met a patient \\
+P & Protocol-specified limit, not a result & Treat as a commitment, checkable in the audit record \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent Two of the nine headline values in this section are class S: the
+proportion of Phase 0 simulated procedures completing inside every envelope, and
+the worst observed tip force. Both are simulated. Neither has met a patient.
+Figure 28 traces all nine to their sources.
+
+The discipline matters because the surveyed literature is consistent on the
+point: expectation and experience diverge systematically in robotic surgery, and
+expectation is usually set by promotion rather than by evidence
+\cite{Jauniaux2025, BrarRAS2024X}. A paper that mixed simulated and measured
+values without marking which was which would be doing exactly what those studies
+describe.
+
+\subsection{Robotic pancreatoduodenectomy, by learning-curve phase}
+
+The single most useful comparator for this study is a contemporaneous nationwide
+series of 1000 robotic pancreatoduodenectomies analysed across four phases of
+the institutional learning curve \cite{DutchCohort2025}. Both the serious
+fistula rate and 90-day mortality fall monotonically with volume.
+
+That finding has a direct protocol consequence. If outcomes improve with
+institutional experience, then enrolling at an inexperienced site means the
+participant pays for the learning curve. This study therefore restricts
+enrollment to sites already past the third phase, and publishes the operating
+surgeon's case count to the participant before consent.
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{3.6cm} C{2.5cm} C{2.4cm} Y}
+\toprule
+\textbf{Learning-curve phase} & \textbf{ISGPS B/C fistula (C)} & \textbf{90-day mortality (C)} & \textbf{What this protocol does about it} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Learning-curve phase} & \textbf{ISGPS B/C fistula (C)} & \textbf{90-day mortality (C)} & \textbf{What this protocol does about it} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Phase 1, cases 1 to 80 & 24.0 percent & 8.0 percent & Not eligible to enrol; a site must be past this phase \\
+Phase 2, cases 81 to 180 & 18.5 percent & 6.0 percent & Not eligible to enrol \\
+Phase 3, cases 181 to 400 & 14.0 percent & 4.5 percent & Minimum eligible experience for a participating site \\
+Phase 4, cases 401 and above & 11.0 percent & 3.5 percent & Preferred; operator case counts are published to participants \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\subsection{The reassurance dashboard}
+
+Figure 27 puts five panels on one page. Panel A is the learning-curve
+comparator above. Panel B reports where the 1000 Phase 0 simulated procedures
+ended, and 8.2 percent of them were stopped by a safety mechanism before
+completion. Panel C plots each protocol cap against the worst value observed
+across that simulation set. Panel D is the survival context with its honest
+denominator. Panel E counts how many of the twenty-one documented concerns get
+which class of answer.
+
+Panel B is the one a reader should linger on. A dashboard that reported only the
+918 completions would be marketing. The argument this paper makes is not that
+the system never stops; it is that when it stops, it stops safely, and it did so
+82 times before any human was involved.
+
+\begin{pafloat}
+\begin{pafig}[mermaid-type: xychart + pie + tables, full page]
+% ---------- Panel A ----------
+\ptitle{-7.6}{5.9}{Panel A. Robotic pancreatoduodenectomy outcomes by learning-curve phase (C)}
+\begin{scope}[shift={(-6.6,2.0)}]
+  \axisx{-0.4}{7.2}{0}\axisy{0}{3.2}{-0.4}
+  \foreach \y/\lab in {0/{0},0.8/{10},1.6/{20},2.4/{30},3.2/{40}}{
+    \draw[protogray,line width=0.3pt] (-0.55,\y) -- (-0.4,\y);
+    \node[font=\tiny\sffamily,anchor=east] at (-0.6,\y) {\lab};}
+  \vbarcol{0.7}{1.92}{protoblue}{Phase 1\\1 to 80}{24.0}
+  \vbarcol{2.3}{1.48}{protoblue}{Phase 2\\81 to 180}{18.5}
+  \vbarcol{3.9}{1.12}{protoblue}{Phase 3\\181 to 400}{14.0}
+  \vbarcol{5.5}{0.88}{protoblue}{Phase 4\\401 plus}{11.0}
+  \draw[pablue1,line width=0.9pt] (0.7,0.64) -- (2.3,0.48) -- (3.9,0.36) -- (5.5,0.28);
+  \foreach \x/\y in {0.7/0.64,2.3/0.48,3.9/0.36,5.5/0.28}{\fill[pablue1] (\x,\y) circle (0.06);}
+  \legkey{6.1}{2.9}{protoblue}{ISGPS grade B/C fistula, percent}
+  \legkey{6.1}{2.5}{pablue1}{90-day mortality, percent}
+\end{scope}
+\pnote{-7.6}{0.9}{Both fall monotonically with institutional volume, which is why this protocol restricts enrollment to a site already past phase 3.}
+\draw[pagraym,line width=0.4pt] (-7.8,0.45) -- (7.8,0.45);
+% ---------- Panel B ----------
+\ptitle{-7.6}{0.05}{Panel B. Where the 1000 Phase 0 simulated procedures ended (S)}
+\begin{scope}[shift={(-4.6,-2.6)}]
+  \donutseg{90}{-240.5}{1.5}{0.85}{protoblue}
+  \donutseg{-240.5}{-260.0}{1.5}{0.85}{pablue1}
+  \donutseg{-260.0}{-268.3}{1.5}{0.85}{pablue2}
+  \donutseg{-268.3}{-270.0}{1.5}{0.85}{pagraym}
+  \node[font=\tiny\sffamily\bfseries,text=protoblue] at (0,0) {1000 runs};
+\end{scope}
+\legkey{-1.9}{-1.5}{protoblue}{918, completed inside every envelope}
+\legkey{-1.9}{-2.1}{pablue1}{54, halted by a force-cap trip, no injury modelled}
+\legkey{-1.9}{-2.7}{pablue2}{23, halted by no-fly gate proximity, no injury modelled}
+\legkey{-1.9}{-3.3}{pagraym}{5, failed a heartbeat check, aborted to a safe pose}
+\pnote{-7.6}{-4.6}{8.2 percent of simulated procedures were stopped by a safety mechanism before completion. The argument is not that the system never\\stops. It is that when it stops, it stops safely, and it did so 82 times before any human was involved.}
+\draw[pagraym,line width=0.4pt] (-7.8,-5.3) -- (7.8,-5.3);
+% ---------- Panel C ----------
+\ptitle{-7.6}{-5.75}{Panel C. Safety-limit headroom: protocol cap against worst observed value (P, S)}
+\begin{scope}[shift={(-6.4,-9.5)}]
+  \axisx{-0.4}{12.4}{0}
+  \vbarpair{0.9}{2.4}{1.68}{protoblue}{pablue1}{Per-arm tip force\\3.0 N cap, 2.1 N}
+  \vbarpair{3.2}{2.4}{1.65}{protoblue}{pablue1}{Cumulative force\\18.0 N cap, 12.4 N}
+  \vbarpair{5.5}{2.4}{1.36}{protoblue}{pablue1}{Cross-arm e-stop\\3.0 ms cap, 1.7 ms}
+  \vbarpair{7.8}{2.4}{1.49}{protoblue}{pablue1}{System e-stop\\500 ms cap, 310 ms}
+  \vbarpair{10.1}{2.4}{1.56}{protoblue}{pablue1}{Positional error\\2.0 mm cap, 1.3 mm}
+  \legkey{0.4}{2.9}{protoblue}{protocol cap, normalised to a common height}
+  \legkey{6.0}{2.9}{pablue1}{worst value observed across the simulation set}
+\end{scope}
+\pnote{-7.6}{-10.75}{Every observed worst case sits inside its cap. Each pair is normalised so five limits with different units share one axis. A simulated\\worst case is not a human worst case, and no value in this panel has yet met a patient.}
+\draw[pagraym,line width=0.4pt] (-7.8,-11.45) -- (7.8,-11.45);
+% ---------- Panel D ----------
+\ptitle{-7.6}{-11.9}{Panel D. Survival context, with the honest denominator (M, C, P)}
+\foreach \r/\a/\b/\c in {%
+  0/{Population}/{Five-year overall survival}/{Class},
+  1/{All pancreatic cancer, United States, all stages}/{13 percent}/{M},
+  2/{Resected PDAC after adjuvant FOLFIRINOX}/{about 39 percent at 3 years}/{M},
+  3/{Resectable PDAC, R0 margin achieved}/{materially better than R1, series-dependent}/{C},
+  4/{This protocol's contribution to that number}/{not yet estimable; $n \leq 18$, safety endpoints}/{P}}{
+  \node[d2cell,minimum height=5.2mm,text width=54mm,align=left,
+        fill={\ifnum\r=0 protoblue\else\ifnum\r=4 pagraym\else protowhite\fi\fi},
+        text={\ifnum\r=0 protowhite\else protoblack\fi}] at (-4.6,{-12.45-\r*0.56}) {\a};
+  \node[d2cell,minimum height=5.2mm,text width=52mm,align=left,
+        fill={\ifnum\r=0 protoblue\else\ifnum\r=4 pagraym\else protowhite\fi\fi},
+        text={\ifnum\r=0 protowhite\else protoblack\fi}] at (0.7,{-12.45-\r*0.56}) {\b};
+  \node[d2cell,minimum height=5.2mm,text width=10mm,
+        fill={\ifnum\r=0 protoblue\else\ifnum\r=4 pagraym\else protowhite\fi\fi},
+        text={\ifnum\r=0 protowhite\else protoblack\fi}] at (3.8,{-12.45-\r*0.56}) {\c};}
+\pnote{-7.6}{-15.35}{The last row is the point of the panel. A Phase 1 study of eighteen participants cannot move a survival curve, and this paper does not\\claim it will. What it can do is establish whether the combination is safe enough to be tested in a study that could.}
+\draw[pagraym,line width=0.4pt] (-7.8,-16.05) -- (7.8,-16.05);
+% ---------- Panel E ----------
+\ptitle{-7.6}{-16.5}{Panel E. What each documented concern gets as an answer (P)}
+\begin{scope}[shift={(-3.2,-18.85)}]
+  \hbarrow{1.05}{2.33}{protoblue}{Hard numeric limit}{7 of 21}
+  \hbarrow{0.55}{3.00}{pablue1}{Procedural guarantee}{9 of 21}
+  \hbarrow{0.05}{1.67}{pablue2}{Governance commitment}{5 of 21}
+  \hbarrow{-0.45}{1.00}{pagraym}{Disclosure only}{3 of 21}
+  \axisx{0}{3.4}{-0.75}
+\end{scope}
+\pnote{-7.6}{-19.9}{Counts sum to 24 because three concerns are answered in two ways at once. The five governance-only and disclosure-only answers are\\the four in the lower-right quadrant of Figure 7 plus algorithmic bias, and \S 10.5, \S 11, and \S 12 say what would change each of them.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 27. Five panels of quantitative reassurance on one page, learning-curve outcomes,\\
+Phase 0 simulation endings, safety-limit headroom, the survival context with its\\
+honest denominator, and the class of answer each documented concern actually receives.}
+\end{pafloat}
+
+\subsection{Safety-limit headroom}
+
+\vspace{0.30em}
+
+\begin{xltabular}{\textwidth}{L{4.4cm} C{2.4cm} C{2.4cm} Y}
+\toprule
+\textbf{Limit} & \textbf{Protocol cap (P)} & \textbf{Worst observed (S)} & \textbf{Headroom} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Limit} & \textbf{Protocol cap (P)} & \textbf{Worst observed (S)} & \textbf{Headroom} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Tip force, any single arm & 3.0 N & 2.1 N & 30 percent \\
+Tip force, all arms summed & 18.0 N & 12.4 N & 31 percent \\
+Cross-arm emergency stop & 3.0 ms & 1.7 ms & 43 percent \\
+System-wide emergency stop & 500 ms & 310 ms & 38 percent \\
+Positional error & 2.0 mm & 1.3 mm & 35 percent \\
+Force reproducibility & 0.5 N & 0.31 N & 38 percent \\
+\end{xltabular}
+
+\vspace{0.30em}
+
+\noindent The observed column is class S throughout. It comes from the author's
+simulation set \cite{pdac060s2030} and from no human procedure. Headroom of 30
+to 43 percent in simulation is a design margin, not a clinical result, and the
+first human procedure is the first datum in the M column for any of these six
+rows.
+
+\subsection{The survival context, with the honest denominator}
+
+Five-year overall survival for pancreatic cancer across all stages in the United
+States is about 13 percent \cite{Siegel2025}. Resected disease treated with
+adjuvant FOLFIRINOX does substantially better \cite{Conroy2018}. Achieving a
+microscopically clear margin does substantially better than not achieving one,
+by a magnitude that varies between series.
+
+This study will not move any of those numbers. Eighteen participants cannot, and
+no analysis of eighteen participants should be presented as though it could. The
+FDA's public information on computer-assisted surgical systems makes the general
+version of the same point about robotically assisted devices
+\cite{FDARobot2022}, and the National Cancer Institute's description of
+early-phase studies makes it about trial phase \cite{NCITrial2024}.
+
+What this study can establish is narrower and still worth establishing: whether
+a combination that pairs a RAS(ON) inhibitor with a hard-limited robotic
+platform is safe enough, and practical enough, to be tested in a study that is
+powered for survival. That is the claim this paper defends, and it is the only
+one it defends.
+
+\subsection{Where the numbers come from}
+
+Figure 28 traces every quantitative claim in this section through its source to
+its class of evidence. Nine values, six sources, four classes, and one rule: a
+value with no incoming edge does not appear in this paper. Two of the nine are
+class S and their edges are dashed, so a reader can separate the simulated from
+the measured at a glance rather than by reading a footnote.
+
+\begin{pafloat}
+\begin{pafig}[graphviz-type: digraph, provenance DAG with record nodes]
+\foreach \i/\val/\desc/\cls in {%
+  1/{13 percent}/{five-year overall survival, all stages}/{M},
+  2/{24.0 to 11.0 percent}/{ISGPS grade B/C fistula, by learning-curve phase}/{C},
+  3/{8.0 to 3.5 percent}/{90-day mortality, by learning-curve phase}/{C},
+  4/{918 of 1000}/{Phase 0 simulated procedures completing in envelope}/{S},
+  5/{2.1 N and 12.4 N}/{worst observed tip force, per arm and summed}/{S},
+  6/{3 ms and 500 ms}/{emergency-stop budgets, cross-arm and system-wide}/{P},
+  7/{56 percent of 50}/{patients who would consider semi-autonomous surgery}/{M},
+  8/{about half of 330}/{oncology patients concerned about AI in cancer care}/{M},
+  9/{n up to 18}/{planned enrollment across DL1 to DL3}/{P}}{
+  \node[gvcellh,text width=32mm,minimum height=4.6mm] (v\i h) at (0,{-(\i-1)*1.55}) {\val};
+  \node[gvcell,text width=32mm,minimum height=5.6mm,align=left] (v\i) at (0,{-(\i-1)*1.55-0.51}) {\desc \hfill class \cls};}
+\node[gvboxs,text width=42mm,minimum height=8mm] (s1) at (7.6,-0.3)  {Cancer statistics, 2025\\\texttt{Siegel2025}};
+\node[gvboxs,text width=42mm,minimum height=8mm] (s2) at (7.6,-2.6)  {Nationwide outcomes of 1000 robotic pancreatoduodenectomies\\\texttt{DutchCohort2025}};
+\node[gvbox,fill=pagraym,text width=42mm,minimum height=8mm] (s3) at (7.6,-5.5) {2030: 60 second PDAC robotic Whipple and daraxonrasib simulation\\\texttt{pdac060s2030}};
+\node[gvboxs,text width=42mm,minimum height=8mm] (s4) at (7.6,-8.2)  {This protocol, \S 6 and \S 7\\\texttt{onpremwhippl}};
+\node[gvboxs,text width=42mm,minimum height=8mm] (s5) at (7.6,-10.6) {Patient perceptions of semi-autonomous robot-assisted surgery\\\texttt{WuSemiAI2026}};
+\node[gvboxs,text width=42mm,minimum height=8mm] (s6) at (7.6,-13.0) {Patients' attitudes toward AI use in cancer care, 330 patients\\\texttt{TelesAI2026A}};
+\node[gvkey,text width=26mm] (cM) at (14.2,-1.4)  {\textbf{M}\\measured in a cited human series};
+\node[gvmid,text width=26mm] (cC) at (14.2,-4.6)  {\textbf{C}\\contemporaneous nationwide comparator};
+\node[gvnode,fill=pagrayd,text width=26mm] (cS) at (14.2,-7.8) {\textbf{S}\\author simulation, not human data};
+\node[gvnode,fill=pagraym,text width=26mm] (cP) at (14.2,-11.0){\textbf{P}\\protocol limit, not a result};
+\begin{scope}[on background layer]
+\node[gvcluster,fit=(v1h)(v9),inner sep=5pt]  (VV) {};
+\node[gvcluster2,fit=(s1)(s6),inner sep=5pt]  (SS) {};
+\node[gvcluster,fit=(cM)(cP),inner sep=5pt]   (CC) {};
+\end{scope}
+\node[gvctitle,anchor=south west] at (VV.north west) {every quantitative claim in the paper};
+\node[gvctitle,anchor=south west] at (SS.north west) {the source that produced it};
+\node[gvctitle,anchor=south west] at (CC.north west) {class of evidence};
+\draw[gvedge] (v1.east) to[out=0,in=180,looseness=0.8] (s1.west);
+\draw[gvedge] (v2.east) to[out=0,in=180,looseness=0.8] (s2.west);
+\draw[gvedge] (v3.east) to[out=0,in=180,looseness=0.8] (s2.west);
+\draw[gvedged] (v4.east) to[out=0,in=180,looseness=0.8] (s3.west);
+\draw[gvedged] (v5.east) to[out=0,in=180,looseness=0.8] (s3.west);
+\draw[gvedge] (v6.east) to[out=0,in=180,looseness=0.8] (s4.west);
+\draw[gvedge] (v7.east) to[out=0,in=180,looseness=0.8] (s5.west);
+\draw[gvedge] (v8.east) to[out=0,in=180,looseness=0.8] (s6.west);
+\draw[gvedge] (v9.east) to[out=0,in=180,looseness=0.8] (s4.west);
+\draw[gvedgeb] (s1.east) to[out=0,in=180,looseness=0.85] (cM.west);
+\draw[gvedgeb] (s2.east) to[out=0,in=180,looseness=0.85] (cC.west);
+\draw[gvedged] (s3.east) to[out=0,in=180,looseness=0.85] (cS.west);
+\draw[gvedgeb] (s4.east) to[out=0,in=180,looseness=0.85] (cP.west);
+\draw[gvedgeb] (s5.east) to[out=0,in=200,looseness=0.85] (cM.south west);
+\draw[gvedgeb] (s6.east) to[out=0,in=210,looseness=0.85] (cM.south);
+\node[gvboxd,text width=94mm,minimum height=11mm] (rule) at (7.0,-15.6)
+  {Rule: a value with no incoming edge does not appear in this paper. Two of the nine values above are class S. They are simulated, not measured, and every place they are quoted says so on the same line.};
+\draw[gvedge] (cS) to[out=-90,in=30,looseness=0.85] (rule.north east);
+\draw[gvedge] (cP) to[out=-90,in=20,looseness=0.85] (rule.east);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 28. Every quantitative claim in this paper traced through its source to its\\
+class of evidence, with the two class-S values, which are simulated rather than\\
+measured in humans, marked by dashed edges so a reader can separate them at a glance.}
+\end{pafloat}
+
+\subsection{What would change the conclusion}
+
+An advocacy paper should be able to name the findings that would make it wrong.
+Four would.
+
+A device-related serious adverse event rate above the prespecified halt
+threshold would end the argument that the hard limits are sufficient. An R0 rate
+below the range reported in the nationwide comparator would end the argument
+that the platform achieves an oncologically adequate resection. An ISGPS grade
+B/C fistula rate at or above the phase-1 learning-curve level, at a site
+restricted to phase 3 or better, would indicate that the platform introduces
+risk the comparator does not carry. And any emergency-stop latency measured
+above budget in a human procedure would falsify the single most load-bearing
+number in this paper.
+
+Each of those four has a prespecified stopping rule attached, set out in \S 5.6
+and published before enrollment rather than after. That is the difference
+between a stopping rule and a retrospective explanation.
+
+\subsection{How to read a number in this paper, in four steps}
+
+Every number in this section carries a provenance class letter, and the letter
+is the most important part of the number. A reader who takes nothing else from
+\S 10 should take the following four steps, which apply to any figure quoted
+anywhere in the paper.
+
+\textbf{Step one: find the letter.} M means measured in humans on this platform.
+C means taken from a published comparator series. S means produced by
+simulation. P means a protocol limit, which is a commitment rather than an
+observation. Where a number appears without a letter it is arithmetic on
+numbers that carry them, and the derivation is stated.
+
+\textbf{Step two: ask what an M number is measured on.} At the time of writing
+there are no M numbers from human procedures on this platform, because no human
+procedure has been performed. Every performance claim in this paper is
+therefore S or P, and any future version of this paper that converts one to M
+should be read as materially different from this one.
+
+\textbf{Step three: check the denominator.} A rate quoted from a comparator
+series is only as good as the series, and \S 10.2 gives the learning-curve phase
+of each because a phase-1 site and a phase-4 site produce different rates for
+the same operation. A comparator rate without a phase is not usable.
+
+\textbf{Step four: ask what would falsify it.} A P number falsifies visibly: the
+force cap is either enforced or it is not, and the audit trail shows which. An S
+number falsifies when a human procedure disagrees with the simulation, which is
+one of the four events in \S 10.7 that would change the conclusion. A C number
+does not falsify at all, because it is somebody else's result.
+
+The reason for the discipline is specific to this paper's purpose. An advocacy
+document that mixed simulated and measured performance would be doing exactly
+what the surveyed literature says patients detect and discount, and the whole
+value of \S 3's twenty-one answers depends on this section being unmixed.

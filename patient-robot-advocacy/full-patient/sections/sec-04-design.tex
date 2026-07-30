@@ -1,0 +1,224 @@
+\section{Study Design Explained}
+
+\subsection{Open-label, single-arm, and what that means for you}
+
+Three technical terms describe the design, and each has a consequence a
+participant can act on.
+
+\textbf{Open-label} means nothing about the treatment is concealed. The
+participant knows the dose level they are on, the software version that will
+operate, and the identity of the operating surgeon. There is no masking to
+maintain and therefore nothing that has to be withheld to protect the study.
+
+\textbf{Single-arm} means there is one treatment group and no allocation. The
+concern reported most often about trial mechanics is being assigned to a
+treatment the participant would not have chosen \cite{NCITrial2024,
+WuSemiAI2026}. In this study that cannot happen: every participant who enrols
+receives the same intervention, and the only thing that varies between them is
+the daraxonrasib dose level, which is set by what happened to the people ahead
+of them rather than by chance.
+
+\textbf{Dose-finding} means the study is looking for the highest dose that is
+tolerated, not for the largest effect. A participant at DL1 is not receiving a
+lesser treatment; they are receiving the dose that the study is confident enough
+to start with, and their tolerance of it is what permits DL2 to open.
+
+\subsection{Your status in the study, and how it can change}
+
+Figure 12 draws participant status as a state machine, and the reason to use a
+state machine rather than a flowchart is the guard. Every transition in the
+figure carries a named condition that must evaluate true before the transition
+can be taken, and the protections live in the guards rather than in the states.
+A participant who wants to know what stands between them and the operating room
+should read the guard on the transition into the operative state:
+\texttt{[Phase 0 gate signed]}, \texttt{[USL $\geq$ 7.0 verified]}, and
+\texttt{[pre-procedure matrix clear]}, all three, conjunctively.
+
+One state in that figure exists only for the participant's benefit. The cohort
+hold is entered when a prior participant is still inside their sentinel window,
+and it costs the study calendar time. It would be tidier to fold it into a
+transition guard, and it is drawn as an explicit state because it is the
+clearest single piece of evidence that this design accepts delay in exchange for
+safety.
+
+\begin{pafig}[plantuml-type: state machine, @startuml]
+\node[umlinit] (i0) at (0,1.5) {};
+\node[umlstate,text width=44mm] (s1) at (0,0)     {\textbf{Screened}\\screening, day $-28$ to $-1$; KRAS G12 confirmed, staging done};
+\node[umlstategray,text width=36mm] (sx) at (-7.4,0) {\textbf{Not enrolled}\\screen failure or declined; minimal data set only, \S 5.4; standard care unchanged};
+\node[umlstatesoft,text width=44mm] (s2) at (0,-2.9) {\textbf{Enrolled}\\consent on file; software version frozen and recorded};
+\node[umlstategray,text width=36mm] (sh) at (7.6,-2.9) {\textbf{Cohort hold}\\sentinel window open; no further participant dosed until it closes};
+\node[umlstatesoft,text width=44mm] (s3) at (0,-5.9) {\textbf{Dose assigned}\\DL1, DL2, or DL3 by the 3+3 rule; never above a level not yet cleared};
+\node[umlstateon,text width=44mm] (s4) at (0,-8.9)  {\textbf{Operative}\\day 0, robotic Whipple under continuous human oversight};
+\node[umlstateon,text width=44mm] (s5) at (0,-11.6) {\textbf{Recovering}\\days 1 to 30; daraxonrasib restart advisory at T+7, T+14, or T+21};
+\node[umlstatesoft,text width=44mm] (s6) at (0,-14.3){\textbf{Confirmed}\\day 90; R0 pathology and 90-day mortality};
+\node[umlstate,text width=44mm] (s7) at (0,-17.0)  {\textbf{Long term}\\every 12 weeks to 24 months; PFS and OS};
+\node[umlfinal] (f0) at (0,-18.6) {};
+\node[umlfinal] (fx) at (-7.4,-1.7) {};
+\draw[umlarrow] (i0) -- (s1);
+\draw[umlarrow] (s1) -- node[umlguard,above]{[ineligible OR declined]} (sx);
+\draw[umlarrow] (sx) -- (fx);
+\draw[umlarrow] (s1) -- node[umlguard,pos=0.5,align=left,xshift=32mm]{[all \S 5.1 met]\\{}[no \S 5.2 exclusion]\\{}[consent signed]} (s2);
+\draw[umlarrow] (s2) to[out=0,in=90,looseness=0.9] node[umlguard,pos=0.55,align=left]{[prior participant still inside the sentinel window]} (sh);
+\draw[umlarrow] (sh) to[out=-90,in=0,looseness=0.9] node[umlguard,pos=0.45,align=left]{[sentinel window closed]\\{}[no DLT declared]} (s3);
+\draw[umlarrow] (s2) -- node[umlguard,pos=0.5,align=left,xshift=30mm]{[no sentinel window open]} (s3);
+\draw[umlarrow] (s3.west) to[out=170,in=190,looseness=5] node[umlguard,left,align=right]{[DLT observed in cohort]\\/ expand 3 to 6, do not escalate} (s3.south west);
+\draw[umlarrow] (s3) -- node[umlguard,pos=0.5,align=left,xshift=32mm]{[Phase 0 gate signed]\\{}[USL $\geq 7.0$ verified]\\{}[pre-procedure matrix clear]} (s4);
+\draw[umlarrow] (s4) -- node[umlguard,pos=0.5,align=left,xshift=30mm]{[procedure complete OR converted to open]} (s5);
+\draw[umlarrow] (s5) -- node[umlguard,pos=0.5,align=left,xshift=26mm]{[day-30 window closed]} (s6);
+\draw[umlarrow] (s6) -- node[umlguard,pos=0.5,align=left,xshift=26mm]{[day-90 assessments done]} (s7);
+\draw[umlarrow] (s7) -- node[umlguard,pos=0.5,align=left,xshift=30mm]{[24-month endpoint OR withdrawal OR death]} (f0);
+\node[umlnote,text width=44mm,anchor=north west] at (5.0,-5.4)
+  {This state exists so that you are never the second person at a new dose level before the first person's safety window has closed. It costs the study time. It is not there for the study's benefit.};
+\node[umlnote,text width=44mm,anchor=north east] at (-5.0,-8.2)
+  {Single arm, open label. There is no allocation that could assign you to a comparator, and nothing about your treatment is concealed from you.};
+\node[umlnote,text width=44mm,anchor=north east] at (-5.0,-12.4)
+  {Conversion to open surgery is a normal outcome of this state, not a failure of it. It is recorded, reported, and does not end your participation.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 12. Participant status as a guarded state machine, screening through the 24-month\\
+endpoint, with the sentinel cohort hold drawn as an explicit state because it is\\
+the clearest evidence that the design accepts calendar delay in exchange for safety.}
+
+\subsection{The 3+3 rule, and why you are never the untested dose}
+
+The rule is usually stated statistically and is easier to check operationally.
+Three participants are treated at a dose level. If none has a dose-limiting
+toxicity, the next level opens. If one does, the level is expanded to six rather
+than escalated; if that sixth participant brings the total to one of six, the
+next level opens, and if two or more of six have a toxicity, escalation stops
+and the level below becomes the recommended dose. If two or three of the first
+three have a toxicity, escalation stops immediately.
+
+Layered on top is the sentinel stagger. The second participant at a new dose
+level is not dosed until the first participant's safety window has closed. That
+delay is the difference between a rule that protects the cohort and a rule that
+protects the individual, and it is why the answer to "am I the untested dose" is
+no: the dose a participant receives was cleared by the people ahead of them, and
+the study expands rather than escalates the moment anyone is harmed.
+
+Figure 13 draws the rule as a decision tree, which is the right structure
+because there is exactly one path from the root to each leaf. Two of the leaves
+are stops, and one of those convenes the Data and Safety Monitoring Board and is
+reported to every enrolled participant. A dose-escalation figure with no
+stopping leaf would misrepresent the rule.
+
+\begin{pafig}[graphviz-type: digraph, decision tree with record leaves]
+\node[gvkey,text width=30mm] (root) at (0,0) {Dose level 1\\first 3 participants\\sentinel staggered};
+\node[gvsoft,text width=22mm] (d10) at (-5.6,-3.1) {0 of 3 had a DLT};
+\node[gvgray2,text width=22mm](d11) at (0,-3.1)    {1 of 3 had a DLT};
+\node[gvgray3,text width=22mm](d12) at (5.6,-3.1)  {2 or 3 of 3 had a DLT};
+\node[gvsoft,text width=22mm] (ex)  at (0,-6.0)    {expand this level to 6 participants};
+\node[gvsoft,text width=22mm] (e1)  at (-2.9,-8.8) {1 of 6 total};
+\node[gvgray3,text width=22mm](e2)  at (2.9,-8.8)  {2 or more of 6};
+\node[gvmid,text width=24mm]  (d2)  at (-7.6,-6.6) {Dose level 2\\next 3, sentinel staggered};
+\node[gvmid,text width=24mm]  (d3)  at (-7.6,-10.4){Dose level 3\\next 3, sentinel staggered};
+\node[gvbox,text width=44mm,minimum height=13mm] (stopb) at (5.2,-12.4)
+  {\textbf{STOP ESCALATING}\\this level is above the tolerated dose; the level below becomes the recommended dose; no participant is dosed higher};
+\node[gvbox,text width=44mm,minimum height=13mm] (mtd) at (-3.0,-14.8)
+  {\textbf{RECOMMENDED PHASE 2 DOSE}\\the highest level at which fewer than 2 of 6 participants had a dose-limiting toxicity, reported with the safety data};
+\node[gvboxd,text width=28mm,minimum height=10mm] (halt) at (10.0,-8.2)
+  {Study pause\\DSMB convenes\\you are told};
+\begin{scope}[on background layer]
+\node[gvcluster,fit=(d10)(d11)(d12),inner sep=8pt] (SEN) {};
+\end{scope}
+\node[gvctitle,anchor=south west] at (SEN.north west) {sentinel window: nobody advances until this closes};
+\draw[gvedge] (root) to[out=-150,in=90,looseness=0.8] node[umlguard,pos=0.35]{0 of 3} (d10);
+\draw[gvedge] (root) -- node[umlguard,pos=0.4]{1 of 3} (d11);
+\draw[gvedge] (root) to[out=-30,in=90,looseness=0.8] node[umlguard,pos=0.35]{$\geq 2$ of 3} (d12);
+\draw[gvedge] (d10) to[out=-135,in=60,looseness=0.85] node[umlguard,pos=0.4]{escalate} (d2);
+\draw[gvedge] (d11) -- node[umlguard,pos=0.45]{do not escalate} (ex);
+\draw[gvedge] (ex) to[out=-135,in=90,looseness=0.85] node[umlguard,pos=0.4]{1 of 6} (e1);
+\draw[gvedge] (ex) to[out=-45,in=90,looseness=0.85] node[umlguard,pos=0.4]{$\geq 2$ of 6} (e2);
+\draw[gvedge] (e1) to[out=180,in=-20,looseness=0.85] node[umlguard,pos=0.5]{escalate} (d2);
+\draw[gvedge] (e2) to[out=-45,in=150,looseness=0.85] node[umlguard,pos=0.4]{stop} (stopb);
+\draw[gvedge] (d12) to[out=-60,in=120,looseness=0.85] node[umlguard,pos=0.4]{stop} (stopb);
+\draw[gvedged] (d12) to[out=0,in=90,looseness=0.9] node[umlguard,pos=0.4]{if at the first level} (halt);
+\draw[gvedgeb] (d2) -- node[umlguard,pos=0.5,align=left,xshift=24mm]{0 of 3, or 1 of 6} (d3);
+\draw[gvedged] (d2) to[out=-40,in=170,looseness=0.9] node[umlguard,pos=0.6]{$\geq 2$ of 6} (stopb.west);
+\draw[gvedgeb] (d3) to[out=-60,in=180,looseness=0.85] node[umlguard,pos=0.4]{0 of 3, or 1 of 6} (mtd);
+\draw[gvedgeb] (stopb) to[out=180,in=0,looseness=0.85] node[umlguard,pos=0.45]{the level below is the answer} (mtd);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 13. The 3+3 dose-escalation rule drawn as a decision tree with exactly one path\\
+from the root to each leaf, including the two stopping leaves and the study pause that\\
+convenes the Data and Safety Monitoring Board and is reported to every participant.}
+
+\subsection{The dose levels}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{1.9cm} L{3.1cm} C{1.9cm} Y}
+\toprule
+\textbf{Level} & \textbf{Daraxonrasib dose} & \textbf{Cohort size} & \textbf{What has to be true before this level opens} \\
+\midrule
+DL1 & Starting dose level & 3, expandable to 6 & Phase 0 gate signed, USL at least 7.0, IND in effect, IDE approved by both the FDA and the IRB \\
+DL2 & One step above DL1 & 3, expandable to 6 & DL1 cleared: 0 of 3, or 1 of 6, dose-limiting toxicities, and every sentinel window at DL1 closed \\
+DL3 & Two steps above DL1 & 3, expandable to 6 & DL2 cleared on the same rule, plus a DSMB review at the cohort boundary \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent Planned enrollment is up to 18 participants across the three levels.
+Enrollment is staggered: no participant enters a level while a sentinel window
+at that level remains open. The dose anchor for the starting level is taken from
+the pan-KRAS programme in previously treated metastatic disease
+\cite{rasolute302, oreilly2026darax}, adjusted for the perioperative setting.
+
+\subsection{The Phase 0 gate that runs before any patient}
+
+No patient-facing robotic activity occurs until a simulation-validation gate has
+been signed. The gate has three components, and all three must pass.
+
+\textbf{Volume and independence.} At least 1000 simulated procedures across at
+least two independent simulation frameworks. Independence matters more than
+volume: two frameworks that share a physics engine share its errors, and the
+protocol requires that they do not.
+
+\textbf{Fidelity.} Motion reproduced within a 2 mm positional tolerance and a
+0.5 N force tolerance across frameworks. These are the credibility questions
+that the ASME verification and validation standard for computational modelling
+in medical devices \cite{asmevv40} and the NASA models-and-simulations standard
+\cite{nasastd7009} were written to frame.
+
+\textbf{Readiness.} A documented Unified Safety Level of at least 7.0 for
+surgical deployment, under the Physical AI overlay adapted for end-to-end
+oncology investigations \cite{cfr312paiuni}. The simulation source for the
+operative values is the author's 60-second robotic Whipple and daraxonrasib
+simulation \cite{pdac060s2030}.
+
+The gate sign-off is a dated document and the participant is shown it at the
+baseline visit. Section 10.3 reports what happened across those 1000 runs,
+including the 8.2 percent that were halted by a safety mechanism, and states in
+the same sentence that a simulated worst case is not a human worst case.
+
+\subsection{Stopping rules, stated before they are needed}
+
+Prespecified triggers pause or stop the study. Four of them are device-specific,
+and those are the ones a participant worried about the robot will look for
+first. Any breach of a per-arm or cumulative force cap. Any entry into a
+vascular no-fly corridor. Any emergency-stop latency measured above budget. Any
+loss of the heartbeat bus that is not resolved by the automatic halt.
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.6cm} L{2.6cm} Y}
+\toprule
+\textbf{Trigger} & \textbf{Effect} & \textbf{Who decides, and who is told} \\
+\midrule
+Two or more DLTs at a dose level & Escalation stops & Sponsor-Investigator declares; DSMB reviews; every enrolled participant is told \\
+Any device-related death & Immediate study halt & DSMB; FDA and IRB notified within the reporting window \\
+Force-cap breach at the tip & Procedure halt, then study pause & The gate halts automatically; the DSMB decides on resumption \\
+Entry into a vascular no-fly corridor & Procedure halt, then study pause & The gate halts automatically; Physical AI Safety Review Committee re-gates \\
+Emergency-stop latency above budget & Study pause pending re-gate & Physical AI Safety Review Committee; USL reassessed \\
+Heartbeat loss not resolved by halt & Study pause pending re-gate & Physical AI Safety Review Committee; USL reassessed \\
+Grade B/C fistula rate above the phase-1 comparator level & DSMB review at the cohort boundary & DSMB; the rate is published with the safety data \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent In every row, the participant is told. That is the point of publishing
+the table before it is needed: a stopping rule that a participant only learns
+about after it fires is a governance mechanism, and a stopping rule they were
+shown in advance is a commitment.

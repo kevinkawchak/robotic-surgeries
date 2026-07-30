@@ -1,0 +1,142 @@
+\section{Your Visits, Your Data, Your Robot Instructions}
+
+\subsection{The calendar, and what it costs you}
+
+\draftinstr{Roughly 1,000 characters introducing Figure 25. Convert the
+Schedule of Activities into a calendar with durations and then total it: about
+18 visits, 8 to 10 inpatient days, roughly 27 days of contact over 24 months.
+State that the intervals, not the illustrative calendar dates, are what the
+protocol fixes. Cite \texttt{NCICosts2024} for the practical burden framing.}
+
+\begin{pafig}[mermaid-type: gantt]
+\node[mmgoal] (a) at (0,0) {Figure 25 slot\\participant calendar};
+\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-25-visit-timeline.md};
+\draw[mmedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 25. The participant calendar from screening through the 24-month
+endpoint, drawn with real durations rather than crosses in a matrix, and with the four\\
+critical milestones, surgery, day 30, day 90, and the endpoint, marked to the axis.}
+
+\draftinstr{Replace the Figure 25 slot with the mermaid-type Gantt from
+\texttt{mermaid/fig-25-visit-timeline.md}. A 15 cm time axis spanning September
+2026 to September 2028; five alternating section bands drawn before any bar;
+3.6 mm bars with 2.2 mm clear space between rows; task labels anchored east in a
+4.6 cm left gutter, never inside a bar; the four critical milestones with a
+0.5pt drop line to the axis.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{3.3cm} C{1.4cm} C{2.0cm} C{1.9cm} Y}
+\toprule
+\textbf{Phase} & \textbf{Visits} & \textbf{Inpatient days} & \textbf{Clinic days} & \textbf{Notes for planning} \\
+\midrule
+Screening & 4 & 0 & about 4 & Imaging and tissue work; no study procedure before consent \\
+Baseline and surgery & 2 & 8 to 10 & 1 & The single inpatient stay of the study \\
+Early recovery & 3 & 0 & 3 & The restart advisory is a conversation, not a procedure \\
+Confirmatory & 2 & 0 & 2 & Day 90 carries the two results most people want \\
+Long-term & 7 & 0 & 7 & One half-day every 12 weeks for 24 months \\
+\textbf{Total} & \textbf{18} & \textbf{8 to 10} & \textbf{about 17} & Roughly 27 days of contact over 24 months \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Everything recorded about you}
+
+\draftinstr{Roughly 1,300 characters introducing Figure 24. List every data
+type: arm motion, tip force, vessel proximity across 640 sensor channels;
+operative video and endoscope feed; vitals, laboratory values, CA 19-9, drain
+output; the case report form. State retention in years per store, and state the
+read list per store. Cite \texttt{ecfr2026part11} for the electronic-records
+standard and \texttt{FDATrans2024} for the transparency principles.}
+
+\begin{pafig}[diagrams (python)-type: pipeline with access overlay]
+\node[dgtiled] (a) at (0,0) {};
+\glyphdb{a}{protowhite}
+\node[dglabel,anchor=north] at ([yshift=-5.4mm]a.center) {Figure 24 slot, data pipeline};
+\node[dglabel,anchor=north] at (0,-1.6) {Source: diagrams-python/fig\_24\_data\_pipeline.py};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 24. Your data through four stages, capture, write-once hash chain, the
+identified and de-identified stores, and what leaves, with the read list attached to\\
+every store and no edge at all for a principal that may not read it.}
+
+\draftinstr{Replace the Figure 24 slot with the Diagrams (Python)-type pipeline
+from \texttt{diagrams-python/fig\_24\_data\_pipeline.py}. Four stage clusters
+plus one access-control container; retention printed on a third label line
+beneath each store tile so no leader is needed; a principal that cannot read a
+store is joined by nothing at all, and the figure's foot note says that the
+absence is the access statement.}
+
+\subsection{Who can read what, and for how long}
+
+\draftinstr{Populate this table from the \texttt{READ\_ACCESS} and
+\texttt{RETENTION\_DAYS} dictionaries in
+\texttt{diagrams-python/fig\_24\_data\_pipeline.py}, converting days to years.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{3.5cm} C{1.7cm} Y}
+\toprule
+\textbf{Store} & \textbf{Retention} & \textbf{Who may read it} \\
+\midrule
+Raw telemetry & 10 years & Site PI, Sponsor-Investigator, and you on request \\
+Operative video & 10 years & Operating surgeon, Site PI, and you on request \\
+Case report form & 15 years & Site PI, CRO monitor, and you on request \\
+Hash chain & 15 years & Sponsor-Investigator, FDA on inspection, and you on request \\
+Identified store & 15 years & Site PI, and you on request \\
+De-identified store & 10 years & Sponsor-Investigator, DSMB, study statistician \\
+Analysis outputs & 15 years & Everyone above, and the public at publication \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent Your data is not used to train a commercial model without a separate
+consent. That is a statement about what does not happen, and Figure 24 draws it
+as an absent edge rather than asserting it in a caption.
+
+\subsection{Cybersecurity, in the terms the question is asked}
+
+\draftinstr{Roughly 900 characters answering ChatGPT concern 11 directly. The
+question is "could someone hack the system", and the answer is architectural
+rather than reassuring: during a procedure there is no network route out of the
+building, so the attack surface is the building. State what crosses before and
+after, and state what remains true if hospital connectivity fails entirely, which
+is that the procedure is unaffected. Cite \texttt{FDACyber2026}.}
+
+\subsection{The robots you will meet, and the ones you will not}
+
+\draftinstr{Roughly 1,100 characters introducing Figure 26. The source
+instruction set covers ten robot types \cite{patrobotinst}. In this protocol two
+are certain, four are possible depending on recovery, and four are not used.
+Knowing which is which is itself an answer to the question of what the
+participant is agreeing to. State the re-scoping explicitly: the source sheets
+are mixed-oncology and illustrated with raster images, and both are changed
+here.}
+
+\begin{pafig}[d2-type: card grid, full page]
+\node[d2key] (a) at (0,0) {Figure 26 slot\\ten robot instruction cards};
+\node[d2box] (b) at (0,-1.8) {Source:\\d2/fig-26-robot-instruction-cards.d2};
+\draw[d2edge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 26. Ten robot-type instruction cards re-scoped from general oncology to
+this PDAC Whipple protocol, each with three numbered instructions and a re-scoping\\
+note, and with the four robot types this protocol does not use marked as such.}
+
+\draftinstr{Replace the Figure 26 slot with the full-page D2-type card grid from
+\texttt{d2/fig-26-robot-instruction-cards.d2}. Two columns by five rows of
+7.0 cm by 3.2 cm cards with 0.6 cm of clear space in both axes; each card a
+\texttt{d2cont} with a \texttt{d2key} title band, exactly three numbered
+instruction lines, and a \texttt{d2gray} foot strip; the eight-arm surgical card
+drawn with a 1.2pt border and every other card at 0.8pt. No raster image.}
+
+\subsection{Software changes during your participation}
+
+\draftinstr{Roughly 800 characters. The software version is frozen at consent
+and recorded in the version registry. Any change forces a re-consent, and until
+the participant acts no study procedure proceeds under the changed version.
+Declining the change ends participation and returns the participant to standard
+care with no penalty. Cite \texttt{FDARealW2025} and forward to Figure 23.}

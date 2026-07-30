@@ -1,0 +1,198 @@
+\section{Stopping, Withdrawing, and Changing Your Mind}
+
+\subsection{Four routes out, and what each does to your record}
+
+Participants are routinely told they may withdraw at any time, and are almost
+never told what withdrawal does to the data already collected. The honest answer
+depends on which route out is taken, and there are four. Route A stops the drug
+only. Route B stops study procedures but keeps follow-up. Route C is full
+withdrawal from participation. Route D withdraws consent for future data use as
+well.
+
+None of the four requires a reason, and none of the four is recorded as a reason
+unless the participant chooses to give one. The right is unconditional under 21
+CFR part 50 \cite{ecfr2026part50}, and the National Cancer Institute's guidance
+on consent describes it in the same terms \cite{NCIConsent24}. What differs
+between the routes is the consequence for the record, and Figure 22 draws all
+four side by side with a lane for the participant, a lane for the site team, and
+a lane for the data and specimens.
+
+Two of those consequences are unwelcome and are stated rather than smoothed.
+Under route C, data already collected cannot be removed from the safety
+analysis, because removing one participant's adverse events from a safety data
+set biases that data set for everyone else who is still enrolled. Under route D,
+aggregate safety data already reported to the FDA cannot be recalled. Both are
+true. Saying so is what makes routes A and B believable.
+
+\begin{pafig}[plantuml-type: activity with swimlanes, @startuml]
+\node[umlinit] (i0) at (-5.2,1.5) {};
+\node[umlstate,text width=32mm] (a1) at (-5.2,0)    {Decide to stop};
+\node[umlstate,text width=32mm] (a2) at (-5.2,-2.2) {Tell any member of the study team, in any form, at any visit};
+\node[umlstate,text width=34mm] (b1) at (0.6,-2.2)  {Log the request with a timestamp in the hash-chained record};
+\node[mmdec,text width=22mm]    (dc) at (0.6,-5.0)  {Which route out?};
+\node[umlstate,text width=30mm] (r1) at (-6.6,-8.0) {\textbf{A}\ Daraxonrasib discontinued};
+\node[umlstate,text width=30mm] (r2) at (-2.2,-8.0) {\textbf{B}\ No further study procedures};
+\node[umlstate,text width=30mm] (r3) at (2.2,-8.0)  {\textbf{C}\ All study participation ends};
+\node[umlstate,text width=30mm] (r4) at (6.6,-8.0)  {\textbf{D}\ Participation and future data use both end};
+\node[umlstatesoft,text width=30mm] (s1) at (-6.6,-11.0) {Surgery, follow-up visits, and safety reporting continue};
+\node[umlstatesoft,text width=30mm] (s2) at (-2.2,-11.0) {Follow-up continues by telephone or record review only};
+\node[umlstatesoft,text width=30mm] (s3) at (2.2,-11.0)  {Standard-of-care oncology continues, unchanged and without penalty};
+\node[umlstatesoft,text width=30mm] (s4) at (6.6,-11.0)  {Request forwarded to the IRB and recorded in the audit chain};
+\node[umlstategray,text width=30mm] (d1) at (-6.6,-14.6) {Everything already collected stays in the safety analysis. New data continues to be collected.};
+\node[umlstategray,text width=30mm] (d2) at (-2.2,-14.6) {Existing data retained. New data limited to survival status. Specimens retained unless you ask for destruction.};
+\node[umlstategray,text width=30mm] (d3) at (2.2,-14.6)  {Data already collected cannot be removed from the safety analysis. Nothing new is collected. Specimens destroyed on request.};
+\node[umlstategray,text width=30mm] (d4) at (6.6,-14.6)  {Identifiable data segregated from any new analysis. Aggregate safety data already reported to the FDA cannot be recalled.};
+\foreach \i in {1,2,3,4}{\node[umlfinal] (f\i) at ({-6.6+(\i-1)*4.4},-17.0) {};}
+\begin{scope}[on background layer]
+\node[umlpkg,fit=(i0)(a1)(a2)(r1)(r4),inner sep=8pt] (LN1) {};
+\node[umlpkg,fit=(b1)(dc)(s1)(s4),inner sep=8pt] (LN2) {};
+\node[umlpkg,fit=(d1)(d4)(f1)(f4),inner sep=8pt] (LN3) {};
+\end{scope}
+\node[umlpkgtab,anchor=south west] at (LN1.north west) {You};
+\node[umlpkgtab,anchor=south west] at (LN2.north west) {Site study team};
+\node[umlpkgtab,anchor=south west] at (LN3.north west) {Data and specimens};
+\draw[umlarrow] (i0) -- (a1);
+\draw[umlarrow] (a1) -- (a2);
+\draw[umlarrow] (a2) -- (b1);
+\draw[umlarrow] (b1) -- (dc);
+\foreach \i/\n in {1/r1,2/r2,3/r3,4/r4}{\draw[umlarrow] (dc) to[out=-90,in=90,looseness=0.8] (\n);}
+\foreach \i in {1,2,3,4}{\draw[umlarrow] (r\i) -- (s\i);}
+\foreach \i in {1,2,3,4}{\draw[umlarrow] (s\i) -- (d\i);}
+\foreach \i in {1,2,3,4}{\draw[umlarrow] (d\i) -- (f\i);}
+\node[umlnote,text width=44mm,anchor=north west] at (8.8,-1.6)
+  {No reason is required at any point below, and none is recorded unless you choose to give one.};
+\node[umlnote,text width=44mm,anchor=north west] at (8.8,-4.8)
+  {Two of the four consequences are unwelcome. They are stated rather than smoothed, because omitting them would make the other two less believable.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 22. The four routes out of the study drawn as a swimlaned activity, with one\\
+lane for the participant, one for the site team, and one for the data and specimens,\\
+so each route's consequence for the record is visible directly beside the route itself.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{2.1cm} L{4.0cm} Y}
+\toprule
+\textbf{Route} & \textbf{What stops} & \textbf{What happens to data and specimens} \\
+\midrule
+A & Daraxonrasib only & Everything already collected stays in the safety analysis; new data continues to be collected \\
+B & Study procedures, follow-up continues & Existing data retained; new data limited to survival status; specimens retained unless you ask for destruction \\
+C & All study participation & Data already collected cannot be removed from the safety analysis; nothing new is collected; specimens destroyed on request \\
+D & Participation and future data use & Identifiable data segregated from any new analysis; aggregate safety data already filed with the FDA cannot be recalled \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Consent as a state, not a signature}
+
+A consent form implies a single act at a single moment. In a Physical AI trial
+that model is wrong, because the thing consented to can change while the
+participant is still enrolled. An AI-enabled device can be updated, and the
+joint transparency principles for machine learning-enabled medical devices
+identify version change as a matter requiring explicit communication
+\cite{FDATrans2024}. Real-world performance can also drift without any version
+change at all \cite{FDARealW2025}.
+
+This protocol handles both by freezing the software version at consent and
+recording it in a registry that the participant is shown. Any change to that
+version, any newly identified risk, and any protocol amendment forces a
+re-consent. Until the participant acts on that re-consent, no study procedure
+proceeds under the changed version. Declining the change ends participation and
+returns the participant to standard care with no penalty.
+
+Figure 23 draws consent as the state machine this implies, with a nested
+enrolled composite, withdrawal reachable from every state, and a re-consent
+transition the participant did not cause.
+
+\begin{pafig}[mermaid-type: stateDiagram-v2 with a composite state]
+\node[umlinit] (i0) at (0,1.6) {};
+\node[umlstate,text width=38mm] (inf) at (0,0)    {\textbf{Informed}\\\S 3 of this paper read, questions answered, no signature yet};
+\node[umlstateon,text width=38mm] (con) at (0,-2.6) {\textbf{Consented}\\21 CFR \S 50.20 satisfied; software version frozen and recorded};
+\node[umlstatesoft,text width=32mm] (e1) at (0,-5.6)  {\textbf{Screening}\ day $-28$ to $-1$};
+\node[umlstatesoft,text width=32mm] (e2) at (0,-7.2)  {\textbf{Baseline}\ day $-1$, Phase 0 sign-off, opt-out still open};
+\node[umlstatesoft,text width=32mm] (e3) at (0,-8.9)  {\textbf{Operative}\ day 0};
+\node[umlstatesoft,text width=32mm] (e4) at (0,-10.5) {\textbf{Acute}\ days 1 to 7, restart advisory};
+\node[umlstatesoft,text width=32mm] (e5) at (0,-12.2) {\textbf{Follow-up}\ day 30, day 90, q12wk to 24 months};
+\foreach \i/\j in {1/2,2/3,3/4,4/5}{\draw[umlarrow] (e\i) -- (e\j);}
+\begin{scope}[on background layer]
+\node[umlpkg,fit=(e1)(e5),inner sep=7pt] (ENR) {};
+\end{scope}
+\node[umlpkgtab,anchor=south west] at (ENR.north west) {Enrolled};
+\node[umlstategray,text width=36mm] (rec) at (7.0,-7.6)  {\textbf{Re-consent required}\\software version changed, new risk identified, or protocol amended};
+\node[umlstate,text width=36mm] (wdr) at (-7.0,-10.4) {\textbf{Withdrawn by you}\\no reason required; standard care continues};
+\node[umlstateon,text width=36mm] (cmp) at (0,-15.2) {\textbf{Completed}\\24-month endpoint reached};
+\node[umlfinal] (f1) at (-7.0,-13.0) {};
+\node[umlfinal] (f2) at (0,-16.8) {};
+\node[umlfinal] (f3) at (-7.0,-0.8) {};
+\draw[umlarrow] (i0) -- (inf);
+\draw[umlarrow] (inf) -- node[umlguard,pos=0.5,align=left,xshift=16mm]{you sign} (con);
+\draw[umlarrow] (inf) -- node[umlguard,pos=0.45,align=center]{you decline; nothing recorded beyond the screening log} (f3);
+\draw[umlarrow] (con) -- node[umlguard,pos=0.5,align=left,xshift=24mm]{first study procedure} (ENR.north);
+\draw[umlarrow] (ENR.east) to[out=0,in=180,looseness=0.9] node[umlguard,pos=0.5,align=left]{version or protocol change, not your doing} (rec);
+\draw[umlarrow] (rec) to[out=200,in=20,looseness=0.9] node[umlguard,pos=0.5,align=left]{you re-consent} (ENR.south east);
+\draw[umlarrow] (rec) to[out=90,in=20,looseness=1.1] node[umlguard,pos=0.55,align=left]{you decline the change} (wdr.north east);
+\draw[umlarrow] (ENR.west) to[out=180,in=0,looseness=0.9] node[umlguard,pos=0.5,align=right]{you withdraw, any time, any visit} (wdr);
+\draw[umlarrow] (ENR.south) -- node[umlguard,pos=0.5,align=left,xshift=26mm]{24-month follow-up complete} (cmp);
+\draw[umlarrow] (wdr) -- (f1);
+\draw[umlarrow] (cmp) -- (f2);
+\node[umlnote,text width=42mm,anchor=north west] at (5.2,-11.6)
+  {Data already collected stays in the safety analysis; nothing new is collected. You choose whether banked specimens are destroyed or retained.};
+\node[umlnote,text width=42mm,anchor=north east] at (-5.2,-4.0)
+  {You did not cause this transition. Until you act, no study procedure proceeds under the changed version.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 23. Consent drawn as a state machine with a nested enrolled composite, withdrawal\\
+reachable from every state, and a re-consent transition the participant did not\\
+cause, triggered by a software version change, a new risk, or a protocol amendment.}
+
+\subsection{The two transitions the parent protocol does not draw}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.0cm} Y}
+\toprule
+\textbf{Transition} & \textbf{Why it matters to the participant} \\
+\midrule
+Enrolled to re-consent required & An AI-enabled device can be updated. If the version that operates on the participant is not the version they consented to, the consent is stale. This protocol freezes the version at consent and forces a re-consent on any change, so nobody is operated on by software they have not been told about. \\
+Re-consent required to withdrawn & Declining a change must be a real option rather than a formality. Declining ends participation and returns the participant to standard care with no penalty and no loss of any care they were already receiving. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Discontinuation the study may initiate}
+
+The participant stopping and the study stopping the participant are different
+things, and this subsection is about the second. In every case below the
+participant is told the reason in writing and returns to standard care.
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.0cm} Y}
+\toprule
+\textbf{Trigger} & \textbf{What follows for you} \\
+\midrule
+Dose-limiting toxicity at your level & The drug is held or discontinued; surgical follow-up and every safety assessment continue as scheduled \\
+Disease progression before surgery & A curative-intent resection is no longer the right operation; you are referred back for systemic therapy without delay \\
+Intercurrent illness precluding surgery & Participation ends; the standard-of-care pathway resumes without penalty \\
+Study-wide pause or halt & You are told, in writing, within the timeframe the protocol specifies; follow-up continues throughout the pause \\
+Withdrawal of the IND or the IDE & Participation ends; the sponsor's obligation for research-related injury care continues unchanged \\
+Loss of the site's eligibility to enrol & Your care transfers with a written handover; you are not asked to travel to another site \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Lost to follow-up}
+
+A participant is recorded as lost to follow-up only after three documented
+contact attempts across at least 30 days, by at least two different means, plus
+one written attempt to the last known address. That threshold is deliberately
+high, because a participant recorded as lost is a participant whose survival
+status is unknown, and an unknown survival status weakens the endpoint for
+everyone else in the study.
+
+A participant who reappears at any point is resumed rather than excluded. They
+re-enter at the visit that is next due, their earlier data is unaffected, and no
+explanation is required. There is no penalty of any kind for a missed visit.

@@ -1,0 +1,108 @@
+@startuml fig-15-booking-sponsor-response
+' =====================================================================
+' Figure 15. Booking a slot yourself, and getting an answer from a person
+' Type            : PlantUML-type, sequence diagram with activation bars
+' Paper section   : § 6, Who Can Join, and Who Decides
+' Concern answered: ChatGPT concern 16 (practical burdens) and the access half
+'                   of concern 8 (treatment choice); Gemini family 1 (less time
+'                   with the doctor). Under current practice a patient learns a
+'                   trial exists from a clinician who happens to know about it,
+'                   and every subsequent question routes back through that
+'                   clinician. H. R. 9510 v5 proposes a direct channel. This
+'                   figure draws what that channel does message by message, and
+'                   what its service-level commitment is.
+' Why this type   : Latency and ordering between five parties, with the point
+'                   being who waits for whom. A sequence diagram with explicit
+'                   activation bars is the only notation that shows blocking.
+'
+' TikZ: draw with the uml* vocabulary of patientstyle.sty.
+' TikZ: Five lifelines at x = 0, 3.8, 7.6, 11.4, 15.2, headers as umlbox with
+' TikZ:   text width 24mm at y = 0; mmlife dashed rules from y = -0.7 to -14.2.
+' TikZ: umlact activation bars 2.6mm wide centred on each lifeline, spanning
+' TikZ:   exactly the messages they enclose.
+' TikZ: Messages are umlarrow solid for calls, umldash for returns, labels in
+' TikZ:   \tiny\sffamily set ABOVE the arrow line, never on it.
+' TikZ: Elapsed-time annotations sit in the right margin at x = 16.6 in
+' TikZ:   \tiny\sffamily\itshape, right aligned, with a 0.3pt pagraym leader.
+' TikZ: The one self-message on the Sponsor lifeline uses
+' TikZ:   to[out=25,in=-25,looseness=6] on a 4mm loop.
+' TikZ: The alt fragment is a protogray 0.5pt rectangle with an "alt" corner
+' TikZ:   tab and a dashed divider between branches.
+' =====================================================================
+
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam ArrowColor #00417A
+skinparam ArrowFontColor #111111
+skinparam SequenceLifeLineBorderColor #6C757D
+skinparam SequenceLifeLineBackgroundColor #FFFFFF
+skinparam ParticipantBorderColor #00417A
+skinparam ParticipantBackgroundColor #DCE8F1
+skinparam ParticipantFontColor #111111
+skinparam ActorBorderColor #00417A
+skinparam ActorBackgroundColor #FFFFFF
+skinparam SequenceGroupBorderColor #6C757D
+skinparam SequenceGroupBackgroundColor #E9ECEF
+skinparam NoteBackgroundColor #E9ECEF
+skinparam NoteBorderColor #6C757D
+
+autonumber
+
+actor "You" as PT
+participant "Trial booking\nportal" as PORT
+participant "Sponsor-Investigator\non call" as SI
+participant "Site screening\ncoordinator" as SC
+participant "Your treating\noncologist" as ONC
+
+PT -> PORT : request a screening slot, 24/7, no referral required
+activate PORT
+PORT -> PORT : match against open cohorts and the sentinel window
+PORT --> PT : provisional slot held for 72 hours
+deactivate PORT
+
+PT -> SI : ask a direct question about the device
+activate SI
+note right of SI #E9ECEF
+  H. R. 9510 v5 proposes that this
+  message reaches a named human at the
+  sponsor, not a form, and that the
+  answer is logged in your record.
+end note
+SI --> PT : answer, within one business day, recorded verbatim
+deactivate SI
+
+PT -> SC : confirm the slot
+activate SC
+SC -> ONC : request records and staging with your authorisation
+activate ONC
+ONC --> SC : imaging, pathology, KRAS G12 status
+deactivate ONC
+SC -> SC : eligibility pre-check against § 5.1 and § 5.2
+
+alt eligible on paper
+  SC --> PT : screening visit confirmed, itinerary and cost sheet attached
+  SC -> ONC : notify, so your own care team is never bypassed
+else not eligible on paper
+  SC --> PT : reason stated in plain language, no record beyond the screening log
+  SC -> ONC : notify, so your own care team can act on the reason
+end
+deactivate SC
+
+note over PT, PORT #E9ECEF
+  You never lose your treating oncologist. Every branch
+  above notifies them. The channel is additional, not
+  a replacement, which is the distinction the surveyed
+  patients cared about most.
+end note
+
+note over SI, SC
+  Elapsed time from first request to a confirmed
+  screening visit, target: 5 business days.
+  The 72-hour hold exists so you are not
+  rushed into confirming.
+end note
+
+@enduml

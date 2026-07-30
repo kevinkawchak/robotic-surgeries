@@ -1,0 +1,438 @@
+\section{The Documented Patient Concerns}
+
+\subsection{Where the twenty-one come from}
+
+Two dated research passes on July 28, 2026 supply the evidence base for this
+section. The first, by Gemini 3.1 Pro, returned six concern families. The second,
+by ChatGPT 5.6 Thinking Extended, returned sixteen numbered concerns, each with
+the question a patient is likely to ask and what the trial team should explain,
+together with thirteen supporting references. The two overlap on five items.
+De-duplicated, they give twenty-one distinct documented concerns, and those
+twenty-one are the subject of the rest of this paper.
+
+Neither pass invented its material. Behind them sits human evidence. A 2026
+qualitative study of 50 previously operated patients found that 56 percent would
+consider semi-autonomous robot-assisted surgery, and that willingness depended
+strongly on which parts of the procedure the robot controlled; the principal
+themes were informed consent, additional risks, surgeon-patient trust, and
+anticipated benefit \cite{WuSemiAI2026}. A cross-sectional survey of 330
+oncology patients found approximately half expressing concern about artificial
+intelligence in cancer care, led by loss of human interaction and by medical
+error \cite{TelesAI2026A}. A systematic review of patient and public
+perspectives on robotic surgery found that expectation and experience diverge
+systematically, and that expectation is usually set by promotion rather than by
+evidence \cite{Jauniaux2025}. A survey of public perceptions found that the most
+common single misconception is that the robot operates by itself
+\cite{BrarRAS2024X}.
+
+Two conclusions follow, and this paper is built on both. First, patients are not
+opposed to the technology; they are opposed to being asked to accept it without
+specifics. Second, the specifics they want are not general. They are per-step,
+per-limit, per-name.
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.2cm} C{1.9cm} Y}
+\toprule
+\textbf{Concern family} & \textbf{Concerns} & \textbf{Where this paper answers it} \\
+\midrule
+Control and the human element & 5 & \S7.3, \S7.4; Figures 8, 18, 19 \\
+Safety and technical failure & 5 & \S7.4, \S7.5, \S7.6; Figures 20, 21 \\
+Evidence and effectiveness & 4 & \S4.2, \S5.1, \S10; Figures 13, 27, 28 \\
+Data, privacy, and security & 3 & \S9.3, \S9.4; Figures 17, 24 \\
+Fairness and applicability & 2 & \S6.3, \S8.3; Figures 14, 23 \\
+Accountability and burden & 2 & \S11, \S12; Figures 29, 30 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\begin{pafig}[d2-type: nested containers]
+% ---- family 1 ----
+\node[d2key,text width=26mm] (c1) at (0,0)      {1. Who is driving\\\S7.3, Fig 19};
+\node[d2key,text width=26mm] (c2) at (0,-1.5)   {2. Can it be stopped\\\S7.4, Fig 18};
+\node[d2box,text width=26mm] (c3) at (0,-3.0)   {3. Will the surgeon defer\\\S7.3, Fig 19};
+\node[d2box,text width=26mm] (c4) at (0,-4.5)   {4. Will I have a doctor\\\S3.1, Fig 8};
+\node[d2box,text width=26mm] (c5) at (0,-6.0)   {5. Less time with my team\\\S6.2, Fig 15};
+% ---- family 2 ----
+\node[d2key,text width=26mm] (s1) at (5.4,0)    {6. Unintended motion\\\S7.4, Fig 20};
+\node[d2box,text width=26mm] (s2) at (5.4,-1.5) {7. Misreading a margin\\\S7.5, Fig 20};
+\node[d2key,text width=26mm] (s3) at (5.4,-3.0) {8. Vessel injury\\\S7.5, Fig 21};
+\node[d2box,text width=26mm] (s4) at (5.4,-4.5) {9. Instrument failure\\\S7.6, Fig 20};
+\node[d2box,text width=26mm] (s5) at (5.4,-6.0) {10. Conversion to open\\\S5.3, Fig 12};
+% ---- family 3 ----
+\node[d2gray2,text width=26mm](e1) at (10.8,0)   {11. Cancer control\\\S10.1, Fig 27};
+\node[d2box,text width=26mm] (e2) at (10.8,-1.5) {12. Among the first\\\S5.1, Fig 13};
+\node[d2gray2,text width=26mm](e3) at (10.8,-3.0){13. Newer as better\\\S10.4, Fig 28};
+\node[d2box,text width=26mm] (e4) at (10.8,-4.5) {14. Team experience\\\S11.2, Fig 29};
+% ---- family 4 ----
+\node[d2key,text width=26mm] (d1) at (0,-9.4)   {15. Who sees the video\\\S9.3, Fig 24};
+\node[d2box,text width=26mm] (d2) at (0,-10.9)  {16. Training other models\\\S9.3, Fig 24};
+\node[d2key,text width=26mm] (d3) at (0,-12.4)  {17. Could it be attacked\\\S9.4, Fig 17};
+% ---- family 5 ----
+\node[d2gray2,text width=26mm](f1) at (5.4,-9.4) {18. People like me\\\S6.3, Fig 14};
+\node[d2key,text width=26mm] (f2) at (5.4,-10.9) {19. Software change\\\S8.3, Fig 23};
+% ---- family 6 ----
+\node[d2gray2,text width=26mm](b1) at (10.8,-9.4) {20. Who is accountable\\\S11.1, Fig 29};
+\node[d2gray2,text width=26mm](b2) at (10.8,-10.9){21. What will it cost\\\S12.2, Fig 30};
+\begin{scope}[on background layer]
+\node[d2cont,fit=(c1)(c2)(c3)(c4)(c5)] (F1) {};
+\node[d2cont,fit=(s1)(s2)(s3)(s4)(s5)] (F2) {};
+\node[d2cont,fit=(e1)(e2)(e3)(e4)]     (F3) {};
+\node[d2cont,fit=(d1)(d2)(d3)]         (F4) {};
+\node[d2cont,fit=(f1)(f2)]             (F5) {};
+\node[d2cont,fit=(b1)(b2)]             (F6) {};
+\end{scope}
+\node[d2title,anchor=south west] at (F1.north west) {concerns.control\_and\_the\_human\_element};
+\node[d2title,anchor=south west] at (F2.north west) {concerns.safety\_and\_technical\_failure};
+\node[d2title,anchor=south west] at (F3.north west) {concerns.evidence\_and\_effectiveness};
+\node[d2title,anchor=south west] at (F4.north west) {concerns.data\_privacy\_and\_security};
+\node[d2title,anchor=south west] at (F5.north west) {concerns.fairness\_and\_applicability};
+\node[d2title,anchor=south west] at (F6.north west) {concerns.accountability\_and\_burden};
+\legkey{-1.6}{-14.2}{protoblue}{answered by a hard numeric limit, 7 of 21}
+\legkey{4.2}{-14.2}{protowhite}{answered by a procedural guarantee, 9 of 21}
+\legkey{10.0}{-14.2}{pagraym}{governance or disclosure only, 5 of 21}
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 5. The twenty-one documented concerns grouped into six disjoint families,\\
+with the answering section and figure printed inside each item, and a fill key\\
+stating how many are answered by a limit, a guarantee, or by governance alone.}
+
+\subsection{Control and the human element}
+
+Five concerns sit here, and they are the most frequently raised of the
+twenty-one. Who is actually driving the robot. Whether the surgeon can stop it,
+and how fast. Whether the surgeon will defer to the model even when their own
+judgement differs. Whether the participant will still have a doctor who knows
+them. Whether relying on the system will reduce time with the care team.
+
+The first is answered by classification and by architecture. The system is a
+Class II collaborative device operating under continuous human oversight, and
+the on-premises model has no path to an actuator: it emits a candidate plan, a
+deterministic gate tests that plan, and the operating surgeon signs or declines
+it. Section 7.3 sets this out and Figure 19 draws every message. The public
+misconception that the robot operates by itself \cite{BrarRAS2024X} is not
+corrected by asserting the opposite; it is corrected by showing a diagram in
+which the arrow that would be needed is absent.
+
+The third concern, deference, is the subtlest and the least often addressed. It
+is not enough that the surgeon may decline; the question is whether they will.
+This protocol records every override with its reason, publishes the override
+rate as an exploratory endpoint, and requires no justification for declining, so
+that declining carries no procedural cost. Automation bias is a measured
+quantity here rather than an assumed absence \cite{FDATrans2024}.
+
+The fourth and fifth concerns are about relationship rather than technology.
+Every route into the study notifies the participant's own treating oncologist,
+on every branch, including the branch where the participant turns out to be
+ineligible. The direct sponsor channel of \S6.2 is additional, never a
+replacement, and Figure 15 draws the notification on each path.
+
+\subsection{Safety and technical failure}
+
+Five concerns: unintended motion, misreading tissue or a margin, injury to a
+major vessel, instrument failure during the procedure, and conversion to open
+surgery.
+
+The first three are answered by limits that are enforced below the level of the
+software making the decision. Per-arm tip force is capped at 3 N and the sum
+across arms at 18 N. Positional tolerance is 2 mm and force reproducibility is
+0.5 N. A vascular no-fly corridor extends 4 mm either side of the superior
+mesenteric and portal veins, and a plan that would enter it is rejected by a
+deterministic gate before the surgeon ever sees it as executable. These are the
+kinds of limits the international standard for robotically assisted surgical
+equipment contemplates \cite{iec8060127}, and the fail-safe design standard for
+autonomous and semi-autonomous systems frames the stopping behaviour
+\cite{ieee7009}.
+
+Instrument failure and conversion are answered differently, because they are not
+prevented, they are planned for. An open tray and backup instruments are in the
+room for every procedure. Conversion to open surgery is a recorded outcome, not
+a failure of the study or of the participant, it does not end participation, and
+the decision belongs to the operating surgeon alone. Section 7.7 gives the
+comparator context.
+
+\subsection{Evidence and effectiveness}
+
+Four concerns: whether the operation removes the cancer as completely as
+standard surgery, whether the participant is among the first humans to receive
+it, whether newer is being presented as better, and how experienced the team is.
+
+This is the family this paper answers least completely, and \S10 says so with a
+figure rather than a hedge. Figure 7 places cancer-control effectiveness in the
+quadrant of concerns that are raised often and answered only by governance or
+disclosure. The reason is structural: eighteen participants cannot establish an
+oncologic outcome. What the protocol can do, and does, is report R0 rate, ISGPS
+grade B/C fistula rate, and 90-day mortality against a contemporaneous
+nationwide comparator of 1000 robotic pancreatoduodenectomies
+\cite{DutchCohort2025}, and restrict enrollment to a site already past the third
+phase of that learning curve, so the curve is not paid for by the participant.
+
+On the third concern, the paper takes the position the surveyed literature
+recommends: use neutral language and present absolute evidence rather than
+adjectives \cite{Jauniaux2025}. Nowhere in this document is the system described
+as revolutionary, state of the art, or cutting edge. The FDA's own information
+page states that cancer-related long-term outcomes have not been established for
+every use of robotically assisted surgical devices \cite{FDARobot2022}, and that
+statement is reproduced rather than argued with.
+
+\subsection{Data, privacy, and security}
+
+Three concerns: who sees the recording of the operation, whether the data will
+train other systems, and whether the system can be attacked.
+
+The answers are architectural and are drawn rather than asserted. Section 9.3
+publishes a read list per store and a retention period per store, in years.
+Section 9.4 states the network position: during a procedure there is no route
+out of the building, so the attack surface is the building. Three things cross
+the boundary before a procedure, a signed model build, a protocol version, and
+the pinned registry entry; two cross afterwards, reports to the FDA and the IRB;
+and nothing crosses during. Figure 17 draws that boundary and Figure 24 draws
+the pipeline. The relevant FDA guidance on cybersecurity in medical devices
+\cite{FDACyber2026} and the joint transparency principles for machine
+learning-enabled devices \cite{FDATrans2024} are the frame.
+
+Data is not used to train a commercial model without a separate consent. That is
+a statement about something that does not happen, and Figure 24 renders it as an
+absent edge, which is the only honest way to draw a negative.
+
+\subsection{Fairness, applicability, accountability, and burden}
+
+Four concerns close the set: whether the system was tested on people like the
+participant, whether the software can change after consent, who is accountable
+if something goes wrong, and what participation will cost.
+
+On applicability the honest answer is uncomfortable and is given in \S6.3: at
+$n \leq 18$ subgroup performance is not estimable, and what the protocol commits
+to is reporting the composition of the enrolled population by age, sex, race,
+ethnicity, body mass index, and prior therapy, consistent with FDA guidance on
+reporting such data in device studies \cite{FDADiver2017}, together with the
+real-world performance monitoring the agency has sought comment on
+\cite{FDARealW2025}.
+
+On software change the answer is a hard one: the version is frozen at consent
+and recorded in a registry, and any change forces a re-consent. Until the
+participant acts, no study procedure proceeds under the changed version.
+Figure 23 draws consent as the state machine this implies.
+
+Accountability and cost are the two concerns that land in the honest-gap
+quadrant alongside effectiveness. Section 11 answers accountability with a rule,
+one accountable party per failure class, and Figure 29 publishes the matrix.
+Section 12 answers cost line by line and marks two items as unsettled: lost
+income, and continued drug access after study closure \cite{NCICosts2024}.
+
+\begin{pafig}[graphviz-type: graph, bipartite, full page]
+\foreach \i/\lab in {1/{1. Who is driving},2/{2. Can it be stopped},3/{3. Will it be deferred to},4/{4. Will I have a doctor},5/{5. Less time with my team},6/{6. Unintended motion},7/{7. Misreading a margin},8/{8. Vessel injury},9/{9. Instrument failure},10/{10. Conversion to open},11/{11. Cancer control},12/{12. Among the first},13/{13. Newer as better},14/{14. Team experience},15/{15. Who sees the video},16/{16. Training other models},17/{17. Could it be attacked},18/{18. People like me},19/{19. Software change},20/{20. Who is accountable},21/{21. What will it cost}}{
+  \node[gvbox,text width=30mm,minimum height=5mm,inner sep=1.8pt] (k\i) at (0,{-(\i-1)*0.72}) {\lab};}
+\node[gvboxk,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a1)  at (8.8,-0.05) {Class II collaborative device, continuous oversight, no model-to-actuator path};
+\node[gvboxk,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a2)  at (8.8,-0.90) {Emergency stop: $\leq 3$ ms cross-arm, $\leq 500$ ms system-wide};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a3)  at (8.8,-1.72) {Override logged with reason; declining needs no justification};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a4)  at (8.8,-2.54) {Treating oncologist notified on every branch of every route};
+\node[gvboxk,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a5)  at (8.8,-3.42) {Tip force $\leq 3$ N per arm, $\leq 18$ N summed across arms};
+\node[gvboxk,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a6)  at (8.8,-4.30) {Vascular no-fly gating, SMV and portal vein, 4 mm corridor};
+\node[gvboxk,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a7)  at (8.8,-5.18) {Positional tolerance $\leq 2$ mm, force reproducibility $\leq 0.5$ N};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a8)  at (8.8,-6.06) {Conversion is a recorded outcome, not a failure; backup tray in room};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a9)  at (8.8,-6.94) {R0 rate, ISGPS B/C rate, and 90-day mortality against a nationwide comparator};
+\node[gvboxk,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a10) at (8.8,-7.88) {Phase 0 gate: $\geq 1000$ simulations, $\geq 2$ frameworks, USL $\geq 7.0$};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a11) at (8.8,-8.82) {Sentinel stagger: no second participant at a new dose until the first window closes};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a12) at (8.8,-9.76) {Site restricted past learning-curve phase 3; operator counts published};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a13) at (8.8,-10.64){Read list published per store; retention stated in years};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a14) at (8.8,-11.46){No commercial model training without a separate consent};
+\node[gvboxk,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a15) at (8.8,-12.28){No network route out of the building during a procedure};
+\node[gvbox,fill=pagraym,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a16) at (8.8,-13.10) {Subgroup composition reported per FDA guidance; exclusions named};
+\node[gvbox,text width=44mm,minimum height=5mm,inner sep=1.8pt]  (a17) at (8.8,-13.92){Version frozen at consent; any change forces re-consent};
+\node[gvbox,fill=pagraym,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a18) at (8.8,-14.68) {One accountable party per failure class, named in \S11};
+\node[gvbox,fill=pagraym,text width=44mm,minimum height=5mm,inner sep=1.8pt] (a19) at (8.8,-15.44) {Sponsor pays study-only items; two items remain unsettled};
+\begin{scope}[on background layer]
+\node[gvcluster,fit=(k1)(k21),inner sep=4pt]  (KK) {};
+\node[gvcluster2,fit=(a1)(a19),inner sep=4pt] (AA) {};
+\end{scope}
+\node[gvctitle,anchor=south west] at (KK.north west) {the twenty-one documented concerns};
+\node[gvctitle,anchor=south west] at (AA.north west) {the clause, limit, or number that answers it};
+\foreach \s/\t in {1/a1,2/a2,3/a3,3/a1,4/a4,5/a4,6/a5,6/a2,7/a7,8/a6,9/a8,10/a8,11/a9,12/a10,12/a11,13/a9,14/a12,15/a13,16/a14,17/a15,19/a17}{
+  \draw[gvundirb] (k\s.east) -- (\t.west);}
+\foreach \s/\t in {18/a16,20/a18,21/a19}{
+  \draw[gvundird] (k\s.east) -- (\t.west);}
+\node[font=\tiny\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (-1.9,-15.9) {Solid blue: answered by a hard numeric limit or an architectural fact. Dashed gray: answered by governance or disclosure alone.\\No edge joins two concerns and no edge joins two clauses, so no concern in this figure is answered with another concern.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 6. Every documented concern wired to the clause, limit, or number that\\
+answers it, drawn as a strictly bipartite graph so that no concern is answered with\\
+another concern, and dashed where the answer is governance or disclosure alone.}
+
+\subsection{How completely each concern is answered}
+
+Figure 7 places sixteen of the documented concerns on two independent axes. The
+horizontal axis is prevalence, scored from how often the concern appears across
+the four surveyed human sources. The vertical axis is answer completeness,
+scored 1.0 where the protocol supplies a numeric limit, 0.7 where it supplies a
+procedural guarantee, 0.5 where it supplies a governance commitment, and 0.3
+where it supplies disclosure only.
+
+Four concerns land in the lower-right quadrant: raised often, answered softly.
+They are cancer-control effectiveness, accountability for harm, loss of the
+human relationship, and cost. This paper does not argue them out of that
+quadrant. Sections 10, 11, and 12 state, for each, exactly what would have to be
+true for the answer to become a hard one, and what this study can contribute
+towards making it so.
+
+\begin{pafig}[mermaid-type: quadrantChart]
+\fill[pablue2]  (5.6,5.6) rectangle (11.2,11.2);
+\fill[protowhite] (0,5.6) rectangle (5.6,11.2);
+\fill[pagrayl]  (0,0) rectangle (5.6,5.6);
+\fill[pagraym]  (5.6,0) rectangle (11.2,5.6);
+\draw[protogray,line width=0.4pt] (0,0) rectangle (11.2,11.2);
+\draw[protogray,line width=0.5pt] (5.6,0) -- (5.6,11.2);
+\draw[protogray,line width=0.5pt] (0,5.6) -- (11.2,5.6);
+\node[font=\tiny\sffamily\bfseries,text=protoblue,anchor=north east,align=right] at (11.0,11.0) {asked often, answered hard\\lead with these};
+\node[font=\tiny\sffamily\bfseries,text=protoblue,anchor=north west,align=left]  at (0.2,11.0)  {answered hard, asked less\\keep available};
+\node[font=\tiny\sffamily\bfseries,text=protogray,anchor=south west,align=left]  at (0.2,0.2)   {softly answered, asked less\\monitor};
+\node[font=\tiny\sffamily\bfseries,text=protoblue,anchor=south east,align=right] at (11.0,0.2)  {asked often, answered softly\\the honest gap};
+\node[font=\scriptsize\sffamily,anchor=north] at (5.6,-0.5) {prevalence in the surveyed sources $\longrightarrow$};
+\node[font=\scriptsize\sffamily,rotate=90,anchor=south] at (-0.6,5.6) {completeness of the protocol answer $\longrightarrow$};
+\foreach \x/\y/\lx/\ly/\anc/\lab in {%
+  10.42/9.86/11.30/9.10/west/{who is driving the robot},
+  8.96/10.75/8.20/11.05/east/{override and rescue speed},
+  9.86/10.30/10.90/10.55/west/{malfunction, unintended motion},
+  6.94/10.08/6.20/10.55/east/{vascular injury and bleeding},
+  10.08/6.50/10.95/6.90/west/{cancer-control effectiveness},
+  7.95/6.94/7.10/7.30/east/{surgeon and team experience},
+  9.41/6.16/10.30/5.70/west/{who is accountable for harm},
+  7.39/9.63/6.55/9.95/east/{recording and secondary use},
+  5.49/10.53/4.60/10.85/east/{cybersecurity and network reach},
+  6.50/4.93/5.60/5.30/east/{algorithmic bias and my anatomy},
+  3.81/9.18/2.95/9.55/east/{software change after consent},
+  4.59/6.72/3.70/7.05/east/{automation bias in the surgeon},
+  8.51/7.39/9.40/7.85/west/{being among the first humans},
+  9.74/4.26/10.60/3.80/west/{loss of the human relationship},
+  6.16/4.03/5.30/3.60/east/{hype rather than evidence},
+  8.18/4.59/7.30/4.20/east/{cost and post-trial burden}}{
+  \draw[pagrayd,line width=0.3pt] (\x,\y) -- (\lx,\ly);
+  \fill[protoblue] (\x,\y) circle (0.085);
+  \node[font=\tiny\sffamily,anchor=\anc,inner sep=1.6pt,fill=protowhite,fill opacity=0.85,text opacity=1] at (\lx,\ly) {\lab};}
+\node[font=\scriptsize\sffamily\itshape,text=protogray,anchor=north west,align=left]
+  at (0,-1.2) {Scoring: 1.0 a numeric limit, 0.7 a procedural guarantee, 0.5 a governance commitment, 0.3 disclosure only. Four concerns\\sit in the lower-right quadrant. Sections 10, 11, and 12 state what would have to change for each of the four to move.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 7. Sixteen documented concerns positioned by how often they are raised in\\
+the surveyed literature against how completely this protocol answers them, with the\\
+lower-right quadrant collecting the concerns answered by governance or disclosure alone.}
+
+\subsection{The same safeguards, read as capabilities you hold}
+
+Every safeguard in the parent protocol is written with the sponsor as the actor:
+the sponsor verifies, the sponsor reports, the sponsor halts. Figure 8 redraws
+the same twelve safeguards as a use case diagram with the participant as the
+primary actor. Nothing in the protocol changed. Only the actor did, and the
+result reads differently: ten of the twelve are capabilities the participant
+exercises.
+
+The two that are not are pressing the emergency stop and issuing a software
+version notice. Both require someone physically present in the room or inside
+the build system, and neither can be exercised against the participant: the stop
+can only halt, and the notice can only trigger a re-consent that the participant
+is free to decline.
+
+\begin{pafig}[plantuml-type: use case, @startuml]
+\umlactor{pt}{-7.4}{-4.6}{\textbf{Participant}\\(primary actor)}
+\node[umlusekey] (u1)  at (-2.4,0)    {Consent, or decline with no consequence};
+\node[umlusekey] (u2)  at (-2.4,-2.3) {Opt out of the Physical AI component};
+\node[umlusekey] (u3)  at (-2.4,-4.6) {Set the autonomy level accepted per step};
+\node[umlusecase](u4)  at (-2.4,-6.9) {Inspect the Phase 0 simulation result};
+\node[umlusekey] (u5)  at (2.6,0)     {Require a named human to approve every motion};
+\node[umlusecase](u6)  at (2.6,-2.3)  {Trigger a stop through the surgeon};
+\node[umlusekey] (u7)  at (2.6,-4.6)  {Accept or decline the daraxonrasib restart};
+\node[umlusecase](u8)  at (2.6,-6.9)  {Read my own audit trail};
+\node[umlusekey] (u9)  at (7.6,0)     {Withdraw at any visit, no reason required};
+\node[umlusecase](u10) at (7.6,-2.3)  {Choose the fate of banked specimens};
+\node[umlusecase](u11) at (7.6,-4.6)  {Be told when the software version changes};
+\node[umlusecase](u12) at (7.6,-6.9)  {Receive my day-30 and day-90 results};
+\begin{scope}[on background layer]
+\node[umlpkg,fit=(u1)(u4)(u9)(u12)] (SYS) {};
+\end{scope}
+\node[umlpkgtab,anchor=south west] at (SYS.north west) {Phase 1 PDAC Physical AI trial};
+\foreach \u in {u1,u2,u3,u4,u5,u7,u9,u10,u11,u12}{\draw[umlassoc] (pt) -- (\u);}
+\umlactor{sg}{12.6}{-0.6}{Operating surgeon}
+\umlactor{ds}{12.6}{-3.6}{DSMB}
+\umlactor{si}{12.6}{-6.6}{Sponsor-Investigator}
+\draw[umlassoc] (sg) to[out=180,in=0,looseness=0.85] (u5);
+\draw[umlassoc] (sg) to[out=190,in=10,looseness=0.85] (u6);
+\draw[umlassoc] (ds) to[out=180,in=-10,looseness=0.85] (u6);
+\draw[umlassoc] (si) -- (u11);
+\draw[umlassoc] (si) to[out=190,in=0,looseness=0.85] (u12);
+\draw[umlinherit] (u6) -- node[umlguard,pos=0.5]{$\ll$extend$\gg$} (u5);
+\draw[umldash] (u8) -- node[umlguard,pos=0.5]{$\ll$include$\gg$} (u4);
+\draw[umldash] (u11) to[out=150,in=-30,looseness=0.9] node[umlguard,pos=0.5]{$\ll$include$\gg$ forces re-consent} (u1);
+\node[umlnote,text width=64mm,anchor=north west] at (-8.6,-9.2)
+  {Ten of the twelve capabilities are exercised by the participant. The two that are not, pressing the stop and issuing a version notice, are the two that require someone in the room or inside the build system. Neither can be exercised against the participant.};
+\node[umlnote,text width=52mm,anchor=north west] at (1.6,-9.2)
+  {In the parent protocol these twelve appear as sponsor obligations. Nothing in the protocol changed here. Only the actor did.};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 8. The twelve safeguards of the protocol redrawn as a use case diagram\\
+with the participant as the primary actor, so that each one reads as a capability\\
+they hold rather than as an obligation the sponsor has undertaken on their behalf.}
+
+\subsection{Where each concern physically lives}
+
+A concern with no physical address is unanswerable. A concern that resolves to a
+named cabinet, a named console, or a named cable can be inspected, and
+inspection is what the surveyed patients asked for. Figure 9 assigns thirteen of
+the twenty-one to the component that answers them, grouped into the operating
+room, the on-premises cabinet, the governance bodies, and everything outside the
+building.
+
+The figure's central claim is again an absence. There is a dashed line between
+the on-premises model and the network boundary, and it is struck through. During
+a procedure no route exists out of the building. That single struck line answers
+concern 17 more completely than any paragraph in this section.
+
+\begin{pafig}[diagrams (python)-type: Cluster + Node]
+\dgnodew{dgtiled}{-6.6}{0}{\glyphrobot}{Eight robotic arms, force-capped}{n1}
+\dgnode{dgtile}{-3.8}{0}{\glyphsignal}{Sensor stack, 640 channels}{n2}
+\dgnodew{dgtiled}{-6.6}{-2.4}{\glyphmon}{Surgeon console, sole authority}{n3}
+\dgnode{dgtile}{-3.8}{-2.4}{\glyphdoc}{Procedure recorder}{n4}
+\dgnode{dgtile}{0.8}{0}{\glyphai}{On-premises model, advisory}{n5}
+\dgnodew{dgtiled}{3.6}{0}{\glyphshield}{Deterministic safety gate}{n6}
+\dgnode{dgtile}{0.8}{-2.4}{\glyphdb}{Version registry}{n7}
+\dgnode{dgtile}{3.6}{-2.4}{\glyphlock}{Hash-chained audit trail}{n8}
+\dgnode{dgtile}{2.2}{-4.8}{\glyphdb}{Data vault}{n9}
+\dgnodeg{dgtileg}{8.0}{0}{\glyphdoc}{DSMB}{n10}
+\dgnodeg{dgtileg}{8.0}{-2.4}{\glyphdoc}{IRB, open to you}{n11}
+\dgnodeg{dgtileg}{8.0}{-4.8}{\glyphuser}{Sponsor-Investigator}{n12}
+\dgnodeg{dgtilek}{2.2}{-8.0}{\glyphnet}{Network boundary, closed}{n13}
+\dgnodeg{dgtilek}{6.0}{-8.0}{\glyphcloud}{Hospital network and cloud}{n14}
+\begin{scope}[on background layer]
+\node[dgcluster,fit=(n1)(n1l)(n2)(n2l)(n3)(n3l)(n4)(n4l)] (C1) {};
+\node[dgcluster,fit=(n5)(n5l)(n6)(n6l)(n7)(n7l)(n8)(n8l)(n9)(n9l)] (C2) {};
+\node[dgcluster2,fit=(n10)(n10l)(n11)(n11l)(n12)(n12l)] (C3) {};
+\node[dgcluster2,fit=(n13)(n13l)(n14)(n14l)] (C4) {};
+\end{scope}
+\node[dgctitle,anchor=south west] at (C1.north west) {operating room, sterile field};
+\node[dgctitle,anchor=south west] at (C2.north west) {on-premises cabinet, same building};
+\node[dgctitle2,anchor=south west] at (C3.north west) {governance, off the critical path};
+\node[dgctitle2,anchor=south west] at (C4.north west) {everything outside the building};
+\foreach \n/\c in {n1/{6, 9},n2/{7},n3/{1, 2, 3, 10},n4/{15},n6/{8},n7/{19},n8/{20},n9/{16},n13/{17}}{
+  \node[circle,fill=pagraym,draw=protoblack,line width=0.3pt,inner sep=0.6pt,
+        font=\tiny\sffamily,anchor=south west] at ([xshift=1mm,yshift=1mm]\n.north east) {\c};}
+\draw[dgedgeb] (n3) -- node[font=\tiny\sffamily,above]{approved motion only} (n1);
+\draw[dgedge]  (n2) -- (n3);
+\draw[dgedge]  (n1) to[out=-90,in=180,looseness=0.85] (n4);
+\draw[dgedged] (n5) -- (n6);
+\draw[dgedgeb] (n6) to[out=180,in=20,looseness=0.9] node[font=\tiny\sffamily,above,pos=0.6]{passed plans only} (n3);
+\draw[dgedge]  (n7) -- (n5);
+\draw[dgedge]  (n6) -- (n8);
+\draw[dgedge]  (n4) to[out=-90,in=180,looseness=0.85] (n9);
+\draw[dgedged] (n8) to[out=0,in=180,looseness=0.85] (n10);
+\draw[dgedged] (n9) to[out=0,in=200,looseness=0.85] (n12);
+\draw[dgedged] (n9) to[out=20,in=190,looseness=0.85] (n11);
+\draw[dgedged] (n13) -- node[font=\tiny\sffamily,above]{no route} (n14);
+\draw[dgedgek] (n5) to[out=-100,in=100,looseness=0.9] (n13);
+\pxmark{1.34}{-5.6}
+\node[font=\tiny\sffamily,fill=protowhite,inner sep=1.5pt,anchor=east] at (1.1,-5.6) {no route exists during a procedure};
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 9. Each documented concern resolved to the physical component that
+answers it, grouped into the operating room, the on-premises cabinet, the governance
+bodies, and everything outside, with the intra-procedural route drawn and struck through.}

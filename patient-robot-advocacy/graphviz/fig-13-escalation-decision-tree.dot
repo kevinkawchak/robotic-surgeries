@@ -1,0 +1,100 @@
+// =====================================================================
+// Figure 13. The 3+3 rule, drawn as the decision tree it actually is
+// Type            : Graphviz-type, decision tree with record leaf nodes
+// Paper section   : § 5, Study Design Explained
+// Concern answered: ChatGPT concern 7 (unknown and experimental risks) and
+//                   concern 8 (allocation and choice); Gemini family 2. "3+3
+//                   dose escalation" is jargon that conceals a rule a patient
+//                   can check for themselves. Drawn as a tree, the rule says
+//                   something concrete: the dose you receive was cleared by the
+//                   people ahead of you, and the study expands rather than
+//                   escalates the moment anyone is harmed.
+// Why this type   : A decision tree has exactly one path from the root to each
+//                   leaf, which is the property that makes the rule auditable.
+//                   Graphviz enforces it structurally; every other permitted
+//                   type would let two paths reach the same leaf.
+// Invariant       : tree. Every non-root node has exactly one parent, and every
+//                   leaf is reachable by exactly one path.
+//
+// TikZ: draw with the gv* vocabulary of patientstyle.sty.
+// TikZ: Root gvkey ellipse at (0,0); internal gvnode ellipses; leaf gvrec
+// TikZ:   record boxes built from stacked gvcell rows, header gvcellh.
+// TikZ: Four ranks at y = 0, -3.0, -6.4, -9.8. Sibling separation 4.6 cm at
+// TikZ:   rank 1, 3.1 cm at rank 2, 2.6 cm at rank 3, which keeps at least
+// TikZ:   9 mm of clear space between node edges at every rank.
+// TikZ: Branch labels ("0 of 3", "1 of 3", ">= 2 of 3") sit in white-filled
+// TikZ:   mmlabel nodes on the upper third of each edge, never at the midpoint,
+// TikZ:   so sibling labels cannot collide.
+// TikZ: The sentinel-wait annotation is a gvcluster dashed box drawn behind
+// TikZ:   rank 1, titled "sentinel window: nobody advances until this closes".
+// TikZ: All edges are straight; the two that skip a rank use
+// TikZ:   to[out=-90,in=90,looseness=0.7].
+// =====================================================================
+
+digraph escalation {
+  rankdir = TB;
+  bgcolor = "#FFFFFF";
+  fontname = "Times";
+  fontsize = 12;
+  nodesep = 0.5;
+  ranksep = 1.0;
+  splines = true;
+
+  node [fontname="Times", fontsize=9, shape=ellipse, style=filled,
+        fillcolor="#FFFFFF", color="#000000", penwidth=0.6];
+  edge [fontname="Times", fontsize=8, color="#000000", penwidth=0.55,
+        arrowsize=0.65];
+
+  root [label="Dose level 1\nfirst 3 participants\nsentinel staggered",
+        fillcolor="#00417A", fontcolor="#FFFFFF", color="#00417A", penwidth=1.3];
+
+  subgraph cluster_sentinel {
+    label = "sentinel window: nobody advances until this closes";
+    fontname = "Times"; fontsize = 9; fontcolor = "#00417A";
+    style = dashed; color = "#6C757D"; bgcolor = "#F1F6FA";
+    d1_0 [label="0 of 3 had a DLT", fillcolor="#DCE8F1"];
+    d1_1 [label="1 of 3 had a DLT", fillcolor="#CED4DA"];
+    d1_2 [label="2 or 3 of 3 had a DLT", fillcolor="#9AA1A8"];
+  }
+
+  d1_1e [label="expand this level\nto 6 participants", fillcolor="#DCE8F1"];
+  d1_1a [label="1 of 6 total", fillcolor="#DCE8F1"];
+  d1_1b [label="2 or more of 6", fillcolor="#9AA1A8"];
+
+  d2 [label="Dose level 2\nnext 3 participants\nsentinel staggered",
+      fillcolor="#3C7DB2", fontcolor="#FFFFFF"];
+  d3 [label="Dose level 3\nnext 3 participants\nsentinel staggered",
+      fillcolor="#3C7DB2", fontcolor="#FFFFFF"];
+
+  stop_lo [shape=record, fillcolor="#FFFFFF", penwidth=0.6,
+    label="{ STOP ESCALATING | this level is above the tolerated dose | the level below becomes the recommended dose | no participant is dosed higher }"];
+
+  mtd [shape=record, fillcolor="#FFFFFF", penwidth=0.6,
+    label="{ RECOMMENDED PHASE 2 DOSE | the highest level at which fewer than 2 of 6 | participants had a dose-limiting toxicity | reported with the safety data }"];
+
+  halt [label="Study pause\nDSMB convenes\nyou are told",
+        shape=box, fillcolor="#222222", fontcolor="#FFFFFF", penwidth=1.1];
+
+  root  -> d1_0 [label="0 of 3"];
+  root  -> d1_1 [label="1 of 3"];
+  root  -> d1_2 [label=">= 2 of 3"];
+
+  d1_0  -> d2   [label="escalate"];
+  d1_1  -> d1_1e [label="do not escalate"];
+  d1_1e -> d1_1a [label="1 of 6"];
+  d1_1e -> d1_1b [label=">= 2 of 6"];
+  d1_1a -> d2   [label="escalate"];
+  d1_1b -> stop_lo [label="stop"];
+  d1_2  -> stop_lo [label="stop"];
+  d1_2  -> halt [label="if at the first level", style=dashed, color="#6C757D"];
+
+  d2 -> d3      [label="0 of 3, or 1 of 6", color="#00417A", penwidth=0.8];
+  d2 -> stop_lo [label=">= 2 of 6", style=dashed, color="#6C757D"];
+  d3 -> mtd     [label="0 of 3, or 1 of 6", color="#00417A", penwidth=0.8];
+  d3 -> stop_lo [label=">= 2 of 6", style=dashed, color="#6C757D"];
+  stop_lo -> mtd [label="the level below is the answer", color="#00417A", penwidth=0.8];
+
+  { rank = same; d1_0; d1_1; d1_2; }
+  { rank = same; d1_1a; d1_1b; d2; }
+  { rank = same; d3; stop_lo; }
+}

@@ -1,0 +1,148 @@
+\section{Who Can Join, and Who Decides}
+
+\subsection{Eligibility as a two-way gate}
+
+\draftinstr{Roughly 1,100 characters. Standard eligibility runs in one
+direction: the protocol tests the participant and returns eligible or screen
+failure. Under the author's proposed legislation the participant is also doing
+the selecting, and the second direction leaves a record. Cite
+\texttt{hr9510billv5} and \texttt{paibillprior}. Adapt the criteria from
+\texttt{inputs/phase-1-trial-protocol.zip},
+\texttt{sections/sec-05-population.tex} \S5.1 and \S5.2.}
+
+\begin{pafig}[mermaid-type: flowchart TD, two decision columns]
+\node[mmgoal] (a) at (0,0) {Figure 14 slot\\two-way eligibility gate};
+\node[mmin] (b) at (0,-2.0) {Source:\\mermaid/fig-14-eligibility-self-selection.md};
+\draw[mmedge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 14. Eligibility drawn as two decision columns running against each
+other, what the protocol asks of the participant and what the participant may ask of\\
+the protocol, converging on a single enrollment node that requires both to be satisfied.}
+
+\draftinstr{Replace the Figure 14 slot with the mermaid-type two-column
+flowchart from \texttt{mermaid/fig-14-eligibility-self-selection.md}. Two
+\texttt{mmlane} boxes at $x = -3.4$ and $x = 4.6$; four \texttt{mmdec} diamonds
+per lane at 2.4 cm pitch; the two edges out of \texttt{START} at looseness 0.75
+so neither clips a lane title; the two "all yes" edges into enrollment at
+looseness 0.8.}
+
+\subsection{Inclusion and exclusion, in plain terms}
+
+\draftinstr{Populate both tables from
+\texttt{inputs/phase-1-trial-protocol.zip},
+\texttt{sections/sec-05-population.tex} \S5.1 and \S5.2. Keep the second column
+in the participant's own terms: an inclusion criterion is a statement about
+them, not about the study.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.4cm} Y}
+\toprule
+\textbf{You may join if} & \textbf{Why this criterion exists} \\
+\midrule
+You are 18 or older & The study has no paediatric safety data and does not enrol children \\
+Your tumour is confirmed PDAC on tissue & The drug and the operation are both specific to this disease \\
+Your tumour carries a KRAS G12 mutation & Daraxonrasib acts on RAS(ON); without the mutation there is no rationale \\
+Your tumour is resectable or borderline resectable & The operation must be able to achieve a clear margin \\
+Your performance status is ECOG 0 or 1 & A Whipple is a major operation and the study will not expose a frailer participant to it \\
+Your organ function is adequate & Both the drug and the operation load the liver, kidneys, and marrow \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{5.4cm} Y}
+\toprule
+\textbf{You may not join if} & \textbf{Why this criterion exists} \\
+\midrule
+Your disease is metastatic & A curative-intent resection is not the right operation \\
+You have had prior pancreatic resection & The anatomy the platform is validated against is not present \\
+You have an uncontrolled intercurrent illness & The perioperative risk cannot be attributed cleanly \\
+You are pregnant or breastfeeding & The drug has no safety data in pregnancy \\
+You cannot attend the follow-up schedule & The safety endpoints depend on the day-30 and day-90 visits \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\draftinstr{Add the remaining criteria from \S5.1 and \S5.2 of the parent
+protocol so both tables are complete, and verify each table lands exactly on the
+body measure with the 5.4cm plus Y split.}
+
+\subsection{Was this tested on people like me?}
+
+\draftinstr{Roughly 1,000 characters answering ChatGPT concern 12 honestly. The
+honest answer for a first-in-human study of at most eighteen participants is
+that the trial population is too small to establish subgroup performance, and
+that what the protocol can commit to is reporting the composition. Cite
+\texttt{FDADiver2017} for the age, race, and ethnicity reporting expectation and
+\texttt{FDARealW2025} for real-world performance monitoring after the study.}
+
+\vspace{0.30em}
+
+\noindent\begin{tabularx}{\textwidth}{L{4.7cm} L{3.4cm} Y}
+\toprule
+\textbf{Characteristic} & \textbf{Reported} & \textbf{What the study can and cannot say} \\
+\midrule
+Age, sex, race, ethnicity & Yes, per participant & Composition is reported; subgroup performance is not estimable at $n \leq 18$ \\
+Body mass index & Yes, per participant & Relevant to port placement and to force at the tip \\
+Prior therapy & Yes, per participant & Prior radiation changes tissue planes and is recorded \\
+Tumour location and vessel contact & Yes, per participant & Determines how much of the no-fly corridor is in play \\
+Comorbidity burden & Yes, per participant & Feeds the Clavien-Dindo interpretation at day 30 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.30em}
+
+\subsection{Booking a slot yourself, and getting an answer from a person}
+
+\draftinstr{Roughly 1,000 characters introducing Figure 15. Under current
+practice a participant learns a trial exists from a clinician who happens to
+know about it. H. R. 9510 v5 proposes a direct channel with a stated service
+level. State the target: five business days from first request to a confirmed
+screening visit, with a 72-hour provisional hold so nobody is rushed. State the
+protection: every branch notifies the treating oncologist, because the channel
+is additional and not a replacement. Cite \texttt{hr9510billv5} and
+\texttt{paiautospons}.}
+
+\begin{pafig}[plantuml-type: sequence, @startuml]
+\node[umlkey] (a) at (0,0) {Figure 15 slot\\booking and sponsor response};
+\node[umlbox] (b) at (0,-1.9) {Source:\\plantuml/fig-15-booking-sponsor-response.puml};
+\draw[umlarrow] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 15. Booking a screening slot directly and receiving an answer from a
+named human at the sponsor, with activation bars showing who is blocked at each step\\
+and every branch of the eligibility fragment notifying the participant's own oncologist.}
+
+\draftinstr{Replace the Figure 15 slot with the PlantUML-type sequence from
+\texttt{plantuml/fig-15-booking-sponsor-response.puml}. Five lifelines at
+$x = 0, 3.8, 7.6, 11.4, 15.2$; \texttt{umlact} activation bars spanning exactly
+the messages they enclose; message labels above the arrow, never on it; the
+single self-message as a 4 mm loop at looseness 6; the \texttt{alt} fragment as
+a 0.5pt \texttt{protogray} rectangle with a corner tab and a dashed divider.}
+
+\subsection{The five choices you keep}
+
+\draftinstr{Roughly 800 characters introducing Figure 16. A consent form
+presents every choice at once at the moment of greatest stress. The same five
+choices, revealed as layers that accumulate rather than replace, are each live
+at a different point in the study, and not one of them is exercised on the day
+of surgery. Cite \texttt{NCIConsent24} and \texttt{cfr050paiuni}.}
+
+\begin{pafig}[d2-type: layers and steps]
+\node[d2key] (a) at (0,0) {Figure 16 slot\\five choices, layered};
+\node[d2box] (b) at (0,-1.8) {Source:\\d2/fig-16-five-choices-layers.d2};
+\draw[d2edge] (a) -- (b);
+\end{pafig}
+\vspace{-0.7cm}
+\figcaption{Figure 16. The five choices the participant keeps, revealed as accumulating
+layers with the choice, the interval in which it is live, and what happens if the answer\\
+is no, so that no decision that matters is taken at the moment of least capacity.}
+
+\draftinstr{Replace the Figure 16 slot with the D2-type layered figure from
+\texttt{d2/fig-16-five-choices-layers.d2}. Five \texttt{d2step} panels stacked
+at 3.6 cm pitch; earlier panels redrawn as \texttt{d2ghost} 0.4pt outlines with
+no text so the reveal reads as accumulation; the panel-to-panel connector on the
+left margin at looseness 0.7.}

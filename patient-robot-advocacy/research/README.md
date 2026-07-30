@@ -21,9 +21,9 @@ Six concern families, of which the top five drive the paper's § 3 structure.
 | # | Concern family | Answered in the paper by |
 |:--|:--|:--|
 | 1 | Loss of the human element and surgeon control | § 3.1, § 7.2; Figures 8, 19 |
-| 2 | Surgical safety and technical failures | § 3.2, § 7.4; Figures 18, 20 |
+| 2 | Surgical safety and technical failures | § 3.2, § 7.4; Figures 18, 21 |
 | 3 | Misdiagnosis and algorithmic bias | § 3.3, § 10.3; Figures 6, 27 |
-| 4 | Data privacy and cybersecurity | § 3.4, § 9.3; Figures 9, 24 |
+| 4 | Data privacy and cybersecurity | § 3.4, § 9.3; Figures 9, 25 |
 | 5 | The accountability dilemma, "who is to blame?" | § 3.5, § 11; Figures 2, 29 |
 | 6 | Increased costs | § 3.6, § 12.2; Figure 30 |
 
@@ -42,7 +42,7 @@ BibTeX entries.
 
 | # | Concern | Answered in the paper by |
 |:--|:--|:--|
-| 1 | Safety, malfunction, unintended actions | § 3.2, § 7.4; Figures 18, 20 |
+| 1 | Safety, malfunction, unintended actions | § 3.2, § 7.4; Figures 18, 21 |
 | 2 | Who is actually controlling the operation | § 3.1, § 7.3; Figure 19 |
 | 3 | Human override and rescue capability | § 7.4; Figure 18 |
 | 4 | Responsibility if something goes wrong | § 11.1; Figures 2, 29 |
@@ -51,7 +51,7 @@ BibTeX entries.
 | 7 | Unknown and experimental risks | § 5.1, § 10.2; Figures 12, 13 |
 | 8 | Randomization and treatment choice | § 5.2; Figure 12 |
 | 9 | Overreliance on AI and automation bias | § 7.3; Figure 19 |
-| 10 | Privacy, recording, and secondary data use | § 9.3; Figure 24 |
+| 10 | Privacy, recording, and secondary data use | § 9.3; Figure 25 |
 | 11 | Cybersecurity and network dependence | § 9.4; Figures 9, 17 |
 | 12 | Bias and applicability to the individual | § 6.3; Figure 14 |
 | 13 | Software changes, versioning, drift | § 8.3; Figure 23 |

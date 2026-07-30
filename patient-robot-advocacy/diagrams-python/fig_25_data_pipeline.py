@@ -1,4 +1,4 @@
-"""Figure 24. Everything recorded about you, where it goes, and who can read it.
+"""Figure 25. Everything recorded about you, where it goes, and who can read it.
 
 Type
     Diagrams (Python)-type, data pipeline with an access-control overlay.
@@ -103,8 +103,8 @@ def build() -> None:
         return
 
     with Diagram(
-        "Figure 24. Your data, stage by stage, with the read list on every store",
-        filename="fig_24_data_pipeline",
+        "Figure 25. Your data, stage by stage, with the read list on every store",
+        filename="fig_25_data_pipeline",
         show=False,
         direction="LR",
         outformat="svg",

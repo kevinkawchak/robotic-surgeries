@@ -21,7 +21,7 @@ other. The question is **where does this physically live**.
 |:--|:--|:--|:--|:--|
 | [`fig_09_concern_locations.py`](fig_09_concern_locations.py) | 9 | clustered node map | 3 | all twenty-one, by giving each a physical address |
 | [`fig_17_operating_room_stack.py`](fig_17_operating_room_stack.py) | 17 | deployment, full page | 7 | cybersecurity and network reach; who is controlling |
-| [`fig_24_data_pipeline.py`](fig_24_data_pipeline.py) | 24 | pipeline with access overlay | 9 | privacy, recording, and secondary use |
+| [`fig_25_data_pipeline.py`](fig_25_data_pipeline.py) | 25 | pipeline with access overlay | 9 | privacy, recording, and secondary use |
 | [`fig_30_post_trial_continuity.py`](fig_30_post_trial_continuity.py) | 30 | lifecycle across three time zones | 12 | cost, and post-trial burden |
 
 ## The argument each figure makes by an absence

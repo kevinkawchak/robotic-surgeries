@@ -1,4 +1,4 @@
-## Figure 25. Your calendar: every visit, how long it takes, and what it is for
+## Figure 24. Your calendar: every visit, how long it takes, and what it is for
 
 **Type:** mermaid-type - `gantt`
 **Paper section:** § 9, Your Visits, Your Data, Your Robot Instructions

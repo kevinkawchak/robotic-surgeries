@@ -22,7 +22,7 @@ invariant and no narrative sugar.
 | [`fig-02-accountability-dag.dot`](fig-02-accountability-dag.dot) | 2 | rooted DAG | 1 | who is to blame; responsibility if harmed |
 | [`fig-06-concern-to-clause.dot`](fig-06-concern-to-clause.dot) | 6 | bipartite map, full page | 3 | all twenty-one, wired to their answering clause |
 | [`fig-13-escalation-decision-tree.dot`](fig-13-escalation-decision-tree.dot) | 13 | decision tree with record leaves | 5 | experimental risk; being among the first |
-| [`fig-20-hazard-barrier-fault-tree.dot`](fig-20-hazard-barrier-fault-tree.dot) | 20 | fault tree, AND and OR gates | 7 | malfunction and unintended actions |
+| [`fig-21-hazard-barrier-fault-tree.dot`](fig-21-hazard-barrier-fault-tree.dot) | 21 | fault tree, AND and OR gates | 7 | malfunction and unintended actions |
 | [`fig-28-evidence-provenance.dot`](fig-28-evidence-provenance.dot) | 28 | provenance DAG, record nodes | 10 | hype; cancer-control effectiveness |
 
 ## Graph invariants, stated in the source and verified
@@ -67,7 +67,7 @@ edges of Figure 2 so they do not distort the rank assignment.
 | 20 | 3 | 1 | 1 (the top event) |
 | 28 | 2 | 2 | 1 (the provenance rule) |
 
-Figure 20 is the only figure in the paper that uses all three grayscale fills, and it does
+Figure 21 is the only figure in the paper that uses all three grayscale fills, and it does
 so to grade barrier strength: light for an intact barrier annotation, medium for an OR gate,
 medium-dark for the single-barrier gap. Each black fill marks the one node in its figure a
 reader should carry away.

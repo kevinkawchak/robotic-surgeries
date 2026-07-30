@@ -109,11 +109,11 @@ patient-robot-advocacy/
   README.md               (this build hub)
   prompts/                prompt-patient.md (master, verbatim) + output-patient.md
   sub-prompts/            prompt-1-mermaid .. prompt-8-final-patient (Process A)
-  mermaid/       (Stage 1) 9 mermaid-type sources: figures 1, 3, 7, 10, 14, 19, 23, 25, 27
+  mermaid/       (Stage 1) 9 mermaid-type sources: figures 1, 3, 7, 10, 14, 19, 23, 24, 27
   plantuml/      (Stage 2) 5 PlantUML-type sources: figures 8, 12, 15, 18, 22
-  d2/            (Stage 3) 7 D2-type sources: figures 4, 5, 11, 16, 21, 26, 29
-  diagrams-python/ (Stage 4) 4 Diagrams (Python)-type sources: figures 9, 17, 24, 30
-  graphviz/      (Stage 5) 5 Graphviz-type sources: figures 2, 6, 13, 20, 28
+  d2/            (Stage 3) 7 D2-type sources: figures 4, 5, 11, 16, 20, 26, 29
+  diagrams-python/ (Stage 4) 4 Diagrams (Python)-type sources: figures 9, 17, 25, 30
+  graphviz/      (Stage 5) 5 Graphviz-type sources: figures 2, 6, 13, 21, 28
   draft-patient/ (Stage 6) main.tex, patientstyle.sty, references.bib, sections/, zip
   full-patient/  (Stage 7) the same set, fully rendered
   final-patient/ (Stage 8) the same set, polished (no publication subdirectory)
@@ -148,11 +148,11 @@ diagram and its location, not an equal quota.
 
 | Type | Count | Directory | Figure numbers |
 |:--|:--|:--|:--|
-| Mermaid-type | 9 | [`mermaid/`](mermaid) | 1, 3, 7, 10, 14, 19, 23, 25, 27 |
-| D2-type | 7 | [`d2/`](d2) | 4, 5, 11, 16, 21, 26, 29 |
+| Mermaid-type | 9 | [`mermaid/`](mermaid) | 1, 3, 7, 10, 14, 19, 23, 24, 27 |
+| D2-type | 7 | [`d2/`](d2) | 4, 5, 11, 16, 20, 26, 29 |
 | PlantUML-type | 5 | [`plantuml/`](plantuml) | 8, 12, 15, 18, 22 |
-| Graphviz-type | 5 | [`graphviz/`](graphviz) | 2, 6, 13, 20, 28 |
-| Diagrams (Python)-type | 4 | [`diagrams-python/`](diagrams-python) | 9, 17, 24, 30 |
+| Graphviz-type | 5 | [`graphviz/`](graphviz) | 2, 6, 13, 21, 28 |
+| Diagrams (Python)-type | 4 | [`diagrams-python/`](diagrams-python) | 9, 17, 25, 30 |
 
 ## Colour scheme
 
@@ -179,7 +179,7 @@ this set.
 |:--|:--|:--|
 | [`inputs/phase-1-trial-protocol.zip`](inputs) | the clinical protocol, the LaTeX style base, the BibTeX format | every section, every figure |
 | [`inputs/patient-priority-physical-ai.zip`](inputs) | the patient-as-priority premise and the bill framing | § 1, § 6, § 11, § 12; figures 2, 14, 15, 16, 29 |
-| [`inputs/cancer-patient-journey.zip`](inputs) | the autonomous single-patient journey, NSCLC, distinguished from PDAC | § 2, § 7, § 9; figures 3, 9, 17, 24 |
+| [`inputs/cancer-patient-journey.zip`](inputs) | the autonomous single-patient journey, NSCLC, distinguished from PDAC | § 2, § 7, § 9; figures 3, 9, 17, 25 |
 | [`inputs/patient-robot-instructions.tex`](inputs) | the ten robot-type instruction sheets, re-scoped to PDAC | § 9; figure 26 |
 | [`inputs/phase-1-six-platform-diagrams.zip`](inputs) | the five TikZ diagram vocabularies, as context only | `patientstyle.sty` |
 | [`research/research-a.md`](research) | the Gemini concern families | § 3; figures 5, 6, 7 |

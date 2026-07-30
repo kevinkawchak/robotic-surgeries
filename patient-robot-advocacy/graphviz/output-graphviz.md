@@ -6,7 +6,7 @@ last of the five diagram stages; all thirty figure sources now exist.
 
 ### What was produced
 
-Five Graphviz-type diagram sources, figures 2, 6, 13, 20, and 28 of the paper's thirty. One
+Five Graphviz-type diagram sources, figures 2, 6, 13, 21, and 28 of the paper's thirty. One
 of the five is a full-page figure. One commit per file, pushed on write, plus a README
 commit and this narrative.
 
@@ -39,7 +39,7 @@ a body reviewing itself.
    convenes the DSMB and results in the participant being told. A dose-escalation figure
    without a stopping leaf would misrepresent the rule.
 
-4. **Figure 20 names a single point of failure.** Registration drift beyond 2 mm is caught
+4. **Figure 21 names a single point of failure.** Registration drift beyond 2 mm is caught
    by the deterministic gate and by nothing else. Barrier 5 is filled medium-dark gray and
    labelled `SINGLE BARRIER ONLY`. Fault trees exist to find exactly this, and suppressing
    it would have made the other four barriers less credible.
@@ -66,10 +66,10 @@ a body reviewing itself.
 | Figure 2 acyclic | pass |
 | Figure 6 bipartite, 24 edges all cross-partition | pass |
 | Figure 13 is a tree, one path per leaf | pass |
-| Figure 20 all paths terminate in a basic event, all gates typed | pass |
+| Figure 21 all paths terminate in a basic event, all gates typed | pass |
 | Figure 28 no value node without an incoming edge | pass, 9 of 9 |
 | Every curved connector in the TikZ notes declares an explicit `looseness` | pass |
-| Per-diagram palette budget respected | pass; Figure 20 is the only figure using all three grays, and does so to grade barrier strength |
+| Per-diagram palette budget respected | pass; Figure 21 is the only figure using all three grays, and does so to grade barrier strength |
 | No figure reproduces a figure from either input archive | pass |
 | No PNG, no JPG | pass |
 
@@ -80,7 +80,7 @@ a body reviewing itself.
 | 1 | Figure 2, accountability DAG rooted at the participant | `fig-02-accountability-dag.dot` |
 | 2 | Figure 6, full-page concern-to-clause bipartite map | `fig-06-concern-to-clause.dot` |
 | 3 | Figure 13, 3+3 escalation decision tree | `fig-13-escalation-decision-tree.dot` |
-| 4 | Figure 20, hazard and barrier fault tree | `fig-20-hazard-barrier-fault-tree.dot` |
+| 4 | Figure 21, hazard and barrier fault tree | `fig-21-hazard-barrier-fault-tree.dot` |
 | 5 | Figure 28, evidence provenance DAG | `fig-28-evidence-provenance.dot` |
 | 6 | Stage README | `README.md` |
 | 7 | This narrative | `output-graphviz.md` |

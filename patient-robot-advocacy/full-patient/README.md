@@ -89,6 +89,16 @@ three grayscale fills, at most two lighter blues, and black fill sparingly. The 
 the stage narrative; the maximum grayscale use in the paper is three, in Figure 20 only,
 where the three grades mark barrier strength.
 
+## Figure numbering note
+
+The numbers on this page are Stage 7's. Stage 7 placed two pairs of figures out of
+ascending order: the operative-envelope figure was numbered 21 but appeared before the
+fault tree numbered 20, and the calendar was numbered 25 but appeared before the data
+pipeline numbered 24. [`../final-patient/`](../final-patient) swapped 20 with 21 and 24
+with 25 so the thirty figures appear in ascending order, and renamed the four diagram
+sources to match. Read this page's figure numbers against Stage 7's own PDF, and the
+diagram directories against the final paper.
+
 ## Files from other directories used here
 
 | Source | Used for | Where |

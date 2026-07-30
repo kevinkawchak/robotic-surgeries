@@ -25,7 +25,7 @@ anything else.
 | [`fig-14-eligibility-self-selection.md`](fig-14-eligibility-self-selection.md) | 14 | `flowchart TD`, two decision columns | 6 | bias and applicability; treatment choice |
 | [`fig-19-advise-approve-execute.md`](fig-19-advise-approve-execute.md) | 19 | `sequenceDiagram` | 7 | who is controlling; override; automation bias |
 | [`fig-23-consent-lifecycle.md`](fig-23-consent-lifecycle.md) | 23 | `stateDiagram-v2`, composite | 8 | software change and versioning; withdrawal |
-| [`fig-25-visit-timeline.md`](fig-25-visit-timeline.md) | 25 | `gantt` | 9 | practical and post-trial burden |
+| [`fig-24-visit-timeline.md`](fig-24-visit-timeline.md) | 24 | `gantt` | 9 | practical and post-trial burden |
 | [`fig-27-reassurance-dashboard.md`](fig-27-reassurance-dashboard.md) | 27 | `xychart` + `pie` + tables, full page | 10 | effectiveness; hype; safety and malfunction |
 
 Figure numbers 2, 4, 5, 6, 8, 9, 11, 12, 13, 15, 16, 17, 18, 20, 21, 22, 24, 26, 28, 29,

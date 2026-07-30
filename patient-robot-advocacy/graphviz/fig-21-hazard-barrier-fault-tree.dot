@@ -1,5 +1,5 @@
 // =====================================================================
-// Figure 20. Every hazard, and the specific barrier that has to fail first
+// Figure 21. Every hazard, and the specific barrier that has to fail first
 // Type            : Graphviz-type, fault tree with AND and OR gates
 // Paper section   : § 7, What Happens in the Operating Room
 // Concern answered: ChatGPT concern 1 (safety, malfunction, unintended

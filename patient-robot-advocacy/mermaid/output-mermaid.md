@@ -5,7 +5,7 @@ Stage 1 narrative, run from
 
 ### What was produced
 
-Nine mermaid-type diagram sources, figures 1, 3, 7, 10, 14, 19, 23, 25, and 27 of the
+Nine mermaid-type diagram sources, figures 1, 3, 7, 10, 14, 19, 23, 24, and 27 of the
 paper's thirty. Each is a separate file and each landed in its own commit, pushed on write.
 
 ### How the nine were chosen
@@ -41,7 +41,7 @@ because the largest share of the patient's questions are ordering questions.
    them. That absence answers the single most common patient concern more convincingly than
    any label could.
 
-4. **Figure 25 totals the burden.** The Schedule of Activities in the parent protocol is a
+4. **Figure 24 totals the burden.** The Schedule of Activities in the parent protocol is a
    matrix of crosses. Converting it to a calendar and then totalling it - about 18 visits,
    8 to 10 inpatient days, roughly 27 days of contact over 24 months - answers a question
    the protocol never asks.
@@ -87,7 +87,7 @@ nine figures uses a black fill, the single halt node in Figure 1.
 | 5 | Figure 14, two-way eligibility gate | `fig-14-eligibility-self-selection.md` |
 | 6 | Figure 19, advise-approve-execute sequence | `fig-19-advise-approve-execute.md` |
 | 7 | Figure 23, consent lifecycle state machine | `fig-23-consent-lifecycle.md` |
-| 8 | Figure 25, participant visit calendar | `fig-25-visit-timeline.md` |
+| 8 | Figure 24, participant visit calendar | `fig-24-visit-timeline.md` |
 | 9 | Figure 27, reassurance dashboard | `fig-27-reassurance-dashboard.md` |
 | 10 | Stage README | `README.md` |
 | 11 | This narrative | `output-mermaid.md` |

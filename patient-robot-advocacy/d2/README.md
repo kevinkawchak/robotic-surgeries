@@ -23,7 +23,7 @@ there, how many visits, how many choices, how many of the ten robots will I actu
 | [`fig-05-concern-families.d2`](fig-05-concern-families.d2) | 5 | nested containers | 3 | all twenty-one, by making the set finite |
 | [`fig-11-endpoint-registry.d2`](fig-11-endpoint-registry.d2) | 11 | `sql_table` with relations | 4 | cancer-control effectiveness; hype |
 | [`fig-16-five-choices-layers.d2`](fig-16-five-choices-layers.d2) | 16 | layers and steps | 6 | treatment choice; who is controlling |
-| [`fig-21-force-nofly-envelope.d2`](fig-21-force-nofly-envelope.d2) | 21 | container with measurement grid | 7 | malfunction; vascular injury |
+| [`fig-20-force-nofly-envelope.d2`](fig-20-force-nofly-envelope.d2) | 20 | container with measurement grid | 7 | malfunction; vascular injury |
 | [`fig-26-robot-instruction-cards.d2`](fig-26-robot-instruction-cards.d2) | 26 | card grid, 2 by 5, full page | 9 | who is controlling; practical burden |
 | [`fig-29-responsibility-matrix.d2`](fig-29-responsibility-matrix.d2) | 29 | grid matrix, 7 by 10 | 11 | responsibility if something goes wrong; team experience |
 
@@ -66,7 +66,7 @@ the site, or the regulator.
 | 29 | 1 | 2 | 1 column (the "you call" column) |
 
 The two black-fill uses are deliberate and both carry the single most actionable content in
-their figure: the operative invariant in Figure 21, and the "who you call" column in
+their figure: the operative invariant in Figure 20, and the "who you call" column in
 Figure 29.
 
 ## Files from other directories used here

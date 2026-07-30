@@ -4,7 +4,7 @@ Stage 3 narrative, run from [`../sub-prompts/prompt-3-d2.md`](../sub-prompts/pro
 
 ### What was produced
 
-Seven D2-type diagram sources, figures 4, 5, 11, 16, 21, 26, and 29 of the paper's thirty.
+Seven D2-type diagram sources, figures 4, 5, 11, 16, 20, 26, and 29 of the paper's thirty.
 Two of the seven are full-page figures. One commit per file, pushed on write, plus a README
 commit and this narrative.
 
@@ -41,7 +41,7 @@ finite and addressed.
    remain live, which is the actual protocol position, and the closing note draws the
    conclusion the layout implies: not one of the five is exercised on the day of surgery.
 
-5. **Figure 21 pairs the two limits that are individually insufficient.** A force cap does
+5. **Figure 20 pairs the two limits that are individually insufficient.** A force cap does
    not prevent an arm entering a vascular corridor, and a corridor does not cap the force
    applied inside permitted tissue. Drawing them as sibling containers inside one envelope
    makes the pairing structural rather than asserted.
@@ -80,7 +80,7 @@ finite and addressed.
 | 2 | Figure 5, twenty-one concerns in six containers | `fig-05-concern-families.d2` |
 | 3 | Figure 11, endpoint registry as typed records | `fig-11-endpoint-registry.d2` |
 | 4 | Figure 16, five choices as progressive layers | `fig-16-five-choices-layers.d2` |
-| 5 | Figure 21, force caps and no-fly envelope | `fig-21-force-nofly-envelope.d2` |
+| 5 | Figure 20, force caps and no-fly envelope | `fig-20-force-nofly-envelope.d2` |
 | 6 | Figure 26, ten robot instruction cards | `fig-26-robot-instruction-cards.d2` |
 | 7 | Figure 29, responsibility matrix | `fig-29-responsibility-matrix.d2` |
 | 8 | Stage README | `README.md` |
@@ -88,7 +88,7 @@ finite and addressed.
 
 ### Handoff to Stage 4
 
-[`../diagrams-python/`](../diagrams-python) takes figures 9, 17, 24, and 30. The boundary:
+[`../diagrams-python/`](../diagrams-python) takes figures 9, 17, 25, and 30. The boundary:
 Stage 3 answers "how much of it is there"; Stage 4 answers "where does it physically live".
-Figure 21 here bounds what the arms may do; Figure 17 there shows the room the arms are in,
+Figure 20 here bounds what the arms may do; Figure 17 there shows the room the arms are in,
 the cabinet the model runs on, and the network cable that is not connected.

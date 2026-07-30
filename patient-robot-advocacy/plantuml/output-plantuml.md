@@ -78,7 +78,7 @@ somewhere to put the guard.
 
 ### Handoff to Stage 3
 
-[`../d2/`](../d2) takes figures 4, 5, 11, 16, 21, 26, and 29. The boundary: Stage 2 answers
+[`../d2/`](../d2) takes figures 4, 5, 11, 16, 20, 26, and 29. The boundary: Stage 2 answers
 "what is guaranteed"; Stage 3 answers "how much of it is there, and how does it group".
 Figure 12 here shows the states a participant passes through; Figure 4 there shows every
 assessment those states carry, as a true grid.

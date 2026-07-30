@@ -5,7 +5,7 @@ Stage 4 narrative, run from
 
 ### What was produced
 
-Four Diagrams (Python)-type sources, figures 9, 17, 24, and 30 of the paper's thirty. One
+Four Diagrams (Python)-type sources, figures 9, 17, 25, and 30 of the paper's thirty. One
 of the four is a full-page figure. One commit per file, pushed on write, plus a README
 commit and this narrative.
 
@@ -28,7 +28,7 @@ though it were a rack.
    before the procedure, and reports to the FDA and the IRB cross it afterwards. Naming all
    three, and marking only the intra-procedural path as absent, is the accurate claim.
 
-3. **Figure 24 states retention in years, per store.** "Retained as required by
+3. **Figure 25 states retention in years, per store.** "Retained as required by
    regulation" is not an answer. The figure prints 10 or 15 years on each store tile and
    lists, per store, the roles that may read it. A role that is absent from a list cannot
    read that store, and no edge is drawn for it.
@@ -73,15 +73,15 @@ though it were a rack.
 |:--|:--|:--|
 | 1 | Figure 9, concern-to-component address map | `fig_09_concern_locations.py` |
 | 2 | Figure 17, full-page operating room and on-premises stack | `fig_17_operating_room_stack.py` |
-| 3 | Figure 24, data pipeline with per-store read lists | `fig_24_data_pipeline.py` |
+| 3 | Figure 25, data pipeline with per-store read lists | `fig_25_data_pipeline.py` |
 | 4 | Figure 30, post-trial continuity and payer map | `fig_30_post_trial_continuity.py` |
 | 5 | Stage README | `README.md` |
 | 6 | This narrative | `output-diagrams-python.md` |
 
 ### Handoff to Stage 5
 
-[`../graphviz/`](../graphviz) takes figures 2, 6, 13, 20, and 28, the last of the diagram
+[`../graphviz/`](../graphviz) takes figures 2, 6, 13, 21, and 28, the last of the diagram
 stages. The boundary: Stage 4 answers "where does it live"; Stage 5 answers "what depends
-on what, and can you prove it". Figure 17 here shows the boxes; Figure 20 there shows,
+on what, and can you prove it". Figure 17 here shows the boxes; Figure 21 there shows,
 as a fault tree, which box catches which failure, and Figure 28 traces every number in the
 paper back to the source that produced it.

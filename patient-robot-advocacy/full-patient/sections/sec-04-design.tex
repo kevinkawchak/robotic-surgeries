@@ -59,7 +59,7 @@ safety.
 \draw[umlarrow] (sx) -- (fx);
 \draw[umlarrow] (s1) -- node[umlguard,pos=0.5,align=left,xshift=32mm]{[all \S 5.1 met]\\{}[no \S 5.2 exclusion]\\{}[consent signed]} (s2);
 \draw[umlarrow] (s2) to[out=0,in=90,looseness=0.9] node[umlguard,pos=0.55,align=left]{[prior participant still inside the sentinel window]} (sh);
-\draw[umlarrow] (sh) to[out=-90,in=0,looseness=0.9] node[umlguard,pos=0.45,align=left]{[sentinel window closed]\\{}[no DLT declared]} (s3);
+\draw[umlarrow] (sh) to[out=-90,in=0,looseness=0.9] node[umlguard,pos=0.30,align=left]{[sentinel window closed]\\{}[no DLT declared]} (s3);
 \draw[umlarrow] (s2) -- node[umlguard,pos=0.5,align=left,xshift=30mm]{[no sentinel window open]} (s3);
 \draw[umlarrow] (s3.west) to[out=170,in=190,looseness=5] node[umlguard,left,align=right]{[DLT observed in cohort]\\/ expand 3 to 6, do not escalate} (s3.south west);
 \draw[umlarrow] (s3) -- node[umlguard,pos=0.5,align=left,xshift=32mm]{[Phase 0 gate signed]\\{}[USL $\geq 7.0$ verified]\\{}[pre-procedure matrix clear]} (s4);
@@ -67,7 +67,7 @@ safety.
 \draw[umlarrow] (s5) -- node[umlguard,pos=0.5,align=left,xshift=26mm]{[day-30 window closed]} (s6);
 \draw[umlarrow] (s6) -- node[umlguard,pos=0.5,align=left,xshift=26mm]{[day-90 assessments done]} (s7);
 \draw[umlarrow] (s7) -- node[umlguard,pos=0.5,align=left,xshift=30mm]{[24-month endpoint OR withdrawal OR death]} (f0);
-\node[umlnote,text width=44mm,anchor=north west] at (5.0,-5.4)
+\node[umlnote,text width=42mm,anchor=north west] at (5.4,-6.5)
   {This state exists so that you are never the second person at a new dose level before the first person's safety window has closed. It costs the study time. It is not there for the study's benefit.};
 \node[umlnote,text width=44mm,anchor=north east] at (-5.0,-8.2)
   {Single arm, open label. There is no allocation that could assign you to a comparator, and nothing about your treatment is concealed from you.};

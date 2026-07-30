@@ -159,13 +159,23 @@ repeated header, so no table can run off the foot of a page.
 
 \vspace{0.30em}
 
-\noindent\begin{tabularx}{\textwidth}{L{2.0cm} L{2.6cm} Y}
+\begin{xltabular}{\textwidth}{L{2.0cm} L{2.6cm} Y}
 \toprule
 \textbf{Version} & \textbf{Date} & \textbf{Change} \\
 \midrule
-Draft 1.0 & July 31, 2026 & First release. Thirteen sections, thirty figures across five diagram types, forty-three tables, twenty-one documented concerns answered clause by clause, and an eight-stage build from machine-readable diagram sources through a bracketed draft and a populated full version to a polished final source set. \\
+\endfirsthead
+\multicolumn{3}{@{}l}{\footnotesize\itshape Table continued from the previous page.}\\
+\toprule
+\textbf{Version} & \textbf{Date} & \textbf{Change} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize\itshape Table continued on the next page.}\\
+\endfoot
 \bottomrule
-\end{tabularx}
+\endlastfoot
+Draft 1.0 & July 31, 2026 & First release. Thirteen sections, thirty figures across five diagram types, forty-three tables, twenty-one documented concerns answered clause by clause, and an eight-stage build from machine-readable diagram sources through a bracketed draft and a populated full version to a polished final source set. \\
+\end{xltabular}
 
 \vspace{0.30em}
 

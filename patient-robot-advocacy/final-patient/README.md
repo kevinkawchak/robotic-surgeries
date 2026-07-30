@@ -154,7 +154,7 @@ macro styles differ.
 | [`../inputs/phase-1-trial-protocol.zip`](../inputs) | every clinical fact, limit, endpoint, and oversight body, and the length target | all thirteen sections |
 | [`../inputs/patient-priority-physical-ai.zip`](../inputs) | the patient-as-priority premise and the bill framing | § 1, § 6, § 12 |
 | [`../inputs/cancer-patient-journey.zip`](../inputs) | the journey and stack topology, NSCLC, distinguished from PDAC | § 2, § 7, figures 3, 17, 25 |
-| [`../inputs/patient-robot-instructions.tex`](../inputs) | the ten instruction sheets, re-scoped to PDAC | § 9.7, § 9.8, figure 26 |
+| [`../inputs/patient-robot-instructions.tex`](../inputs) | the ten instruction sheets, re-scoped to PDAC | § 9.5, § 9.7, figure 26 |
 | [`../research/research-a.md`](../research) | the six Gemini concern families | § 3 |
 | [`../research/research-b.md`](../research) | the sixteen ChatGPT concerns and their references | § 3, bibliography |
 | [`../references/references.bib`](../references) | the author works and the H. R. 9510 v5 citation | § 6, § 12 |

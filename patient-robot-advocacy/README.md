@@ -224,4 +224,4 @@ advice and is not endorsed by the FDA, NIH, HHS, an IRB, ICH, or any sponsor. Th
 independent and is not endorsed or sponsored by any trial sponsor, CRO, site, IRB,
 regulator, or medical society; it was adapted using Claude Code Opus 5. All figures derive
 from the author's repository sources and are illustrative unless tied to a cited
-reference. The DOI placeholder `10.5281/zenodo.xxxxxxxx` is filled at deposit.*
+reference.*

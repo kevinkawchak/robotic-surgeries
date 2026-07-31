@@ -1,4 +1,4 @@
-# final-patient - Stage 8, the polished source set (v1.0.0)
+# final-patient (claude code) - Stage 8, the polished source set (v1.0.0)
 
 [![License](https://img.shields.io/badge/License-CC%20BY%204.0-yellow.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Stage](https://img.shields.io/badge/Stage-8%20of%208-00417A.svg)](../sub-prompts/prompt-8-final-patient.md)
@@ -12,7 +12,7 @@
 [![Raster](https://img.shields.io/badge/Raster%20images-none-6C757D.svg)](.)
 [![Release](https://img.shields.io/badge/Release-v1.0.0-orange.svg)](../../releases.md)
 
-The last of the eight stages, run from
+Final Author [Publication](https://github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy/final-patient/publication) The last of the eight stages, run from
 [`../sub-prompts/prompt-8-final-patient.md`](../sub-prompts/prompt-8-final-patient.md)
 and filed here as [`prompt-final-patient.md`](prompt-final-patient.md). It is a senior
 author's proof-reading pass over [`../full-patient/`](../full-patient), not a rewrite: no

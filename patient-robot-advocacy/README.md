@@ -8,7 +8,7 @@
 [![Diagram types](https://img.shields.io/badge/Types-Mermaid%20%7C%20PlantUML%20%7C%20D2%20%7C%20Python%20%7C%20Graphviz-6C757D.svg)](#the-thirty-figures)
 [![Raster](https://img.shields.io/badge/Raster%20images-none-6C757D.svg)](.)
 [![Stages](https://img.shields.io/badge/Stages-8-6C757D.svg)](sub-prompts)
-[![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.xxxxxxxx-blue.svg)](https://doi.org/10.5281/zenodo.xxxxxxxx)
+[![Paper DOI](https://img.shields.io/badge/Paper%20DOI-10.5281%2Fzenodo.21720120-blue.svg)](https://doi.org/10.5281/zenodo.21720120)
 [![Bill](https://img.shields.io/badge/H.R.%209510%20v5-10.5281%2Fzenodo.20619762-blue.svg)](https://doi.org/10.5281/zenodo.20619762)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0007--5457--8667-a6ce39.svg)](https://orcid.org/0009-0007-5457-8667)
 [![Release](https://img.shields.io/badge/Release-v1.0.0-orange.svg)](../releases.md)
@@ -18,7 +18,7 @@ This directory holds the autonomous, single-prompt build of a new paper:
 > **Patient Robot Advocacy: A Phase 1, First-in-Human, PDAC Clinical Trial Protocol of a
 > LLM-Directed Robotic Whipple with Daraxonrasib (RMC-6236)**
 > Kevin Kawchak, CEO ChemicalQDevice. Draft 1.0, San Diego, July 31, 2026.
-> Paper v1.0: [`10.5281/zenodo.xxxxxxxx`](https://doi.org/10.5281/zenodo.xxxxxxxx) -
+> Paper v1.0: [`10.5281/zenodo.21720120`](https://doi.org/10.5281/zenodo.21720120) -
 > Repository v1.0.0:
 > [github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy](https://github.com/kevinkawchak/robotic-surgeries/tree/main/patient-robot-advocacy)
 

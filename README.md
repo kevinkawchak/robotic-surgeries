@@ -20,7 +20,7 @@ Physical AI Oncology Trial Robotic Surgeries simulation repository.
 [![Adjuvant](https://img.shields.io/badge/Adjuvant-Daraxonrasib-yellow.svg)](https://doi.org/10.5281/zenodo.18099351)
 [![Patient Advocacy](https://img.shields.io/badge/Patient%20Advocacy-v1.0.0-success.svg)](patient-robot-advocacy)
 [![Advocacy Figures](https://img.shields.io/badge/Figures-30%20across%205%20diagram%20types-00417A.svg)](patient-robot-advocacy#the-thirty-figures)
-[![Advocacy DOI](https://img.shields.io/badge/Advocacy%20DOI-10.5281%2Fzenodo.xxxxxxxx-blue)](https://doi.org/10.5281/zenodo.xxxxxxxx)
+[![Advocacy DOI](https://img.shields.io/badge/Advocacy%20DOI-10.5281%2Fzenodo.21720120-blue)](https://doi.org/10.5281/zenodo.21720120)
 
 ## Thesis
 

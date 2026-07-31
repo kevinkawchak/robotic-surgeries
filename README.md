@@ -66,7 +66,7 @@ The v1.0.0 release lands patient-robot-advocacy/, a Phase 1 PDAC patient advocac
            Trial Protocol of a LLM-Directed Robotic Whipple with
            Daraxonrasib (RMC-6236).  Draft 1.0, San Diego, July 31, 2026.
    AUTHOR  Kevin Kawchak, CEO ChemicalQDevice, ORCID 0009-0007-5457-8667
-   DOI     10.5281/zenodo.xxxxxxxx          BILL  10.5281/zenodo.20619762
+   DOI     10.5281/zenodo.21720120          BILL  10.5281/zenodo.20619762
 +============================================================================+
 ```
 

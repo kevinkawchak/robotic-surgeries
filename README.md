@@ -24,7 +24,7 @@ Physical AI Oncology Trial Robotic Surgeries simulation repository.
 
 ## Thesis
 
-On-premises repository based LLMs provide commands to standard oncology surgical robots based on real-time sensor data and controlled via x, y, z coordinates to administer patient treatment. This workflow minimizes single robot error potential.
+On-premises repository based LLMs provide commands to standard oncology surgical robots based on real-time sensor data and controlled via x, y, z coordinates to administer patient treatment. This workflow aims to minimize single robot error potential.
 
 ## v1.0.0 Patient Robot Advocacy Paper (ASCII)
 

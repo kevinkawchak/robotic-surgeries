@@ -49,7 +49,7 @@ The v1.0.0 release lands patient-robot-advocacy/, a Phase 1 PDAC patient advocac
    +-----------------------------------------------------------------------+
                                      |
                                      v  redrawn natively in TikZ, per idiom
-   +--------------------- Stages 6 to 8, the paper --------------—-———----+
+   +--------------------- Stages 6 to 8, the paper --------------—--—----—+
    |  draft-patient/    42 pp   scaffold, 78 bracketed instructions        |
    |  full-patient/     83 pp   instructions executed, 30 figures drawn    |
    |  final-patient/    88 pp   proof-read: floats, breakable tables,      |
